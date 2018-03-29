@@ -45,7 +45,7 @@ public class Post {
     PostCondition postCondition;
 
     @OneToMany
-    List<QunatityPriceScheme> qunatityPriceSchemes;
+    List<QuantityPriceScheme> quantityPriceSchemes;
 
     public Long getId() {
         return id;
@@ -127,11 +127,11 @@ public class Post {
         this.postCondition = postCondition;
     }
 
-    public List<QunatityPriceScheme> getQunatityPriceSchemes() {
-        return qunatityPriceSchemes;
+    public List<QuantityPriceScheme> getQuantityPriceSchemes() {
+        return quantityPriceSchemes;
     }
 
-    public void setQunatityPriceSchemes(List<QunatityPriceScheme> qunatityPriceSchemes) {
-        this.qunatityPriceSchemes = qunatityPriceSchemes;
+    public void setQuantityPriceSchemes(List<QuantityPriceScheme> quantityPriceSchemes) {
+        this.quantityPriceSchemes = quantityPriceSchemes;
     }
 }
