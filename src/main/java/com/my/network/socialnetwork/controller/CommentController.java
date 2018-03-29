@@ -60,7 +60,7 @@ public class CommentController {
     void updateLikesOfComment(Long postId){
         //Update likes of Post.
         Comment comment = commentRepository.findById(postId).get();
-        comment.setLikeCount(commentLikeRepository.likeCount(postId));
+        //comment.setLikeCount(commentLikeRepository.likeCount(postId));
         commentRepository.save(comment);
     }
 }

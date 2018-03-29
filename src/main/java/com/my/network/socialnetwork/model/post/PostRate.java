@@ -10,9 +10,10 @@ public class PostRate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @JsonIgnore
+
+    /*@JsonIgnore
     @ManyToOne
-    Post post;
+    Post post;*/
 
     String name;
 
@@ -28,14 +29,6 @@ public class PostRate {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
     }
 
     public String getName() {

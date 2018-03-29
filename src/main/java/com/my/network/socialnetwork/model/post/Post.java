@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.UserClass;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,14 +16,13 @@ public class Post {
     @ManyToOne
     UserClass user;
 
-    String message;
+    String title;
 
     //TODO handle Images;
     //string image url;
 
     @JsonIgnore
     int reportAbuse;
-
 
     @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
     PostVisibility postVisibility;
@@ -36,8 +34,18 @@ public class Post {
 
     int likeCount = 0;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "post")
-    List<PostRate> postRate;
+    //TODO remove this.
+    /*@OneToMany(cascade=CascadeType.ALL, mappedBy = "post")
+    List<PostRate> postRate;*/
+
+    @OneToMany(cascade=CascadeType.ALL)
+    List<PriceList> priceLists;
+
+    @OneToOne
+    PostCondition postCondition;
+
+    @OneToMany
+    List<QunatityPriceScheme> qunatityPriceSchemes;
 
     public Long getId() {
         return id;
@@ -55,12 +63,12 @@ public class Post {
         this.user = user;
     }
 
-    public String getMessage() {
-        return message;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getReportAbuse() {
@@ -103,12 +111,27 @@ public class Post {
         isPublicPost = publicPost;
     }
 
-
-    public List<PostRate> getPostRate() {
-        return postRate;
+    public List<PriceList> getPriceLists() {
+        return priceLists;
     }
 
-    public void setPostRate(List<PostRate> postRate) {
-        this.postRate = postRate;
+    public void setPriceLists(List<PriceList> priceLists) {
+        this.priceLists = priceLists;
+    }
+
+    public PostCondition getPostCondition() {
+        return postCondition;
+    }
+
+    public void setPostCondition(PostCondition postCondition) {
+        this.postCondition = postCondition;
+    }
+
+    public List<QunatityPriceScheme> getQunatityPriceSchemes() {
+        return qunatityPriceSchemes;
+    }
+
+    public void setQunatityPriceSchemes(List<QunatityPriceScheme> qunatityPriceSchemes) {
+        this.qunatityPriceSchemes = qunatityPriceSchemes;
     }
 }
