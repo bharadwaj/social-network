@@ -34,18 +34,20 @@ public class Post {
 
     int likeCount = 0;
 
-    //TODO remove this.
-    /*@OneToMany(cascade=CascadeType.ALL, mappedBy = "post")
-    List<PostRate> postRate;*/
-
     @OneToMany(cascade=CascadeType.ALL)
     List<PriceList> priceLists;
 
     @OneToOne
     PostCondition postCondition;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<QuantityPriceScheme> quantityPriceSchemes;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    List<ValueScheme> valueSchemes;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    List<RequestForQuotation> requestForQuotations;
 
     public Long getId() {
         return id;
@@ -133,5 +135,21 @@ public class Post {
 
     public void setQuantityPriceSchemes(List<QuantityPriceScheme> quantityPriceSchemes) {
         this.quantityPriceSchemes = quantityPriceSchemes;
+    }
+
+    public List<ValueScheme> getValueSchemes() {
+        return valueSchemes;
+    }
+
+    public void setValueSchemes(List<ValueScheme> valueSchemes) {
+        this.valueSchemes = valueSchemes;
+    }
+
+    public List<RequestForQuotation> getRequestForQuotations() {
+        return requestForQuotations;
+    }
+
+    public void setRequestForQuotations(List<RequestForQuotation> requestForQuotations) {
+        this.requestForQuotations = requestForQuotations;
     }
 }

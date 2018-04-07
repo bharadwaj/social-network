@@ -1,9 +1,7 @@
 package com.my.network.socialnetwork.model.post;
 
 import com.my.network.socialnetwork.model.PhoneModel;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class PriceList {
@@ -11,7 +9,7 @@ public class PriceList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    //
+    //TODO
     @OneToOne
     PhoneModel phoneModel;
 

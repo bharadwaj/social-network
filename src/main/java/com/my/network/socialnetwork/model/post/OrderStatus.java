@@ -6,12 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PostCondition {
+public class OrderStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    String conditionName;
+    String statusName;
 
     public Long getId() {
         return id;
@@ -21,11 +21,11 @@ public class PostCondition {
         this.id = id;
     }
 
-    public String getConditionName() {
-        return conditionName;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setConditionName(String conditionName) {
-        this.conditionName = conditionName;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

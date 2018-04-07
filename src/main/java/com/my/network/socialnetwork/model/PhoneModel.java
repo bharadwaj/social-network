@@ -31,11 +31,11 @@ public class PhoneModel {
         this.name = name;
     }
 
-    /*public List<PriceList> getPriceLists() {
+    /*public List<PriceList> getBidPriceLists() {
         return priceLists;
     }
 
-    public void setPriceLists(List<PriceList> priceLists) {
+    public void setBidPriceLists(List<PriceList> priceLists) {
         this.priceLists = priceLists;
     }*/
 }
