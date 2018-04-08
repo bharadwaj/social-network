@@ -30,4 +30,9 @@ insert into social_network.post_condition(id,condition_name) VALUES (2, 'Like Ne
 insert into social_network.post_condition(id,condition_name) VALUES (3, 'Refurbished');
 insert into social_network.post_condition(id,condition_name) VALUES (4, 'Used');
 
+insert into social_network.order_status(id, status_name) values (1, 'Packaged');
+insert into social_network.order_status(id, status_name) values (2, 'Shipped');
+insert into social_network.order_status(id, status_name) values (3, 'Delivered');
+
+
 

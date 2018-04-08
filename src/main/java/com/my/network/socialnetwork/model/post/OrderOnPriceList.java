@@ -20,6 +20,11 @@ public class OrderOnPriceList {
     @OneToMany(cascade = CascadeType.ALL)
     List<RequestForQuotation> orderRequestForQuotations;
 
+    Boolean isConfirmed;
+
+    @OneToOne
+    OrderStatus orderStatus;
+
     public Long getId() {
         return id;
     }
@@ -50,5 +55,21 @@ public class OrderOnPriceList {
 
     public void setOrderRequestForQuotations(List<RequestForQuotation> orderRequestForQuotations) {
         this.orderRequestForQuotations = orderRequestForQuotations;
+    }
+
+    public Boolean getConfirmed() {
+        return isConfirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        isConfirmed = confirmed;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
