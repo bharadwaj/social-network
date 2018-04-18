@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork;
+package com.my.network;
 
 import java.io.IOException;
 import javax.servlet.Filter;

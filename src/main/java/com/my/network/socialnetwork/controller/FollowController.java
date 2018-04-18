@@ -34,25 +34,25 @@ public class FollowController {
     * Params: UserId, FollowUserId
     * TODO: 1. In future get userId with the context so authorization is handled
     * */
-    @PostMapping("/")
+    /*@PostMapping("/")
     public ResponseEntity followUser(@RequestBody Following following) {
 
         //Validate follow user & user's existence.
-        Boolean userIsValid = userClassRepository.findById(following.getUser().getId()).isPresent();
+        Boolean userIsValid = userClassRepository.findById(following.getCreatedBy().getId()).isPresent();
         Boolean followingUserIsValid = userClassRepository.findById(following.getFollowingUser().getId()).isPresent();
 
-        if(!userIsValid || !followingUserIsValid || (following.getUser().getId() == following.getFollowingUser().getId()))
+        if(!userIsValid || !followingUserIsValid || (following.getCreatedBy().getId() == following.getFollowingUser().getId()))
             return new ResponseEntity<>("Invalid User to Follow", HttpStatus.BAD_REQUEST);
 
         //TODO Return bad request if already user is following user.
-        /*if()
-            return new ResponseEntity<>("You are already following the user.",HttpStatus.BAD_REQUEST);*/
+        *//*if()
+            return new ResponseEntity<>("You are already following the user.",HttpStatus.BAD_REQUEST);*//*
 
-        /*
+        *//*
         * Get from jwt token and set following user Id.
-        * following.setUser(TODO Get the user from jwt token);
-        * */
-        following.setUser(userClassRepository.findById(following.getUser().getId()).get());
+        * following.setCreatedBy(TODO Get the user from jwt token);
+        * *//*
+        following.setCreatedBy(userClassRepository.findById(following.getCreatedBy().getId()).get());
         following.setFollowingUser(userClassRepository.findById(following.getFollowingUser().getId()).get());
 
         // Check if the user's isOpenFollow is true.
@@ -61,7 +61,7 @@ public class FollowController {
             following.setApproved(true);
 
         return new ResponseEntity<>(followingRepository.save(following), HttpStatus.CREATED);
-    }
+    }*/
 
     /*
     * Un-follow a friend:

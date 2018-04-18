@@ -6,8 +6,6 @@ import com.my.network.socialnetwork.model.UserClass;
 import javax.persistence.*;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames =
-        {"following_user_id", "user_id"})})
 public class Following {
 
     @Id
