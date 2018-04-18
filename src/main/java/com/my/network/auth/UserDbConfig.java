@@ -24,13 +24,11 @@ public class UserDbConfig {
     private Environment env;
 
     //
-    @Primary
     @Bean
     public PlatformTransactionManager userTransactionManager() {
         return new JpaTransactionManager(userEntityManager().getObject());
     }
 
-    @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean userEntityManager() {
 
@@ -50,7 +48,6 @@ public class UserDbConfig {
         return factoryBean;
     }
 
-    @Primary
     @Bean
     public DataSource userDataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();

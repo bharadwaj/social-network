@@ -2,11 +2,17 @@ package com.my.network.socialnetwork.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.UserClass;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Indexed
 public class Post {
 
     @Id
@@ -16,6 +22,7 @@ public class Post {
     @ManyToOne
     UserClass user;
 
+    @Field
     String title;
 
     //TODO handle Images;
@@ -34,19 +41,24 @@ public class Post {
 
     int likeCount = 0;
 
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @IndexedEmbedded
     List<PriceList> priceLists;
 
     @OneToOne
     PostCondition postCondition;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<QuantityPriceScheme> quantityPriceSchemes;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<ValueScheme> valueSchemes;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<RequestForQuotation> requestForQuotations;
 
     public Long getId() {

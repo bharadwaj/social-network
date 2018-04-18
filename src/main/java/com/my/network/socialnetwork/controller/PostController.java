@@ -2,11 +2,15 @@ package com.my.network.socialnetwork.controller;
 
 import com.my.network.socialnetwork.model.*;
 import com.my.network.socialnetwork.model.post.*;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +39,9 @@ public class PostController {
 
     @Autowired
     OrderOnPriceListRepository orderOnPriceListRepository;
+
+    @Autowired
+    EntityManagerFactory entityManagerFactory;
 
 
     /**
@@ -148,11 +155,50 @@ public class PostController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping(value = "/search/{query}")
+    public ResponseEntity searchPosts(@PathVariable String query) {
+        return new ResponseEntity<>(postSearch(query), HttpStatus.OK);
+    }
+
+
+
     void updateLikesOfPost(Long postId) {
         //Update likes of Post.
         Post post = postRepository.findById(postId).get();
         post.setLikeCount(postLikeRepository.likeCount(postId));
         postRepository.save(post);
+    }
+
+    private List<Post> postSearch(String q) {
+
+
+        EntityManager em = entityManagerFactory.createEntityManager();
+        FullTextEntityManager fullTextEntityManager =
+                org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+        em.getTransaction().begin();
+
+// create native Lucene query using the query DSL
+// alternatively you can write the Lucene query using the Lucene query parser
+// or the Lucene programmatic API. The Hibernate Search DSL is recommended though
+        QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+                .buildQueryBuilder().forEntity(Post.class).get();
+        org.apache.lucene.search.Query query = qb
+                .keyword()
+                .onFields("title")
+                .matching(q)
+                .createQuery();
+
+// wrap Lucene query in a javax.persistence.Query
+        javax.persistence.Query persistenceQuery =
+                fullTextEntityManager.createFullTextQuery(query, Post.class);
+
+// execute search
+        List<Post> result = persistenceQuery.getResultList();
+
+        em.getTransaction().commit();
+        em.close();
+
+        return result;
     }
 
 }
