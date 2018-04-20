@@ -36,5 +36,3 @@ insert into social_network_2.PostCondition(id,conditionName) VALUES (1, 'New');
 insert into social_network_2.PostCondition(id,conditionName) VALUES (2, 'Like New');
 insert into social_network_2.PostCondition(id,conditionName) VALUES (3, 'Refurbished');
 insert into social_network_2.PostCondition(id,conditionName) VALUES (4, 'Used');
-
-

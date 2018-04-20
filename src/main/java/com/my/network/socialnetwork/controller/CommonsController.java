@@ -45,7 +45,7 @@ public class CommonsController {
                 .buildQueryBuilder().forEntity(PhoneModel.class).get();
         org.apache.lucene.search.Query query = qb
                 .keyword()
-                .onFields("title")
+                .onFields("name")
                 .matching(q)
                 .createQuery();
 
