@@ -1,6 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
-import com.my.network.socialnetwork.model.PhoneModel;
+import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 
 import javax.persistence.*;
 

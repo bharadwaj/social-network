@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork.model;
+package com.my.network.socialnetwork.model.network;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

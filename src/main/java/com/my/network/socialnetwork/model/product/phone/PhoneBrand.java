@@ -1,7 +1,4 @@
-package com.my.network.socialnetwork.model;
-
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
+package com.my.network.socialnetwork.model.product.phone;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,16 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Indexed
-public class PhoneModel {
+public class PhoneBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Field
     String name;
-
-    //@ManyToMany(cascade = CascadeType.ALL, mappedBy = "phoneModels")
 
     public Long getId() {
         return id;
@@ -35,12 +28,4 @@ public class PhoneModel {
     public void setName(String name) {
         this.name = name;
     }
-
-    /*public List<PriceList> getBidPriceLists() {
-        return priceLists;
-    }
-
-    public void setBidPriceLists(List<PriceList> priceLists) {
-        this.priceLists = priceLists;
-    }*/
 }
