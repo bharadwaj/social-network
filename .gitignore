@@ -23,4 +23,5 @@ dist/
 nbdist/
 .nb-gradle/
 
+### Ignore auto-generated FTS indexes ###
 com.*
