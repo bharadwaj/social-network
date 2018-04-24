@@ -1,4 +1,4 @@
-package com.my.network;
+package com.my.network.auth;
 
 import java.io.IOException;
 import javax.servlet.Filter;

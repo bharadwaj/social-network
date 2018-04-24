@@ -23,7 +23,7 @@ public class UserDbConfig {
     @Autowired
     private Environment env;
 
-    //
+
     @Bean
     public PlatformTransactionManager userTransactionManager() {
         return new JpaTransactionManager(userEntityManager().getObject());
