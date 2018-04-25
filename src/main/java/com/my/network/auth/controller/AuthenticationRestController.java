@@ -118,8 +118,7 @@ public class AuthenticationRestController {
         user.setIsApproved(true);
         String pwd = bcryptEncoder.encode(user.getPassword());
         user.setPassword(pwd);
-        usersRepository.save(user);
-        return new ResponseEntity<>("User Created", HttpStatus.OK);
+        return new ResponseEntity<>(usersRepository.save(user), HttpStatus.OK);
     }
 
 
