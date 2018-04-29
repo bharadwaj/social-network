@@ -16,8 +16,8 @@ public class Poll {
 
     String title;
 
-
-
+    @OneToMany(cascade = CascadeType.ALL)
+    List<PollItem> pollItems;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Poll {
         this.title = title;
     }
 
-    /*public List<PollItem> getPollItems() {
+    public List<PollItem> getPollItems() {
         return pollItems;
     }
 
     public void setPollItems(List<PollItem> pollItems) {
         this.pollItems = pollItems;
-    }*/
+    }
 }

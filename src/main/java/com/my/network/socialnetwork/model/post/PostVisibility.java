@@ -22,7 +22,7 @@ public class PostVisibility {
 
     //TODO Add Groups
     /*@ManyToMany
-    List<Group> visibleToGroups;*/
+    List<UserGroup> visibleToGroups;*/
 
     public Long getId() {
         return id;
@@ -48,11 +48,11 @@ public class PostVisibility {
         this.visibleToUsers = visibleToUsers;
     }
 
-    /*public List<Group> getVisibleToGroups() {
+    /*public List<UserGroup> getVisibleToGroups() {
         return visibleToGroups;
     }
 
-    public void setVisibleToGroups(List<Group> visibleToGroups) {
+    public void setVisibleToGroups(List<UserGroup> visibleToGroups) {
         this.visibleToGroups = visibleToGroups;
     }*/
 }

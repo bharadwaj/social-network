@@ -1,6 +1,7 @@
 package com.my.network.socialnetwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.post.Post;
 
@@ -31,7 +32,17 @@ public class UserClass {
     List<Following> followingList;
 
     /*@ManyToMany(mappedBy = "usersOfGroup")
-    List<Group> groupList;*/
+    List<UserGroup> groupList;*/
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "groupMemberUsers", cascade = CascadeType.ALL)
+    private List<UserGroup> userGroups;
+
+    private Long zipCode;
+
+    private String state;
+
+    private String countryCode;
 
 
     public Long getId() {
@@ -82,11 +93,51 @@ public class UserClass {
         this.postList = postList;
     }
 
-    /*public List<Group> getGroupList() {
+    public List<Following> getFollowingList() {
+        return followingList;
+    }
+
+    public void setFollowingList(List<Following> followingList) {
+        this.followingList = followingList;
+    }
+
+    public List<UserGroup> getUserGroups() {
+        return userGroups;
+    }
+
+    public void setUserGroups(List<UserGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
+
+    public Long getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Long zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    /*public List<UserGroup> getGroupList() {
         return groupList;
     }
 
-    public void setGroupList(List<Group> groupList) {
+    public void setGroupList(List<UserGroup> groupList) {
         this.groupList = groupList;
     }*/
 }
