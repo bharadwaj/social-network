@@ -1,6 +1,7 @@
 package com.my.network.socialnetwork.model.post;
 
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.auth.model.Users;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class PostLike {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    UserClass user;
+    SubscribedUser user;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
@@ -31,11 +32,11 @@ public class PostLike {
         this.id = id;
     }
 
-    public UserClass getUser() {
+    public SubscribedUser getUser() {
         return user;
     }
 
-    public void setUser(UserClass user) {
+    public void setUser(SubscribedUser user) {
         this.user = user;
     }
 

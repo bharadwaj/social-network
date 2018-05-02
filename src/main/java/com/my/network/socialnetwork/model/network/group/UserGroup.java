@@ -1,6 +1,6 @@
 package com.my.network.socialnetwork.model.network.group;
 
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +18,7 @@ public class UserGroup {
     String hashtag;
 
     @ManyToMany
-    List<UserClass> groupMemberUsers;
+    List<SubscribedUser> groupMemberUsers;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class UserGroup {
         this.hashtag = hashtag;
     }
 
-    public List<UserClass> getGroupMemberUsers() {
+    public List<SubscribedUser> getGroupMemberUsers() {
         return groupMemberUsers;
     }
 
-    public void setGroupMemberUsers(List<UserClass> groupMemberUsers) {
+    public void setGroupMemberUsers(List<SubscribedUser> groupMemberUsers) {
         this.groupMemberUsers = groupMemberUsers;
     }
 }

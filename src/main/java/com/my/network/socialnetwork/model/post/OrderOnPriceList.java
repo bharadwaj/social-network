@@ -1,6 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +12,7 @@ public class OrderOnPriceList {
     Long id;
 
     @ManyToOne
-    UserClass userClass;
+    SubscribedUser subscribedUser;
 
     @OneToOne
     Post post;
@@ -33,12 +33,12 @@ public class OrderOnPriceList {
         this.id = id;
     }
 
-    public UserClass getUserClass() {
-        return userClass;
+    public SubscribedUser getSubscribedUser() {
+        return subscribedUser;
     }
 
-    public void setUserClass(UserClass userClass) {
-        this.userClass = userClass;
+    public void setSubscribedUser(SubscribedUser subscribedUser) {
+        this.subscribedUser = subscribedUser;
     }
 
     public Post getPost() {

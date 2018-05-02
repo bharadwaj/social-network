@@ -1,7 +1,7 @@
 package com.my.network.socialnetwork.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.Field;
@@ -20,7 +20,7 @@ public class Post {
     Long id;
 
     @ManyToOne
-    UserClass user;
+    SubscribedUser user;
 
     @Field
     String title;
@@ -69,11 +69,11 @@ public class Post {
         this.id = id;
     }
 
-    public UserClass getUser() {
+    public SubscribedUser getUser() {
         return user;
     }
 
-    public void setUser(UserClass user) {
+    public void setUser(SubscribedUser user) {
         this.user = user;
     }
 

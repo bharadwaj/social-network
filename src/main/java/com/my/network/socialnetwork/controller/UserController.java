@@ -1,7 +1,9 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.UserClass;
-import com.my.network.socialnetwork.model.UserClassRepository;
+import com.my.network.auth.model.Users;
+import com.my.network.auth.model.UsersRepository;
+import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
@@ -19,7 +21,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    UserClassRepository userClassRepository;
+    SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
     PostLikeRepository postLikeRepository;
@@ -27,14 +29,17 @@ public class UserController {
     @Autowired
     UserGroupRepository userGroupRepository;
 
+    @Autowired
+    UsersRepository usersRepository;
+
     @GetMapping(value = {"/" , "/{userId}"})
-    public ResponseEntity viewAllUser(@PathVariable Optional<Long> userId){
+    public ResponseEntity viewAllUser(@PathVariable Optional<String> userId){
         if(userId.isPresent()){
-            if(userClassRepository.findById(userId.get()).isPresent())
-                return new ResponseEntity<>(userClassRepository.findById(userId.get()).get(), HttpStatus.OK);
+            if(subscribedUserRepository.findById(userId.get()).isPresent())
+                return new ResponseEntity<>(subscribedUserRepository.findById(userId.get()).get(), HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(userClassRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
     }
 
     /**
@@ -46,11 +51,20 @@ public class UserController {
     }
 
     @PostMapping(value = "/new")
-    public ResponseEntity createUserClass(@RequestBody UserClass userClass){
+    public ResponseEntity createUserClass(@RequestBody Users toSubscribeUser){
+
+        SubscribedUser subscribedUser = new SubscribedUser();
+
+        Users existingUser = usersRepository.findById(toSubscribeUser.getUserId()).get();
+
+        subscribedUser.setId(existingUser.getUserId());
+        subscribedUser.setContactNumber(existingUser.getContactNumber());
+        subscribedUser.setName(existingUser.getName());
+        subscribedUser.setEmail(existingUser.getEmail());
         //Get Zip Code
-        UserClass savedUser = userClassRepository.save(userClass);
-        UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(userClass.getZipCode().toString());
-        List<UserClass> toUpdateUserList = zipCodeGroup.getGroupMemberUsers();
+        SubscribedUser savedUser = subscribedUserRepository.save(subscribedUser);
+        UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(subscribedUser.getZipCode().toString());
+        List<SubscribedUser> toUpdateUserList = zipCodeGroup.getGroupMemberUsers();
         if(toUpdateUserList == null){
             toUpdateUserList = new ArrayList<>();
         }

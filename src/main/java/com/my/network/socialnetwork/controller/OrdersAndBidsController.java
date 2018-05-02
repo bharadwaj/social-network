@@ -1,7 +1,7 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.UserClass;
-import com.my.network.socialnetwork.model.UserClassRepository;
+import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/post")
 public class OrdersAndBidsController {
     @Autowired
-    UserClassRepository userClassRepository;
+    SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
     PostRepository postRepository;
@@ -33,11 +33,11 @@ public class OrdersAndBidsController {
     @PostMapping("/rfq/bid/{userId}")
     public ResponseEntity placeABidOnRequestForQuantity(@RequestBody BidOnRFQ bidOnRFQ, @PathVariable Long userId){
         Post postToSave = postRepository.findById(bidOnRFQ.getPost().getId()).get();
-        UserClass userToSave = userClassRepository.findById(bidOnRFQ.getUserClass().getId()).get();
+        SubscribedUser userToSave = subscribedUserRepository.findById(bidOnRFQ.getSubscribedUser().getId()).get();
 
         if(postToSave != null && userToSave != null){
             bidOnRFQ.setPost(postToSave);
-            bidOnRFQ.setUserClass(userToSave);
+            bidOnRFQ.setSubscribedUser(userToSave);
 
             return new ResponseEntity<>(bidOnRFQRepository.save(bidOnRFQ), HttpStatus.OK);
         }
@@ -58,11 +58,11 @@ public class OrdersAndBidsController {
     @PostMapping("/price-list/order/{postId}")
     public ResponseEntity orderForItemsOnAPriceList(@RequestBody OrderOnPriceList orderOnPriceList, @PathVariable Long postId){
         Post postToSave = postRepository.findById(orderOnPriceList.getPost().getId()).get();
-        UserClass userToSave = userClassRepository.findById(orderOnPriceList.getUserClass().getId()).get();
+        SubscribedUser userToSave = subscribedUserRepository.findById(orderOnPriceList.getSubscribedUser().getId()).get();
 
         if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);
-            orderOnPriceList.setUserClass(userToSave);
+            orderOnPriceList.setSubscribedUser(userToSave);
 
             return new ResponseEntity<>(orderOnPriceListRepository.save(orderOnPriceList), HttpStatus.OK);
         }

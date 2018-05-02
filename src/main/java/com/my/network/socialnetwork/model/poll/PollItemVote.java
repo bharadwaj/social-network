@@ -1,7 +1,6 @@
 package com.my.network.socialnetwork.model.poll;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 
@@ -13,7 +12,7 @@ public class PollItemVote {
     Long id;
 
     @OneToOne
-    UserClass votedUser;
+    SubscribedUser votedUser;
 
     @ManyToOne
     PollItem pollItem;
@@ -26,11 +25,11 @@ public class PollItemVote {
         this.id = id;
     }
 
-    public UserClass getVotedUser() {
+    public SubscribedUser getVotedUser() {
         return votedUser;
     }
 
-    public void setVotedUser(UserClass votedUser) {
+    public void setVotedUser(SubscribedUser votedUser) {
         this.votedUser = votedUser;
     }
 

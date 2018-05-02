@@ -2,7 +2,7 @@ package com.my.network.socialnetwork.controller;
 
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
-import com.my.network.socialnetwork.model.UserClassRepository;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class FollowController {
     FollowingRepository followingRepository;
 
     @Autowired
-    UserClassRepository userClassRepository;
+    SubscribedUserRepository subscribedUserRepository;
 
     /*
     * Suggest which user to follow.
@@ -25,8 +25,8 @@ public class FollowController {
     * TODO: 2. Recommendations will plugin here.
     * */
     @GetMapping("/{userId}")
-    public ResponseEntity suggestUsersToFollow(@PathVariable Long userId){
-        return new ResponseEntity<>(userClassRepository.suggestUsersToFollow(userId), HttpStatus.OK);
+    public ResponseEntity suggestUsersToFollow(@PathVariable String userId){
+        return new ResponseEntity<>(subscribedUserRepository.suggestUsersToFollow(userId), HttpStatus.OK);
     }
 
     /*
@@ -38,8 +38,8 @@ public class FollowController {
     public ResponseEntity followUser(@RequestBody Following following) {
 
         //Validate follow user & user's existence.
-        Boolean userIsValid = userClassRepository.findById(following.getCreatedBy().getId()).isPresent();
-        Boolean followingUserIsValid = userClassRepository.findById(following.getFollowingUser().getId()).isPresent();
+        Boolean userIsValid = subscribedUserRepository.findById(following.getCreatedBy().getId()).isPresent();
+        Boolean followingUserIsValid = subscribedUserRepository.findById(following.getFollowingUser().getId()).isPresent();
 
         if(!userIsValid || !followingUserIsValid || (following.getCreatedBy().getId() == following.getFollowingUser().getId()))
             return new ResponseEntity<>("Invalid User to Follow", HttpStatus.BAD_REQUEST);
@@ -52,8 +52,8 @@ public class FollowController {
         * Get from jwt token and set following user Id.
         * following.setCreatedBy(TODO Get the user from jwt token);
         * *//*
-        following.setCreatedBy(userClassRepository.findById(following.getCreatedBy().getId()).get());
-        following.setFollowingUser(userClassRepository.findById(following.getFollowingUser().getId()).get());
+        following.setCreatedBy(subscribedUserRepository.findById(following.getCreatedBy().getId()).get());
+        following.setFollowingUser(subscribedUserRepository.findById(following.getFollowingUser().getId()).get());
 
         // Check if the user's isOpenFollow is true.
         following.setApproved(false);

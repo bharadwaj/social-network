@@ -1,7 +1,7 @@
 package com.my.network.socialnetwork.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,8 +17,8 @@ public class PostVisibility {
     @OneToOne
     Post post;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    public List<UserClass> visibleToUsers;
+    @OneToMany
+    public List<SubscribedUser> visibleToUsers;
 
     //TODO Add Groups
     /*@ManyToMany
@@ -40,19 +40,11 @@ public class PostVisibility {
         this.post = post;
     }
 
-    public List<UserClass> getVisibleToUsers() {
+    public List<SubscribedUser> getVisibleToUsers() {
         return visibleToUsers;
     }
 
-    public void setVisibleToUsers(List<UserClass> visibleToUsers) {
+    public void setVisibleToUsers(List<SubscribedUser> visibleToUsers) {
         this.visibleToUsers = visibleToUsers;
     }
-
-    /*public List<UserGroup> getVisibleToGroups() {
-        return visibleToGroups;
-    }
-
-    public void setVisibleToGroups(List<UserGroup> visibleToGroups) {
-        this.visibleToGroups = visibleToGroups;
-    }*/
 }

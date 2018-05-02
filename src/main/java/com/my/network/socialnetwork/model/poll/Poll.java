@@ -1,6 +1,6 @@
 package com.my.network.socialnetwork.model.poll;
 
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Poll {
     Long id;
 
     @ManyToOne
-    UserClass createdBy;
+    SubscribedUser createdBy;
 
     String title;
 
@@ -27,11 +27,11 @@ public class Poll {
         this.id = id;
     }
 
-    public UserClass getCreatedBy() {
+    public SubscribedUser getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(UserClass createdBy) {
+    public void setCreatedBy(SubscribedUser createdBy) {
         this.createdBy = createdBy;
     }
 

@@ -1,6 +1,6 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.UserClassRepository;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ public class CommentController {
     PostRepository postRepository;
 
     @Autowired
-    UserClassRepository userClassRepository;
+    SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
     CommentRepository commentRepository;
@@ -45,12 +45,12 @@ public class CommentController {
 
     //TODO read current user from jwt.
     @PostMapping(value = "/like/{userId}")
-    public ResponseEntity likeComment(@RequestBody CommentLike commentLike, @PathVariable Long userId){
+    public ResponseEntity likeComment(@RequestBody CommentLike commentLike, @PathVariable String userId){
         if(!postRepository.findById(commentLike.getComment().getId()).isPresent() &&
-                !userClassRepository.findById(userId).isPresent())
+                !subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        commentLike.setUser(userClassRepository.findById(userId).get());
+        commentLike.setUser(subscribedUserRepository.findById(userId).get());
         commentLikeRepository.save(commentLike);
         updateLikesOfComment(commentLike.getComment().getId());
 

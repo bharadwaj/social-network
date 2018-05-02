@@ -1,7 +1,7 @@
 package com.my.network.socialnetwork.model.network;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.my.network.socialnetwork.model.UserClass;
+import com.my.network.socialnetwork.model.SubscribedUser;
 
 import javax.persistence.*;
 
@@ -13,11 +13,11 @@ public class Following {
     Long id;
 
     @ManyToOne
-    UserClass user;
+    SubscribedUser user;
 
     //TODO typo, change to following
     @OneToOne
-    UserClass followingUser;
+    SubscribedUser followingUser;
 
     @JsonIgnore
     boolean isApproved;
@@ -34,19 +34,19 @@ public class Following {
         this.id = id;
     }
 
-    public UserClass getUser() {
+    public SubscribedUser getUser() {
         return user;
     }
 
-    public void setUser(UserClass user) {
+    public void setUser(SubscribedUser user) {
         this.user = user;
     }
 
-    public UserClass getFollowingUser() {
+    public SubscribedUser getFollowingUser() {
         return followingUser;
     }
 
-    public void setFollowingUser(UserClass followingUser) {
+    public void setFollowingUser(SubscribedUser followingUser) {
         this.followingUser = followingUser;
     }
 
