@@ -61,8 +61,8 @@ public class PostController {
      *
      */
     //TODO Read user from jwt
-    @PostMapping("/")
-    public ResponseEntity newPost(@RequestHeader(value= "Authorization") String authTokenHeader, @RequestBody Post post) {
+    @PostMapping()
+    public ResponseEntity newPost(@RequestBody Post post, @RequestHeader(value= "Authorization") String authTokenHeader) {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -95,10 +95,10 @@ public class PostController {
 
 
     @PutMapping("/price-template")
-    public ResponseEntity editPost(@RequestBody Post post) {
+    public ResponseEntity editPriceList(@RequestBody Post post) {
         if (postRepository.findById(post.getId()).isPresent()) {
             Post postToSave = postRepository.findById(post.getId()).get();
-            postToSave.getPriceLists();
+            postToSave.setPriceLists(post.getPriceLists());
 
             return new ResponseEntity<>(postRepository.save(postToSave), HttpStatus.OK);
         }
@@ -106,13 +106,13 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping()
     public ResponseEntity deletePost(@RequestBody Post post) {
         return new ResponseEntity(HttpStatus.MULTI_STATUS);
     }
 
     //TODO remove userId and read the UserId from jwt.
-    @GetMapping(value = {"/{postId}", "/"})
+    @GetMapping(value = {"/{postId}", "all"})
     public ResponseEntity viewPosts(HttpServletRequest request, @PathVariable Optional<Long> postId) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
@@ -134,20 +134,21 @@ public class PostController {
     }
 
     //TODO read current user from jwt.
-    @PostMapping(value = "/like")
-    public ResponseEntity likePost(HttpServletRequest request, @RequestBody PostLike postLike) {
+    @PostMapping(value = "/like/{postId}")
+    public ResponseEntity likePost(@PathVariable Long postId,HttpServletRequest request) {
+        PostLike postLike = new PostLike();
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
-        if (!postRepository.findById(postLike.getPost().getId()).isPresent() &&
+        if (!postRepository.findById(postId).isPresent() &&
                 !subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         postLike.setUser(subscribedUserRepository.findById(userId).get());
         postLikeRepository.save(postLike);
-        updateLikesOfPost(postLike.getPost().getId());
+        updateLikesOfPost(postId);
 
-        return new ResponseEntity<>(postRepository.findById(postLike.getPost().getId()), HttpStatus.OK);
+        return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
     }
 
     //TODO check if the user has permission to unlike.
@@ -192,7 +193,6 @@ public class PostController {
     }
 
     private List<Post> postSearch(String q) {
-
 
         EntityManager em = entityManagerFactory.createEntityManager();
         FullTextEntityManager fullTextEntityManager =

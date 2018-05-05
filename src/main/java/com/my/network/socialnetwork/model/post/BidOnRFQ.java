@@ -16,7 +16,7 @@ public class BidOnRFQ {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne
     SubscribedUser subscribedUser;
 
     @OneToOne

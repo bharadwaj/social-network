@@ -26,6 +26,7 @@ public class PollController {
         return new ResponseEntity<>(pollItemVoteRepository.save(pollItemVote), HttpStatus.OK);
     }
 
+    //TODO limit only polls of the user.
    @GetMapping(value = "/")
     public ResponseEntity allPolls() {
         return new ResponseEntity<>(pollRepository.findAll(), HttpStatus.OK);

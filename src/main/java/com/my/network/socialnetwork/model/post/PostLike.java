@@ -1,5 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.auth.model.Users;
 import com.my.network.socialnetwork.model.SubscribedUser;
 
@@ -20,6 +21,7 @@ public class PostLike {
     @JoinColumn(name = "user_id")
     SubscribedUser user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "post_id")
     Post post;

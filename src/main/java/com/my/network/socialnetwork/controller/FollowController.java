@@ -1,9 +1,11 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,12 @@ public class FollowController {
 
     @Autowired
     SubscribedUserRepository subscribedUserRepository;
+
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
 
     /*
     * Suggest which user to follow.
@@ -76,19 +84,21 @@ public class FollowController {
     }
 
     //TODO: get rid of userId Path variable.
-    @GetMapping("/pending/{userId}")
-    public ResponseEntity pendingFollowRequests(@PathVariable Long userId){
+    @GetMapping("/pending")
+    public ResponseEntity pendingFollowRequests( @RequestHeader(value= "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.pendingFollowingRequest(userId), HttpStatus.OK);
     }
 
     //TODO: get rid of userId Path variable.
-    @GetMapping("/accept/{userId}")
-    public ResponseEntity approveFollowRequests(@PathVariable Long userId){
+    @GetMapping("/accept")
+    public ResponseEntity getFollowRequests(@RequestHeader(value= "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.followRequestsToApproveByUser(userId), HttpStatus.OK);
     }
 
     @PostMapping("/accept")
-    public ResponseEntity approveFriendRequest(@RequestBody Following following){
+    public ResponseEntity approveFollowRequest(@RequestBody Following following){
         following = followingRepository.findById(following.getId()).get();
         following.setApproved(true);
         return new ResponseEntity<>(followingRepository.save(following), HttpStatus.OK);
@@ -98,8 +108,9 @@ public class FollowController {
     * List Users current user is Following.
     * Params: userId
     * */
-    @GetMapping("/following/{userId}")
-    public ResponseEntity listOfFollowing(@PathVariable Long userId) {
+    @GetMapping("/following")
+    public ResponseEntity listOfFollowingUsers(@RequestHeader(value= "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.findFollowingByUserId(userId), HttpStatus.OK);
     }
 

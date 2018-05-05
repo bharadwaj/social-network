@@ -1,9 +1,11 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,10 +32,17 @@ public class OrdersAndBidsController {
     @Autowired
     OrderStatusRepository orderStatusRepository;
 
-    @PostMapping("/rfq/bid/{userId}")
-    public ResponseEntity placeABidOnRequestForQuantity(@RequestBody BidOnRFQ bidOnRFQ, @PathVariable Long userId){
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @PostMapping("/rfq/bid")
+    public ResponseEntity placeABidOnRequestForQuantity(@RequestBody BidOnRFQ bidOnRFQ, @RequestHeader(value= "Authorization") String authTokenHeader){
         Post postToSave = postRepository.findById(bidOnRFQ.getPost().getId()).get();
-        SubscribedUser userToSave = subscribedUserRepository.findById(bidOnRFQ.getSubscribedUser().getId()).get();
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
 
         if(postToSave != null && userToSave != null){
             bidOnRFQ.setPost(postToSave);
@@ -55,12 +64,15 @@ public class OrdersAndBidsController {
     }
 
     //TODO This can be seen only by the owner of post
-    @PostMapping("/price-list/order/{postId}")
-    public ResponseEntity orderForItemsOnAPriceList(@RequestBody OrderOnPriceList orderOnPriceList, @PathVariable Long postId){
+    @PostMapping("/price-list/order")
+    public ResponseEntity orderForItemsOnAPriceList(@RequestBody OrderOnPriceList orderOnPriceList,@RequestHeader(value= "Authorization") String authTokenHeader){
         Post postToSave = postRepository.findById(orderOnPriceList.getPost().getId()).get();
-        SubscribedUser userToSave = subscribedUserRepository.findById(orderOnPriceList.getSubscribedUser().getId()).get();
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
 
-        if(postToSave != null && userToSave != null){
+        if(userToSave.getId() != postToSave.getUser().getId()){
+            return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
+        } else if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);
             orderOnPriceList.setSubscribedUser(userToSave);
 
@@ -69,6 +81,7 @@ public class OrdersAndBidsController {
 
         return new ResponseEntity<>("Incorrect Post", HttpStatus.BAD_REQUEST);
     }
+
 
     @GetMapping("/price-list/order/{postId}")
     public ResponseEntity listOfOrdersForAPost(@PathVariable Long postId){
