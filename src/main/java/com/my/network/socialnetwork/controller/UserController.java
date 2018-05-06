@@ -51,30 +51,32 @@ public class UserController {
     }
 
     @PostMapping(value = "/new")
-    public ResponseEntity createUserClass(@RequestBody Users toSubscribeUser){
+    public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser){
 
-        SubscribedUser subscribedUser = new SubscribedUser();
+        Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
 
-        Users existingUser = usersRepository.findById(toSubscribeUser.getUserId()).get();
+        if(existingUser.getUserId() == null)
+            return new ResponseEntity("User Does not exist", HttpStatus.BAD_REQUEST);
 
-        subscribedUser.setId(existingUser.getUserId());
-        subscribedUser.setContactNumber(existingUser.getContactNumber());
-        subscribedUser.setName(existingUser.getName());
-        subscribedUser.setEmail(existingUser.getEmail());
+        toBeSubscribedUser.setId(existingUser.getUserId());
+        toBeSubscribedUser.setContactNumber(existingUser.getContactNumber());
+        toBeSubscribedUser.setName(existingUser.getName());
+        toBeSubscribedUser.setEmail(existingUser.getEmail());
+        //toBeSubscribedUser.setAccessToken(existingUser.getAccessToken());
+        //toBeSubscribedUser.setGcmToken(existingUser.getGcmToken());
+
         //Get Zip Code
-        SubscribedUser savedUser = subscribedUserRepository.save(subscribedUser);
-        UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(subscribedUser.getZipCode().toString());
+        SubscribedUser newSubscribedUser = subscribedUserRepository.save(toBeSubscribedUser);
+
+        UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(toBeSubscribedUser.getZipCode().toString());
         List<SubscribedUser> toUpdateUserList = zipCodeGroup.getGroupMemberUsers();
         if(toUpdateUserList == null){
             toUpdateUserList = new ArrayList<>();
         }
-        toUpdateUserList.add(savedUser);
+        toUpdateUserList.add(newSubscribedUser);
         zipCodeGroup.setGroupMemberUsers(toUpdateUserList);
         userGroupRepository.save(zipCodeGroup);
         return new ResponseEntity<>("Done", HttpStatus.OK);
     }
-
-
-
 
 }

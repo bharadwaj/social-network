@@ -1,5 +1,6 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,14 @@ public class CommentController {
     @Autowired
     CommentLikeRepository commentLikeRepository;
 
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
+
     //TODO add permissions
-    @PostMapping(value="/{userId}")
-    public ResponseEntity commentOnPost(@RequestBody Comment comment){
+    @PostMapping(value="/")
+    public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        comment.setUser(subscribedUserRepository.findById(userId).get());
         if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -44,8 +50,9 @@ public class CommentController {
     }
 
     //TODO read current user from jwt.
-    @PostMapping(value = "/like/{userId}")
-    public ResponseEntity likeComment(@RequestBody CommentLike commentLike, @PathVariable String userId){
+    @PostMapping(value = "/like")
+    public ResponseEntity likeComment(@RequestBody CommentLike commentLike,  @RequestHeader(value= "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         if(!postRepository.findById(commentLike.getComment().getId()).isPresent() &&
                 !subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

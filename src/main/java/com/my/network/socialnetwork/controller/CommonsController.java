@@ -1,7 +1,9 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.socialnetwork.model.product.phone.PhoneModel;
+import org.hibernate.FlushMode;
 import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +29,6 @@ public class CommonsController {
     public ResponseEntity searchPhones(@PathVariable String query) {
         return new ResponseEntity<>(phoneSearch(query), HttpStatus.OK);
     }
-
-
 
     private List<PhoneModel> phoneSearch(String q) {
 
