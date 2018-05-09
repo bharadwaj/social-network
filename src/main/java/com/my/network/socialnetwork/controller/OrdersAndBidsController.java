@@ -70,7 +70,7 @@ public class OrdersAndBidsController {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
 
-        if(userToSave.getId() != postToSave.getUser().getId()){
+        if(userToSave.getId() == postToSave.getUser().getId()){
             return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
         } else if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);

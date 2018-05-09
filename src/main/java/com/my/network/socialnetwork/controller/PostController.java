@@ -145,6 +145,7 @@ public class PostController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         postLike.setUser(subscribedUserRepository.findById(userId).get());
+        postLike.setPost(postRepository.findById(postId).get());
         postLikeRepository.save(postLike);
         updateLikesOfPost(postId);
 
