@@ -82,7 +82,6 @@ public class OrdersAndBidsController {
         return new ResponseEntity<>("Incorrect Post", HttpStatus.BAD_REQUEST);
     }
 
-
     @GetMapping("/price-list/order/{postId}")
     public ResponseEntity listOfOrdersForAPost(@PathVariable Long postId){
         return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersOfPostByPostId(postId), HttpStatus.OK);
@@ -117,6 +116,5 @@ public class OrdersAndBidsController {
 
         return new ResponseEntity<>("No order Found", HttpStatus.BAD_REQUEST);
     }
-
 
 }
