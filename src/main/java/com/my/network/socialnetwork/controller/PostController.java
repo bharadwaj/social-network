@@ -145,6 +145,7 @@ public class PostController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         postLike.setUser(subscribedUserRepository.findById(userId).get());
+        postLike.setPost(postRepository.findById(postId).get());
         postLikeRepository.save(postLike);
         updateLikesOfPost(postId);
 
@@ -152,15 +153,15 @@ public class PostController {
     }
 
     //TODO check if the user has permission to unlike.
-    @PostMapping(value = "/unlike/{userId}")
-    public ResponseEntity unLikePost(@RequestBody PostLike postLike, @PathVariable Long userId) {
+    @PostMapping(value = "/unlike")
+    public ResponseEntity unLikePost(@RequestBody PostLike postLike) {
         if (!postLikeRepository.findById(postLike.getId()).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         postLike = postLikeRepository.findById(postLike.getId()).get();
         postLikeRepository.delete(postLike);
         updateLikesOfPost(postLike.getPost().getId());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(postRepository.findById(postLike.getId()), HttpStatus.OK);
     }
 
     @GetMapping(value = "/likes/{postId}")

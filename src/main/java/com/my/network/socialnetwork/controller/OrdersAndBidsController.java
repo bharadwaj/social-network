@@ -70,7 +70,7 @@ public class OrdersAndBidsController {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
 
-        if(userToSave.getId() != postToSave.getUser().getId()){
+        if(userToSave.getId() == postToSave.getUser().getId()){
             return new ResponseEntity<>("Bad Request", HttpStatus.BAD_REQUEST);
         } else if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);
@@ -81,7 +81,6 @@ public class OrdersAndBidsController {
 
         return new ResponseEntity<>("Incorrect Post", HttpStatus.BAD_REQUEST);
     }
-
 
     @GetMapping("/price-list/order/{postId}")
     public ResponseEntity listOfOrdersForAPost(@PathVariable Long postId){
@@ -117,6 +116,5 @@ public class OrdersAndBidsController {
 
         return new ResponseEntity<>("No order Found", HttpStatus.BAD_REQUEST);
     }
-
 
 }
