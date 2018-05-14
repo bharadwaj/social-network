@@ -5,6 +5,8 @@ import com.my.network.auth.model.Users;
 import com.my.network.auth.model.UsersRepository;
 import com.my.network.socialnetwork.model.*;
 import com.my.network.socialnetwork.model.post.*;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -85,6 +90,13 @@ public class PostController {
                 toSaveUserList.add(subscribedUserRepository.findById(userId).get());
             }
         }
+
+        if(post.getTitle() == null || post.getTitle().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
+        }
+
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
 
@@ -126,6 +138,22 @@ public class PostController {
 
     }
 
+    @GetMapping("handle/{handle}")
+    public ResponseEntity viewPostByHandle(@PathVariable String handle){
+        String encodedStr = "";
+        try {
+            handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
+            encodedStr = URLEncoder.encode(handle.toLowerCase(), "UTF-8");
+            return new ResponseEntity<>(postRepository.findByUniqueHandle(encodedStr), HttpStatus.OK);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
     @GetMapping(value = {"/feed"})
     public ResponseEntity userFeed(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
@@ -184,13 +212,23 @@ public class PostController {
         return new ResponseEntity<>(postSearch(query), HttpStatus.OK);
     }
 
-
-
     void updateLikesOfPost(Long postId) {
         //Update likes of Post.
         Post post = postRepository.findById(postId).get();
         post.setLikeCount(postLikeRepository.likeCount(postId));
         postRepository.save(post);
+    }
+
+    String generateUniqueHandle(String str){
+
+        String finalHandle = StringUtils.left(str, 50);
+        try {
+           finalHandle =  URLEncoder.encode(finalHandle.toLowerCase(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        finalHandle = finalHandle + "+"+RandomStringUtils.randomAlphanumeric(8);
+        return finalHandle;
     }
 
     private List<Post> postSearch(String q) {
@@ -200,9 +238,9 @@ public class PostController {
                 org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
         em.getTransaction().begin();
 
-// create native Lucene query using the query DSL
-// alternatively you can write the Lucene query using the Lucene query parser
-// or the Lucene programmatic API. The Hibernate Search DSL is recommended though
+        // create native Lucene query using the query DSL
+        // alternatively you can write the Lucene query using the Lucene query parser
+        // or the Lucene programmatic API. The Hibernate Search DSL is recommended though
         QueryBuilder qb = fullTextEntityManager.getSearchFactory()
                 .buildQueryBuilder().forEntity(Post.class).get();
         org.apache.lucene.search.Query query = qb
@@ -211,11 +249,11 @@ public class PostController {
                 .matching(q)
                 .createQuery();
 
-// wrap Lucene query in a javax.persistence.Query
+        // wrap Lucene query in a javax.persistence.Query
         javax.persistence.Query persistenceQuery =
                 fullTextEntityManager.createFullTextQuery(query, Post.class);
 
-// execute search
+        // execute search
         List<Post> result = persistenceQuery.getResultList();
 
         em.getTransaction().commit();

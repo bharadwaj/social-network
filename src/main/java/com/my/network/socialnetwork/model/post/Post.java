@@ -25,6 +25,8 @@ public class Post {
     @Field
     String title;
 
+    String uniqueHandle;
+
     //TODO handle Images;
     //string image url;
 
@@ -83,6 +85,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getUniqueHandle() {
+        return uniqueHandle;
+    }
+
+    public void setUniqueHandle(String uniqueHandle) {
+        this.uniqueHandle = uniqueHandle;
     }
 
     public int getReportAbuse() {
