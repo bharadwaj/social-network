@@ -227,7 +227,7 @@ public class PostController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        finalHandle = finalHandle + "+"+RandomStringUtils.randomAlphanumeric(8);
+        finalHandle = finalHandle + "_"+RandomStringUtils.randomAlphanumeric(8);
         return finalHandle;
     }
 
