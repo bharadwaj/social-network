@@ -25,7 +25,7 @@ public class BidOnRFQ {
     @OneToMany(cascade = CascadeType.ALL)
     List<PriceList> bidPriceLists;
 
-    @OneToOne
+    @ManyToOne
     OrderStatus orderStatus;
 
     public Long getId() {

@@ -47,6 +47,8 @@ public class OrdersAndBidsController {
         if(postToSave != null && userToSave != null){
             bidOnRFQ.setPost(postToSave);
             bidOnRFQ.setSubscribedUser(userToSave);
+            if(bidOnRFQ.getOrderStatus().getId() != null)
+                bidOnRFQ.setOrderStatus(orderStatusRepository.findById(bidOnRFQ.getOrderStatus().getId()).get());
 
             return new ResponseEntity<>(bidOnRFQRepository.save(bidOnRFQ), HttpStatus.OK);
         }
