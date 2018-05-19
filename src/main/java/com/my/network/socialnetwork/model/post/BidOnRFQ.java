@@ -28,6 +28,8 @@ public class BidOnRFQ {
     @ManyToOne
     OrderStatus orderStatus;
 
+    Boolean isConfirmed;
+
     public Long getId() {
         return id;
     }
@@ -66,5 +68,13 @@ public class BidOnRFQ {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Boolean getConfirmed() {
+        return isConfirmed;
+    }
+
+    public void setConfirmed(Boolean confirmed) {
+        isConfirmed = confirmed;
     }
 }

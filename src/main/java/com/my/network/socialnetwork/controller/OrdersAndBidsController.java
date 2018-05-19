@@ -65,6 +65,18 @@ public class OrdersAndBidsController {
         return new ResponseEntity<>(bidOnRFQRepository.findAllBidsOfPostByPostId(postId), HttpStatus.OK);
     }
 
+    @PutMapping("/rfq/bid/confirm")
+    public ResponseEntity confirmBid(@RequestBody BidOnRFQ bidOnRFQ){
+
+        if(bidOnRFQRepository.findById(bidOnRFQ.getId()).isPresent()){
+            BidOnRFQ toConfirmBid = bidOnRFQRepository.findById(bidOnRFQ.getId()).get();
+            toConfirmBid.setConfirmed(true);
+            return new ResponseEntity<>(bidOnRFQRepository.save(toConfirmBid), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("No Bid Found", HttpStatus.BAD_REQUEST);
+    }
+
     //TODO This can be seen only by the owner of post
     @PostMapping("/price-list/order")
     public ResponseEntity orderForItemsOnAPriceList(@RequestBody OrderOnPriceList orderOnPriceList,@RequestHeader(value= "Authorization") String authTokenHeader){
