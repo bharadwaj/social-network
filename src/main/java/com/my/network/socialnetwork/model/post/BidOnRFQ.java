@@ -28,7 +28,7 @@ public class BidOnRFQ {
     @ManyToOne
     OrderStatus orderStatus;
 
-    Boolean isConfirmed;
+    Boolean isConfirmed = false;
 
     public Long getId() {
         return id;
