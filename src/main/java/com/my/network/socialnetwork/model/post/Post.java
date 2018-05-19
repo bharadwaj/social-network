@@ -28,7 +28,7 @@ public class Post {
     String uniqueHandle;
 
     //TODO handle Images;
-    //string image url;
+    String imageUrl;
 
     @JsonIgnore
     int reportAbuse;
@@ -85,6 +85,14 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getUniqueHandle() {
