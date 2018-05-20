@@ -2,6 +2,7 @@ package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
+import com.my.network.socialnetwork.model.response.FileSuccessfullyUploaded;
 import com.my.network.socialnetwork.storage.StorageFileNotFoundException;
 import com.my.network.socialnetwork.storage.StorageService;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -105,7 +106,10 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return new ResponseEntity<>(fileNameToSave, HttpStatus.CREATED);
+        FileSuccessfullyUploaded res = new FileSuccessfullyUploaded();
+        res.setFileName(fileNameToSave);
+
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
