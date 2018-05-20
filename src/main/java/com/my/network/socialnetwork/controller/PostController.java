@@ -1,8 +1,6 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
-import com.my.network.auth.model.Users;
-import com.my.network.auth.model.UsersRepository;
 import com.my.network.socialnetwork.model.*;
 import com.my.network.socialnetwork.model.post.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -162,22 +160,32 @@ public class PostController {
     }
 
     //TODO read current user from jwt.
-    @PostMapping(value = "/like/{postId}")
+    @PatchMapping(value = "/like/{postId}")
     public ResponseEntity likePost(@PathVariable Long postId,HttpServletRequest request) {
         PostLike postLike = new PostLike();
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
-        if (!postRepository.findById(postId).isPresent() &&
-                !subscribedUserRepository.findById(userId).isPresent())
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        //Check if the user liked already.
+        if(postLikeRepository.didUserLikeThisPost(userId, postId) == null){
+            if (!postRepository.findById(postId).isPresent() &&
+                    !subscribedUserRepository.findById(userId).isPresent())
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        postLike.setUser(subscribedUserRepository.findById(userId).get());
-        postLike.setPost(postRepository.findById(postId).get());
-        postLikeRepository.save(postLike);
-        updateLikesOfPost(postId);
+            postLike.setUser(subscribedUserRepository.findById(userId).get());
+            postLike.setPost(postRepository.findById(postId).get());
+            postLikeRepository.save(postLike);
+            updateLikesOfPost(postId);
 
-        return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
+            return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
+
+        } else {
+            //Perform unlike since the user already liked the post
+            postLike = postLikeRepository.didUserLikeThisPost(userId, postId);
+            postLikeRepository.delete(postLike);
+            updateLikesOfPost(postLike.getPost().getId());
+            return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
+        }
     }
 
     //TODO check if the user has permission to unlike.

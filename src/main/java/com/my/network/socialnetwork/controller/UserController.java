@@ -46,7 +46,7 @@ public class UserController {
      * Useful for populating the activity of a user or notifications.
      */
     @GetMapping("/likes/{userId}")
-    public ResponseEntity allLikesOfUser(@PathVariable Long userId){
+    public ResponseEntity allLikesOfUser(@PathVariable String userId){
         return new ResponseEntity<>(postLikeRepository.allLikesOfUser(userId), HttpStatus.OK);
     }
 
