@@ -61,11 +61,10 @@ public class PostController {
     /**
      * Create a new Post.
      * Each post can have a template
-     *
      */
     //TODO Read user from jwt
     @PostMapping()
-    public ResponseEntity newPost(@RequestBody Post post, @RequestHeader(value= "Authorization") String authTokenHeader) {
+    public ResponseEntity newPost(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -89,7 +88,7 @@ public class PostController {
             }
         }
 
-        if(post.getTitle() == null || post.getTitle().isEmpty()){
+        if (post.getTitle() == null || post.getTitle().isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
@@ -99,7 +98,7 @@ public class PostController {
     }
 
     @GetMapping("/conditions")
-    public ResponseEntity getAllConditions(){
+    public ResponseEntity getAllConditions() {
         return new ResponseEntity<>(postConditionRepository.findAll(), HttpStatus.OK);
     }
 
@@ -128,16 +127,31 @@ public class PostController {
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
         if (postId.isPresent()) {
-            return new ResponseEntity<>(postRepository.findById(postId.get()), HttpStatus.OK);
+            //Individual post based on Id
+            Post resPosts = postRepository.findById(postId.get()).get();
+
+            //Set if the post has been liked by the current user.
+            if (postLikeRepository.didUserLikeThisPost(userId, resPosts.getId()) != null) {
+                resPosts.setLiked(true);
+            }
+            return new ResponseEntity<>(resPosts, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(postRepository.findAllByPostsByUserId(userId), HttpStatus.OK);
+            //List of all posts based on userId
+            List<Post> resPosts = postRepository.findAllByPostsByUserId(userId);
+
+            for (Post p : resPosts) {
+                if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
+                    p.setLiked(true);
+                }
+            }
+            return new ResponseEntity<>(resPosts, HttpStatus.OK);
         }
 
 
     }
 
     @GetMapping("handle/{handle}")
-    public ResponseEntity viewPostByHandle(@PathVariable String handle){
+    public ResponseEntity viewPostByHandle(@PathVariable String handle) {
         String encodedStr = "";
         try {
             handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
@@ -148,26 +162,33 @@ public class PostController {
         }
 
 
-
-
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     @GetMapping(value = {"/feed"})
     public ResponseEntity userFeed(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
-        return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.OK);
+        List<Post> resPosts = postRepository.feedOfUser(userId);
+
+        for (Post p : resPosts) {
+            if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
+                p.setLiked(true);
+            }
+        }
+
+        return new ResponseEntity<>(resPosts, HttpStatus.OK);
     }
 
     //TODO read current user from jwt.
     @PatchMapping(value = "/like/{postId}")
-    public ResponseEntity likePost(@PathVariable Long postId,HttpServletRequest request) {
+    public ResponseEntity likePost(@PathVariable Long postId, HttpServletRequest request) {
         PostLike postLike = new PostLike();
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
         //Check if the user liked already.
-        if(postLikeRepository.didUserLikeThisPost(userId, postId) == null){
+        if (postLikeRepository.didUserLikeThisPost(userId, postId) == null) {
             if (!postRepository.findById(postId).isPresent() &&
                     !subscribedUserRepository.findById(userId).isPresent())
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -227,15 +248,15 @@ public class PostController {
         postRepository.save(post);
     }
 
-    String generateUniqueHandle(String str){
+    String generateUniqueHandle(String str) {
 
         String finalHandle = StringUtils.left(str, 50);
         try {
-           finalHandle =  URLEncoder.encode(finalHandle.toLowerCase(), "UTF-8");
+            finalHandle = URLEncoder.encode(finalHandle.toLowerCase(), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        finalHandle = finalHandle + "_"+RandomStringUtils.randomAlphanumeric(8);
+        finalHandle = finalHandle + "_" + RandomStringUtils.randomAlphanumeric(8);
         return finalHandle;
     }
 

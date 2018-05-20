@@ -41,8 +41,6 @@ public class Post {
     /*@OneToMany
     ArrayList<Comment> comment;*/
 
-    int likeCount = 0;
-
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @IndexedEmbedded
@@ -62,6 +60,14 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     List<RequestForQuotation> requestForQuotations;
+
+    Boolean isLiked = false;
+
+    int commentCount = 0;
+
+    int viewCount = 0;
+
+    int likeCount = 0;
 
     public Long getId() {
         return id;
@@ -181,5 +187,29 @@ public class Post {
 
     public void setRequestForQuotations(List<RequestForQuotation> requestForQuotations) {
         this.requestForQuotations = requestForQuotations;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Boolean getLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(Boolean liked) {
+        isLiked = liked;
     }
 }

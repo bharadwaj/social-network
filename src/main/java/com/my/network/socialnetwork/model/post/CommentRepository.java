@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-    @Query("select c from Comment c where c.post.id = :commentId")
-    List<Comment> allCommentsOfPost(@Param("commentId") Long commentId);
+    @Query("select c from Comment c where c.post.id = :postId")
+    List<Comment> allCommentsOfPost(@Param("postId") Long postId);
+
+    @Query("select count(c) from Comment c where c.post.id = :postId")
+    int countOfAllByPost(@Param("postId") Long postId);
 }

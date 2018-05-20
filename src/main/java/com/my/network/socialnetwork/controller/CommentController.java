@@ -27,15 +27,15 @@ public class CommentController {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
-    //TODO add permissions
     @PostMapping(value="/")
     public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         comment.setUser(subscribedUserRepository.findById(userId).get());
         if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        return new ResponseEntity<>(commentRepository.save(comment),HttpStatus.OK);
+        Comment savedComment = commentRepository.save(comment);
+        updateCommentsCount(comment.getPost().getId());
+        return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
     @GetMapping(value="/post/{postId}")
@@ -45,7 +45,9 @@ public class CommentController {
 
     @DeleteMapping(value="/")
     public ResponseEntity deleteComment(@PathVariable Comment comment){
+        Long postId = comment.getPost().getId();
         commentRepository.delete(comment);
+        updateCommentsCount(postId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -69,5 +71,11 @@ public class CommentController {
         Comment comment = commentRepository.findById(postId).get();
         //comment.setLikeCount(commentLikeRepository.likeCount(postId));
         commentRepository.save(comment);
+    }
+
+    void updateCommentsCount(Long postId){
+        Post postToUpdateCommentCount = postRepository.findById(postId).get();
+        postToUpdateCommentCount.setCommentCount(commentRepository.countOfAllByPost(postId));
+        postRepository.save(postToUpdateCommentCount);
     }
 }
