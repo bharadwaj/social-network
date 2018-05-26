@@ -120,9 +120,15 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping()
-    public ResponseEntity deletePost(@RequestBody Post post) {
-        return new ResponseEntity(HttpStatus.MULTI_STATUS);
+    @DeleteMapping("/{postId}")
+    public ResponseEntity deletePost(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long postId) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if(!postRepository.findById(postId).isPresent() &&
+                !subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        postRepository.deleteById(postId);
+        return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.OK);
     }
 
     //TODO remove userId and read the UserId from jwt.

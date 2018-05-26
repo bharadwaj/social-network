@@ -44,9 +44,8 @@ public class CommentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Comment savedComment = commentRepository.save(comment);
         updateCommentsCount(comment.getPost().getId());
-//        String tokens = getTokens(userId);
         PushNotificationApi notificationApi = new PushNotificationApi();
-        //notificationApi.getEmployees(token/*, tokens*/, "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.");
+        notificationApi.getEmployees(authTokenHeader, "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.");
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
@@ -75,8 +74,15 @@ public class CommentController {
         return new ResponseEntity<>(commentRepository.allCommentsOfPost(postId),HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/{postId}/{commentId}")
-    public ResponseEntity deleteComment(@PathVariable Long postId, @PathVariable Long commentId){
+    @DeleteMapping(value="/{commentId}")
+    public ResponseEntity deleteComment(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long commentId){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Comment comment = commentRepository.findById(commentId).get();
+        Long postId = comment.getPost().getId();
+        if(!commentRepository.findById(commentId).isPresent() &&
+                !subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
         commentRepository.deleteById(commentId);
         updateCommentsCount(postId);
         return new ResponseEntity<>(commentRepository.allCommentsOfPost(postId), HttpStatus.OK);

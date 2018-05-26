@@ -18,4 +18,5 @@ public interface PostLikeRepository extends CrudRepository<PostLike, Long> {
 
     @Query("select p from PostLike p where p.user.id = :userId AND p.post.id = :postId")
     PostLike didUserLikeThisPost(@Param("userId") String userId, @Param("postId") Long postId);
+
 }
