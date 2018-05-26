@@ -41,7 +41,7 @@ public class FileUploadController {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
-    private static String UPLOADED_FOLDER = ".//images//";
+    private static String UPLOADED_FOLDER = "./images/";
 
     @Autowired
     public FileUploadController(StorageService storageService) {

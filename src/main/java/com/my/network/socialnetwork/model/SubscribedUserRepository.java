@@ -12,4 +12,7 @@ public interface SubscribedUserRepository extends CrudRepository<SubscribedUser,
             "(select f.followingUser.id from Following f " +
             "WHERE f.user.id = :userId)")
     List<SubscribedUser> suggestUsersToFollow(@Param("userId") String userId);
+
+    @Query("SELECT u FROM SubscribedUser u WHERE u.userName = :userId")
+    SubscribedUser getSubscribedUser(@Param("userId") String userId);
 }
