@@ -1,16 +1,14 @@
 package com.my.network.socialnetwork.model.product.phone;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.Constraint;
 
 @Entity
 public class PhoneBrand {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @Column(unique=true)
     String name;
 
     public Long getId() {

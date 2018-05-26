@@ -1,0 +1,900 @@
+Brand,Model Name,Series,ScreenSize,processorFrequency,Rear Camera MP,frontCameraMP,operatingSystem,ramIn,batteryCapacity,InternalStorage,url,Color
+SAMSUNG,A9 Pro,A Series,6,1.4GHz quad-core,16,8,6.0.1,4,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A9+Pro.jpg,N/A
+SAMSUNG,A5'17,A Series,5.2,1.9GHz Octa-core,16,16,6.0.1,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A5+17.jpg,"Black Sky Gold Sand,Blue Mist And Peach Cloud"
+SAMSUNG,A7'16,A Series,5.5,1.6GHz Octa-core,13,5,5.1.1,3,3300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A7+16.jpg,"Black ,White,Gold,Pink"
+SAMSUNG,A5 16,A Series,5.2,1.6GHz Octa-core,13,5,5.1.1,2,2900,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A5+16.jpg,"Black Sky Gold Sand,Blue Mist And Peach Cloud"
+SAMSUNG,B351 Metro,B Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B351+Metro.jpg,N/A
+SAMSUNG,B110E,B Series,2.9,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B110E.jpg,N/A
+SAMSUNG,B310E,B Series,2,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B310E.jpg,N/A
+SAMSUNG,B355E,B Series,2.8,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B355E.jpg,N/A
+SAMSUNG,B350E,B Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B350E.jpg,N/A
+SAMSUNG,B313E,B Series,2,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/B313E.jpg,N/A
+SAMSUNG,C7 Pro,C Series,5.7,2.2GHz Octa-core,16,16,6.0.1,4,3300,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/C7+Pro.jpeg,"Navy Blue,Gold"
+SAMSUNG,C9 Pro,C Series,6,1.44GHz Octa-core,16,16,6.0.1,6,4000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/C9+Pro.jpg,"Gold,Rose Gold"
+SAMSUNG,J7 Nxt 32Gb,J Series,5.5,1.6GHz Octa-core,13,5,7,3,3000,32,,"Black,Gold"
+SAMSUNG,J2- 2017,J Series,4.7,1.9GHz Octa-core,5,2,Android,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J2-+2017.jpg,"Black ,Gold"
+SAMSUNG,J5 Prime 16Gb,J Series,5,1.4GHz Quad-core,13,5,6.0.1,2,2400,16,,Black Gold
+SAMSUNG,J7 Pro,J Series,5.5,1.9GHz Octa-core,13,13,7.1,3,3600,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7+Pro.jpg,"Black ,Gold"
+SAMSUNG,J7 Nxt,J Series,5.5,1.6GHz Octa-core,13,5,7,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/NXT.jpg,"Black,Gold"
+SAMSUNG,J7 Max,J Series,5.7,Octa-core,13,13,7,4,3300,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7+Max.jpg,"Black,Gold"
+SAMSUNG,J5 Prime 3/32 Gb,J Series,5,1.4GHz Quad-core,13,5,6.0.1,3,2400,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J5+Prime+3+32+Gb.jpg,"ack,Gold"
+SAMSUNG,J7 16,J Series,5.5,1.6GHz Octa-core,13,5,6.0.1,2,3300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7+16.jpg,"White,Black,Gold,Rose Gold"
+SAMSUNG,J7 Prime (32Gb),J Series,5.5,1.6GHz Octa-core,13,8,6.0.1,3,3300,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7+Prime+(32Gb).jpg,"Black,Gold,Rose Gold"
+SAMSUNG,J2 Pro,J Series,5,1.5GHz Quad-core,8,5,6.0.1,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J2+Pro.jpg,"Silver,Black,Gold"
+SAMSUNG,J7- 2015,J Series,5.5,1.5GHz Octa-core,13,5,5.1,1.5,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7-+2015.jpg,"White,Black,Gold"
+SAMSUNG,J2 Ace,J Series,5,1.9GHz Octa-core,8,5,6.0.1,1.5,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J2+Ace.jpg,"Black Sky Gold Sand,Blue Mist And Peach Cloud"
+SAMSUNG,J1-4G,J Series,4.5,1.3GHz Quad-core,5,2,5.1.1,1,2050,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J1-4G.jpg,N/A
+SAMSUNG,J7 Prime 16Gb,J Series,5.5,1.6GHz Octa-core,13,8,6.0.1,3,3300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J7+Prime+16Gb.jpg,"Black,Gold,Rose Gold"
+SAMSUNG,Galaxy J2,J Series,4.7,1.3GHz Quad-core,5,2,5.1.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Galaxy+J2.jpg,"White,Black,Gold"
+SAMSUNG,J2 16,J Series,5,1.5GHz Quad-core,8,5,6.0.1,1.5,2600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/J2+16.jpg,"Silver,Black,Gold"
+SAMSUNG,Galaxy Note 8,Note,6.3,2.3GHz Octa-core,12,8,7.1.1,6,3300,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Galaxy+Note+8.jpg,"Midnight Black,Maple Gold,Orchid Grey,Deep Sea Blue,Star pink"
+SAMSUNG,E1200,Others,2.9,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/E1200.jpg,Black
+SAMSUNG,S9 Plus 64 Gb,S Series,6.2,2.8GHz Octa-core,12,8,8,6,3500,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S9+Plus+64+Gb.jpg,"Midnight Black,Coral Blue,Titanium Grey,Lilac Purple"
+SAMSUNG,S9 256 Gb,S Series,5.8,1.7GHz Octa-core,12,8,8,4,3000,256,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S9+256+Gb.jpg,N/A
+SAMSUNG,S9 64 Gb,S Series,5.8,1.7GHz Octa-core,12,8,8,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S9+64+Gb.jpg,N/A
+SAMSUNG,S7 Edge Pearl Black(128Gb),S Series,5.5,2.3GHz Octa-core,12,5,7.1,4,3600,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S7+Edge+Pearl+Black(128Gb).jpg,Black Pearl
+SAMSUNG,S8+ (128Gb),S Series,6.2,2.3GHz Octa-core,8,8,7,6,3500,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S8%2B+(128Gb).jpg,"Midnight Black,Coral Blue,Orchid gray,arctic silver,maple Gold"
+SAMSUNG,S8,S Series,5.8,2.3GHz Octa-core,12,8,7,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S8.jpg,"Midnight Black,Orchid grey,Arctic silver,Coral Blue,Maple Gold"
+SAMSUNG,S8+,S Series,6.2,2.3GHz Octa-core,12,8,7,4,3500,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S8%2B.jpg,"Midnight Black,Orchid grey,Arctic silver,Coral Blue,Maple Gold"
+SAMSUNG,S7 Edge 32Gb,S Series,5.5,2.3GHz Octa-core,12,5,6,4,3600,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S7+Edge+32Gb.jpg,"Black ,white,Gold,silver,pink gold,Black Pearl,Coral Blue"
+SAMSUNG,S7 32Gb,S Series,5.1,2.3GHz Octa-core,12,5,6,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S7+32Gb.jpg,"Black Sky Gold Sand,Blue Mist And Peach Cloud"
+SAMSUNG,S9 Plus 256 Gb,S Series,6.2,2.8GHz Octa-core,12,8,8,6,3500,256,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/S9+Plus+256+Gb.jpg,"Midnight Black,Coral Blue,Titanium Grey,Lilac Purple"
+SAMSUNG,Tab A,Tab,7,1.3GHz Quad-core,5,2,5.1.1,1.5,4000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+A.jpg,"Pearl White,Metalic Black"
+SAMSUNG,Tab A(2017),Tab,8,1.4GHz Quad-core,8,5,7.1,2,5000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+A(2017).jpg,N/A
+SAMSUNG,Tab S3,Tab,9.7,2.2GHz Quad-core,13,5,N/A,4,6000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+S3.jpg,"White,Black"
+SAMSUNG,Tab S2,Tab,9.7,1.3GHz Octa-core,8,2.1,5,3,5870,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+S2.jpg,"Black,white"
+SAMSUNG,Tab E,Tab,9.6,1.3GHz Quad-core,5,2,N/A,1.5,5000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+E.jpg,"Pearl White,Metalic Black"
+SAMSUNG,Tab A,Tab,8,1.2GHz Quad-core,5,N/A,5,2,4200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+A.jpg,N/A
+SAMSUNG,Tab 7Inch,Tab,7,1.2GHz Quad-core,3,1.3,4.1.2,1,3600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Tab+7Inch.jpg,White
+SAMSUNG,Jmax,Others,7,1.5GHz Quad-core,8,2,5.1,1.5,4000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Jmax.jpg,N/A
+ACER,Acer Z630,Z Series,5.5,1.3GHz Quad-core,8,8,5.1,2,N/A,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Acer+Z630.jpg,N/A
+ACER,Acer Z530,Z Series,5,1.3GHz Quad-core,8,8,5.1,2,2420,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Acer+Z530.jpg,N/A
+ASUS,Zenfone 3 Max 5.2,Zenfone,5.2,1.25GHz Quad-core,13,5,6.0.1,3,4100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+3+Max+5.2.jpg,"Titanium Grey, Glacier Silver, Sand Gold"
+ASUS,Zenfone 4 Selfie,Zenfone,5.5,1.4GHz Octa-core,16,20,7.1.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+4+Selfie.jpg,"Sunlight Gold, Rouge Red, Deepsea Black"
+ASUS,Zenfone 3 5.2,Zenfone,5.2,2GHz Octa-core,16,8,6,3,2650,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+3+5.2.jpg,"Sapphire Black, Moonlight White, Shimmer Gold"
+ASUS,Zenfone Max 5.5,Zenfone,5.5,1.2GHz Quad-core,13,5,5,2,5000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zenfone+max+5.5(ZC550KL).jpg,"Black,White"
+ASUS,Zf Live,Zenfone,5,Quad-core,13,5,6,2,2650,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zf+Live.jpg,"Shimmer Gold, Rose Pink, Navy Black"
+ASUS,Zenfone 2 Max,Zenfone,5.5,1.2GHz Quad-core,13,5,5,2,5000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+2+Max.jpg,"Black,White"
+ASUS,Zenfone Go 5.5 Lte,Zenfone,5.5,1.4GHz Quad-core,13,5,5.1,2,3010,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+Go+5.5+Lte.jpg,Lake Blue
+ASUS,Zenfone 3 Max 5.5,Zenfone,5.5,1.4GHz Octa-core,16,8,6.0.1,3,4100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+3+Max+5.5.jpg,"Titanium Gray, Glacier Silver, Sand Gold"
+ASUS,Zenfone Selfie 3Gb/16Gb,Zenfone,5.5,1.7GHz Octa-core,13,13,5,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+Selfie+3Gb+16Gb.jpg,"White, Pink, Aqua Blue"
+ASUS,Zenfone 3S Max,Zenfone,5.2,1GHz Octa-core,13,8,7,3,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+3S+Max.jpg,"Black, Sand Gold"
+ASUS,Zenfone Go 5.0 Lte,Zenfone,5,1.2GHz Quad-core,8,5,4.4,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+Go+5.0+Lte.jpg,"Charcoal Black, Pearl White"
+ASUS,Zenfone Go 4.5,Zenfone,4.5,1.3GHz Quad-core,5,0.3,5.1,1,1600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Zenfone+Go+4.5.jpg,Black
+BLAUPUNKT,In1505,Feature Phones,1.7,N/A,N/A,N/A,N/A,N/A,2000,N/A,,N/A
+BLAUPUNKT,In1503,Feature Phones,1.7,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+BLAUPUNKT,In1501,Feature Phones,1.7,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+CELKON,Ufeel 4G (2+16),4G Smart Phones,5,1.3GHz Quad-core,5,3.2,6,2,2500,16,,"Gold, Champagne"
+CELKON,4G Tab 8 Inch,4G Smart Phones,5,1.3GHz Quad-core,5,3.2,6,2,2500,16,,"Gold, Champagne"
+CELKON,Ufeel 4G (Hd)(Offer 400/-),4G Smart Phones,5,1.3GHz Quad-core,5,3.2,6,1,2500,8,,"Gold, Champagne"
+CELKON,New Jodi (Edge+C325),C Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+CELKON,C350 Rotate,C Series,3.5,N/A,N/A,N/A,N/A,N/A,1200,N/A,,N/A
+CELKON,C9 Jumbo(Rs.104/- ),C Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+CELKON,C2233(Silver Coin),C Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+CELKON,C249(Tiffin Box),C Series,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,,N/A
+CELKON,C240 - 8Gb,C Series,2.4,N/A,N/A,N/A,N/A,N/A,1300,N/A,,N/A
+CELKON,C26 - 8Gb,C Series,2.4,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C29,C Series,2.4,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C325 - 8Gb,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C422,C Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+CELKON,C604,C Series,1.8,N/A,N/A,N/A,N/A,N/A,1700,N/A,,N/A
+CELKON,C109,C Series,1.8,N/A,N/A,N/A,N/A,N/A,1700,N/A,,N/A
+CELKON,C108,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C349 Star,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C345,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C327(Combo 1+1),C Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+CELKON,C379,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,C107,C Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+CELKON,Smart 4G(Airtel Offer),Others,4,1.3GHz Quad-core,3.2,2,6,1,1500,8,,"Blue, Gold"
+CELKON,Mega (2+16),Others,5.5,1.3GHz Quad-core,8,3.2,6,2,2700,16,,Champagne
+CELKON,Ct 744,Others,7,1.3GHz Quad-core,5,1.3,5.1,1,2800,8,,Black
+CELKON,Cliq,Others,5,1.3GHz Quad-core,16,8,6,2,2500,16,,N/A
+CELKON,Mega,Others,5.5,1.3GHz Quad-core,8,3.2,6,1,2700,8,,Champagne
+CELKON,U (2+16),Others,5,1.3GHz Quad-core,8,3.2,6,2,2500,16,,"Gold, Champagne"
+CELKON,Ace,Others,5,1.3GHz Quad-core,5,3.2,5.1,1,1800,8,,Blue
+CELKON,Pop,Others,4.5,1GHz Quad-core,5,3.2,5.1,1,1600,8,,Gold
+CELKON,Pride,Others,4,1.2GHz Quad-core,3.2,1.3,5.1,512MB,1450,4,,Black
+CELKON,Trendz,Others,4,N/A,N/A,N/A,N/A,N/A,1200,N/A,,N/A
+CELKON,Hulk 8Gb,Others,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+CELKON,Transformer Plus,Others,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+CELKON,Power+,Others,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+CELKON,Edge - 8Gb,Others,2.4,N/A,N/A,N/A,N/A,N/A,1300,N/A,,N/A
+CELKON,Beats Plus,Others,2.4,N/A,N/A,N/A,N/A,N/A,1500,N/A,,N/A
+CELKON,Highway,Others,2.8,N/A,N/A,N/A,N/A,N/A,1750,N/A,,N/A
+CELKON,Selfie Star,Others,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,,N/A
+CELKON,Xtreme(Offer 50/-),Others,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,,N/A
+CELKON,Spark,Others,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+CELKON,Q599,Q Series,5,1.2GHz Quad-core,5,5,5.1,1,2000,8,,"Black, Gold"
+CELKON,Q567,Q Series,5,1.2GHz Quad-core,5,3.5,5.1,512MB,2000,4,,"Black, Blue"
+CENTRIC,Centric P1+,Smart Phones,5,1.3GHz Quad-core,8,5,6,3,3950,16,,"Black, Rose Gold, Champagne"
+CENTRIC,Centric A1,Smart Phones,5.5,Octa Core,13,8,7.1.1,3,3000,32,,"Metallic Earl Grey, White & Peach Gold, Gold & Peach Gold"
+CENTRIC,Centric P1,Smart Phones,5,1.3GHz Quad-core,8,2,6,2,3950,16,,Grey
+CENTRIC,Centric L3,Smart Phones,5,1.3GHz Quad-core,13,5,7,2,3050,16,,"Raisin Black, Quartz Gray"
+CENTRIC,Centric L1,Smart Phones,5,1GHz Quad-core,8,2,6,2,2050,16,,"Black, White"
+CENTRIC,Centric G1,Smart Phones,5.5,1.3GHz Quad-core,8,5,6,3,2900,16,,N/A
+COMIO,C2 Lite,Smart Phones,5,1.3GHz Quad-core,8,5,Android 7.0,1.5,3900,16,,"Royal Black, Metallic Grey, Sunrise Gold"
+COMIO,S1 Lite,Smart Phones,5,1.3GHz Quad-core,13,8,Android 7.0,2,3050,32,,"Royal Black, Ocean Blue, Sunrise Gold"
+COMIO,C2,Smart Phones,5,1.3GHz Quad-core,8,8,Android 7.0,2,4000,16,,"Royal Black, Royal Blue"
+COMIO,P1,Smart Phones,5.2,1.3GHz Quad-core,13,8,Android 7.0,3,5000,32,,"Metal Grey, Sunrise Gold"
+COMIO,S1,Smart Phones,5.2,Quad-core,13,8,Android 7.0,2,2700,32,,"Royal Black, Sunrise Gold"
+COMIO,C1,Smart Phones,5,1.3GHz Quad-core,8,5,Android 7.0,1,2700,32,,"Royal Black, Sunrise Gold"
+COOLPAD,Coolpad Mega 2.5D,Mega,5.5,1GHz Quad-core,8,8,6,3,2500,16,,Gold
+COOLPAD,Coolpad Mega 3,Mega,5.5,1.25GHz Quad-core,8,8,6,2,3050,16,,"Gold, Grey, and White"
+COOLPAD,Coolpad Note 5 Lite,Note,5,1GHz Quad-core,13,8,6,3,2500,16,,"Grey, Gold"
+COOLPAD,Coolpad Note 5,Note,5.5,1.5GHz Quad-core,13,8,6,4,4010,32,,"Royal Gold, Space Grey"
+COOLPAD,Coolpad Note 3S,Note,5.5,1.3GHz Quad-core,13,5,6,3,2500,32,,"Gold, White"
+COOLPAD,Coolpad Cool 1,Others,5.5,1.4GHz Quad-core,13,8,6,3,4000,32,,"Gold, Silver"
+COOLPAD,Coolpad Max A-8,Others,5.5,1.5GHz Quad-core,13,5,5.1,4,2800,64,,"Royal Gold, Rose Gold"
+EDGE MOBILE,D1500,Detel Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,D4800,Detel Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,D3800,Detel Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,D2800,Detel Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,D1800,Detel Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,D313,Detel Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EDGE MOBILE,D312,Detel Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EDGE MOBILE,D310,Detel Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EDGE MOBILE,D110,Detel Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EDGE MOBILE,E40,E Series,2.8,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+EDGE MOBILE,E90,E Series,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EDGE MOBILE,E10,E Series,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+EDGE MOBILE,E33,E Series,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+EDGE MOBILE,E99,E Series,2.4,N/A,N/A,N/A,N/A,N/A,2200,N/A,,N/A
+EDGE MOBILE,E7,E Series,1.8,N/A,N/A,N/A,N/A,N/A,2200,N/A,,N/A
+EDGE MOBILE,E66,E Series,2.4,N/A,N/A,N/A,N/A,N/A,1500,N/A,,N/A
+EDGE MOBILE,E1,E Series,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,,N/A
+EXMART,L2,L Series,4,1.2GHz Quad-core,5,2,N/A,512MB,1300,8,,N/A
+EXMART,R1,R Series,5,1.2GHz Quad-core,8,5,5.1,1,2000,8,,N/A
+EXMART,X9,X Series,2.4,N/A,1.3,N/A,N/A,N/A,1800,N/A,,N/A
+EXMART,X1,X Series,1.8,N/A,1.3,N/A,N/A,N/A,1000,N/A,,N/A
+EXMART,X11,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+EXMART,X5,X Series,1.8,N/A,1.3,N/A,N/A,N/A,1700,N/A,,N/A
+EXMART,X2,X Series,1.8,N/A,1.3,N/A,N/A,N/A,1000,N/A,,N/A
+GIONEE,A1,A Series,5.5,2GHz Octa-core,13,16,7,4,4010,64,,"Grey, Black, Gold"
+GIONEE,A1 Lite,A Series,5.3,1.3GHz Octa-core,13,20,Android,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A1+Lite.jpg,"Gold,Black"
+GIONEE,A1 Plus,A Series,6,1.6GHz Octa-core,13,20,Android 7.0,4,4550,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/A1+PLUS.jpg,"Grey, Mocha Gold"
+GIONEE,F103 Pro,F Series,5,1.3GHz Quad-core,13,5,Android 6.0,3,4550,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/F103+Pro.jpg,"Gold, Grey, White"
+GIONEE,M7 Power,M Series,6,1.4GHz Octa-core,13,8,Android 7.1.1,4,5000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/M7+Power.jpg,"Blue, Black, Gold"
+GIONEE,Marathon M5 Lite,M Series,5,1.3GHz Quad-core,8,5,Android 5..1,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Marathon+M5+Lite.jpg,Gold
+GIONEE,P7 Max,P Series,5.5,2.2GHz Octa-core,13,5,Android 6.0,3,3100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/P7+Max.jpg,"Gold, Grey-Blue"
+GIONEE,Gionee P7,P Series,5,1.3GHz Quad-core,8,5,Android 6.0,2,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/Gionee+P7.jpg,"White, Latte Gold, Grey"
+GIONEE,P5 W,P Series,5,1.3GHz Octa-core,5,2,Android 5.1,1,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P5+W.jpg,"White, Blue, Red, Yellow, Black"
+GIONEE,P5 Mini,P Series,4.5,1.3GHz Quad-core,5,2,Android 5.1,1,1850,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P5+Mini.jpg,"Black, Blue, White"
+GIONEE,P5L,P Series,4.7,1.3GHz Quad-core,8,5,Android 5.1,1,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P5L.jpg,"Red, White, Black, Blue, Yellow, Gold"
+GIONEE,S10 Lite,S Series,5.2,1.4GHz Quad-core,13,16,Android 7.1,4,3100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S10+Lite.jpg,"Gold, Black"
+GIONEE,S6S,S Series,5.5,1.3GHz Octa-core,13,8,Android 6.0,3,3150,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S6S.jpg,"Latte Gold, Mocha Gold"
+GIONEE,S6 Pro,S Series,5.5,1.8GHz Octa-core,13,8,Android 6.0,4,3130,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S6+Pro.jpg,"Gold, Silver, Rose Gold"
+GIONEE,X1 S,X Series,5.2,1.5GHz Quad-core,13,16,Android 7.0,3,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1+S.jpg,"Black, Gold"
+GIONEE,X1 Black,X Series,5,1.3GHz Quad-core,8,8,Android 7.0,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1+Black.jpg,"Black, Gold"
+GOOGLE PIXEL,Pixel Xl 5.5 128Gb,Pixel 1,5.5,1.6GHz Quad-core,12.3,8,7.1,4,3450,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+Xl+5.5+32Gb.jpg,"Very Silver, Quite Black, Really Blue"
+GOOGLE PIXEL,Pixel Xl 5.5 32Gb,Pixel 1,5.5,1.6GHz Quad-core,12.3,8,7.1,4,3450,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+Xl+5.5+32Gb.jpg,"Very Silver, Quite Black, Really Blue"
+GOOGLE PIXEL,Pixel 5 128Gb,Pixel 1,5,1.6GHz Quad-core,12.3,8,7.1,4,2770,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+5+128Gb.jpg,"Very Silver, Quite Black, Really Blue"
+GOOGLE PIXEL,Pixel 5 32Gb,Pixel 1,5,1.6GHz Quad-core,12.3,8,7.1,4,2770,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+5+32Gb.jpg,"Very Silver, Quite Black, Really Blue"
+GOOGLE PIXEL,Pixel Xl 2 128Gb,Pixel 2,6,1.9GHz Quad-core,12.2,8,8.0.0,4,3520,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+Xl+2+128Gb.jpg,"Just Black, Black and White"
+GOOGLE PIXEL,Pixel Xl 2 64Gb,Pixel 2,6,1.9GHz Quad-core,12.2,8,8.0.0,4,3520,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+Xl+2+64Gb.jpg,"Just Black, Black and White"
+GOOGLE PIXEL,Pixel 2 64Gb,Pixel 2,5,1.9GHz Quad-core,12.2,8,8.0.0,4,2700,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pixel+2+64Gb.jpg,"Just Black, Clearly White, Kinda Blue"
+HTC,Desire 10 Pro,Desire,5.5,1.8GHz Octa-core,20,13,6,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+10+Pro.jpg,"Stone Black, Polar White, Valentine Lux, Royal Blue"
+HTC,Desire Eye,Desire,5.2,2.3GHz Quad-core,13,13,4.4.4,2,2400,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+Eye.jpg,"Red, White, Blue"
+HTC,Desire 830 Dual Sim,Desire,5.5,1.6GHz Quad-core,13,5,6,2,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+830+Dual+Sim.jpg,N/A
+HTC,Desire 828 3/32,Desire,5.5,1.5GHz Octa-core,13,2,5.1.1,3,2800,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+828+3+32.jpg,N/A
+HTC,Desire 828 2/16,Desire,5.5,1.5GHz Octa-core,13,2,5.1.1,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+828+2+16.jpg,N/A
+HTC,Desire 826,Desire,5.5,1GHz Octa-core,13,4,5,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+826.jpg,N/A
+HTC,Desire 820G+,Desire,5.5,1.7GHz Octa-core,13,8,4.4,1,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+820G%2B.jpg,N/A
+HTC,Desire 728G (Wp),Desire,5.5,1.3GHz Octa-core,13,5,5.0.2,1.5,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+728G+(Wp).jpg,"Purple Myst, White Luxury"
+HTC,Desire 728 2/16 Lte,Desire,5.5,1.3GHz Octa-core,13,5,5.1.1,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+728+2+16+Lte.jpg,"Black, White"
+HTC,Desire 728 - 3/32,Desire,5.5,1.3GHz Octa-core,13,5,5.1.1,3,2800,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+728+-+3+32.jpg,"Black, White"
+HTC,Desire 630,Desire,5,1.6GHz Quad-core,13,5,6,2,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+630.jpg,N/A
+HTC,Desire 628,Desire,5,1.3GHz Octa-core,13,5,Android,3,2200,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+628.jpg,N/A
+HTC,Desire 626G+,Desire,5,1.7GHz Octa-core,13,5,Android,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+626G%2B.jpg,"Blue, White"
+HTC,Desire 626 Lte,Desire,5,1.7GHz Octa-core,13,5,4.4.4,2,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+626+Lte.jpg,"Blue Lagoon, White Birch"
+HTC,Desire 620G,Desire,5,1.7GHz Octa-core,8,5,4.4,1,2100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+620G.jpg,"Marble White, Grey"
+HTC,Desire 526G+,Desire,4.7,1.7GHz Octa-core,8,2,4.4,1,2000,8,,"White, Black"
+HTC,Desire 326.,Desire,4.5,1.2GHz Quad-core,8,2,4.4.2,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Desire+326..jpg,"White, Black"
+HTC,One E9+,One,5.5,2GHz Octa-core,20,4,5,3,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/One+E9%2B.jpg,N/A
+HTC,One E9 S,One,5.5,1.5GHz Octa-core,13,4,N/A,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/One+E9+S.jpg,"White Luxury, Meteor Grey, Roast Chestnut"
+HTC,One A9,One,5,1.2GHz Octa-core,13,4,6,3,2150,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/One+A9.jpg,"Carbon Grey, Opal Silver, Topaz Gold, Deep Garnet"
+HTC,Htc One X9,One,5.5,Octa-core,13,5,6,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Htc+One+X9.jpg,"Gunmetal Grey, Silver"
+HTC,Htc One M9+ Prime Camera Edition,One,5.2,2.2GHz Octa-core,13,4,Android,2,2840,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Htc+One+M9%2B+Prime+Camera+Edition.jpg,"Silver, Gunmetal"
+HTC,Htc U11,U Series,5.5,2.4GHz Octa-core,12,16,7.1,6,3000,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Htc+U11.jpg,"Amazing Silver, Brilliant Black"
+HUAWEI,Honor 9I,Honor,5.9,1.7GHz Octa-core,16,13,7,4,3340,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+9I.jpg,"Prestige Gold, Aurora Blue, Graphite Black"
+HUAWEI,Honor Holly 4,Honor,5,1.1GHz Octa-core,13,5,7,3,3020,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+Holly+4.jpg,"Grey, Gold, Silver"
+HUAWEI,Honer 5X,Honor,5.5,1.2GHz Octa-core,13,5,5.1,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honer+5X.jpg,"Black, White, Gold"
+HUAWEI,Honor Bee 2,Honor,4.5,1.3GHz Quad-core,5,2,5.1,1,2100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+Bee+2.jpg,"Black, Gold, White"
+HUAWEI,Honor 8 Lite,Honor,5.2,1.7GHz Octa-core,12,8,7,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+8+Lite.jpg,"Black, Blue"
+HUAWEI,Honor 8 Smart,Honor,5.2,2GHz Octa-core,13,8,6,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+8+Smart.jpg,"Black, White, Gold"
+HUAWEI,Honor Bee(4G),Honor,5,1.3GHz Quad-core,8,2,5.1,1,2200,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+Bee(4G).jpg,N/A
+HUAWEI,Honor Bee 3G,Honor,4.5,1.2GHz Quad-core,8,2,4.4,1,1730,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+Bee+3G.jpg,N/A
+HUAWEI,Honor 8,Honor,5.2,1.8GHz Quad-core,12,8,6,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+8.jpg,N/A
+HUAWEI,Honor 7,Honor,5.2,2.2GHz Octa-core,20,8,5,3,3100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+7.jpg,"Silver, Gold, Grey"
+HUAWEI,Holly 3 (3Gb + 32Gb),Others,5.5,1.2GHz Quad-core,13,8,6,3,3100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Holly+3+(3Gb+%2B+32Gb).jpg,"Black, White, Gold"
+HUAWEI,Holly 3 (2Gb + 16Gb),Others,5.5,1.2GHz Quad-core,13,8,6,2,3100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Holly+3+(2Gb+%2B+16Gb).jpg,"Black, White, Gold"
+HUAWEI,Holly 2 Plus,Others,5,1.3GHz Quad-core,13,5,5.1,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Holly+2+Plus.jpg,Black
+INFOCUS,Hero Smart P4,Hero,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+Smart+P4.jpg,Black
+INFOCUS,Hero P3,Hero,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+P3.jpg,N/A
+INFOCUS,Hero C1,Hero,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+C1.jpg,N/A
+INFOCUS,Hero Power B1,Hero,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+Power+B1.jpg,Black
+INFOCUS,Hero Boom Boxs1,Hero,2.4,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+Boom+Boxs1.jpg,Black
+INFOCUS,Hero Smart P2,Hero,2.8,N/A,N/A,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+Smart+P2.jpg,Black
+INFOCUS,Hero Smart P1,Hero,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero+Smart+P1.jpg,N/A
+INFOCUS,F113,Others,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F113.jpg,N/A
+INFOCUS,Infocus A3,Others,5.2,1.3GHz Quad-core,13,8,7,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Infocus+A3.jpg,Jet Black
+INFOCUS,Infocus A1,Others,5,1.2GHz Quad-core,5,5,6,1,2450,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Infocus+A1.jpg,N/A
+INFOCUS,A1S,Others,5,1.25GHz Quad-core,5,2,7,1,2200,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A1S.jpg,Gold
+INFOCUS,Turbo 5S,Turbo,5.2,1.3GHz Quad-core,13,8,7,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+5S.jpg,N/A
+INTEX,Aqua Lions T1 Lite,Aqua,5.2,1.3GHz Quad-core,5,2,7,1,2200,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/AQUA+LIONS+T1+LITE.jpg,"Royal Blue, Steel Grey, and Champagne"
+INTEX,Aqua S3,Aqua,5,1.3GHz Quad-core,8,5,7,2,2450,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+S3.jpg,Champagne
+INTEX,Aqua 4G Mini,Aqua,4,1.3GHz Quad-core,5,1.3,6,512MB,1450,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+4G+Mini.jpg,"Black, Red"
+INTEX,Aqua A4+,Aqua,4.5,Quad-core,5,2,7,1,1750,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+A4%2B.jpg,Black
+INTEX,Aqua Jewel 2,Aqua,5,1.3GHz Quad-core,8,5,7,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Jewel+2.jpg,"Black, Champagne"
+INTEX,Aqua Lion 3,Aqua,5,1.25GHz Quad-core,8,8,7,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lion+3.jpg,"Champagne, Black"
+INTEX,Aqua Lions X1+,Aqua,5.2,1.3GHz Quad-core,13,5,7,3,2800,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+X1%2B.jpg,"Black, Champagne, Blue"
+INTEX,Aqua Lions N1,Aqua,4,1.1GHz Quad-core,2,0.3,7,1,1400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+N1.jpg,Black
+INTEX,Aqua Lions T1,Aqua,5.2,1.3GHz Quad-core,8,5,7,1,2700,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+T1.jpg,"Black, Champagne, Gold"
+INTEX,Aqua Lions X1,Aqua,5.2,1.3GHz Quad-core,13,5,7,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+X1.jpg,"Black, Champagne, Blue"
+INTEX,Aqua Power Iv,Aqua,5,1.3GHz Quad-core,5,5,7,1,4000,16,,Black and Gold
+INTEX,Aqua Pro 4G,Aqua,4.5,1.3GHz Quad-core,5,2,6,1,2000,8,,"Dark Blue, Champagne"
+INTEX,Aqua Selfie,Aqua,5.5,Quad-core,8,5,7,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Selfie.jpg,"Rose Gold, Black"
+INTEX,Eco 102+,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+102%2B.jpg,N/A
+INTEX,Eco 105,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,,N/A
+INTEX,Eco 106+,Eco,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+INTEX,Eco 205,Eco,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+INTEX,Eco 210,Eco,1.8,N/A,N/A,N/A,N/A,N/A,1750,N/A,,N/A
+INTEX,Eco 210+,Eco,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+INTEX,Eco Beats,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+Beats.jpg,N/A
+INTEX,Eco Music,Eco,4.5,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+Music.jpg,N/A
+INTEX,Eco Selfie,Eco,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+Selfie.jpg,N/A
+INTEX,Aqua Lions 2,Lion,5,Quad-core,5,5,7,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+2.jpg,"Champagne, Gold"
+INTEX,Lions G10,Lion,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lions+G10.jpg,N/A
+INTEX,Lions G2,Lion,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lions+G2.jpg,N/A
+INTEX,Cool I4,Others,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Cool+I4.jpg,N/A
+INTEX,Elyt Dual,Others,5,1.3GHz Quad-core,8,8,7,2,2400,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Elyt+Dual.jpg,N/A
+INTEX,Flip X2,Others,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flip+X2.jpg,N/A
+INTEX,Flip X4,Others,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flip+X4.jpg,N/A
+INTEX,In-Sturdy,Others,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/In-Sturdy.jpg,N/A
+INTEX,Jazz 2,Others,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Jazz+2.jpg,N/A
+INTEX,Killer 3,Others,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Killer+3.jpg,N/A
+INTEX,Mega 1800,Others,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mega+1800.jpg,N/A
+INTEX,Mega 2400,Others,2.8,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mega+2400.jpg,N/A
+INTEX,Neo V+ Fm,Others,2.9,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Neo+V%2B+Fm.jpg,N/A
+INTEX,Polo,Others,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Polo.jpg,N/A
+INTEX,Turbo 2400,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+2400.jpg,N/A
+INTEX,Turbo S1+,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+S1%2B.jpg,N/A
+INTEX,Turbo S3+,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+S3%2B.jpg,N/A
+INTEX,Turbo S5,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+S5.jpg,N/A
+INTEX,Turbo Selfie 18,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+Selfie+18.jpg,N/A
+INTEX,Ultra 2400+,Ultra,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+2400%2B.jpg,N/A
+INTEX,Ultra 3000,Ultra,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+3000.jpg,N/A
+INTEX,Ultra 4000 I,Ultra,2.8,N/A,N/A,N/A,N/A,N/A,4000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+4000+I.jpg,N/A
+INTEX,Ultra G3,Ultra,2.8,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+G3.jpg,N/A
+INTEX,Ultra Magic,Ultra,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+Magic.jpg,N/A
+INTEX,Ultra Selfie,Ultra,2.8,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Ultra+Selfie.jpg,N/A
+IPHONE,Iphone X 64Gb,Iphone,5.8,hexa-core,12,7,iOS 11,3,2716,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Iphone+X+64Gb.jpg,N/A
+IPHONE,Iphone 8 Plus 256Gb,Iphone,5..5,hexa-core,12,7,iOS 11,3,2691,256,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Iphone+8+Plus+256Gb.jpg,"Silver, Space Gray, Gold"
+IPHONE,Iphone 8 Plus 64Gb,Iphone,5..5,hexa-core,12,7,iOS 11,3,2691,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Iphone+8+Plus+64Gb.jpg,"Silver, Space Gray, Gold"
+IPHONE,Iphone 8 256Gb,Iphone,4.7,hexa-core,12,7,iOS 11,2,1821,256,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Iphone+8+256Gb.jpg,"Silver, Space Gray, Gold"
+IPHONE,Iphone 8 64Gb,Iphone,4.7,hexa-core,12,7,iOS 11,2,1821,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Iphone+8+64Gb.jpg,"Silver, Space Gray, Gold"
+ITEL,A 40,A Series,5,1.3GHz Quad-core,5,2,7,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A+40.jpg,"Black, Rose Gold, Dark Blue"
+ITEL,A20,A Series,4,1.3GHz Quad-core,2,0.3,7,1,1700,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A20.jpg,"Champagne Gold, Dark Blue, Silver"
+ITEL,A41,A Series,5,1.3GHz Quad-core,5,2,6,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A41.jpg,"Calx, Champagne, Rose Gold"
+ITEL,A42 Plus,A Series,5,1.3GHz Quad-core,8,5,7,2,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A42+Plus.jpg,Gold
+ITEL,Powerpro It1410,Powerpro,4,1.3GHz Quad-core,2,0.3,4.4,512MB,2800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Powerpro+It1410.jpg,Black
+ITEL,Powerpro It1553,Powerpro,5.5,1.3GHz Quad-core,8,2,5.1,1,5050,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Powerpro+It1553.jpg,"Grey, Champagne"
+ITEL,Selfie Pro It1518,Selfie Pro,5,1.3GHz Quad-core,8,5,6,2,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Selfie+Pro+It1518.jpg,Gold
+ITEL,Selfie Pro It1520,Selfie Pro,5,1.3GHz Quad-core,13,13,6,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Selfie+Pro+It1520.jpg,"Sandstone Black, Champagne"
+ITEL,Shine It2130,Shine,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It2130.jpg,N/A
+ITEL,Shine It2131,Shine,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It2131.jpg,N/A
+ITEL,Shine It5020,Shine,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It5020.jpg,N/A
+ITEL,Shine It5040,Shine,2.4,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It5040.jpg,N/A
+ITEL,Shine It5060,Shine,1.7,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It5060.jpg,N/A
+ITEL,Shine It5331,Shine,2.8,N/A,N/A,N/A,N/A,N/A,2000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+It5331.jpg,N/A
+ITEL,Smart Selfie It2180,Smart Selfie,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+It2180.jpg,N/A
+ITEL,Smart Selfie It5231,Smart Selfie,2.4,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+It5231.jpg,N/A
+ITEL,Smart Selfie It5232,Smart Selfie,2.4,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+It5232.jpg,N/A
+ITEL,Smart Selfie It5233,Smart Selfie,2.4,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+It5233.jpg,N/A
+ITEL,Smart Selfie It5320,Smart Selfie,2.8,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+It5320.jpg,N/A
+ITEL,Smart Selfie S41,Smart Selfie,5,1.25GHz Quad-core,8,8,7,3,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Selfie+S41.jpg,N/A
+ITEL,Smartselfie It7100,Smart Selfie,3.2,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smartselfie+It7100.jpg,N/A
+ITEL,It5603,Smartpower,1.8,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/It5603.jpg,N/A
+ITEL,Smart Power It5600,Smartpower,1.8,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5600.jpg,N/A
+ITEL,Smart Power It5311,Smartpower,2.8,N/A,N/A,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5311.jpg,N/A
+ITEL,Smart Power It5602,Smartpower,1.77,N/A,N/A,N/A,N/A,N/A,2500,N/A,,N/A
+ITEL,Smart Power It5611,Smartpower,2.4,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5611.jpg,N/A
+ITEL,Smart Power It5612,Smartpower,2.4,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5612.jpg,N/A
+ITEL,Smart Power It5613,Smartpower,2.4,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5613.jpg,N/A
+ITEL,Smart Power It5622,Smartpower,2.8,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smart+Power+It5622.jpg,N/A
+ITEL,Smartpower It5623,Smartpower,2.8,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Smartpower+It5623.jpg,N/A
+ITEL,Wish A11,Wish Series,4,1.2GHz Quad-core,2,0.3,5.1,512MB,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+A11.jpg,"Blue, Mocha, Champagne"
+ITEL,Wish It1407,Wish Series,5,1.3GHz Quad-core,5,2,4.4,512MB,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+It1407.jpg,Black
+ITEL,Wish It1409,Wish Series,5,1.2GHz Quad-core,2,0.3,5.1,512MB,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+It1409.jpg,"Blue, Grey, Champagne"
+ITEL,Wish It1508,Wish Series,5,1.3GHz Quad-core,5,2,5.1,512MB,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+It1508.jpg,Gold
+ITEL,Wish It1508+,Wish Series,5,1.3GHz Quad-core,5,2,5.1,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+It1508%2B.jpg,Gold
+ITEL,Wish It1512,Wish Series,5,1GHz Quad-core,5,2,6,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wish+It1512.jpg,"Grey, Champagne Gold"
+JIO LYF,Earth 2,Earth,5,Octa-core,13,13,5.1.1,3,2500,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Earth+2.jpg,"Black, White, Green, Gold"
+JIO LYF,Earth 1 Ls-5501,Earth,5.5,1.5GHz Octa-core,13,5,5.1.1,3,3500,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Earth+1+Ls-5501.jpg,White
+JIO LYF,Flame1,Flame,4.5,1.1GHz Quad-core,5,5,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame1.jpg,"White, Black, Dark Blue, Dark Red"
+JIO LYF,Flame 8,Flame,4.5,1.1GHz Quad-core,8,5,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+8.jpg,"Black, White"
+JIO LYF,Flame 7S,Flame,4,1.5GHz Quad-core,5,0.3,5.1,1,1800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+7S.jpg,"Red, Black"
+JIO LYF,Flame 7,Flame,4,1.5GHz Quad-core,5,2,5.1,1,1750,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+7.jpg,Black
+JIO LYF,Flame 6,Flame,4,1.5GHz Quad-core,2,2,5.1,512MB,1750,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+6.jpg,Black
+JIO LYF,Flame 5,Flame,4,1.5GHz Quad-core,5,2,5.1,512MB,1650,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+5.jpg,Black
+JIO LYF,Flame 4,Flame,4,1.5GHz Quad-core,2,0.3,5.1,512MB,1400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+4.jpg,Black
+JIO LYF,Flame 3,Flame,4,1.5GHz Quad-core,5,2,5.1,512MB,1700,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+3.jpg,Grey
+JIO LYF,Flame 2 (Ls-4004),Flame,4,1GHz Quad-core,5,2,5.1,1,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flame+2+(Ls-4004).jpg,"Black, White"
+JIO LYF,C451,Others,4.5,1.3GHz Quad-core,5,2,6.0.1,1,2800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C451.jpg,White
+JIO LYF,C459,Others,4.5,1.3GHz Quad-core,5,2,6.0.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C459.jpg,"Black, Blue"
+JIO LYF,Jio Phone,Others,2.4,1.2GHz dual-core,2,0.3,KAI OS,512MB,2000,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Jio+Phone.jpg,Black
+JIO LYF,Water 7S,Water,5.5,1.3GHz Octa-core,13,5,6,3,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+7S.jpg,"Black, Gold, White"
+JIO LYF,Water 9,Water,5.5,1.3GHz Octa-core,13,5,5.1,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+9.jpg,Gold
+JIO LYF,Water 8,Water,5,1.5GHz Octa-core,13,5,5.1.1,3,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+8.jpg,"Black, White"
+JIO LYF,Water 7,Water,5.5,1.5GHz Octa-core,13,5,5.1,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+7.jpg,"Gold, Silver"
+JIO LYF,Water 6,Water,5,1.2GHz Quad-core,13,5,5.1.1,2,2920,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/WATER+6.jpg,White Gold
+JIO LYF,Water 5,Water,5,1.2GHz Quad-core,13,5,5.1,2,2920,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+5.jpg,Black
+JIO LYF,Water 11,Water,5,1.3GHz Quad-core,13,5,6,3,2100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+11.jpg,Gold
+JIO LYF,Wind 7S,Wind,5,1.3GHz Quad-core,8,5,6,2,2250,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+7S.jpg,Blue and Black
+JIO LYF,Wind 7I,Wind,5,1.3GHz Quad-core,8,2,6,1,2250,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+7I+(+Price+Increase+Of+Rs.+300+From+1St+March).jpg,"Blue, Black"
+JIO LYF,Wind4,Wind,5,1.1GHz Quad-core,8,2,5.1,1,4000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind4.jpg,N/A
+JIO LYF,Wind 7,Wind,5,1.3GHz Quad-core,8,5,5.1,2,2250,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+7.jpg,"Black, Blue, White"
+JIO LYF,Wind 6,Wind,5,1.1GHz Quad-core,5,5,5.1,1,2250,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+6.jpg,"Black, Gold, White"
+JIO LYF,Wind 5,Wind,5,1GHz Quad-core,8,2,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+5.jpg,"Black, White"
+JIO LYF,Wind 3,Wind,5.5,1.2GHz Quad-core,8,2,5.1,2,2920,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+3.jpg,"Black, White"
+JIO LYF,Wind 2,Wind,6,1GHz Quad-core,8,2,5.1,2,2850,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+2.jpg,Gold
+JIO LYF,Wind 1 (8Gb),Wind,5,1.2GHz Quad-core,8,5,5.1,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Wind+1+(8Gb).jpg,"Black, White"
+JIO LYF,Wind 1,Wind,5,1.2GHz Quad-core,8,5,5.1,1,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+1.jpg,"Black, White"
+JIO LYF,Wind 4S,Wind,5,1.3GHz Quad-core,8,2,5.1,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Wind+4S.jpg,"Black, Blue, and Brown"
+JIVI,Sumo T3000,Feature Phones,2.8,N/A,N/A,N/A,N/A,N/A,3600,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Sumo+T3000.jpg,N/A
+JIVI,Boombox N3000+,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Boombox+N3000%2B.jpg,N/A
+JIVI,Jv 12M,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Jv+12M.jpg,N/A
+JIVI,Jv X3I,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Jv+X3I.jpg,N/A
+JIVI,N201,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N201.jpg,N/A
+JIVI,N210,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N210.jpg,N/A
+JIVI,N2244,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N2244.jpg,N/A
+JIVI,N3333,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,4000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N3333.jpg,N/A
+JIVI,N6060,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,5000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N6060.jpg,N/A
+JIVI,N9003,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N9003.jpg,N/A
+JIVI,R21,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/R21.jpg,N/A
+JIVI,T201,Feature Phones,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T201.jpg,N/A
+JIVI,X30,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X30.jpg,N/A
+JIVI,X57I,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X57I.jpg,N/A
+JIVI,X84 (Selfie),Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X84+(Selfie).jpg,N/A
+JIVI,Energy E12,Smart Phones,4,1.3GHz Quad-core,5,2,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Energy+E12.jpg,"Black, White"
+JIVI,Energy E3,Smart Phones,4,1.3GHz Quad-core,5,2,6,512MB,1800,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Energy+E3.jpg,"Black, Gold, Blue"
+JIVI,Grand 3000,Smart Phones,5.5,1.3GHz Quad-core,13,5,7,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Grand+3000.jpg,N/A
+JIVI,Prime P444,Smart Phones,5,1.3GHz Quad-core,8,5,7,2,2400,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Prime+P444.jpg,"Gold, Grey"
+JIVI,Revolution Tnt3,Smart Phones,4,1.3GHz Quad-core,5,2,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Revolution+Tnt3.jpg,N/A
+KARBONN,A9 Indian Gps 4G,A Series,4.5,1.3GHz Quad-core,5,5,Android,1,1750,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A9+Indian+Gps+4G.jpg,"Champagne, Black + Champagne, White + Champagne"
+KARBONN,A1 Indian 4G,A Series,4,1.1GHz Quad-core,3.2,2,7,1,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A1+Indian+4G.jpg,"Midnight Blue, Champagne, Black"
+KARBONN,A41 Power 4G,A Series,4,1.3GHz Quad-core,2,0.3,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A41+Power+4G.jpg,"Black-Champagne, Black-Red, White-Champagne"
+KARBONN,A40 Indian 4G,A Series,4,1.3GHz Quad-core,2,0.3,7,1,1400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A40+Indian+4G.jpg,"Blue, Coffee Brown, Black, Champagne"
+KARBONN,K888 Metal,K Series,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K888+Metal.jpg,N/A
+KARBONN,K4000 Plus,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K4000+Plus.jpg,N/A
+KARBONN,K880,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K880.jpg,N/A
+KARBONN,K444 Shakti,K Series,2.4,N/A,N/A,N/A,N/A,N/A,4000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K444+Shakti.jpg,N/A
+KARBONN,K49,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K49.jpg,N/A
+KARBONN,K7 Power,K Series,1.8,N/A,N/A,N/A,N/A,N/A,2700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K7+Power.jpg,N/A
+KARBONN,K140 Pop,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K140+Pop.jpg,N/A
+KARBONN,K310N,K Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K310N.jpg,N/A
+KARBONN,K142,K Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K142.jpg,N/A
+KARBONN,K9 Music 4G,K Series,5,1.3GHz Quad-core,8,5,7,1,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Music+4G.jpg,"Blue, Champagne"
+KARBONN,K9 Grand,K Series,5.2,1.3GHz Quad-core,8,5,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Grand.jpg,"Black, Champagne"
+KARBONN,K9 Viraat 4G (16+1Gb),K Series,5.5,1.3GHz Quad-core,5,3.2,6,1,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Viraat+4G+(16%2B1Gb).jpg,"Champagne, Black"
+KARBONN,K9 Yuva,K Series,5,1.3GHz Quad-core,5,2,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Yuva.jpg,"Black-Champagne, Coffee-Champagne, White-Champagne, Gold"
+KARBONN,K9 Kavach 4G,K Series,5,1.25GHz Quad-core,5,5,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Kavach+4G.jpg,Gold
+KARBONN,K9 Smart 4G (16+1Gb),K Series,5.5,1.2GHz Quad-core,3.2,1.3,6,1,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Smart+4G+(16%2B1Gb).jpg,Black and Grey
+KARBONN,K3 Boom Max,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K3+Boom+Max.jpg,N/A
+KARBONN,K5 Jumbo 2,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K5+Jumbo+2.jpg,N/A
+KARBONN,K2 Boom Box,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K2+Boom+Box.jpg,N/A
+KARBONN,K17 Rock,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K17+Rock.jpg,N/A
+KARBONN,K885,K Series,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K885.jpg,N/A
+KARBONN,K Phone Mashaal,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K+Phone+Mashaal.jpg,N/A
+KARBONN,K5000 Mahaabali,K Series,1.8,N/A,N/A,N/A,N/A,N/A,5000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K5000+Mahaabali.jpg,N/A
+KARBONN,K1 Indian,K Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K1+Indian.jpg,N/A
+KARBONN,K9 Viraat 4G,K Series,5.5,1.3GHz Quad-core,5,3.2,6,1,2800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Viraat+4G.jpg,"Champagne, Black"
+KARBONN,K9 Smart 4G,K Series,5.5,1.2GHz Quad-core,3.2,1.3,6,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Smart+4G.jpg,Black and Grey
+KARBONN,K9 Staar,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Staar.jpg,N/A
+KARBONN,K9 Spy,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Spy.jpg,N/A
+KARBONN,K9 Boss,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9+Boss.jpg,N/A
+KARBONN,K46 Led,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K46+Led.jpg,N/A
+KARBONN,K451 Power,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K451+Power.jpg,N/A
+KARBONN,K45+ New,K Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K45%2B+New.jpg,N/A
+KARBONN,K Phone1,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K+Phone1.jpg,N/A
+KARBONN,K9,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K9.jpg,N/A
+KARBONN,Aura Note Play,Others,6,1.3GHz Quad-core,8,5,7,2,3300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+Note+Play.jpg,"Black, Champagne"
+KARBONN,Aura Note 2 4G,Others,5.5,1.25GHz Quad-core,13,5,7,2,2900,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+Note+2+4G.jpg,"Blue, Champagne, Coffee, Champagne & Black, Champagne"
+KARBONN,Aura Power 4G (1+8Gb),Others,5,1GHz Quad-core,8,5,5.1,1,4000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+Power+4G+(1%2B8Gb).jpg,"Champagne, Blue"
+KARBONN,Aura Note 4G,Others,5.5,1.2GHz Quad-core,8,5,6,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+Note+4G.jpg,N/A
+KARBONN,Titanium Vista 4G,Others,5,1.2GHz Quad-core,8,3.2,6,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Titanium+Vista+4G.jpg,Champagne White and Black
+KARBONN,Aura 4G,Others,5,1.3GHz Quad-core,8,5,6,1,2150,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+4G.jpg,Blue-Champagne and Coffee-Champagne
+KARBONN,Aura Sleek 4G,Others,6,1.2GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aura+Sleek+4G.jpg,"Grey, Champagne White, Black"
+LAVA,A77,A Series,4.5,1.3GHz Quad-core,5,5,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A77.jpg,"Gold,Grey,Blue"
+LAVA,A97,A Series,5,1.3GHz Quad-core,5,5,6,1,2350,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A97.jpg,"Gold,Grey,Blue"
+LAVA,A52,A Series,4,1.3GHz Quad-core,2,0.3,5.1,512MB,1200,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A52.jpg,"Black,Gold"
+LAVA,A97 Ips,A Series,5,1.3GHz Quad-core,5,N/A,6,1,2350,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A97+Ips.jpg,Black
+LAVA,A97 2Gb,A Series,5,1.3GHz Quad-core,5,N/A,6,2,2350,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A97+2Gb.jpg,Gold
+LAVA,Kkt Uno2,Kkt,2.4,N/A,1.3,No,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Kkt+Uno2.jpg,White
+LAVA,Metal 24,Others,2.4,N/A,1.3,No,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Metal+24.jpg,"Black,Gun Metal"
+LAVA,Spark I7,Spark,2.8,N/A,1.3,No,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Spark+I7.jpg,White
+LAVA,Ivory +_8 Gb,Tab,7,1.3GHz Quad-core,5,3.2,4.4.2,1,3000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Ivory+%2B_8+Gb.jpg,White
+LAVA,X41+,X Series,5,1.3GHz Quad-core,8,5,6,2,2500,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X41%2B.jpg,"Black,Gold"
+LEMON,Agni 108,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Agni+108.jpg,N/A
+LEMON,Anmol 131,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Anmol+131.jpg,N/A
+LEMON,Anmol 135,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Anmol+135.jpg,N/A
+LEMON,Anmol 141,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Anmol+141.jpg,N/A
+LEMON,Anmol 211,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Anmol+211.jpg,N/A
+LEMON,Anmol 216,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Anmol+216.jpg,N/A
+LEMON,B185,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/B185.jpg,N/A
+LEMON,B201I,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/B201I.jpg,N/A
+LEMON,B418,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/B418.jpg,N/A
+LEMON,B556,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/B556.jpg,N/A
+LEMON,Dabang 300,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Dabang+300.jpg,N/A
+LEMON,Dabang 400,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Dabang+400.jpg,N/A
+LEMON,Dabang 500,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Dabang+500.jpg,N/A
+LEMON,Lemon 106,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lemon+106.jpg,N/A
+LEMON,Lemon 197,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lemon+197.jpg,N/A
+LEMON,Selfie 181,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,2000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Selfie+181.jpg,N/A
+LEMON,Star 1,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Star+1.jpg,N/A
+LEMON,Star 4,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Star+4.jpg,N/A
+LEMON,Blaze 501,Smart Phones,5,1.3GHz Quad-core,5,2,5.1,1,2200,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Blaze+501.jpg,N/A
+LEMON,Blaze Plus 502,Smart Phones,5,1.3GHz Quad-core,8,5,5.1,2,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Blaze+Plus+502.jpg,N/A
+LEMON,Classic 451,Smart Phones,4.5,1.3GHz Quad-core,5,2,6,1,2100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Classic+451.jpg,N/A
+LENOVO,K8 Note 3 Gb,K Series,5.5,1.4GHz Quad-core,13,13,Android 7.1.1,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K8+Note+3+Gb.jpg,"Fine Gold, Venom Black"
+LENOVO,K8 Note 4Gb,K Series,5.5,1.4GHz Quad-core,13,13,Android 7.1.1,4,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K8+Note+4Gb.jpg,"Fine Gold, Venom Black"
+LENOVO,K6 Power 3Gb,K Series,5,1.4GHz Octa-core,13,8,Android 6.0.1,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K6+Power+3Gb.jpg,"Gold, Dark Grey, Silver"
+LENOVO,K6 Power 4Gb,K Series,5,1.4GHz Octa-core,13,8,Android 6.0.1,4,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K6+Power+4Gb.jpg,"Gold, Dark Grey, Silver"
+LENOVO,K6 Note 3Gb,K Series,5.5,1.4GHz Octa-core,16,8,Android 6.0.1,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K6+Note+3Gb.jpg,"Dark Grey, Gold, Silver"
+LENOVO,K6 Note 4Gb,K Series,5.5,1.4GHz Octa-core,16,8,Android 6.0.1,4,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K6+Note+4Gb.jpg,"Dark Grey, Gold, Silver"
+LEPHONE,K11,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K11.jpg,N/A
+LEPHONE,K1,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K1.jpg,N/A
+LEPHONE,K10,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K10.jpg,N/A
+LEPHONE,K7,K Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K7.jpg,N/A
+LEPHONE,Sleek9,Others,2.4,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Sleek9.jpg,N/A
+LEPHONE,L1,Others,2.3,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L1.jpg,N/A
+LEPHONE,W8,W Series,4.7,1.3GHz Quad-core,8,5,6,2,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W8.jpg,N/A
+LEPHONE,W7R,W Series,5,1.3GHz Quad-core,5,2,6,2,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W7R.jpg,N/A
+LEPHONE,W21,W Series,5.5,1.3GHz Quad-core,8,5,6,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W21.jpg,N/A
+LEPHONE,W10,W Series,5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W10.jpg,N/A
+LEPHONE,W9,W Series,5.5,N/A,5,N/A,5.1,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W9.jpg,N/A
+LEPHONE,W2,W Series,4.5,1.3GHz Quad-core,2,0.3,6,1,1500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W2.jpg,N/A
+LEPHONE,W12,W Series,5,1.3GHz Quad-core,8,2,6,1,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W12.jpg,N/A
+LEPHONE,W11,W Series,5,1.3GHz Quad-core,8,2,6,1,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W11.jpg,N/A
+LEPHONE,W7+,W Series,5,1.3GHz Quad-core,5,2,6,1,1800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W7%2B.jpg,"Black, Gold, White"
+LEPHONE,W7,W Series,5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/W7.jpg,N/A
+LG,Lg G6,G Series,5.7,Qualcomm Snapdragon 821,13,5,7,4,3300,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+G6.jpg,"Ice Platinum, Astro Black, Mystic White"
+LG,G4 Mettalica,G Series,5.5,1.8GHz hexa-core,16,8,5.1,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G4+Mettalica.jpg,"Metallic Gray, Ceramic White, Shiny Gold, Black Leather, Brown Leather, Red Leather, Sky Blue Leather, Beige Leather, Yellow Leather"
+LG,G4 Leather,G Series,5.5,1.8GHz hexa-core,16,8,5.1,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G4+Leather.jpg,"Metallic Gray, Ceramic White, Shiny Gold, Black Leather, Brown Leather, Red Leather, Sky Blue Leather, Beige Leather, Yellow Leather"
+LG,K7I,K Series,5,1.1GHz quad-core,8,5,6,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K7I.jpg,Brown
+LG,K7 Lte,K Series,5,1.1GHz quad-core,5,5,5.1,1.5,2125,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K7+Lte.jpg,"Titan, Gold, White"
+LG,K10 2016,K Series,5.3,1.2GHz quad-core,13,5,5.1,2,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K10+2016.jpg,"White, Indigo, Gold"
+LG,Q6 Plus,Others,5.5,Octa-Core,13,5,7.1.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Q6+Plus.jpg,"Astro Black, Ice Platinum, Marine Blue"
+LG,Lg X Cam,Others,5.2,1.14GHz octa-core,13,8,6,2,2520,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+X+Cam.jpg,"Titan Silver, White, Gold, Pink Gold"
+LG,Lg X Power,Others,5.3,1.3GHz quad-core,13,5,6,2,4100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+X+Power.jpg,Black and Gold
+LG,Lg V20,Others,5.7,1.6GHz quad-core,16,5,7,4,3200,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+V20.jpg,N/A
+LG,Lg H442 Spirit Lte,Others,4.7,1.3GHz quad-core,8,5,5,1,2100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+H442+Spirit+Lte.jpg,N/A
+LG,Lg X Screen (K500I),Others,4.93,1.2GHz quad-core,13,8,6.0.1,2,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+X+Screen+(K500I).jpg,"Black, White, Pink Gold"
+LG,Nexus 5X 16 Gb Lgh791,Others,5.2,1.8GHz hexa-core,12.3,5,6,2,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nexus+5X+16+Gb+Lgh791.jpg,"Carbon Black, Frost White, Ice Blue"
+LG,Max ( Lgx 160 ),Others,5,1.3GHz quad-core,8,5,5.1.1,1,2540,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Max+(+Lgx+160+).jpg,"White, Titan, Gold"
+LG,Magna (Lgh 502F),Others,5,1.3GHz quad-core,8,5,5,1,2540,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Magna+(Lgh+502F).jpg,N/A
+LG,Lg Stylus 3 (Lgm400Dk),Stylus,5.7,1.5GHz Octa-core,13,8,7,3,3200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+Stylus+3+(Lgm400Dk).jpg,"Metallic Titan, Pink Gold"
+LG,Lg Stylus 2 Plus,Stylus,5.7,1.2GHz Octa-core,16,8,6,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lg+Stylus+2+Plus.jpg,N/A
+MAFE,Mega,4G Smart Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+MAFE,Elegance,Feature Phones,2..4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Elegance.jpg,N/A
+MAFE,Energy,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Energy.jpg,N/A
+MAFE,Glow,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Glow.jpg,N/A
+MAFE,Gold,Feature Phones,2.8,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Gold.jpg,N/A
+MAFE,Guru,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Guru.jpg,N/A
+MAFE,Guru Plus,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Guru+Plus.jpg,N/A
+MAFE,Hero,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Hero.jpg,N/A
+MAFE,Legend,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Legend.jpg,N/A
+MAFE,Lite,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Lite.jpg,N/A
+MAFE,Logan,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Logan.jpg,N/A
+MAFE,Mafe X1,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mafe+X1.jpg,N/A
+MAFE,Micra,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Micra.jpg,N/A
+MAFE,Mini,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mini.jpg,N/A
+MAFE,Nemo,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nemo.jpg,N/A
+MAFE,Nemo (Vibrator),Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nemo+(Vibrator).jpg,N/A
+MAFE,Omega Plus,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,850,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Omega+Plus.jpg,N/A
+MAFE,Pro Plus,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pro+Plus.jpg,N/A
+MAFE,Pulse,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1080,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Pulse.jpg,N/A
+MAFE,Solo,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Solo.jpg,N/A
+MAFE,Spy,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Spy.jpg,N/A
+MAFE,Style,Feature Phones,2.8,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Style.jpg,N/A
+MAFE,Super,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Super.jpg,N/A
+MAFE,Trend,Feature Phones,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Trend.jpg,N/A
+MAFE,Uno,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Uno.jpg,N/A
+MAFE,X1 W/O Vibrator,Feature Phones,1.8,N/A,N/A,N/A,N/A,N/A,1050,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1+W+O+Vibrator.jpg,N/A
+MAFE,Air,Smart Phones,4,1.3GHz Quad-core,5,2,7,2,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Air.jpg,"Champagne Gold, Coffee"
+MAFE,Shine 810,Smart Phones,5,1.3GHz Quad-core,5,2,6,1,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+810.jpg,N/A
+MICROMAX FEATURE PHONES,X372,X Series,1.8,N/A,N/A,N/A,N/A,N/A,600,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X372.jpg,N/A
+MICROMAX FEATURE PHONES,X371,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X371.jpg,N/A
+MICROMAX FEATURE PHONES,X1I Power,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1I+Power.jpg,N/A
+MICROMAX FEATURE PHONES,X424+,X Series,1.7,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X424%2B.jpg,N/A
+MICROMAX FEATURE PHONES,X1I Pop,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1I+Pop.jpg,N/A
+MICROMAX FEATURE PHONES,X088+,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X088%2B.jpg,N/A
+MICROMAX FEATURE PHONES,X725,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X725.jpg,N/A
+MICROMAX FEATURE PHONES,X751,X Series,2.4,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X751.jpg,N/A
+MICROMAX FEATURE PHONES,X713,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X713.jpg,N/A
+MICROMAX FEATURE PHONES,X409,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X409.jpg,N/A
+MICROMAX FEATURE PHONES,X920,X Series,2.8,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X920.jpg,N/A
+MICROMAX FEATURE PHONES,X904,X Series,2.8,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X904.jpg,N/A
+MICROMAX FEATURE PHONES,X803,X Series,2.8,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X803.jpg,N/A
+MICROMAX FEATURE PHONES,X706,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X706.jpg,N/A
+MICROMAX FEATURE PHONES,X730,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X730.jpg,N/A
+MICROMAX FEATURE PHONES,X1I2017 Blk,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1300,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1I2017+Blk.jpg,N/A
+MICROMAX FEATURE PHONES,X424,X Series,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X424.jpg,N/A
+MICROMAX FEATURE PHONES,X570,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X570.jpg,N/A
+MICROMAX FEATURE PHONES,X415,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X415.jpg,N/A
+MICROMAX FEATURE PHONES,X412,X Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X412.jpg,N/A
+MICROMAX FEATURE PHONES,X512,X Series,1.7,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X512.jpg,N/A
+MICROMAX FEATURE PHONES,X1I 2017,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X1I+2017.jpg,N/A
+MICROMAX FEATURE PHONES,X740,X Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X740.jpg,N/A
+MICROMAX FEATURE PHONES,X591,X Series,1.7,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/X591.jpg,N/A
+MICROMAX SMART PHONES,Bharat 2 (Q402),Bharat,4,1.3GHz Quad-core,2,0.3,6,512MB,1300,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+2+(Q402).jpg,Gold
+MICROMAX SMART PHONES,Bharat 3,Bharat,4.5,MediaTek MT6737M,5,5,7,1,1300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+3.jpg,Black
+MICROMAX SMART PHONES,Bharat 4,Bharat,5,quad-core,5,5,7,1,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+4.jpg,N/A
+MICROMAX SMART PHONES,Bharat 5,Bharat,5.2,1.3GHz Quad-core,5,5,Android 7.0,1,5000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+5.jpg,N/A
+MICROMAX SMART PHONES,Bharat 5+,Bharat,5.2,1.3GHz Quad-core,8,5,Android,2,5000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+5%2B.jpg,Black
+MICROMAX SMART PHONES,Q402+ (Bharat 2+),Bharat,4,quad-core,5,2,7,1,1600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Q402%2B+(Bharat+2%2B).jpg,Gold
+MICROMAX SMART PHONES,Dual 5,Dual,5.5,1.4GHz Octa-core,13,13,Android 6.0,4,3200,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Dual+5.jpg,Gold
+MICROMAX SMART PHONES,Selfie 3(E460),Others,5,Octa Core,16,13,7,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Selfie+3(E460).jpg,Black and Blue
+MICROMAX SMART PHONES,C1 (Canvas 1),Others,5,1.3GHz Quad-core,8,5,7,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C1+(Canvas+1).jpg,"Matte Black, Chrome Black"
+MICROMAX SMART PHONES,Canvas Infinity,Others,5.7,1.4GHz Quad-core,13,16,7.1.2,3,2900,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Canvas+Infinity.jpg,Black
+MICROMAX SMART PHONES,Canvas Infinity Pro,Others,5.7,Octa Core,20,16,7.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Canvas+Infinity+Pro(Scheme+400+-).jpg,N/A
+MICROMAX SMART PHONES,Bharat 2 Ultra,Q Series,4,1.3GHz Quad-core,2,0.3,6,512MB,1300,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+2+Ultra.jpg,N/A
+MICROMAX SMART PHONES,Q427+ Canvas Unite 4 Plus,Q Series,5,1GHz Quad-core,8,5,6,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Q427%2B+Canvas+Unite+4+Plus.jpg,N/A
+MICROMAX SMART PHONES,Q4310 Canvas 2 (2017),Q Series,5,1.3GHz Quad-core,13,5,7,3,3050,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Q4310+Canvas+2+(2017).jpg,"Champagne, Black"
+MICROMAX SMART PHONES,Selfie 2 (Q4311)/Selfie 2 Note(Q4501),Q Series,5.2,1.3GHz Quad-core,13,8,7,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Selfie+2+(Q4311)+Selfie+2+Note(Q4501).jpg,N/A
+MICROMAX SMART PHONES,Canvas Plex,Tab,8,1.3GHz Quad-core,5,2,5.1,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Canvas+Plex.jpg,Gold
+MICROMAX SMART PHONES,Canvas Tab P701 Plus,Tab,7,1GHz Quad-core,5,2,5.1,2,3500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Canvas+Tab+P701+Plus.jpg,"Blue, Grey"
+MICROMAX SMART PHONES,P701 Tab,Tab,7,1GHz Quad-core,5,2,5.1,1,3500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P701+Tab.jpg,"Blue, Grey"
+MICROMAX SMART PHONES,P802,Tab,8,1GHz Quad-core,5,2,6,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P802.jpg,Grey
+MICROMAX SMART PHONES,Q4101 Vdeo 2,Vdeo,4.5,1.3GHz Quad-core,5,2,6,1,1800,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Q4101+Vdeo+2.jpg,N/A
+MICROMAX SMART PHONES,Vdeo 1,Vdeo,4,1.3GHz Quad-core,5,2,6,1,1600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Vdeo+1.jpg,N/A
+MICROMAX SMART PHONES,Vdeo 3 Q4202,Vdeo,4,qualcomm snapdragon,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Vdeo+3+Q4202.jpg,N/A
+MICROMAX SMART PHONES,Vdeo 4,Vdeo,5,1.1GHz Quad-core,8,2,6,1,4000,8,,N/A
+MOTOROLA,G5S,G Series,5.2,1.4GHz Octa-core,16,5,Android 7.1,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G5S.jpg,"Lunar Grey, Fine Gold"
+MOTOROLA,Moto G5,G Series,5,1.4GHz Octa-core,13,5,Android 7.0,3,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+G5.jpg,"Lunar Grey, Fine Gold"
+MOTOROLA,Moto G5 S Plus 3 Gb,G Series,5.5,2GHz Octa-core,13,8,Android 7.1,3,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+G5+S+Plus+3+Gb.jpg,"Lunar Gray, Blush Gold"
+MOTOROLA,Moto G5 S Plus 4Gb,G Series,5.5,2GHz Octa-core,13,8,Android 7.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+G5+S+Plus+4Gb.jpg,"Lunar Gray, Blush Gold"
+MOTOROLA,Moto M 4Gb,M Series,5.5,2.2GHz Octa-core,16,8,Android 6.0.1,4,3050,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+M+4Gb.jpg,"Gold, Silver"
+MOTOROLA,Moto E4,Others,5,1.3GHz Quad-core,8,5,Android 7.1,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+E4.jpg,"Black, Blush Gold"
+MOTOROLA,E4 Plus,Others,5.5,1.3GHz Quad-core,13,5,Android 7.1.1,3,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E4+Plus.jpg,"Iron Grey, Fine Gold"
+MOTOROLA,Moto Z Play,Others,5.5,2GHz Octa-core,16,5,Android 6.0.1,3,3510,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+Z+Play.jpg,"Black, Silver, Black Slate White, Fine Gold, Sugar White"
+MOTOROLA,Moto C,Others,5,1.1GHz Quad-core,5,2,Android 7.0,1,2350,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+C.jpg,"Metallic Cherry, Pearl White, Fine Gold, Starry Black"
+MOTOROLA,Moto C Plus,Others,5,1.3GHz Quad-core,8,2,Android 7.0,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+C+Plus.jpg,"Metallic Cherry, Pearl White, Fine Gold, Starry Black"
+MOTOROLA,Moto X4 ( 4+64 Gb),Others,5.2,2.2GHz Octa-core,12,16,Android 7.1.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+X4+(+4%2B64+Gb).jpg,"Super Black, Sterling Blue"
+MOTOROLA,Moto Z2 Play,Others,5.5,2.2GHz Octa-core,12,5,Android 7.1.1,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Moto+Z2+Play.jpg,"Lunar Grey, Fine Gold"
+MOZOMAXX,A5,A Series,2.8,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A5.jpg,N/A
+MOZOMAXX,A2,A Series,2.4,N/A,N/A,N/A,N/A,N/A,1300,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A2.jpg,N/A
+MOZOMAXX,A3,A Series,2.4,N/A,N/A,N/A,N/A,N/A,1300,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A3.jpg,N/A
+MOZOMAXX,E4,E Series,1.8,N/A,N/A,N/A,N/A,N/A,700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E4.jpg,N/A
+MOZOMAXX,E6,E Series,1.8,N/A,N/A,N/A,N/A,N/A,700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E6.jpg,N/A
+MOZOMAXX,E2,E Series,1.8,N/A,N/A,N/A,N/A,N/A,700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E2.jpg,N/A
+MOZOMAXX,E3,E Series,1.8,N/A,N/A,N/A,N/A,N/A,700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E3.jpg,N/A
+MOZOMAXX,E1,E Series,1.8,N/A,N/A,N/A,N/A,N/A,700,N/A,,N/A
+M-TECH,G10,G Series,2.8,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G10.jpg,N/A
+M-TECH,G24,G Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G24.jpg,N/A
+M-TECH,G51,G Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G51.jpg,N/A
+M-TECH,G55,G Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G55.jpg,N/A
+M-TECH,G71,G Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G71.jpg,N/A
+M-TECH,G77,G Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G77.jpg,N/A
+M-TECH,G9,G Series,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/G9.jpg,N/A
+M-TECH,L 33,L Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L+33.jpg,N/A
+M-TECH,L10,L Series,2.4,N/A,N/A,N/A,N/A,N/A,2000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L10.jpg,N/A
+M-TECH,L15,L Series,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L15.jpg,N/A
+M-TECH,L20,L Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L20.jpg,N/A
+M-TECH,L21,L Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L21.jpg,N/A
+M-TECH,L25,L Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L25.jpg,N/A
+M-TECH,L33+,L Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L33%2B.jpg,N/A
+M-TECH,L55,L Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L55.jpg,N/A
+M-TECH,L6+,L Series,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L6%2B.jpg,N/A
+M-TECH,L66,L Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L66.jpg,N/A
+M-TECH,Ace 4G,Others,4,1.3GHz Quad-core,5,2,6,1,1600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Ace+4G.jpg,"Black, Red"
+M-TECH,Ace Pro 4G,Others,4,1.3GHz Quad-core,3.2,1.3,7,512MB,1800,512MB,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Ace+Pro+4G.jpg,Gold
+M-TECH,Atom,Others,2.4,N/A,N/A,N/A,N/A,N/A,2800,N/A,,N/A
+M-TECH,Atom+,Others,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Atom%2B.jpg,N/A
+M-TECH,Champ,Others,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Champ.jpg,N/A
+M-TECH,Classic,Others,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Classic.jpg,N/A
+M-TECH,Classy,Others,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Classy.jpg,N/A
+M-TECH,Eros 4G,Others,5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eros+4G.jpg,Gold
+M-TECH,Eros Plus 4G,Others,5,1.3GHz Quad-core,5,0.3,7,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eros+Plus+4G.jpg,"Black, Gold"
+M-TECH,Freedom,Others,4,N/A,N/A,N/A,N/A,N/A,1100,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Freedom.jpg,N/A
+M-TECH,Jumbo,Others,1.8,N/A,N/A,N/A,N/A,N/A,2500,N/A,,N/A
+M-TECH,M15 Pro,Others,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M15+Pro.jpg,N/A
+M-TECH,Power Pro,Others,2.8,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Power+Pro.jpg,N/A
+M-TECH,Snap Selfie,Others,2.4,N/A,N/A,N/A,N/A,N/A,2000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Snap+Selfie.jpg,N/A
+M-TECH,Tez 4G,Others,5,1.3GHz Quad-core,5,2,6,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Tez+4G.jpg,"Black, Gold"
+M-TECH,Trendy +,Others,2.8,N/A,N/A,N/A,N/A,N/A,2800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Trendy+%2B.jpg,N/A
+M-TECH,Turbo 4G,Turbo,5,1GHz Quad-core,3.2,1.3,7,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+4G.jpg,Black
+M-TECH,V14,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V14.jpg,N/A
+M-TECH,V3,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V3.jpg,N/A
+M-TECH,V9,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V9.jpg,N/A
+NOKIA,Nokia N5,N Series,5.2,Octa-core,13,8,Android 7.1.1,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+N5.jpg,"Tempered Blue, Copper, Matte Black, Silver"
+NOKIA,Nokia 6,N Series,5.5,1.4GHz Octa-core,16,8,Android 7.1.1,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+6.jpg,"Arte Black, Matte Black, Tempered Blue, Silver, Copper"
+NOKIA,Nokia 2,N Series,5,1.3GHz Quad-core,8,5,Android 7.1.1,1,4100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+2.jpg,"Pewter/ Black, Pewter/ White, Copper/ Black"
+NOKIA,Nokia 5 3Gb,N Series,5.2,Octa-core,13,8,Android 7.1.1,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+5+3Gb.jpg,"Tempered Blue, Copper, Matte Black, Silver"
+NOKIA,Nokia N3,N Series,5,1.3GHz Quad-core,8,8,Android 7.0,2,2630,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+N3.jpg,"Silver White, Matte Black, Tempered Blue, Copper White"
+NOKIA,N8,N Series,5.3,1.8GHz Octa-core,13,13,Android 7.1.1,4,3090,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/N8.jpg,"Polished Blue, Tempered Blue, Steel, Polished Copper"
+NOKIA,105 Dual,Others,1.4,N/A,No,No,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/105+Dual.jpg,"Black, Cyan, White"
+NOKIA,105 Ss,Others,1.4,N/A,No,No,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/105+Ss.jpg,"Black, Cyan, White"
+NOKIA,230 Ds,Others,2.8,N/A,2,2,Series 30+,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/230+Ds.jpg,"Black, White"
+NOKIA,130,Others,1.8,N/A,0.3,No,Series 30,N/A,1020,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/130.jpg,"Red, Grey, Black"
+NOKIA,Nokia 216 Ds,Others,2.4,N/A,0.3,0.3,Series 30,N/A,1020,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Nokia+216+Ds.jpg,"Black, Grey, Blue"
+NOKIA,3310 (2017),Others,2.4,N/A,2,No,Series 30,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/3310+(2017).jpg,"Warm Red (Glossy), Dark Blue (Matte), Yellow (Glossy), Grey (Matte)"
+NOKIA,150 Ds,Others,2.4,N/A,0.3,No,Series 30,N/A,1020,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/150+Ds.jpg,"Black, White"
+OPPO,A83,A Series,5.7,2.5GHz Octa-core,13,8,7.1,3,3180,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A83.jpg,Black
+OPPO,A71,A Series,5.2,1.5GHz Octa-core,13,5,7.1,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A71.jpg,"Gold,Black"
+OPPO,A57,A Series,5.2,1.4GHz Octa-core,13,16,6,3,2900,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A57.jpg,"Rose Gold,Gold"
+OPPO,A37,A Series,5,1.2GHz Quad-core,8,5,5.1,2,2630,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A37.jpg,"Gold,Grey"
+OPPO,F5 Youth,F Series,6,Octa-core,13,16,7.1,3,3200,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F5+Youth.jpg,N/A
+OPPO,F5 32Gb,F Series,6,Octa-core,16,20,7.1,4,3200,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F5+32Gb.jpg,"Black,Gold,Red"
+OPPO,F3,F Series,5.5,1.5GHz Octa-core,13,16,6,4,3200,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F3.jpg,"Gold,Black"
+OPPO,F3 Plus,F Series,6,1.95GHz Octa-core,16,16,6,4,4000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F3+Plus.jpg,"Black,Gold"
+PANASONIC,Eluga A2,Eluga,5,1GHz Quad-core,8,5,5.1,3,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+A2.jpg,"Gold, Silver"
+PANASONIC,Eluga A3,Eluga,5.2,1.25GHz Octa-core,13,8,7,3,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+A3.jpg,"Mocha Gold, Gold, Grey"
+PANASONIC,Eluga A3 Pro,Eluga,5.2,1.3GHz Octa-core,13,8,7,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+A3+Pro.jpg,"Mocha Gold, Gold, Grey"
+PANASONIC,Eluga A4,Eluga,5.2,1.25GHz Quad-core,13,5,7,3,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+A4.jpg,"Champagne Gold, Mocha Gold, Marine Blue"
+PANASONIC,Eluga Arc 2,Eluga,5,1.3GHz Quad-core,8,5,6,3,2450,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Arc+2.jpg,"Gold, Rose Gold"
+PANASONIC,Eluga I2 Activ 1Gb,Eluga,5,1.2GHz Quad-core,8,5,7,1,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I2+Activ+1Gb.jpg,"Gold, Rose Gold, Grey"
+PANASONIC,Eluga I2 Activ 2Gb,Eluga,5,1.2GHz Quad-core,8,5,7,2,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I2(2Gb).jpg,"Gold, Rose Gold, Grey"
+PANASONIC,Eluga I2(1Gb),Eluga,5,1GHz Quad-core,8,2,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I2(1Gb).jpg,"Metallic Silver, Metallic Gold, Metallic Grey"
+PANASONIC,Eluga I2(2Gb),Eluga,5,1GHz Quad-core,8,2,5.1,2,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I2(2Gb).jpg,"Metallic Silver, Metallic Gold, Metallic Grey"
+PANASONIC,Eluga I4,Eluga,5,1.25GHz Quad-core,8,5,7,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I4.jpg,"Blue, Black, Gold"
+PANASONIC,Eluga Note,Eluga,5.5,1.3GHz Octa-core,16,5,6,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Note.jpg,Champagne Gold
+PANASONIC,Eluga Prim,Eluga,5,1.2GHz Quad-core,13,5,6,3,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Prim.jpg,"grey, gold"
+PANASONIC,Eluga Pulse X,Eluga,5.5,1.25GHz Quad-core,13,5,6,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Pulse+X.jpg,N/A
+PANASONIC,Eluga Tapp,Eluga,5,1.25GHz Quad-core,8,5,6,2,2800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Tapp.jpg,"Champagne Gold, Silver Grey"
+PANASONIC,I3 Mega,Eluga,5.5,1.3GHz Quad-core,13,5,5.1,3,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I3+Mega.jpg,"Champagne Gold, Silver"
+PANASONIC,I2_3G,I Series,5,1GHz Quad-core,8,2,5.1,2,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I2_3G.jpg,"Metallic Silver, Metallic Gold, Metallic Grey"
+PANASONIC,Arc,Others,4.7,1.2GHz Quad-core,8,5,5.1,2,1800,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Arc.jpg,Gold
+PANASONIC,Icon,Others,5.5,1.5GHz Octa-core,13,8,4.4.4,2,3500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Icon.jpg,"Gold, Slate"
+PANASONIC,Switch,Others,5.5,1.5GHz Octa-core,13,5,5,2,2910,32,,Gun Metal Grey
+PANASONIC,Turbo,Others,5,1.5GHz Octa-core,13,5,5.1,3,2350,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo.jpg,"Marine Blue, Champagne Gold, Rose Gold"
+PANASONIC,P100 2Gb,P Series,5,1.25GHz Quad-core,8,5,7,2,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P100+2Gb.jpg,"Blue, Black, Gold, Dark Grey"
+PANASONIC,P50,P Series,5,1.3GHz Quad-core,8,2,5.1,1,2150,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P50.jpg,"Fabric Silver, Fabric Gold"
+PANASONIC,P55,P Series,5.5,1.2GHz Quad-core,8,2,4.4.2,1,2500,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P55.jpg,White
+PANASONIC,P55 Novo,P Series,5.3,1.4GHz Octa-core,13,5,4.4.2,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P55+Novo.jpg,"Gold, Gray, Blue"
+PANASONIC,P55_2Gb,P Series,5.5,1.2GHz Quad-core,8,2,4.4.2,2,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P55_2Gb.jpg,White
+PANASONIC,P66,P Series,5,1.3GHz Quad-core,8,5,5.1,2,3200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P66.jpg,"Electric Blue, Rose Gold, Russet Brown"
+PANASONIC,P75,P Series,5,1.3GHz Quad-core,8,5,5.1,1,5000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P75.jpg,"Champagne Gold, Sand Black"
+PANASONIC,P77,P Series,5,1GHz Quad-core,8,2,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P77.jpg,"White, Grey"
+PANASONIC,P88,P Series,5.3,1.25GHz Quad-core,13,5,6,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P88.jpg,"Gold, Charcoal Grey"
+PANASONIC,P9,P Series,N/A,1.1GHz Quad-core,8,5,7,1,2210,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P9.jpg,"Champagne Gold, Black"
+PANASONIC,P91,P Series,5,1.1GHz Quad-core,8,5,7,1,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P91.jpg,"Blue, Gold, Black"
+PANASONIC,P99,P Series,5,1.25GHz Quad-core,8,5,7,2,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/P99.jpg,"Champagne Gold, Black, Blue"
+PANASONIC,T30,T Series,4,1.3GHz Quad-core,5,2,5.1,512MB,1400,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T30.jpg,N/A
+PANASONIC,T33,T Series,4,1.2GHz Quad-core,3,0.3,4.4.2,512MB,1500,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T33.jpg,N/A
+PANASONIC,T44,T Series,4,1.3GHz Quad-core,5,2,6,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T44.jpg,N/A
+PANASONIC,T44 Lite,T Series,4,1.3GHz Quad-core,2,0.3,N/A,512MB,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T44+Lite.jpg,"Rose Gold, Champagne Gold, Electric Blue"
+PANASONIC,T50,T Series,4.5,1.3GHz Quad-core,5,2,5.1,1,1600,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T50.jpg,"Rose Gold, Champagne Gold, Midnight Blue"
+SMARTRON,Srt(4+64),Smart Phones,5.5,1.44GHz Quad-core,13,5,7,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Srt(4%2B64).jpg,Titanium Gray
+SMARTRON,Srt(4+32),Smartron,5.5,1.44GHz Quad-core,13,5,7,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Srt(4%2B32).jpg,Titanium Gray
+SONY,C3 Dual,C Series,5.5,1.2GHz Quad-core,8,5,4.4,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C3+Dual.jpg,"White, Black, Mint"
+SONY,C4 Dual,C Series,5.5,1.7GHz Octa-core,13,5,5,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C4+Dual.jpg,"White, Black, Green"
+SONY,C5 Ultra Dual,C Series,6,1.7GHz Octa-core,13,13,5,2,2930,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/C5+Ultra+Dual.jpg,"Black, White, Soft Mint"
+SONY,E4 4G,E Series,4.7,1.5GHz Quad-core,5,2,4.4.4,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E4+4G.jpg,"Black, White"
+SONY,E4 Dual,E Series,5,1.3GHz Quad-core,5,2,4.4,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/E4+Dual.jpg,"Black, White"
+SONY,M2 Dual,M Series,4.8,1.2GHz Quad-core,8,0.3,4.3,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M2+Dual.jpg,"Black, White, Purple"
+SONY,M4 Aqua,M Series,5,1GHz Octa-core,13,5,5,2,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M4+Aqua.jpg,"Black, White, Coral"
+SONY,M5,M Series,5,2GHz Octa-core,21.5,13,5,3,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M5.jpg,N/A
+SONY,T2 Ultra(Dual),T Series,6,1.4GHz Quad-core,13,1.1,4.3,1,3000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T2+Ultra(Dual).jpg,"Black, White, Purple"
+SONY,T3,T Series,5.3,1.4GHz Quad-core,8,1.1,4.4,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/T3.jpg,"Black, White, Purple"
+SONY,Xperia L2,Xperia,5.5,Quad-Core,13,8,7.1.1,3,3300,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+L2.jpg,"Black, Gold, Pink"
+SONY,Xperia R1,Xperia,5.2,Octa-Core,13,8,7,2,2620,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+R1.jpg,"Black, Silver"
+SONY,Xperia R1 Plus,Xperia,5.2,Octa-Core,13,8,7,3,2620,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+R1+Plus.jpg,"Black, Silver"
+SONY,Xperia X,Xperia,5,Qualcomm Snapdragon 650,23,13,6,3,2620,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+X.jpg,"White, Graphite Black, Lime Gold, Rose Gold"
+SONY,Xperia Xz,Xperia,5.2,1.6GHz Quad-Core,23,13,6,3,2900,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xz.jpg,"Mineral Black, Platinum, Forest Blue"
+SONY,Xperia Xzs,Xperia,5.2,1.6GHz Quad-Core,19,13,7.1.1,4,2900,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xzs.jpg,"Ice Blue, Silver, Black"
+SONY,Xz1,Xperia,5.2,Octa-Core,19,13,8,4,2700,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xz1.jpg,Black
+SONY,Z2,Z Series,5.2,2.3GHZ Quad-Core,20.7,2.2,4.4,3,3200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z2.jpg,"White, Black, Purple"
+SONY,Z3,Z Series,5.2,2.5GHZ Quad-Core,20.7,2.2,4.4,3,3100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z3.jpg,"Black, White, Copper Gold"
+SONY,Z3 Compact,Z Series,4.6,2.5GHZ Quad-Core,20.7,2.2,4.4,2,2600,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z3+Compact.jpg,"Black, White, Orange, Mint"
+SONY,Z3 Plus,Z Series,5.2,1.5GHZ Octa-Core,20.7,5,5.0.2,3,2930,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z3+Plus.jpg,"Black, White, Copper, Aqua Green"
+SONY,Z5,Z Series,5.2,Octa-Core,23,5,5.1.1,3,2900,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z5.jpg,"White, Graphite Black, Gold, Green"
+SONY,Z5 Premium,Z Series,5.5,Octa-Core,23,5,5.1,3,3430,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z5+Premium.jpg,"Chrome, Gold, Black"
+SPICE,F302,F Series,5,1.1GHz Quad-core,5,2,7,1,2400,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F302.jpg,"Gold, Grey, Silver"
+SPICE,F301,F Series,4.5,1.3GHz Quad-core,5,2,7,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F301.jpg,Black
+SPICE,K601,K Series,5,1.1GHz Quad-core,5,5,7,2,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/K601.jpg,Blue
+SPICE,V801,V Series,5,1.25GHz Quad-core,8,8,7,3,2700,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V801.jpg,N/A
+SPICE,Z203 Lollipop,Z Series,2.4,N/A,1.3,N/A,N/A,N/A,1900,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z203+Lollipop.jpg,N/A
+SPICE,Z301,Z Series,2.8,N/A,1.3,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z301.jpg,N/A
+SPICE,Z201,Z Series,2.4,N/A,1.3,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z201.jpg,N/A
+SPICE,Z101,Z Series,1.7,N/A,1.3,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z101.jpg,N/A
+TECNO,Camon I Air,I Series,5.65,1.3GHz Quad-core,13,8,Android 7.0,2,3050,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Camon+I+Air.jpg,"Champagne Gold , Midnight Black"
+TECNO,Camon I,I Series,5.65,Quad-core,13,13,Android 7.0,3,3050,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Camon+I.jpg,Midnight Black
+TECNO,I5 Pro,I Series,5.5,1.5GHz Quad-core,13,8,Android 7.0,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I5+Pro.jpg,"Champagne Gold, Sky Black, Space Grey"
+TECNO,I5,I Series,5.5,1.5GHz Quad-core,13,8,Android 7.0,2,4000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I5.jpg,"Champagne Gold, Sky Black, Space Grey"
+TECNO,I3,I Series,5,1.3GHz Quad-core,8,8,Android 7.0,2,3050,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I3.jpg,"Champagne Gold, Sky Black, Space Grey"
+TECNO,I3 Pro,I Series,5,1.3GHz Quad-core,8,8,Android 7.0,3,3050,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I3+Pro.jpg,"Champagne Gold, Sky Black, Space Grey"
+TECNO,I7,I Series,5.5,1.5GHz Quad-core,13,16,Android 7.0,4,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/I7.jpg,"Champagne Gold, Sky Black, Space Grey"
+VIDEOCON,V1Aa7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Aa7.jpg,N/A
+VIDEOCON,V1Ba1,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Ba1.jpg,N/A
+VIDEOCON,V1Bb1,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+VIDEOCON,V1Bb7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Bb7.jpg,N/A
+VIDEOCON,V1Dd1,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V1Dd4,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V1Dd7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Dd7.jpg,N/A
+VIDEOCON,V1Ea7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,850,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Ea7.jpg,N/A
+VIDEOCON,V1Fa7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,850,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Fa7.jpg,N/A
+VIDEOCON,V1Gc1,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1600,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V1Gc1.jpg,N/A
+VIDEOCON,V1Gd7,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1600,N/A,,N/A
+VIDEOCON,V1Ma,V Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,,N/A
+VIDEOCON,V2Bb,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1200,N/A,,N/A
+VIDEOCON,V2Da,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V2Eb,V Series,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+VIDEOCON,V2Fa,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V2Ga,V Series,2.4,N/A,N/A,N/A,N/A,N/A,2200,N/A,,N/A
+VIDEOCON,V2Ja7,V Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V2Ka,V Series,2.4,N/A,N/A,N/A,N/A,N/A,2000,N/A,,N/A
+VIDEOCON,V2Ra,V Series,2.4,N/A,N/A,N/A,N/A,N/A,4000,N/A,,N/A
+VIDEOCON,V2Sb,V Series,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+VIDEOCON,V2Ua,V Series,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,,N/A
+VIDEOCON,V35Cb,V Series,3.8,N/A,N/A,N/A,N/A,N/A,1300,N/A,,N/A
+VIDEOCON,V35Dc,V Series,3.5,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+VIDEOCON,V35Fc,V Series,3.5,N/A,N/A,N/A,N/A,N/A,1400,N/A,,N/A
+VIDEOCON,V3Ab,V Series,2.8,N/A,N/A,N/A,N/A,N/A,1500,N/A,,N/A
+VIDEOCON,V3Bc,V Series,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V3Cb,V Series,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V3Cc,V Series,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,,N/A
+VIDEOCON,V3Da,V Series,2.8,N/A,N/A,N/A,N/A,N/A,2950,N/A,,N/A
+VIDEOCON,V40Cf,V Series,4,1.2GHz Quad-core,5,2,4.4,1,1500,8,,N/A
+VIDEOCON,V40Df,V Series,4,1.2GHz Quad-core,5,2,4.4,1,1500,8,,N/A
+VIDEOCON,V40Pd,V Series,4,1GHz Quad-core,5,2,4.4,256MB,1500,512MB,,N/A
+VIDEOCON,V45Bd4,V Series,4.5,1.2GHz Quad-core,5,2,5.1,1,2400,8,,N/A
+VIDEOCON,V45Db2,V Series,4.5,1.2GHz Quad-core,5,2,5.1,512MB,1600,8,,N/A
+VIDEOCON,V45Dd2,V Series,4.5,1.2GHz Quad-core,5,2,4.4,1,1600,8,,N/A
+VIDEOCON,V45Ed1,V Series,4.5,1.3GHz Quad-core,5,3.2,5.1,1,2000,8,,N/A
+VIDEOCON,V45Gd1,V Series,4.5,1GHz Quad-core,5,2,5.1,1,2000,8,,N/A
+VIDEOCON,V50Da3,V Series,5,1.3GHz Quad-core,5,2,4.4,1,3000,8,,N/A
+VIDEOCON,V50Dc3,V Series,5,1.3GHz Quad-core,8,5,5.1,1,3000,8,,N/A
+VIDEOCON,V50Fa3,V Series,5,1.3GHz Quad-core,5,2,4.4,1,2200,8,,N/A
+VIDEOCON,V50Gi,V Series,5,1.3GHz Quad-core,5,0.3,5.1,1,1800,8,,Black
+VIDEOCON,V50Jg,V Series,5,1.3GHz Quad-core,13,5,6,2,3000,16,,N/A
+VIDEOCON,V50Ok,V Series,5,1.5GHz Quad-core,13,8,5.1,2,3000,16,,N/A
+VIVO,V5S,V Series,5.5,1.5GHz Octa-core,13,20,6,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V5S.jpg,"Crown Gold,Matte Black"
+VIVO,V7 Plus,V Series,5.9,1.9GHz Octa-core,16,24,7.1,4,3225,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V7+Plus.jpg,Matte Black
+VIVO,V5,V Series,5.5,1.5GHz Octa-core,13,20,6.0.1,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V5.jpg,"Crown Gold,Grey"
+VIVO,V5 Plus,V Series,5.5,2.0GHz Octa-core,16,20,6,4,3160,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V5+Plus.jpg,N/A
+VIVO,V7 Plus Red,V Series,5.9,1.9GHz Octa-core,16,24,7.1,4,3225,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V7+Plus+Red.jpg,RED
+VIVO,Vivo V7,V Series,5.7,1.8GHz Octa-core,16,24,7.1.2,4,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Vivo+V7.jpg,"Matte Black,Champagne Gold"
+VIVO,Y55S,Y Series,5.2,1.4GHz Quad-core,13,5,6,3,2730,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y55S.jpg,"Gold,Space Grey"
+VIVO,Y66,Y Series,5.5,Octa-core,13,16,6,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y66.jpg,"Crown Gold,Matte Black"
+VIVO,Y69,Y Series,5.5,1.5GHz Octa-core,13,16,7,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y69.jpg,"Gold,Matte Black"
+VIVO,Y21L,Y Series,4.5,1.2GHz Quad-core,5,2,5.1,1,2000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y21L.jpg,"White,Grey"
+VIVO,Y51L,Y Series,5,1.2GHz Quad-core,8,5,5.0.2,2,2350,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y51L.jpg,White
+VIVO,Y53,Y Series,5,1.4GHz Quad-core,8,5,6,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y53.jpg,"Crown Gold,Matte Black"
+VOTO,V2I,Voto,5,1.3GHz Quad-core,13,8,6,2,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V2I.jpg,"Black, Rose Gold, Champagne"
+VOTO,V2,Voto,5,1.3GHz Quad-core,13,8,6,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/V2.jpg,"Black, Rose Gold, Champagne"
+XIAOMI,Mi A1,MI,5.5,2GHz Octa-core,12,5,Android 7.1.2,4,3080,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mi+A1.jpg,"Rose Gold, Gold, Black"
+XIAOMI,Mi Max 2,MI,6.4,2GHz Octa-core,12,5,Android 7.0,4,5300,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mi+Max+2.jpg,"Gold,Black"
+XIAOMI,Mi Mix 2 6Gb/128Gb,MI,5.9,Octa-core,12,5,Android,6,3400,128,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Mi+Mix+2+6Gb+128Gb.jpg,Black
+XIAOMI,Note 4 4Gb/64Gb,Redmi,5.5,2GHz Octa-core,13,5,Android 6.0,4,4100,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Note+4+4Gb+64Gb.jpg,"Gold, Grey, Matte Black"
+XIAOMI,Note4 3Gb/32Gb,Redmi,5.5,2GHz Octa-core,13,5,Android 6.0,3,4100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Note4+3Gb+32Gb.jpg,"Gold, Grey, Matte Black"
+XIAOMI,Redmi 4 16Gb,Redmi,5,1.4GHz Octa-core,13,5,Android 6.0.1,3,4100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+4+16Gb.jpg,"Gold,Black"
+XIAOMI,Redmi 4 32Gb,Redmi,5,1.4GHz Octa-core,13,5,Android 6.0.1,3,4100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+4+32Gb.jpg,"Gold,Black"
+XIAOMI,Redmi 4 64Gb,Redmi,5,1.4GHz Octa-core,13,5,Android 6.0.1,4,4100,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+4+64Gb.jpg,"Gold,Black"
+XIAOMI,Redmi 4A 2Gb,Redmi,5,1.4GHz Quad-core,13,5,Android 6.0,2,3120,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+4A+2Gb.jpg,"Golden, Rose Gold, Dark Grey"
+XIAOMI,Redmi 4A 3Gb,Redmi,5,1.4GHz Quad-core,13,5,Android 6.0,3,3120,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+4A+3Gb.jpg,"Golden, Rose Gold, Dark Grey"
+XIAOMI,Redmi Note 5 32 Gb,Redmi,5.99,2GHz Octa-core,12,5,Android 7.0,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+Note+5+32+Gb.jpg,"Black, Gold, Lake Blue, Rose Gold"
+XIAOMI,Redmi Note 5 64 Gb,Redmi,5.99,2GHz Octa-core,12,5,Android 7.0,4,4000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+Note+5+64+Gb.jpg,"Black, Gold, Lake Blue, Rose Gold"
+XIAOMI,Redmi Note 5 Pro 4/64 Gb,Redmi,5.9,1.8GHz Octa-core,12,12,Android 7.1.1,4,4000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+Note+5+Pro+4+64+Gb.jpg,"Black, Gold, Lake Blue, Rose Gold"
+XIAOMI,Redmi Note 5 Pro 6/64 Gb,Redmi,5.9,1.8GHz Octa-core,12,12,Android 7.1.1,6,4000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+Note+5+Pro+6+64+Gb.jpg,"Black, Gold, Lake Blue, Rose Gold"
+XIAOMI,Redmi 5A 2Gb,Redmi 5A,5,1.4GHz Quad-core,13,5,Android 7.1.2,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+5A+2Gb.jpg,"Gold, Rose Gold, Grey"
+XIAOMI,Redmi 5A 3Gb,Redmi 5A,5,1.4GHz Quad-core,13,5,Android 7.1.2,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Redmi+5A+3Gb.jpg,"Gold, Rose Gold, Grey"
+XIAOMI,Y1 3/32 Gb,Redmi Y,5.5,1.4GHz Octa-core,13,16,Android 7.0,3,3080,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y1+3+32+Gb.jpg,"Gold, Dark Grey"
+XIAOMI,Y1 4/64 Gb,Redmi Y,5.5,1.4GHz Octa-core,13,16,Android 7.0,4,3080,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y1+4+64+Gb.jpg,"Gold, Dark Grey"
+XIAOMI,Y1 Lite,Redmi Y,5.5,1.4GHz Quad-core,13,5,Android 7.0,2,3080,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Y1+Lite.jpg,"Gold, Dark Grey"
+YU,Yureka-S,YU,5.2,1.1GHz Quad-core,13,5,5.1,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Yureka-S.jpg,"Black, White"
+YU,Yunique (Yu4711),YU,4.7,1.2GHz Quad-core,8,2,5.1,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Yunique+(Yu4711).jpg,Black
+YU,Yunique Plus,YU,4.7,1.2GHz Quad-core,13,2,5.1,2,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Yunique+Plus.jpg,Black
+YU,Yuphoria,YU,5,1.2GHz Quad-core,8,5,Cyanogen OS 12,2,2230,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Yuphoria.jpg,"Buffed Steel, Champagne Gold"
+YU,Yureka Plus,YU,5.5,1.5GHz Octa-core,13,5,Cyanogen OS 12,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Yureka+Plus.jpg,Moondust Grey
+ZOPO,Color X 5.5,Color,5.5,1.3GHz Quad-core,8,5,N/A,3,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Color+X+5.5.jpg,"Charcoal Black, Royale Gold, Orchid Gold, and Space Grey"
+ZOPO,M5.,Others,5,Quad-core,5,2,6,1,2100,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M5..jpg,"Peach, Matte White, Caribbean Blue, Indigo, Charcoal Black"
+ZOPO,M4,Others,4,Quad-core,No,No,6,1,1450,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/M4.jpg,"Peach, Matte White, Caribbean Blue, Indigo, Charcoal Black"
+ZOPO,F2,Others,5.5,Quad-core,8,5,6,2,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/F2.jpg,N/A
+ZOPO,Flash X Plus,Others,5.5,1.3GHz Octa-core,13,8,6,3,3100,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Flash+X+Plus.jpg,"Royale Gold, Charcoal Black, Space Grey and Orchid Rose"
+ITEL,S 42,Others,5.65,1.4GHz Quad-core,13,13,8,3,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S+42.jpg,"Black, Champagne"
+ITEL,It 1516+,Others,5,1.2GHz Quad-core,5,2,5.1,1,5000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/It+1516%2B.jpg,Champagne
+ITEL,Prime 300,Others,5,1.3GHz Quad-core,8,5,7,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Prime+300.jpg,"Grey Black, Gold Black"
+ITEL,Prime 30,Others,5,1.3GHz Quad-core,8,5,7,1,2300,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Prime+30.jpg,"Black, Blue, Gold"
+ASUS,Zenfone 3 5.5,Zenfone,5.5,2GHz Octa-core,16,8,6,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zenfone+3+5.5.jpg,"Gold, Blue, Black, White"
+GIONEE,L800,L Series,2.8,1.3GHz Quad-core,1.3,No,N/A,64MB,3000,128MB,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L800.jpg,"Black,Golden"
+GIONEE,L700,L Series,2.6,N/A,1.3,No,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/L700.jpg,N/A
+HUAWEI,Honor 7X,Honor,5.93,1.7GHz Octa-core,16,8,7,4,3340,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Honor+7X.jpg,"Black, Blue, Gold"
+INTEX,Eco I12,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+I12.jpg,N/A
+INTEX,Eco I11,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+I11.jpg,N/A
+INTEX,Eco I10,Eco,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eco+I10.jpg,N/A
+INTEX,Turbo I14,Turbo,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Turbo+I14.jpg,N/A
+MAFE,Shine 820,Smart Phones,5,1.3GHz Quad-core,8,5,7,2,2500,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Shine+820.jpg,"Black, Gold"
+MICROMAX SMART PHONES,Bharat 1 (V409),Bharat,2.4,Qualcomm Snapdragon 205,2.4,0.3,Android,512MB,2000,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+1+(V409).jpg,N/A
+MICROMAX SMART PHONES,Bharat 5 Pro,Bharat,5.2,1.3GHz Quad-core,13,5,Android Nougat,3,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Bharat+5+Pro.jpg,Black
+PANASONIC,Eluga I9,Eluga,5,1.25GHz Quad-core,13,5,7,3,2500,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+I9.jpg,"Space Grey, Champagne Gold, Blue"
+PANASONIC,Eluga Ray 500,Eluga,5,1.25GHz Quad-core,13,5,7,3,4000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Ray+500.jpg,"Mocha Gold, Marine Blue, Champagne Gold"
+PANASONIC,Eluga Ray 700,Eluga,5.5,1.3GHz Octa-core,13,13,7,2,5000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Eluga+Ray+700.jpg,"Champagne Gold, Mocha Gold, Marine Blue"
+SAMSUNG,A7'17,A Series,5.7,1.9GHz Octa-core,16,16,6.0.1,3,3600,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/A7+17+(A720F).jpg,"Black Sky Gold Sand,Blue Mist And Peach Cloud"
+SONY,Xperia Xa,Xperia,5,Octa-Core,13,8,6,2,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xa.jpg,"White, Graphite Black, Lime Gold, Rose Gold"
+SONY,Xperia Xa1,Xperia,5,Octa-Core,23,8,7,3,2300,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xa1.jpg,N/A
+SONY,Xperia Xa1 Plus,Xperia,5.5,1.6GHz Octa-Core,23,8,7,4,3430,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xa1+Plus.jpg,"White, Black, Gold"
+SONY,Xperia Xz Premium,Xperia,5.5,Octa-Core,19,13,7.1.1,4,3230,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xz+Premium.jpg,"Luminous Chrome, Deepsea Black"
+SONY,Xperia Xa1 Ultra,Xperia,6,Octa-Core,23,16,7,4,2700,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Xperia+Xa1+Ultra.jpg,N/A
+SPICE,Z102,Z Series,1.8,N/A,0.3,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z102.jpg,N/A
+SPICE,Z202,Z Series,2.4,N/A,1.3,N/A,N/A,N/A,1500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z202.jpg,N/A
+ZIOX,Astra Nxt+,Astra,4,1.3GHz Quad-core,2,0.3,6,512MB,2000,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Nxt%2B.jpg,"Black, Gold"
+ZIOX,Astra Prism,Astra,4.5,1.2GHz Quad-core,5,2,6,512MB,1700,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Prism.jpg,"Black, Grey, Blue"
+ZIOX,Astra Champ 4G,Astra,4,1.3GHz Quad-core,2,0.3,6,512MB,1400,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Champ+4G.jpg,Black
+ZIOX,Astra Nxt 4G,Astra,4,1.3GHz Quad-core,2,0.3,6,512MB,1450,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Nxt+4G.jpg,"Black, Gold"
+ZIOX,Astra Nxt Pro,Astra,4,1.3GHz Quad-core,2,0.3,7,1,1900,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Nxt+Pro.jpg,"Blue, Gold"
+ZIOX,Astra Zing +,Astra,5,1.2GHz Quad-core,5,2,6,512MB,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Zing+%2B.jpg,"Blue, White, Black, Gold"
+ZIOX,Astra Champ+ 4G,Astra,4.5,1.3GHz Quad-core,2,0.3,6,512MB,1400,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Champ%2B+4G.jpg,Blue
+ZIOX,Astra Young Pro,Astra,5,1.3GHz Quad-core,5,2,7,1,2200,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Young+Pro.jpg,"Black, Gold"
+ZIOX,Astra 4G,Astra,5,1.3GHz Quad-core,5,2,6,1,2450,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+4G.jpg,Black
+ZIOX,Astra Viva 4G,Astra,5,1.3GHz Quad-core,5,5,6,1,2500,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Viva+4G.jpg,"Champagne Gold and Black, Grey"
+ZIOX,Astra Metal 4G,Astra,5,1.3GHz Quad-core,5,2,6,1,3000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Metal+4G.jpg,"Rose Gold, Silver, Champagne Gold"
+ZIOX,Astra Force 4G,Astra,5,1.3GHz Quad-core,5,5,6,1,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Force+4G.jpg,"Light Gold, Black"
+ZIOX,Astra Curve 4G,Astra,5,1.3GHz Quad-core,5,2,7,2,2200,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Curve+4G.jpg,"Champagne, Black"
+ZIOX,Astra Colors 4G,Astra,5,1.3GHz Quad-core,5,5,6,1,4000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Colors+4G.jpg,"Champagne, Black"
+ZIOX,Astra Titan 4G,Astra,5,1.3GHz Quad-core,5,5,7,1,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Astra+Titan+4G.jpg,"Rose Gold, Champagne Gold"
+ZIOX,Wave Lite,Others,2.4,N/A,N/A,N/A,N/A,N/A,1850,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Wave+Lite.jpg,N/A
+ZIOX,Wave Prime I,Others,2.4,N/A,N/A,N/A,N/A,N/A,1850,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Wave+Prime+I.jpg,N/A
+ZIOX,Wave Ultra,Others,2.4,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Wave+Ultra.jpg,N/A
+ZIOX,Trendy,Others,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Trendy.jpg,N/A
+ZIOX,Duopix F1,Others,5,1.3GHz Quad-core,8,8,7,2,2400,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Duopix+F1.jpg,"Stunning Black, Smart White"
+ZIOX,S223,S Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S223.jpg,N/A
+ZIOX,S337+,S Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S337%2B.jpg,N/A
+ZIOX,S333 Wifi,S Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/S333+Wifi.jpg,N/A
+ZIOX,Starz Rocker,Starz,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Rocker.jpg,N/A
+ZIOX,Starz Bolt,Starz,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+A1.jpg,N/A
+ZIOX,Starz Neo,Starz,1.8,N/A,N/A,N/A,N/A,N/A,800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Neo.jpg,N/A
+ZIOX,Starz Flash,Starz,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Flash.jpg,N/A
+ZIOX,Zelfie,Starz,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zelfie.jpg,N/A
+ZIOX,Starz Edge,Starz,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Edge.jpg,N/A
+ZIOX,Starz Shine,Starz,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Shine.jpg,N/A
+ZIOX,Starz Victa,Starz,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Victa.jpg,N/A
+ZIOX,Starz A1,Starz,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+A1.jpg,N/A
+ZIOX,Starz Edge+,Starz,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Edge%2B.jpg,N/A
+ZIOX,Starz Matrix,Starz,2.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Starz+Matrix.jpg,N/A
+ZIOX,Thunder Mini,Thunder,1.8,N/A,N/A,N/A,N/A,N/A,2750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Mini.jpg,N/A
+ZIOX,Thunder Elite,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Elite.jpg,N/A
+ZIOX,Thunder Power,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Power.jpg,N/A
+ZIOX,Thunder Bass,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Bass.jpg,N/A
+ZIOX,Thunder Bolt,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Bolt.jpg,N/A
+ZIOX,Thunder Hero,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Hero.jpg,N/A
+ZIOX,Thunder Storm,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,4000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Storm.jpg,N/A
+ZIOX,Thunder Prime,Thunder,2.8,N/A,N/A,N/A,N/A,N/A,3000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Prime.jpg,N/A
+ZIOX,Thunder Mega,Thunder,2.4,N/A,N/A,N/A,N/A,N/A,2400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Thunder+Mega.jpg,N/A
+ZIOX,Zx18 Stylish,Z Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zx18+Stylish.jpg,N/A
+ZIOX,Zx20 Stylish,Z Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zx20+Stylish.jpg,N/A
+ZIOX,Z23 Zelfie,Z Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z23+Zelfie.jpg,N/A
+ZIOX,Z23,Z Series,1.8,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z23.jpg,N/A
+ZIOX,Zx225,Z Series,1.8,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zx225.jpg,N/A
+ZIOX,Z304 Mini,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z304+Mini.jpg,N/A
+ZIOX,Z13,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1000,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z13.jpg,N/A
+ZIOX,Zx336,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zx336.jpg,N/A
+ZIOX,Zx342,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zx342.jpg,N/A
+ZIOX,Z314,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1700,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z314.jpg,N/A
+ZIOX,Z214I,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1400,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z214I.jpg,N/A
+ZIOX,Z39,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z39.jpg,N/A
+ZIOX,Z38,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1750,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z38.jpg,N/A
+ZIOX,Z304+,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,2500,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z304%2B.jpg,N/A
+ZIOX,Z33,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z33.jpg,N/A
+ZIOX,Z7,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1450,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z7.jpg,N/A
+ZIOX,Z6,Z Series,2.4,N/A,N/A,N/A,N/A,N/A,1800,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Z60.jpg,N/A
+ZIOX,Zi34,Z Series,3.5,N/A,N/A,N/A,N/A,N/A,1200,N/A,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zi34.jpg,N/A
+ZIOX,Zi4503,Z Series,4.5,1.3GHz Quad-core,5,2,5.1,512MB,1400,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zi4503.jpg,N/A
+ZIOX,Zi5003,Z Series,5,1.3GHz Quad-core,5,2,5.1,512MB,2000,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/4/Zi5003.jpg,N/A
+HTC,HTC 10Lifestyle,One,5.2,1.2GHz Octa-core,12,5,6,3,3000,32,,N/A
+HTC,HTC10,One,5.2,1.6GHz Octa-core,12,5,6,4,3000,32,,N/A
+HTC,U Ultra.,U Series,5.7,2.15GHz Quad-core,12,16,7,4,3000,64,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/U+Ultra..jpg,"Sapphire Blue, Brilliant Black"
+INTEX,Aqua 4.0 4G,Others,4,Quad-core,2,0.3,6,512MB,1500,4,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+4.0+4G.jpg,"Black, Blue, Champagne"
+INTEX,AQUA A4,Others,4,Quad-core,5,2,7,1,1750,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/AQUA+A4.jpg,Black
+INTEX,Aqua Amaze +,Others,4.7,1.3GHz Quad-core,5,5,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Amaze+%2B.jpg,"Black, Blue, Grey"
+INTEX,Aqua Crystal,Others,5,1.25GHz Quad-core,8,5,6,1,2100,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Crystal.jpg,"White, Black"
+INTEX,Aqua Lions 4G,Others,5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Lions+4G.jpg,Champagne and Grey
+INTEX,AQUA STRONG 5.1+,Others,5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/AQUA+STRONG+5.1%2B.jpg,"Gold,Black"
+INTEX,AQUA SUPREME+,Others,5,1.3GHz Quad-core,13,5,6,2,3000,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/1/Aqua+Supreme+%2B.jpg,"Champagne, Black"
+ITEL,Itel A21,Others,4.5,1.3GHz Quad-core,5,2,6,1,2000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Itel+A21.jpg,"Grey, Champagne, Coffee"
+ITEL,Itel A41+,Others,5,1.3GHz Quad-core,5,5,6,2,2400,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Itel+A41%2B.jpg,"Mocha, Champagne"
+ITEL,Itel P41,Others,5,1.3GHz Quad-core,5,2,7,1,5000,8,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/2/Itel+P41.jpg,"Graphite, Silver Grey, Champagne"
+JIO LYF,Water 1,Others,5,1.5GHz Octa-core,13,5,5.1,2,2600,16,,White
+JIO LYF,Water 10,Others,5,1.3GHz Octa-core,13,5,5.1,3,2300,16,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+10.jpg,Black
+JIO LYF,Water F1,Others,5.5,1.21GHz Octa-core,16,8,6.0.1,3,3200,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+F1.jpg,Black
+JIO LYF,Water F1s,Others,5.2,1.4GHz Octa-core,16,5,6,3,3000,32,https://s3-ap-southeast-1.amazonaws.com/mydukan/1+Portal/Samsung/3/Water+F1s.jpg,Black
+LG,STYLUS 2,Others,5.7,1.2GHz Quad-core,13,8,6,1.5,3000,16,,"Titan, White, Brown"

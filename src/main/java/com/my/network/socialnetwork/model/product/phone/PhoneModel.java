@@ -23,7 +23,7 @@ public class PhoneModel {
 
     Double screenSize;
 
-    Double processorFrequency;
+    String processorFrequency;
 
     Boolean isQuadCore;
 
@@ -85,11 +85,11 @@ public class PhoneModel {
         this.screenSize = screenSize;
     }
 
-    public Double getProcessorFrequency() {
+    public String getProcessorFrequency() {
         return processorFrequency;
     }
 
-    public void setProcessorFrequency(Double processorFrequency) {
+    public void setProcessorFrequency(String processorFrequency) {
         this.processorFrequency = processorFrequency;
     }
 
