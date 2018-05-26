@@ -36,8 +36,8 @@ public class CommentController {
     @Autowired
     FollowingRepository followingRepository;
 
-    @PostMapping(value="/{token}")
-    public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable String token){
+    @PostMapping(value="/")
+    public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         comment.setUser(subscribedUserRepository.findById(userId).get());
         if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent())
@@ -46,7 +46,7 @@ public class CommentController {
         updateCommentsCount(comment.getPost().getId());
 //        String tokens = getTokens(userId);
         PushNotificationApi notificationApi = new PushNotificationApi();
-        notificationApi.getEmployees(token/*, tokens*/, "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.");
+        //notificationApi.getEmployees(token/*, tokens*/, "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.");
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 

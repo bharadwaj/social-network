@@ -2,13 +2,16 @@ package com.my.network.socialnetwork.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.SubscribedUser;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,7 +30,6 @@ public class Post {
 
     String uniqueHandle;
 
-    //TODO handle Images;
     String imageUrl;
 
     @JsonIgnore
@@ -68,6 +70,14 @@ public class Post {
     int viewCount = 0;
 
     int likeCount = 0;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
 
     public Long getId() {
         return id;
@@ -211,5 +221,21 @@ public class Post {
 
     public void setLiked(Boolean liked) {
         isLiked = liked;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }

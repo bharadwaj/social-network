@@ -68,8 +68,13 @@ public class PostController {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if(!subscribedUserRepository.findById(userId).isPresent()){
+            return new ResponseEntity<>("User Not Found", HttpStatus.BAD_REQUEST);
+        }
 
         post.setUser(subscribedUserRepository.findById(userId).get());
+
+
         //Post can be seen by everyone.
         if (post.getPostVisibility() == null) {
             //User Chose to share the post with no one.

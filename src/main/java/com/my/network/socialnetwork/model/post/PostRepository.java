@@ -12,7 +12,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     List<Post> findAllByPostsByUserId(@Param("userId") String userId);
 
     //OR p.postVisibility.visibleToUsers.id = :userId
-    @Query("select p from Post p where p.isPublicPost = true AND p.user.id <> :userId ORDER BY p.id desc")
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.createDate desc")
     List<Post> feedOfUser(@Param("userId") String userId);
 
     @Query("select p from Post p where p.uniqueHandle = :uniqueHandle")
