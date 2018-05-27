@@ -50,7 +50,7 @@ public class PushNotificationApi {
         notificationClass.setBody(message);
 
         Tokens token = new Tokens();
-        token.setToken("dHGVOzYFkc0:APA91bGCGcmYod_b8JXl8R-017tRlqaAvyv7X3gHpuPY25JQR0OFNOfa9MU11MogkNm38zLJnErWnynLiCEV89r0IZQidM4lBxMMxh_Z7AK6OJ5g9JO7Nxa70mnDqlOUdEg8qL5jjVTY");
+        token.setToken("ejVc4Mnd_4I:APA91bFtl_1DhURkfW6gGQaKk0L0P-0MMsRL0eP5ir0V002gSkpqnGWZz6ogZ2qBCIM_DAp4DgTjV8SW2Yw-nb4ED-RdJvimp2KeDr2rqotZWjM0h40rwqp_jcepHRoVq6WXPtlHjMjB");
 
         List<Tokens> tokensList = new ArrayList<>();
         tokensList.add(token);

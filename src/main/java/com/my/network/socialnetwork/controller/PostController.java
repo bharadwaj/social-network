@@ -123,8 +123,12 @@ public class PostController {
     @DeleteMapping("/{postId}")
     public ResponseEntity deletePost(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long postId) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //Check if 1. Post is present.
+        // 2. User is present.
+        // 3. The owner of the post and current user session is the same.
         if(!postRepository.findById(postId).isPresent() &&
-                !subscribedUserRepository.findById(userId).isPresent())
+                !subscribedUserRepository.findById(userId).isPresent() &&
+                !postRepository.findById(postId).get().getUser().getId().equals(userId))
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         postRepository.deleteById(postId);
@@ -209,14 +213,27 @@ public class PostController {
             postLikeRepository.save(postLike);
             updateLikesOfPost(postId);
 
-            return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
+            Post respPost = postRepository.findById(postId).get();
+            if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
+                respPost.setLiked(true);
+            } else {
+                respPost.setLiked(false);
+            }
+
+            return new ResponseEntity<>(respPost, HttpStatus.OK);
 
         } else {
             //Perform unlike since the user already liked the post
             postLike = postLikeRepository.didUserLikeThisPost(userId, postId);
             postLikeRepository.delete(postLike);
             updateLikesOfPost(postLike.getPost().getId());
-            return new ResponseEntity<>(postRepository.findById(postId), HttpStatus.OK);
+            Post respPost = postRepository.findById(postId).get();
+            if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
+                respPost.setLiked(true);
+            } else {
+                respPost.setLiked(false);
+            }
+            return new ResponseEntity<>(respPost, HttpStatus.OK);
         }
     }
 
@@ -229,7 +246,10 @@ public class PostController {
         postLike = postLikeRepository.findById(postLike.getId()).get();
         postLikeRepository.delete(postLike);
         updateLikesOfPost(postLike.getPost().getId());
-        return new ResponseEntity<>(postRepository.findById(postLike.getId()), HttpStatus.OK);
+        Post responsePost = postRepository.findById(postLike.getId()).get();
+        responsePost.setLiked(false);
+
+        return new ResponseEntity<>(responsePost, HttpStatus.OK);
     }
 
     @GetMapping(value = "/likes/{postId}")

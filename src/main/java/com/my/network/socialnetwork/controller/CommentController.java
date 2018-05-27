@@ -77,11 +77,13 @@ public class CommentController {
     @DeleteMapping(value="/{commentId}")
     public ResponseEntity deleteComment(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long commentId){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if(!commentRepository.findById(commentId).isPresent() &&
+                !subscribedUserRepository.findById(userId).isPresent() &&
+                !commentRepository.findById(commentId).get().getUser().getId().equals(userId))
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
         Comment comment = commentRepository.findById(commentId).get();
         Long postId = comment.getPost().getId();
-        if(!commentRepository.findById(commentId).isPresent() &&
-                !subscribedUserRepository.findById(userId).isPresent())
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
         commentRepository.deleteById(commentId);
         updateCommentsCount(postId);
