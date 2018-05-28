@@ -2,7 +2,10 @@ package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.*;
+import com.my.network.socialnetwork.model.network.Following;
+import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.storage.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.jpa.FullTextEntityManager;
@@ -57,6 +60,9 @@ public class PostController {
     @Autowired
     SubscribedUserRepository subscribedUserRepository;
 
+    @Autowired
+    FollowingRepository followingRepository;
+
 
     /**
      * Create a new Post.
@@ -98,6 +104,23 @@ public class PostController {
         } else {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
         }
+
+        String tokens = getTokens(userId);
+        PushNotificationApi notificationApi = new PushNotificationApi();
+        String message = "";
+        if(post.getPriceLists() != null && post.getPriceLists().size() > 0){
+            message = post.getUser().getName() + " has posted PriceList";
+        }
+        else if(post.getRequestForQuotations() != null && post.getRequestForQuotations().size() > 0){
+            message = post.getUser().getName() + "has posted RFQ";
+        }
+        else if(post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase("")){
+            message = post.getUser().getName() + "has posted Image";
+        }
+        else{
+            message = post.getUser().getName() + "has posted in MyDukan";
+        }
+//        notificationApi.getEmployees(userId, "MyDukan Post Notification", message);
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
@@ -216,6 +239,8 @@ public class PostController {
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
+                PushNotificationApi notificationApi = new PushNotificationApi();
+                notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 respPost.setLiked(false);
             }
@@ -320,6 +345,26 @@ public class PostController {
         em.close();
 
         return result;
+    }
+
+    private String getTokens(String userId) {
+        String tokens = "";
+        StringBuilder builder = new StringBuilder();
+        List<Following> followingRepositories = followingRepository.findFollowingByUserId(userId);
+        for(int i=0; i<followingRepositories.size(); i++){
+
+            SubscribedUser subscribedUser = subscribedUserRepository.getSubscribedUser(userId);
+            if((followingRepositories.size() - 1) == i){
+                builder.append(subscribedUser.getGcmToken());
+            }
+            else{
+                builder.append(subscribedUser.getGcmToken() + ", ");
+            }
+
+        }
+
+        return tokens = builder.toString();
+
     }
 
 }
