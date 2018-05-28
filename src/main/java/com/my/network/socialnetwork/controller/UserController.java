@@ -68,15 +68,15 @@ public class UserController {
         //Get Zip Code
         SubscribedUser newSubscribedUser = subscribedUserRepository.save(toBeSubscribedUser);
 
-        UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(toBeSubscribedUser.getZipCode().toString());
+        /*UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(toBeSubscribedUser.getZipCode().toString());
         List<SubscribedUser> toUpdateUserList = zipCodeGroup.getGroupMemberUsers();
         if(toUpdateUserList == null){
             toUpdateUserList = new ArrayList<>();
         }
         toUpdateUserList.add(newSubscribedUser);
         zipCodeGroup.setGroupMemberUsers(toUpdateUserList);
-        userGroupRepository.save(zipCodeGroup);
-        return new ResponseEntity<>("Done", HttpStatus.OK);
+        userGroupRepository.save(zipCodeGroup);*/
+        return new ResponseEntity<>("User Subscribed.", HttpStatus.OK);
     }
 
 }

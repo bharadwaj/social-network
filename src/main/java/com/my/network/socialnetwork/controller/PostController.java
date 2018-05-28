@@ -75,7 +75,7 @@ public class PostController {
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         if(!subscribedUserRepository.findById(userId).isPresent()){
-            return new ResponseEntity<>("User Not Found", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("User is Not Subscribed", HttpStatus.BAD_REQUEST);
         }
 
         post.setUser(subscribedUserRepository.findById(userId).get());
@@ -120,7 +120,7 @@ public class PostController {
         else{
             message = post.getUser().getName() + "has posted in MyDukan";
         }
-//        notificationApi.getEmployees(userId, "MyDukan Post Notification", message);
+        //notificationApi.getEmployees(userId, "MyDukan Post Notification", message);
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }

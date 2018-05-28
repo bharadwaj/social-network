@@ -3,6 +3,7 @@ package com.my.network.socialnetwork.model.product.phone;
 import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
 
 import javax.persistence.*;
 
@@ -13,7 +14,7 @@ public class PhoneModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Field
+    @Field(termVector = TermVector.YES)
     String name;
 
     @ManyToOne

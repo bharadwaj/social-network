@@ -1,6 +1,5 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.post.Post;
 import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 import com.my.network.socialnetwork.model.product.phone.PhoneModelRepository;
 import org.hibernate.search.jpa.FullTextEntityManager;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
