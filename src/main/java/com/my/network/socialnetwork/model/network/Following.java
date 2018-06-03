@@ -2,13 +2,16 @@ package com.my.network.socialnetwork.model.network;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.SubscribedUser;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-/*@Table(name = "MY_TABLE",
+@Table(name = "following",
         uniqueConstraints = { @UniqueConstraint(columnNames =
-                { "FIELD_A", "FIELD_B" }) })*/
+                {"USER_ID", "FOLLOWING_USER_ID"}) })
 public class Following {
 
     @Id
@@ -16,10 +19,12 @@ public class Following {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private SubscribedUser user;
 
     //TODO typo, change to following
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "FOLLOWING_USER_ID")
     private SubscribedUser followingUser;
 
     @JsonIgnore
@@ -27,7 +32,13 @@ public class Following {
 
     private boolean isBlockPostsOfFollowUser;
 
-    //TODO Add timestamps
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
 
     public Long getId() {
         return id;
@@ -67,5 +78,21 @@ public class Following {
 
     public void setBlockPostsOfFollowUser(boolean blockPostsOfFollowUser) {
         isBlockPostsOfFollowUser = blockPostsOfFollowUser;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }

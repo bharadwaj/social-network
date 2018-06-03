@@ -46,6 +46,12 @@ public class UserController {
         return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
     }
 
+    //TODO Add algorithm to give suggestions.
+    @GetMapping("/suggestions")
+    public ResponseEntity suggestUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader) {
+        return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
+    }
+
     @GetMapping("/profile/{userId}")
     public ResponseEntity viewProfileOfAUser(@PathVariable String userId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);

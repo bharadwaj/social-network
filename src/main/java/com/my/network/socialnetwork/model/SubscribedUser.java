@@ -85,6 +85,11 @@ public class SubscribedUser {
     @Transient
     private int userFollowStatus;
 
+    //TODO
+    private int followingCount;
+
+    private int followersCount;
+
     public String getId() {
         return id;
     }
