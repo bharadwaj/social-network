@@ -1,9 +1,12 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.auth.JwtTokenUtil;
 import com.my.network.auth.model.Users;
 import com.my.network.auth.model.UsersRepository;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
+import com.my.network.socialnetwork.model.network.Following;
+import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
@@ -32,14 +35,38 @@ public class UserController {
     @Autowired
     UsersRepository usersRepository;
 
-    @GetMapping(value = {"/" , "/{userId}"})
-    public ResponseEntity viewAllUser(@PathVariable Optional<String> userId){
-        if(userId.isPresent()){
-            if(subscribedUserRepository.findById(userId.get()).isPresent())
-                return new ResponseEntity<>(subscribedUserRepository.findById(userId.get()).get(), HttpStatus.OK);
-        }
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    FollowingRepository followingRepository;
+
+    @GetMapping("/all")
+    public ResponseEntity viewAllUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
         return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{userId}")
+    public ResponseEntity viewProfileOfAUser(@PathVariable String userId, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //We want to see the profile of somebody else other than loggedIn User.
+            //If user is valid and the logged in user is also valid.
+            if(subscribedUserRepository.findById(userId).isPresent() && usersRepository.existsById(loggedInUserId)) {
+                SubscribedUser viewingUser = subscribedUserRepository.findById(userId).get();
+                //Users loggedInUser = usersRepository.findById(loggedInUserId).get();
+                //if the logged-in user is following a user.
+                if(followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()) != null){
+                    viewingUser.setUserFollowStatus(1);
+                    //If the logged in user is following the user to view, but not approved.
+                    if(!followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()).isApproved())
+                        viewingUser.setUserFollowStatus(2);
+                } else {
+                    //Logged in user is
+                    viewingUser.setUserFollowStatus(0);
+                }
+                return new ResponseEntity<>(viewingUser, HttpStatus.OK);
+            }
+        return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
     }
 
     /**

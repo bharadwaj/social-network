@@ -20,25 +20,25 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
-    SubscribedUser user;
+    private SubscribedUser user;
 
     @Field
-    String title;
+    private String title;
 
-    String uniqueHandle;
+    private String uniqueHandle;
 
-    String imageUrl;
+    private String imageUrl;
 
     @JsonIgnore
-    int reportAbuse;
+    private int reportAbuse;
 
     @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
-    PostVisibility postVisibility;
+    private PostVisibility postVisibility;
 
-    Boolean isPublicPost;
+    private Boolean isPublicPost;
 
     /*@OneToMany
     ArrayList<Comment> comment;*/
@@ -46,30 +46,30 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @IndexedEmbedded
-    List<PriceList> priceLists;
+    private List<PriceList> priceLists;
 
     @OneToOne
-    PostCondition postCondition;
+    private PostCondition postCondition;
 
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<QuantityPriceScheme> quantityPriceSchemes;
+    private List<QuantityPriceScheme> quantityPriceSchemes;
 
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<ValueScheme> valueSchemes;
+    private List<ValueScheme> valueSchemes;
 
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    List<RequestForQuotation> requestForQuotations;
+    private List<RequestForQuotation> requestForQuotations;
 
-    Boolean isLiked = false;
+    private Boolean isLiked = false;
 
-    int commentCount = 0;
+    private int commentCount = 0;
 
-    int viewCount = 0;
+    private int viewCount = 0;
 
-    int likeCount = 0;
+    private int likeCount = 0;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

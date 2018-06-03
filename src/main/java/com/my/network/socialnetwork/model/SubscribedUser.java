@@ -14,7 +14,7 @@ public class SubscribedUser {
 
     @Id
     @Column(unique=true, nullable=false)
-    String id;
+    private String id;
 
     private Timestamp createdOn;
 
@@ -53,19 +53,19 @@ public class SubscribedUser {
     private String gcmToken;
 
 
-    boolean isOpenFollow;
+    private boolean isOpenFollow;
 
-    boolean isOpenMessage;
+    private boolean isOpenMessage;
 
-    boolean isOpenProfile;
-
-    @JsonIgnore
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
-    List<Post> postList;
+    private boolean isOpenProfile;
 
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
-    List<Following> followingList;
+    private List<Post> postList;
+
+    @JsonIgnore
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
+    private List<Following> followingList;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "groupMemberUsers", cascade = CascadeType.ALL)
@@ -77,6 +77,13 @@ public class SubscribedUser {
 
     private String countryCode;
 
+    /*
+    * 0 = User is not Following
+    * 1 = user is Following
+    * 2 = User is Following but not Approved
+    * */
+    @Transient
+    private int userFollowStatus;
 
     public String getId() {
         return id;
@@ -276,5 +283,13 @@ public class SubscribedUser {
 
     public void setGcmToken(String gcmToken) {
         this.gcmToken = gcmToken;
+    }
+
+    public int getUserFollowStatus() {
+        return userFollowStatus;
+    }
+
+    public void setUserFollowStatus(int userFollowStatus) {
+        this.userFollowStatus = userFollowStatus;
     }
 }

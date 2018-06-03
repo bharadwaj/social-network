@@ -22,7 +22,7 @@ public interface FollowingRepository extends CrudRepository<Following, Long> {
     List<Following> followRequestsToApproveByUser(String userId);
 
     @Query("select f from Following f where f.followingUser.id = :followingUserId and f.user.id = :userId")
-    Following findByUserIdAndFollowingUserId(@Param("userId") Long userId, @Param("followingUserId") Long followingUserId);
+    Following findByUserIdAndFollowingUserId(@Param("userId") String userId, @Param("followingUserId") String followingUserId);
 
 
 }

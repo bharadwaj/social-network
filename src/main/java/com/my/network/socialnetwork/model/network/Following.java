@@ -6,23 +6,26 @@ import com.my.network.socialnetwork.model.SubscribedUser;
 import javax.persistence.*;
 
 @Entity
+/*@Table(name = "MY_TABLE",
+        uniqueConstraints = { @UniqueConstraint(columnNames =
+                { "FIELD_A", "FIELD_B" }) })*/
 public class Following {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
-    SubscribedUser user;
+    private SubscribedUser user;
 
     //TODO typo, change to following
     @OneToOne
-    SubscribedUser followingUser;
+    private SubscribedUser followingUser;
 
     @JsonIgnore
-    boolean isApproved;
+    private boolean isApproved;
 
-    boolean isBlockPostsOfFollowUser;
+    private boolean isBlockPostsOfFollowUser;
 
     //TODO Add timestamps
 

@@ -213,6 +213,17 @@ public class PostController {
             if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
                 p.setLiked(true);
             }
+            // Set the Follow Button of each Post.
+            if(followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId())!= null) {
+                p.getUser().setUserFollowStatus(1);
+
+                if(!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
+                    p.getUser().setUserFollowStatus(2);
+            }else{
+                //The logged in user is not following the creator of Post.
+                p.getUser().setUserFollowStatus(0);
+            }
+
         }
 
         return new ResponseEntity<>(resPosts, HttpStatus.OK);
