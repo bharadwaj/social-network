@@ -79,4 +79,21 @@ public class UserController {
         return new ResponseEntity<>("User Subscribed.", HttpStatus.OK);
     }
 
+    @GetMapping("/init/existing")
+    public ResponseEntity initSubscribeExistingUsers(){
+        Iterable<Users> existingUsers =  usersRepository.findAll();
+        String userId;
+
+        for(Users u: existingUsers){
+            SubscribedUser toSave = new SubscribedUser();
+            userId = u.getUserId();
+            toSave.setId(userId);
+            toSave.setName(u.getName());
+            toSave.setEmail(u.getEmail());
+            toSave.setContactNumber(u.getContactNumber());
+            subscribedUserRepository.save(toSave);
+        }
+        return new ResponseEntity<>("Loaded existing Users.", HttpStatus.OK);
+    }
+
 }

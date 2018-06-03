@@ -13,6 +13,7 @@ import java.util.List;
 public class SubscribedUser {
 
     @Id
+    @Column(unique=true, nullable=false)
     String id;
 
     private Timestamp createdOn;
