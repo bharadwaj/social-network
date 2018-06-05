@@ -1,22 +1,20 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
-import com.my.network.socialnetwork.model.*;
+import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
 import com.my.network.socialnetwork.storage.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -305,7 +303,8 @@ public class PostController {
 
     @GetMapping(value = "/search/{query}")
     public ResponseEntity searchPosts(@PathVariable String query) {
-        return new ResponseEntity<>(postSearch(query), HttpStatus.OK);
+        //return new ResponseEntity<>(postSearch(query), HttpStatus.OK);
+        return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
     void updateLikesOfPost(Long postId) {
@@ -327,7 +326,7 @@ public class PostController {
         return finalHandle;
     }
 
-    private List<Post> postSearch(String q) {
+    /*private List<Post> postSearch(String q) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
         FullTextEntityManager fullTextEntityManager =
@@ -356,7 +355,7 @@ public class PostController {
         em.close();
 
         return result;
-    }
+    }*/
 
     private String getTokens(String userId) {
         String tokens = "";

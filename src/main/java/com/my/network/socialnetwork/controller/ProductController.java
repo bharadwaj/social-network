@@ -1,9 +1,6 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 import com.my.network.socialnetwork.model.product.phone.PhoneModelRepository;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/product")
@@ -26,7 +22,8 @@ public class ProductController {
 
     @GetMapping(value = "phone/search/{query}")
     public ResponseEntity searchPhoneProducts(@PathVariable String query) {
-        return new ResponseEntity<>(phoneSearch(query), HttpStatus.OK);
+        //return new ResponseEntity<>(phoneSearch(query), HttpStatus.OK);
+        return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     @GetMapping(value = "phone/like/{query}")
@@ -34,7 +31,7 @@ public class ProductController {
         return new ResponseEntity<>(phoneModelRepository.findPhoneModelByNameIgnoreCaseContaining(query), HttpStatus.OK);
     }
 
-    private List<PhoneModel> phoneSearch(String q) {
+    /*private List<PhoneModel> phoneSearch(String q) {
 
         EntityManager em = entityManagerFactory.createEntityManager();
         FullTextEntityManager fullTextEntityManager =
@@ -63,5 +60,5 @@ public class ProductController {
         em.close();
 
         return result;
-    }
+    }*/
 }

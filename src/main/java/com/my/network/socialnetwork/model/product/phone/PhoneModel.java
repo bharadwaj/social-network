@@ -1,20 +1,15 @@
 package com.my.network.socialnetwork.model.product.phone;
 
-import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.TermVector;
-
 import javax.persistence.*;
 
 @Entity
-@Indexed
+//@Indexed
 public class PhoneModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Field(termVector = TermVector.YES)
+    //@Field(termVector = TermVector.YES)
     String name;
 
     @ManyToOne

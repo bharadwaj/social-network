@@ -6,16 +6,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Indexed
+//@Indexed
 public class Post {
 
     @Id
@@ -25,8 +22,11 @@ public class Post {
     @ManyToOne
     private SubscribedUser user;
 
-    @Field
+    //@Field
     private String title;
+
+    //@Field
+    private String body;
 
     private String uniqueHandle;
 
@@ -45,7 +45,7 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @IndexedEmbedded
+    //@IndexedEmbedded
     private List<PriceList> priceLists;
 
     @OneToOne
@@ -237,5 +237,13 @@ public class Post {
 
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }
