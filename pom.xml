@@ -8,7 +8,7 @@
 	<version>v1</version>
 	<packaging>war</packaging>
 
-	<name>social-network</name>
+	<name>my-network</name>
 	<description>MyDukan Social Network Project</description>
 
 	<parent>
