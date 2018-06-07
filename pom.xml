@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.my.network</groupId>
-	<artifactId>social-network</artifactId>
-	<version>v1</version>
+	<artifactId>mydukannetwork</artifactId>
+	<version>1</version>
 	<packaging>war</packaging>
 
-	<name>my-network</name>
+	<name>Mydukan Social Network</name>
 	<description>MyDukan Social Network Project</description>
 
 	<parent>
@@ -112,6 +112,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<warName>mydukannetwork</warName>
+				</configuration>
+			</plugin>-->
 		</plugins>
 	</build>
 

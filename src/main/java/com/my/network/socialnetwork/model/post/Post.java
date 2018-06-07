@@ -63,6 +63,11 @@ public class Post {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<RequestForQuotation> requestForQuotations;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    List<PostLike> postLikeList;
+
     private Boolean isLiked = false;
 
     private int commentCount = 0;

@@ -248,8 +248,8 @@ public class PostController {
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
-                PushNotificationApi notificationApi = new PushNotificationApi();
-                notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
+                //PushNotificationApi notificationApi = new PushNotificationApi();
+                //notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 respPost.setLiked(false);
             }
