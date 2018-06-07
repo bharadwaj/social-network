@@ -65,8 +65,11 @@ public class Post {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
-    List<PostLike> postLikeList;
+    private List<PostLike> postLikeList;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> commentList;
 
     private Boolean isLiked = false;
 
@@ -250,5 +253,21 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public List<PostLike> getPostLikeList() {
+        return postLikeList;
+    }
+
+    public void setPostLikeList(List<PostLike> postLikeList) {
+        this.postLikeList = postLikeList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

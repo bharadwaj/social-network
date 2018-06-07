@@ -1,25 +1,42 @@
 package com.my.network.socialnetwork.model.post;
 
 import com.my.network.socialnetwork.model.SubscribedUser;
-
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    String comment;
-
-    @ManyToOne
-    SubscribedUser user;
+    private String comment;
 
     @ManyToOne
-    Post post;
+    private SubscribedUser user;
 
-    int likeCount = 0;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    private int likeCount = 0;
+
+    private Boolean isLiked = false;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<CommentLike> commentLikes;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
 
     public Long getId() {
         return id;
@@ -59,5 +76,37 @@ public class Comment {
 
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public List<CommentLike> getCommentLikes() {
+        return commentLikes;
+    }
+
+    public void setCommentLikes(List<CommentLike> commentLikes) {
+        this.commentLikes = commentLikes;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public Boolean getLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(Boolean liked) {
+        isLiked = liked;
     }
 }

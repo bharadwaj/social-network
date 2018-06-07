@@ -9,15 +9,15 @@ public class CommentLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    SubscribedUser user;
+    private SubscribedUser user;
 
     @ManyToOne
     @JoinColumn(name = "comment_id")
-    Comment comment;
+    private Comment comment;
 
     public Long getId() {
         return id;

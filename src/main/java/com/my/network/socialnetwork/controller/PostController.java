@@ -147,8 +147,8 @@ public class PostController {
         //Check if 1. Post is present.
         // 2. User is present.
         // 3. The owner of the post and current user session is the same.
-        if(!postRepository.findById(postId).isPresent() &&
-                !subscribedUserRepository.findById(userId).isPresent() &&
+        if(!postRepository.findById(postId).isPresent() ||
+                !subscribedUserRepository.findById(userId).isPresent() ||
                 !postRepository.findById(postId).get().getUser().getId().equals(userId))
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
@@ -236,7 +236,7 @@ public class PostController {
 
         //Check if the user liked already.
         if (postLikeRepository.didUserLikeThisPost(userId, postId) == null) {
-            if (!postRepository.findById(postId).isPresent() &&
+            if (!postRepository.findById(postId).isPresent() ||
                     !subscribedUserRepository.findById(userId).isPresent())
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
