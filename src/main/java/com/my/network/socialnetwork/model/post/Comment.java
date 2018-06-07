@@ -28,6 +28,7 @@ public class Comment {
     private Boolean isLiked = false;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "comment_id")
     private List<CommentLike> commentLikes;
 
     @CreationTimestamp

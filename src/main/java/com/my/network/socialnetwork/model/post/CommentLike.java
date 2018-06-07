@@ -12,7 +12,6 @@ public class CommentLike {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private SubscribedUser user;
 
     @ManyToOne

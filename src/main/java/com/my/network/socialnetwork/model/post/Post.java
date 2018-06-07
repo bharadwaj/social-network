@@ -35,7 +35,7 @@ public class Post {
     @JsonIgnore
     private int reportAbuse;
 
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "post")
     private PostVisibility postVisibility;
 
     private Boolean isPublicPost;
@@ -65,10 +65,12 @@ public class Post {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
     private List<PostLike> postLikeList;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
     private List<Comment> commentList;
 
     private Boolean isLiked = false;
