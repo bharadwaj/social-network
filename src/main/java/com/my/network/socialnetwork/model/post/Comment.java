@@ -1,5 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,6 +28,7 @@ public class Comment {
 
     private Boolean isLiked = false;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "comment_id")
     private List<CommentLike> commentLikes;
