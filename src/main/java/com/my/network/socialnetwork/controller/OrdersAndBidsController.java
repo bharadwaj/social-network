@@ -4,6 +4,7 @@ import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.storage.PushNotificationApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,12 @@ public class OrdersAndBidsController {
             if(bidOnRFQ.getOrderStatus() != null && bidOnRFQ.getOrderStatus().getId() != null)
                 bidOnRFQ.setOrderStatus(orderStatusRepository.findById(bidOnRFQ.getOrderStatus().getId()).get());
 
+            SubscribedUser subscribedUser = subscribedUserRepository.findById(bidOnRFQ.getPost().getUser().getId()).get();
+            String tokens = subscribedUser.getGcmToken();
+            PushNotificationApi notificationApi = new PushNotificationApi();
+            String message = "Price-List Order has been confirmed by " + userToSave.getName();
+            notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Price-List Notification", message, (long) 0);
+
             return new ResponseEntity<>(bidOnRFQRepository.save(bidOnRFQ), HttpStatus.OK);
         }
 
@@ -66,12 +73,22 @@ public class OrdersAndBidsController {
     }
 
     @PutMapping("/rfq/bid/confirm")
-    public ResponseEntity confirmBid(@RequestBody BidOnRFQ bidOnRFQ){
+    public ResponseEntity confirmBid(@RequestBody BidOnRFQ bidOnRFQ,@RequestHeader(value= "Authorization") String authTokenHeader){
 
-        if(bidOnRFQRepository.findById(bidOnRFQ.getId()).isPresent()){
-            BidOnRFQ toConfirmBid = bidOnRFQRepository.findById(bidOnRFQ.getId()).get();
-            toConfirmBid.setConfirmed(true);
-            return new ResponseEntity<>(bidOnRFQRepository.save(toConfirmBid), HttpStatus.OK);
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
+
+        if(userToSave != null && userToSave.getName() != null) {
+            if (bidOnRFQRepository.findById(bidOnRFQ.getId()).isPresent()) {
+                BidOnRFQ toConfirmBid = bidOnRFQRepository.findById(bidOnRFQ.getId()).get();
+                toConfirmBid.setConfirmed(true);
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(bidOnRFQ.getPost().getUser().getId()).get();
+                String tokens = subscribedUser.getGcmToken();
+                PushNotificationApi notificationApi = new PushNotificationApi();
+                String message = "Request for Quotation has been confirmed by "+userToSave.getName();
+                notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan RFQ Notification", message, (long)0);
+                return new ResponseEntity<>(bidOnRFQRepository.save(toConfirmBid), HttpStatus.OK);
+            }
         }
 
         return new ResponseEntity<>("No Bid Found", HttpStatus.BAD_REQUEST);
@@ -89,7 +106,11 @@ public class OrdersAndBidsController {
         } else if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);
             orderOnPriceList.setSubscribedUser(userToSave);
-
+            SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+            String tokens = subscribedUser.getGcmToken();
+            PushNotificationApi notificationApi = new PushNotificationApi();
+            String message = "Placed order on your Price-List by " + userToSave.getName();
+            notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Price-List Notification", message,(long)0);
             return new ResponseEntity<>(orderOnPriceListRepository.save(orderOnPriceList), HttpStatus.OK);
         }
 
@@ -102,12 +123,22 @@ public class OrdersAndBidsController {
     }
 
     @PutMapping("/price-list/order/confirm")
-    public ResponseEntity confirmOrder(@RequestBody OrderOnPriceList orderOnPriceList){
+    public ResponseEntity confirmOrder(@RequestBody OrderOnPriceList orderOnPriceList,@RequestHeader(value= "Authorization") String authTokenHeader){
 
-        if(orderOnPriceListRepository.findById(orderOnPriceList.getId()).isPresent()){
-            OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
-            toConfirmOrder.setConfirmed(true);
-            return new ResponseEntity<>(orderOnPriceListRepository.save(toConfirmOrder), HttpStatus.OK);
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
+
+        if(userToSave != null && userToSave.getName() != null) {
+            if (orderOnPriceListRepository.findById(orderOnPriceList.getId()).isPresent()) {
+                OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
+                toConfirmOrder.setConfirmed(true);
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+                String tokens = subscribedUser.getGcmToken();
+                PushNotificationApi notificationApi = new PushNotificationApi();
+                String message = "Price-List Order has been confirmed by " + userToSave.getName();
+                notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Price-List Notification", message,(long)0);
+                return new ResponseEntity<>(orderOnPriceListRepository.save(toConfirmOrder), HttpStatus.OK);
+            }
         }
 
      return new ResponseEntity<>("No order Found", HttpStatus.BAD_REQUEST);
@@ -119,13 +150,23 @@ public class OrdersAndBidsController {
     }
 
     @PutMapping("/price-list/order/status")
-    public ResponseEntity updateStatusOfOrder(@RequestBody OrderOnPriceList orderOnPriceList){
+    public ResponseEntity updateStatusOfOrder(@RequestBody OrderOnPriceList orderOnPriceList,@RequestHeader(value= "Authorization") String authTokenHeader){
 
-        if(orderOnPriceListRepository.findById(orderOnPriceList.getId()).isPresent() &&
-               orderStatusRepository.findById(orderOnPriceList.getOrderStatus().getId()).isPresent() ){
-            OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
-            toConfirmOrder.setOrderStatus(orderOnPriceList.getOrderStatus());
-            return new ResponseEntity<>(orderOnPriceListRepository.save(toConfirmOrder), HttpStatus.OK);
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        SubscribedUser userToSave = subscribedUserRepository.findById(userId).get();
+
+        if(userToSave != null && userToSave.getName() != null) {
+            if (orderOnPriceListRepository.findById(orderOnPriceList.getId()).isPresent() &&
+                    orderStatusRepository.findById(orderOnPriceList.getOrderStatus().getId()).isPresent()) {
+                OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
+                toConfirmOrder.setOrderStatus(orderOnPriceList.getOrderStatus());
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+                String tokens = subscribedUser.getGcmToken();
+                PushNotificationApi notificationApi = new PushNotificationApi();
+                String message = "Price-List Order status changed to " + orderOnPriceList.getOrderStatus().getStatusName();
+                notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Price-List Notification", message, (long)0);
+                return new ResponseEntity<>(orderOnPriceListRepository.save(toConfirmOrder), HttpStatus.OK);
+            }
         }
 
         return new ResponseEntity<>("No order Found", HttpStatus.BAD_REQUEST);

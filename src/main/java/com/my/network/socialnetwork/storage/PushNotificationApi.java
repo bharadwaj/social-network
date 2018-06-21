@@ -26,7 +26,7 @@ public class PushNotificationApi {
 //
 //    Response response = client.newCall(request).execute();
 
-    public void getEmployees(String user_token/*, String tokens*/, String title, String message)
+    public void getEmployees(String user_token, String tokens, String title, String message, Long postid)
     {
         final String uri = "http://mydukan.org:8080/mydukanapi/notification/send";
 
@@ -35,7 +35,7 @@ public class PushNotificationApi {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, user_token);
         headers.add("x-api-key","eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MTM2NTkwMzMsImV4cCI6MTU0NTE5NTAzMywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IndlYiIsIlN1cm5hbWUiOiJXRUIiLCJFbWFpbCI6IndlYkBleGFtcGxlLmNvbSJ9");
-        headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
+        headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
 //        headers.add("Authorization",user_token);
 //        headers.add("Content-Type", "application/json");
 //        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -50,7 +50,8 @@ public class PushNotificationApi {
         notificationClass.setBody(message);
 
         Tokens token = new Tokens();
-        token.setToken("ejVc4Mnd_4I:APA91bFtl_1DhURkfW6gGQaKk0L0P-0MMsRL0eP5ir0V002gSkpqnGWZz6ogZ2qBCIM_DAp4DgTjV8SW2Yw-nb4ED-RdJvimp2KeDr2rqotZWjM0h40rwqp_jcepHRoVq6WXPtlHjMjB");
+//        token.setToken(/*tokens*/"emQOTSmhGbM:APA91bGAV3WZC44cjgk1GKAcTcFx-uDtJN2wtqkVb6knXtxPZhsZW4H0TUW5EO7hg5CGrUA4jaTaYVhtprMvfMxpaywUxvQE2yu13oqmPQ_Li7ZzgXHxh44Alv72ryrsenusc62DzShA, dW4FHCB3lXo:APA91bG1OtWQzSPwybF17qWnmWTaan3DtS0Y9bn-P3RxCh9O8LPe4yYJkYtdsZrNRTXgp4dNuL7YkjMXyaxytwtiwKJBgNq9Y-ZNeMO2Tr8ThiRLfvYdya313GzSfT1w9SGEoNrfnrvy");
+        token.setToken(tokens/*"fZBR875D1x0:APA91bFFz7DgUy0PJ-dUdjXXoAVLHk7QM6JmPIPM5yL7gB4v0msVjwdd9F2RIEbxZlIqe6dVV9HQdU3INoNzcAMvOnz70mrcTsQ2mZD8h-PlgI6QWWlhb9PJi-3woDxgljxkInxaX19A"*/);
 
         List<Tokens> tokensList = new ArrayList<>();
         tokensList.add(token);
