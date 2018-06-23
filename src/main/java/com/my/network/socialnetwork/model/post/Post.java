@@ -32,7 +32,6 @@ public class Post {
 
     private String imageUrl;
 
-    @JsonIgnore
     private int reportAbuse;
 
     @OneToOne(mappedBy = "post")
@@ -88,6 +87,10 @@ public class Post {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyDate;
+
+    private Integer priorityList;
+
+    private Date postExpriyDate;
 
     public Long getId() {
         return id;
@@ -271,5 +274,21 @@ public class Post {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public Integer getPriorityList() {
+        return priorityList;
+    }
+
+    public void setPriorityList(Integer priorityList) {
+        this.priorityList = priorityList;
+    }
+
+    public Date getPostExpriyDate() {
+        return postExpriyDate;
+    }
+
+    public void setPostExpriyDate(Date postExpriyDate) {
+        this.postExpriyDate = postExpriyDate;
     }
 }

@@ -61,6 +61,9 @@ public class PostController {
     @Autowired
     FollowingRepository followingRepository;
 
+    @Autowired
+    PostReportAbuseRepository postReportAbuseRepository;
+
 
     /**
      * Create a new Post.
@@ -150,7 +153,7 @@ public class PostController {
         if(!postRepository.findById(postId).isPresent() ||
                 !subscribedUserRepository.findById(userId).isPresent() ||
                 !postRepository.findById(postId).get().getUser().getId().equals(userId))
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
 
         postRepository.deleteById(postId);
         return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.OK);
@@ -291,14 +294,27 @@ public class PostController {
         return new ResponseEntity<>(postLikeRepository.allLikesOfPost(postId), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/report")
-    public ResponseEntity reportPostAbuse(@RequestBody Post post) {
-        if (postRepository.findById(post.getId()).isPresent()) {
-            post = postRepository.findById(post.getId()).get();
-            post.setReportAbuse(post.getReportAbuse() + 1);
-            return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    @PatchMapping(value = "/report/{postId}")
+    public ResponseEntity reportPostAbuse(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long postId) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //Check if:
+        // 1. Post is present.
+        // 2. User is present.
+        if(!postRepository.findById(postId).isPresent() ||
+                !subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        SubscribedUser currentUser = subscribedUserRepository.findById(userId).get();
+        Post existingPost = postRepository.findById(postId).get();
+
+        postReportAbuseRepository.save(new PostReportAbuse(currentUser, existingPost));
+
+        //Update Report Abuse Count.
+        existingPost.setReportAbuse(postReportAbuseRepository.countOfAllByPost(postId));
+
+        postRepository.save(existingPost);
+
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/search/{query}")

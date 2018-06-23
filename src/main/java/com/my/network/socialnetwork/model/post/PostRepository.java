@@ -2,11 +2,12 @@ package com.my.network.socialnetwork.model.post;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PostRepository extends CrudRepository<Post, Long> {
+public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     @Query("select p from Post p where p.user.id = :userId ORDER BY p.id desc ")
     List<Post> findAllByPostsByUserId(@Param("userId") String userId);

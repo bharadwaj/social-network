@@ -7,39 +7,39 @@ import javax.persistence.*;
 public class PhoneModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     //@Field(termVector = TermVector.YES)
-    String name;
+    private String name;
 
     @ManyToOne
-    PhoneBrand phoneBrand;
+    private PhoneBrand phoneBrand;
 
-    String series;
+    private String series;
 
-    Double screenSize;
+    private Double screenSize;
 
-    String processorFrequency;
+    private String processorFrequency;
 
-    Boolean isQuadCore;
+    private Boolean isQuadCore;
 
-    Boolean isOctaCore;
+    private Boolean isOctaCore;
 
-    Double rearCameraMP;
+    private Double rearCameraMP;
 
-    Double frontCameraMP;
+    private Double frontCameraMP;
 
-    String operatingSystem;
+    private String operatingSystem;
 
-    Double ramInGB;
+    private Double ramInGB;
 
-    int batteryCapacity;
+    private int batteryCapacity;
 
-    int internalStorage;
+    private int internalStorage;
 
-    String url;
+    private String url;
 
-    String color;
+    private String color;
 
     public Long getId() {
         return id;
