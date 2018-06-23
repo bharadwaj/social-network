@@ -61,6 +61,9 @@ public class PostController {
     @Autowired
     FollowingRepository followingRepository;
 
+    @Autowired
+    PostReportAbuseRepository postReportAbuseRepository;
+
 
     /**
      * Create a new Post.
