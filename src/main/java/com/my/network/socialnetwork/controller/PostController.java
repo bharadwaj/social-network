@@ -61,9 +61,6 @@ public class PostController {
     @Autowired
     FollowingRepository followingRepository;
 
-    @Autowired
-    PostReportAbuseRepository postReportAbuseRepository;
-
 
     /**
      * Create a new Post.
@@ -121,7 +118,7 @@ public class PostController {
         else{
             message = post.getUser().getName() + "has posted in MyDukan";
         }
-        //notificationApi.getEmployees(userId, "MyDukan Post Notification", message);
+        notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
@@ -251,8 +248,9 @@ public class PostController {
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
-                //PushNotificationApi notificationApi = new PushNotificationApi();
-                //notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
+                PushNotificationApi notificationApi = new PushNotificationApi();
+                SubscribedUser user = subscribedUserRepository.getSubscribedUser(userId);
+                notificationApi.getEmployees(token,user.getGcmToken(), "MyDukan Notification", respPost.getUser().getName()+" has liked your post.", postId);
             } else {
                 respPost.setLiked(false);
             }
@@ -374,22 +372,23 @@ public class PostController {
     }*/
 
     private String getTokens(String userId) {
-        String tokens = "";
         StringBuilder builder = new StringBuilder();
         List<Following> followingRepositories = followingRepository.findFollowingByUserId(userId);
+        SubscribedUser user = subscribedUserRepository.findById(userId).get();
         for(int i=0; i<followingRepositories.size(); i++){
 
             SubscribedUser subscribedUser = subscribedUserRepository.getSubscribedUser(userId);
-            if((followingRepositories.size() - 1) == i){
+            /*if((followingRepositories.size() - 1) == i){
                 builder.append(subscribedUser.getGcmToken());
             }
-            else{
+            else{*/
                 builder.append(subscribedUser.getGcmToken() + ", ");
-            }
+//            }
 
         }
+        builder.append(user.getGcmToken());
 
-        return tokens = builder.toString();
+        return builder.toString();
 
     }
 
