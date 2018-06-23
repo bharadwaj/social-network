@@ -32,12 +32,12 @@ public class Post {
 
     private String imageUrl;
 
-    private int reportAbuse;
-
-    @OneToOne(mappedBy = "post")
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
     private PostVisibility postVisibility;
 
     private Boolean isPublicPost;
+
+    private Boolean isFriendsOnlyPost;
 
     /*@OneToMany
     ArrayList<Comment> comment;*/
@@ -82,6 +82,8 @@ public class Post {
 
     private int likeCount = 0;
 
+    private int reportAbuseCount = 0;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -92,7 +94,7 @@ public class Post {
 
     private Integer priorityList;
 
-    private Date postExpriyDate;
+    private Date postExpiryDate;
 
     public Long getId() {
         return id;
@@ -134,12 +136,12 @@ public class Post {
         this.uniqueHandle = uniqueHandle;
     }
 
-    public int getReportAbuse() {
-        return reportAbuse;
+    public int getReportAbuseCount() {
+        return reportAbuseCount;
     }
 
-    public void setReportAbuse(int reportAbuse) {
-        this.reportAbuse = reportAbuse;
+    public void setReportAbuseCount(int reportAbuseCount) {
+        this.reportAbuseCount = reportAbuseCount;
     }
 
     public PostVisibility getPostVisibility() {
@@ -286,12 +288,12 @@ public class Post {
         this.priorityList = priorityList;
     }
 
-    public Date getPostExpriyDate() {
-        return postExpriyDate;
+    public Date getPostExpiryDate() {
+        return postExpiryDate;
     }
 
-    public void setPostExpriyDate(Date postExpriyDate) {
-        this.postExpriyDate = postExpriyDate;
+    public void setPostExpiryDate(Date postExpiryDate) {
+        this.postExpiryDate = postExpiryDate;
     }
 
     public Boolean getReported() {
@@ -300,5 +302,13 @@ public class Post {
 
     public void setReported(Boolean reported) {
         isReported = reported;
+    }
+
+    public Boolean getIsFriendsOnlyPost() {
+        return isFriendsOnlyPost;
+    }
+
+    public void setIsFriendsOnlyPost(Boolean isFriendsOnlyPost) {
+        this.isFriendsOnlyPost = isFriendsOnlyPost;
     }
 }

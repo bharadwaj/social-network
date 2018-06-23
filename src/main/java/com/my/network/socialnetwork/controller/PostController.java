@@ -11,6 +11,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,38 +72,48 @@ public class PostController {
      * Each post can have a template
      */
     //TODO Read user from jwt
-    @PostMapping()
+    @PostMapping
     public ResponseEntity newPost(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        if(!subscribedUserRepository.findById(userId).isPresent()){
+        if (!subscribedUserRepository.findById(userId).isPresent()) {
             return new ResponseEntity<>("User is Not Subscribed", HttpStatus.BAD_REQUEST);
         }
 
         post.setUser(subscribedUserRepository.findById(userId).get());
 
 
-        //Post can be seen by everyone.
-        if (post.getPostVisibility() == null) {
-            //User Chose to share the post with no one.
-            if (post.getIsPublicPost() == null) {
-                post.setIsPublicPost(true);
+        if (post.getIsPublicPost() == null || post.getIsFriendsOnlyPost() == null || post.getIsPublicPost()) {
+            //Post can be seen by everyone by default.
+            post.setIsPublicPost(true);
+            post.setIsFriendsOnlyPost(false);
+
+        } else if (!post.getIsPublicPost()) {
+            //If user says false to public post and does not provide friends list, its a friends only post.
+            if (post.getPostVisibility() == null) {
+                post.setIsFriendsOnlyPost(true);
+
             } else {
+                //User chooses to share the post with only few specific users
+                //Showing to his friends might be optional.
+                List<SubscribedUser> toSaveUserList = new ArrayList<>();
+                for (SubscribedUser u : post.getPostVisibility().getVisibleToUsers()) {
+                    if (subscribedUserRepository.findById(u.getId()).isPresent())
+                        toSaveUserList.add(subscribedUserRepository.findById(u.getId()).get());
+                }
 
-            }
+                PostVisibility tpv = new PostVisibility();
+                tpv.setVisibleToUsers(toSaveUserList);
+                tpv.setPost(post);
 
-        } else {
-            //List<PostVisibility> toSavePostVisibility = new
-            //Assign userClass for every Id.
-            List<SubscribedUser> toSaveUserList = new ArrayList<>();
-            for (SubscribedUser u : post.getPostVisibility().getVisibleToUsers()) {
-                toSaveUserList.add(subscribedUserRepository.findById(userId).get());
+                post.setPostVisibility(tpv);
             }
         }
 
+
         if (post.getTitle() == null || post.getTitle().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("No title.", HttpStatus.BAD_REQUEST);
         } else {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
         }
@@ -109,19 +121,16 @@ public class PostController {
         String tokens = getTokens(userId);
         PushNotificationApi notificationApi = new PushNotificationApi();
         String message = "";
-        if(post.getPriceLists() != null && post.getPriceLists().size() > 0){
+        if (post.getPriceLists() != null && post.getPriceLists().size() > 0) {
             message = post.getUser().getName() + " has posted PriceList";
-        }
-        else if(post.getRequestForQuotations() != null && post.getRequestForQuotations().size() > 0){
+        } else if (post.getRequestForQuotations() != null && post.getRequestForQuotations().size() > 0) {
             message = post.getUser().getName() + "has posted RFQ";
-        }
-        else if(post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase("")){
+        } else if (post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase("")) {
             message = post.getUser().getName() + "has posted Image";
-        }
-        else{
+        } else {
             message = post.getUser().getName() + "has posted in MyDukan";
         }
-        notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
+        //notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
@@ -161,7 +170,8 @@ public class PostController {
 
     //TODO remove userId and read the UserId from jwt.
     @GetMapping(value = {"/{postId}", "all"})
-    public ResponseEntity viewPosts(HttpServletRequest request, @PathVariable Optional<Long> postId) {
+    public ResponseEntity viewPosts(HttpServletRequest request, @PathVariable Optional<Long> postId, @RequestParam(value = "page", defaultValue = "0") int page,
+                                    @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
@@ -179,7 +189,7 @@ public class PostController {
             return new ResponseEntity<>(resPosts, HttpStatus.OK);
         } else {
             //List of all posts based on userId
-            List<Post> resPosts = postRepository.findAllByPostsByUserId(userId);
+            Page<Post> resPosts = postRepository.findAllByPostsByUserId(userId, PageRequest.of(page, size));
 
             for (Post p : resPosts) {
                 if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
@@ -189,6 +199,7 @@ public class PostController {
                     p.setReported(true);
                 }
             }
+
             return new ResponseEntity<>(resPosts, HttpStatus.OK);
         }
 
@@ -321,7 +332,7 @@ public class PostController {
         postReportAbuseRepository.save(new PostReportAbuse(currentUser, existingPost));
 
         //Update Report Abuse Count.
-        existingPost.setReportAbuse(postReportAbuseRepository.countOfAllByPost(postId));
+        existingPost.setReportAbuseCount(postReportAbuseRepository.countOfAllByPost(postId));
 
         postRepository.save(existingPost);
 

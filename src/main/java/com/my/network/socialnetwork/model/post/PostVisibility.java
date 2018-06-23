@@ -11,14 +11,14 @@ public class PostVisibility {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @JsonIgnore
     @OneToOne
-    Post post;
+    private Post post;
 
     @OneToMany
-    public List<SubscribedUser> visibleToUsers;
+    private List<SubscribedUser> visibleToUsers;
 
     //TODO Add Groups
     /*@ManyToMany

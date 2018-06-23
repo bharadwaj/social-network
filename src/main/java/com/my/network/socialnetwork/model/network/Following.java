@@ -9,9 +9,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "following",
-        uniqueConstraints = { @UniqueConstraint(columnNames =
-                {"USER_ID", "FOLLOWING_USER_ID"}) })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames =
+                {"user_id", "following_user_id"}) })
 public class Following {
 
     @Id
@@ -19,12 +18,12 @@ public class Following {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private SubscribedUser user;
 
     //TODO typo, change to following
     @ManyToOne
-    @JoinColumn(name = "FOLLOWING_USER_ID")
+    @JoinColumn(name = "following_user_id")
     private SubscribedUser followingUser;
 
     @JsonIgnore
