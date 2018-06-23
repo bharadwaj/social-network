@@ -18,4 +18,7 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     @Query("select p from Post p where p.uniqueHandle = :uniqueHandle")
     Post findByUniqueHandle(@Param("uniqueHandle") String uniqueHandle);
+
+    @Query("select p from Post p where p.reportAbuse > 0 ORDER BY p.reportAbuse desc")
+    List<Post> getAllReportedPosts();
 }

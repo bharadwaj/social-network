@@ -74,6 +74,8 @@ public class Post {
 
     private Boolean isLiked = false;
 
+    private Boolean isReported = false;
+
     private int commentCount = 0;
 
     private int viewCount = 0;
@@ -290,5 +292,13 @@ public class Post {
 
     public void setPostExpriyDate(Date postExpriyDate) {
         this.postExpriyDate = postExpriyDate;
+    }
+
+    public Boolean getReported() {
+        return isReported;
+    }
+
+    public void setReported(Boolean reported) {
+        isReported = reported;
     }
 }

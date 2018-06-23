@@ -173,6 +173,9 @@ public class PostController {
             if (postLikeRepository.didUserLikeThisPost(userId, resPosts.getId()) != null) {
                 resPosts.setLiked(true);
             }
+            if (postReportAbuseRepository.didUserReportThisPost(userId, resPosts.getId()) != null) {
+                resPosts.setReported(true);
+            }
             return new ResponseEntity<>(resPosts, HttpStatus.OK);
         } else {
             //List of all posts based on userId
@@ -181,6 +184,9 @@ public class PostController {
             for (Post p : resPosts) {
                 if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
                     p.setLiked(true);
+                }
+                if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
+                    p.setReported(true);
                 }
             }
             return new ResponseEntity<>(resPosts, HttpStatus.OK);
@@ -213,6 +219,10 @@ public class PostController {
         for (Post p : resPosts) {
             if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
                 p.setLiked(true);
+            }
+            //Did current user
+            if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
+                p.setReported(true);
             }
             // Set the Follow Button of each Post.
             if(followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId())!= null) {
@@ -252,7 +262,7 @@ public class PostController {
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
                 PushNotificationApi notificationApi = new PushNotificationApi();
-                SubscribedUser user = subscribedUserRepository.getSubscribedUser(userId);
+                SubscribedUser user = subscribedUserRepository.findById(userId).get();
                 notificationApi.getEmployees(token,user.getGcmToken(), "MyDukan Notification", respPost.getUser().getName()+" has liked your post.", postId);
             } else {
                 respPost.setLiked(false);

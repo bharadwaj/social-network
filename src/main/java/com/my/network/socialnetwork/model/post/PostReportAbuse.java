@@ -34,6 +34,9 @@ public class PostReportAbuse {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyDate;
 
+    public PostReportAbuse() {
+    }
+
     public PostReportAbuse(SubscribedUser userWhoReported, Post post) {
         this.userWhoReported = userWhoReported;
         this.post = post;
