@@ -71,7 +71,6 @@ public class PostController {
      * Create a new Post.
      * Each post can have a template
      */
-    //TODO Read user from jwt
     @PostMapping
     public ResponseEntity newPost(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
@@ -168,9 +167,9 @@ public class PostController {
         return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.OK);
     }
 
-    //TODO remove userId and read the UserId from jwt.
     @GetMapping(value = {"/{postId}", "all"})
-    public ResponseEntity viewPosts(HttpServletRequest request, @PathVariable Optional<Long> postId, @RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity viewPosts(HttpServletRequest request, @PathVariable Optional<Long> postId,
+                                    @RequestParam(value = "page", defaultValue = "0") int page,
                                     @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
@@ -251,7 +250,7 @@ public class PostController {
         return new ResponseEntity<>(resPosts, HttpStatus.OK);
     }
 
-    //TODO read current user from jwt.
+    //Same Call for both like and unlike a post.
     @PatchMapping(value = "/like/{postId}")
     public ResponseEntity likePost(@PathVariable Long postId, HttpServletRequest request) {
         PostLike postLike = new PostLike();
@@ -296,7 +295,6 @@ public class PostController {
         }
     }
 
-    //TODO check if the user has permission to unlike.
     @PostMapping(value = "/unlike")
     public ResponseEntity unLikePost(@RequestBody PostLike postLike) {
         if (!postLikeRepository.findById(postLike.getId()).isPresent())

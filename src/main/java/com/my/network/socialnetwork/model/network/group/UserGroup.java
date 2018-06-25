@@ -1,6 +1,8 @@
 package com.my.network.socialnetwork.model.network.group;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.post.Post;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,16 +11,24 @@ import java.util.List;
 public class UserGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    //TODO add constraints
-    String groupName;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SubscribedUser> groupAdmins;
 
-    //TODO Unique constraint
-    String hashtag;
+    private String groupName;
 
+    @Column(unique=true)
+    private String hashtag;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<SubscribedUser> groupMemberUsers;
+
+    @JsonIgnore
     @ManyToMany
-    List<SubscribedUser> groupMemberUsers;
+    private List<Post> posts;
+
+    private Boolean isPublicGroup;
 
     public Long getId() {
         return id;
@@ -50,5 +60,29 @@ public class UserGroup {
 
     public void setGroupMemberUsers(List<SubscribedUser> groupMemberUsers) {
         this.groupMemberUsers = groupMemberUsers;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Boolean getIsPublicGroup() {
+        return isPublicGroup;
+    }
+
+    public void setIsPublicGroup(Boolean publicGroup) {
+        this.isPublicGroup = publicGroup;
+    }
+
+    public List<SubscribedUser> getGroupAdmins() {
+        return groupAdmins;
+    }
+
+    public void setGroupAdmins(List<SubscribedUser> groupAdmins) {
+        this.groupAdmins = groupAdmins;
     }
 }
