@@ -47,7 +47,7 @@ public class CommentController {
         updateCommentsCount(comment.getPost().getId());
         PushNotificationApi notificationApi = new PushNotificationApi();
         SubscribedUser user = subscribedUserRepository.getSubscribedUser(comment.getPost().getUser().getId());
-        notificationApi.getEmployees(authTokenHeader, user.getGcmToken(), "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.", comment.getPost().getId());
+        notificationApi.getEmployees(authTokenHeader, /*user.getGcmToken()*/"", "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.", comment.getPost().getId());
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 

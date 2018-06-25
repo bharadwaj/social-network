@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping(value = "/post")
 public class OrdersAndBidsController {
@@ -50,8 +52,8 @@ public class OrdersAndBidsController {
             bidOnRFQ.setSubscribedUser(userToSave);
             if(bidOnRFQ.getOrderStatus() != null && bidOnRFQ.getOrderStatus().getId() != null)
                 bidOnRFQ.setOrderStatus(orderStatusRepository.findById(bidOnRFQ.getOrderStatus().getId()).get());
-
-            SubscribedUser subscribedUser = subscribedUserRepository.findById(bidOnRFQ.getPost().getUser().getId()).get();
+            Post post = postRepository.findById(bidOnRFQ.getPost().getId()).get();
+            SubscribedUser subscribedUser = subscribedUserRepository.findById(post.getUser().getId()).get();
             String tokens = subscribedUser.getGcmToken();
             PushNotificationApi notificationApi = new PushNotificationApi();
             String message = "Price-List Order has been confirmed by " + userToSave.getName();
@@ -82,7 +84,8 @@ public class OrdersAndBidsController {
             if (bidOnRFQRepository.findById(bidOnRFQ.getId()).isPresent()) {
                 BidOnRFQ toConfirmBid = bidOnRFQRepository.findById(bidOnRFQ.getId()).get();
                 toConfirmBid.setConfirmed(true);
-                SubscribedUser subscribedUser = subscribedUserRepository.findById(bidOnRFQ.getPost().getUser().getId()).get();
+                Post post = postRepository.findById(toConfirmBid.getPost().getId()).get();
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(post.getUser().getId()).get();
                 String tokens = subscribedUser.getGcmToken();
                 PushNotificationApi notificationApi = new PushNotificationApi();
                 String message = "Request for Quotation has been confirmed by "+userToSave.getName();
@@ -106,7 +109,8 @@ public class OrdersAndBidsController {
         } else if(postToSave != null && userToSave != null){
             orderOnPriceList.setPost(postToSave);
             orderOnPriceList.setSubscribedUser(userToSave);
-            SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+            Post post = postRepository.findById(orderOnPriceList.getPost().getId()).get();
+            SubscribedUser subscribedUser = subscribedUserRepository.findById(post.getUser().getId()).get();
             String tokens = subscribedUser.getGcmToken();
             PushNotificationApi notificationApi = new PushNotificationApi();
             String message = "Placed order on your Price-List by " + userToSave.getName();
@@ -132,7 +136,8 @@ public class OrdersAndBidsController {
             if (orderOnPriceListRepository.findById(orderOnPriceList.getId()).isPresent()) {
                 OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
                 toConfirmOrder.setConfirmed(true);
-                SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+                Post postId = postRepository.findById(toConfirmOrder.getPost().getId()).get();
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(postId.getUser().getId()).get();
                 String tokens = subscribedUser.getGcmToken();
                 PushNotificationApi notificationApi = new PushNotificationApi();
                 String message = "Price-List Order has been confirmed by " + userToSave.getName();
@@ -160,7 +165,8 @@ public class OrdersAndBidsController {
                     orderStatusRepository.findById(orderOnPriceList.getOrderStatus().getId()).isPresent()) {
                 OrderOnPriceList toConfirmOrder = orderOnPriceListRepository.findById(orderOnPriceList.getId()).get();
                 toConfirmOrder.setOrderStatus(orderOnPriceList.getOrderStatus());
-                SubscribedUser subscribedUser = subscribedUserRepository.findById(orderOnPriceList.getPost().getUser().getId()).get();
+                Post post = postRepository.findById(toConfirmOrder.getPost().getId()).get();
+                SubscribedUser subscribedUser = subscribedUserRepository.findById(post.getUser().getId()).get();
                 String tokens = subscribedUser.getGcmToken();
                 PushNotificationApi notificationApi = new PushNotificationApi();
                 String message = "Price-List Order status changed to " + orderOnPriceList.getOrderStatus().getStatusName();
