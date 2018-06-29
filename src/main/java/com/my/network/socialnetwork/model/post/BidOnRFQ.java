@@ -14,21 +14,21 @@ import java.util.List;
 public class BidOnRFQ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
-    SubscribedUser subscribedUser;
+    private SubscribedUser subscribedUser;
 
     @OneToOne
-    Post post;
+    private Post post;
 
     @OneToMany(cascade = CascadeType.ALL)
-    List<PriceList> bidPriceLists;
+    private List<PriceList> bidPriceLists;
 
     @ManyToOne
-    OrderStatus orderStatus;
+    private OrderStatus orderStatus;
 
-    Boolean isConfirmed = false;
+    private Boolean isConfirmed = false;
 
     public Long getId() {
         return id;

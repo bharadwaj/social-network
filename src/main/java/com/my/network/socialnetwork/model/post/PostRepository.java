@@ -22,4 +22,7 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     @Query("select p from Post p where p.reportAbuseCount > 0 ORDER BY p.reportAbuseCount desc")
     List<Post> getAllReportedPosts();
+
+    @Query("select p from Post p where p.user.id = :userId AND p.isPublicPost = true ORDER BY p.id desc ")
+    Page<Post> findAllProfilePostsOfNonFriend(@Param("userId") String userId, Pageable pageable);
 }

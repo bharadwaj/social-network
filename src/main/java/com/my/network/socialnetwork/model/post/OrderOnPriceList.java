@@ -6,24 +6,28 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"user_id", "post_id"})})
 public class OrderOnPriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
-    SubscribedUser subscribedUser;
+    @JoinColumn(name = "user_id")
+    private SubscribedUser subscribedUser;
 
     @OneToOne
-    Post post;
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @OneToMany(cascade = CascadeType.ALL)
-    List<RequestForQuotation> orderRequestForQuotations;
+    private List<RequestForQuotation> orderRequestForQuotations;
 
-    Boolean isConfirmed;
+    private Boolean isConfirmed;
 
     @OneToOne
-    OrderStatus orderStatus;
+    private OrderStatus orderStatus;
 
     public Long getId() {
         return id;

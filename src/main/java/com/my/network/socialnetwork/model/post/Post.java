@@ -8,6 +8,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -23,11 +24,13 @@ public class Post {
     private SubscribedUser user;
 
     //@Field
+    @NotNull
     private String title;
 
     //@Field
     private String body;
 
+    @NotNull
     private String uniqueHandle;
 
     private String imageUrl;

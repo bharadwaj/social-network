@@ -17,14 +17,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(value = "/post")
@@ -49,13 +50,13 @@ public class PostController {
     OrderOnPriceListRepository orderOnPriceListRepository;
 
     @Autowired
-    EntityManagerFactory entityManagerFactory;
-
-    @Autowired
     JwtTokenUtil jwtTokenUtil;
 
     @Value("${jwt.header}")
     private String tokenHeader;
+
+    @Value("${post.edit-windows}")
+    private int postEditWindowDays;
 
     @Autowired
     SubscribedUserRepository subscribedUserRepository;
@@ -139,26 +140,134 @@ public class PostController {
         return new ResponseEntity<>(postConditionRepository.findAll(), HttpStatus.OK);
     }
 
+    /**
+     * If the Current User is following profile user, all profile user posts can be seen*/
+    @GetMapping("/user/{profileOfUserId}")
+    public ResponseEntity allPostsOfUser(@PathVariable String profileOfUserId,
+                                         @RequestHeader(value = "Authorization") String authTokenHeader,
+                                         @RequestParam(value = "page", defaultValue = "0") int page,
+                                         @RequestParam(value = "size", defaultValue = "20") int size) {
+        String currentUser = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //Check if:
+        // 1. Post is present.
+        // 2. User is present.
+        if (!subscribedUserRepository.findById(profileOfUserId).isPresent())
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
 
-    @PutMapping("/price-template")
-    public ResponseEntity editPriceList(@RequestBody Post post) {
-        if (postRepository.findById(post.getId()).isPresent()) {
-            Post postToSave = postRepository.findById(post.getId()).get();
-            postToSave.setPriceLists(post.getPriceLists());
+        //Is the current user following profileUser?
+        Following isAuthUserFollowingUser = followingRepository.findByUserIdAndFollowingUserId(currentUser, profileOfUserId);
 
-            return new ResponseEntity<>(postRepository.save(postToSave), HttpStatus.OK);
+        if (profileOfUserId.matches(currentUser)) {
+            return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
         }
-        //No post exists return bad request.
+
+        //TODO manage in future how to show post is shared only between few friends.
+        if (isAuthUserFollowingUser == null || !isAuthUserFollowingUser.isApproved()) {
+
+            return new ResponseEntity<>(postRepository.findAllProfilePostsOfNonFriend(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
+        }
+
+        //Show all posts
+        return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("uq/{handle}")
+    public ResponseEntity viewPostByHandle(@PathVariable String handle) {
+        String encodedStr = "";
+        try {
+            handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
+            encodedStr = URLEncoder.encode(handle.toLowerCase(), "UTF-8");
+            return new ResponseEntity<>(postRepository.findByUniqueHandle(encodedStr), HttpStatus.OK);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * A Post can be edited only between a 1 Day window.
+     */
+    @PatchMapping
+    public ResponseEntity editTitleBodyOfAPost(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+
+        if (!subscribedUserRepository.findById(userId).isPresent() ||
+                post.getId() == null || !postRepository.findById(post.getId()).isPresent())
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        Post postToUpdate = postRepository.findById(post.getId()).get();
+
+        if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+
+        postToUpdate.setTitle(post.getTitle());
+        postToUpdate.setBody(post.getBody());
+
+        return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
+    }
+
+
+    @PutMapping("/price-list")
+    public ResponseEntity editPriceList(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+            Post postToUpdate = postRepository.findById(post.getId()).get();
+
+            if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
+                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+
+            postToUpdate.setPriceLists(post.getPriceLists());
+
+            return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
+        }
+        //No post exists return bad request.
+        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/rfq")
+    public ResponseEntity editRFQ(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+            Post postToUpdate = postRepository.findById(post.getId()).get();
+
+            if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
+                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+
+            postToUpdate.setRequestForQuotations(post.getRequestForQuotations());
+
+            return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
+        }
+        //No post exists return bad request.
+        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/schemes")
+    public ResponseEntity editSchemes(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+            Post postToUpdate = postRepository.findById(post.getId()).get();
+
+            if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
+                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+
+            postToUpdate.setValueSchemes(post.getValueSchemes());
+            postToUpdate.setQuantityPriceSchemes(post.getQuantityPriceSchemes());
+
+            return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
+        }
+        //No post exists return bad request.
+        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+    }
+
     @DeleteMapping("/{postId}")
-    public ResponseEntity deletePost(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long postId) {
+    public ResponseEntity deletePost(@PathVariable Long postId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //Check if 1. Post is present.
         // 2. User is present.
         // 3. The owner of the post and current user session is the same.
-        if(!postRepository.findById(postId).isPresent() ||
+        if (!postRepository.findById(postId).isPresent() ||
                 !subscribedUserRepository.findById(userId).isPresent() ||
                 !postRepository.findById(postId).get().getUser().getId().equals(userId))
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -205,21 +314,6 @@ public class PostController {
 
     }
 
-    @GetMapping("handle/{handle}")
-    public ResponseEntity viewPostByHandle(@PathVariable String handle) {
-        String encodedStr = "";
-        try {
-            handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
-            encodedStr = URLEncoder.encode(handle.toLowerCase(), "UTF-8");
-            return new ResponseEntity<>(postRepository.findByUniqueHandle(encodedStr), HttpStatus.OK);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
     @GetMapping(value = {"/feed"})
     public ResponseEntity userFeed(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
@@ -235,12 +329,12 @@ public class PostController {
                 p.setReported(true);
             }
             // Set the Follow Button of each Post.
-            if(followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId())!= null) {
+            if (followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()) != null) {
                 p.getUser().setUserFollowStatus(1);
 
-                if(!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
+                if (!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
                     p.getUser().setUserFollowStatus(2);
-            }else{
+            } else {
                 //The logged in user is not following the creator of Post.
                 p.getUser().setUserFollowStatus(0);
             }
@@ -251,7 +345,7 @@ public class PostController {
     }
 
     //Same Call for both like and unlike a post.
-    @PatchMapping(value = "/like/{postId}")
+    @PutMapping(value = "/like/{postId}")
     public ResponseEntity likePost(@PathVariable Long postId, HttpServletRequest request) {
         PostLike postLike = new PostLike();
         String token = request.getHeader(tokenHeader);
@@ -271,9 +365,10 @@ public class PostController {
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
+                //TODO Notifications here.
                 PushNotificationApi notificationApi = new PushNotificationApi();
                 SubscribedUser user = subscribedUserRepository.findById(userId).get();
-                notificationApi.getEmployees(token,user.getGcmToken(), "MyDukan Notification", respPost.getUser().getName()+" has liked your post.", postId);
+                notificationApi.getEmployees(token, user.getGcmToken(), "MyDukan Notification", respPost.getUser().getName() + " has liked your post.", postId);
             } else {
                 respPost.setLiked(false);
             }
@@ -314,13 +409,13 @@ public class PostController {
         return new ResponseEntity<>(postLikeRepository.allLikesOfPost(postId), HttpStatus.OK);
     }
 
-    @PatchMapping(value = "/report/{postId}")
-    public ResponseEntity reportPostAbuse(@RequestHeader(value= "Authorization") String authTokenHeader, @PathVariable Long postId) {
+    @PutMapping(value = "/report/{postId}")
+    public ResponseEntity reportPostAbuse(@RequestHeader(value = "Authorization") String authTokenHeader, @PathVariable Long postId) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //Check if:
         // 1. Post is present.
         // 2. User is present.
-        if(!postRepository.findById(postId).isPresent() ||
+        if (!postRepository.findById(postId).isPresent() ||
                 !subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.NOT_FOUND);
 
@@ -397,20 +492,28 @@ public class PostController {
         StringBuilder builder = new StringBuilder();
         List<Following> followingRepositories = followingRepository.findFollowingByUserId(userId);
         SubscribedUser user = subscribedUserRepository.findById(userId).get();
-        for(int i=0; i<followingRepositories.size(); i++){
+        for (int i = 0; i < followingRepositories.size(); i++) {
 
             SubscribedUser subscribedUser = subscribedUserRepository.getSubscribedUser(userId);
             /*if((followingRepositories.size() - 1) == i){
                 builder.append(subscribedUser.getGcmToken());
             }
             else{*/
-                builder.append(subscribedUser.getGcmToken() + ", ");
+            builder.append(subscribedUser.getGcmToken() + ", ");
 //            }
 
         }
         builder.append(user.getGcmToken());
 
         return builder.toString();
+
+    }
+
+    public Boolean greaterThanNDays(Date d1) {
+        Date currentDate = new Date();
+        long diff = currentDate.getTime() - d1.getTime();
+
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < postEditWindowDays;
 
     }
 

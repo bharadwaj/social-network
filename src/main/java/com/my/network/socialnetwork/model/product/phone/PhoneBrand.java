@@ -6,10 +6,10 @@ import javax.validation.Constraint;
 @Entity
 public class PhoneBrand {
     @Id
-    Long id;
+    private Long id;
 
     @Column(unique=true)
-    String name;
+    private String name;
 
     public Long getId() {
         return id;

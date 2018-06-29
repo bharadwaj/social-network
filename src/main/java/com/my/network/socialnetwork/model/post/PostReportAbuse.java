@@ -9,9 +9,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(uniqueConstraints= {
+@Table(uniqueConstraints={
         @UniqueConstraint(columnNames = {"user_id", "post_id"})
-})
+        })
 public class PostReportAbuse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +23,8 @@ public class PostReportAbuse {
 
     @JsonIgnore
     @ManyToOne
-    private @JoinColumn(name = "post_id")
-    Post post;
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

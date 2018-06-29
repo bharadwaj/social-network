@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class})
 @EnableTransactionManagement
 //@ComponentScan(basePackages = { "com.my.network.socialnetwork.storage"} )
-public class SocialNetworkApplication extends SpringBootServletInitializer {
-//public class SocialNetworkApplication {
+//public class SocialNetworkApplication extends SpringBootServletInitializer {
+public class SocialNetworkApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SocialNetworkApplication.class, args);

@@ -99,6 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/swagger-ui.html#","/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security","/webjars/**").permitAll()
                 .antMatchers("/user/new").permitAll()
+                .antMatchers("/post/uq/**").permitAll()
                 .antMatchers("/user/all").access("hasRole('ROLE_ADMIN')")
                 //.antMatchers("/user/{userId}").access("hasRole('ROLE_USER')")
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()

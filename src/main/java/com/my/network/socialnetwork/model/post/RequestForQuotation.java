@@ -8,16 +8,16 @@ import javax.persistence.*;
 public class RequestForQuotation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @OneToOne
-    PhoneModel phoneModel;
+    private PhoneModel phoneModel;
 
-    int quantity;
+    private int quantity;
 
-    int expectedPrice;
+    private int expectedPrice;
 
-    String description;
+    private String description;
 
     public Long getId() {
         return id;

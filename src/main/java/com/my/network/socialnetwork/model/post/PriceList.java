@@ -7,25 +7,25 @@ import javax.persistence.*;
 public class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     //TODO
     @OneToOne
-    PhoneModel phoneModel;
+    private PhoneModel phoneModel;
 
-    int quantity;
+    private int quantity;
 
-    int price;
+    private int price;
 
-    String description;
+    private String description;
 
-    boolean isLimitedTime;
+    private boolean isLimitedTime;
 
-    boolean isLimitedStock;
+    private boolean isLimitedStock;
 
-    boolean isPriceIncreased;
+    private boolean isPriceIncreased;
 
-    boolean isPriceDecreased;
+    private boolean isPriceDecreased;
 
     public Long getId() {
         return id;
