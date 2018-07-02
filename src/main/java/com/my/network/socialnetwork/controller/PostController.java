@@ -6,7 +6,7 @@ import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
-import com.my.network.socialnetwork.storage.PushNotificationApi;
+import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,7 +118,8 @@ public class PostController {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
         }
 
-        String tokens = getTokens(userId);
+        //TODO Notification
+        //String tokens = getTokens(userId);
         PushNotificationApi notificationApi = new PushNotificationApi();
         String message = "";
         if (post.getPriceLists() != null && post.getPriceLists().size() > 0) {
@@ -130,7 +131,7 @@ public class PostController {
         } else {
             message = post.getUser().getName() + "has posted in MyDukan";
         }
-        //notificationApi.getEmployees(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
+        //notificationApi.sendNotification(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
@@ -365,10 +366,9 @@ public class PostController {
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
+
                 //TODO Notifications here.
-                PushNotificationApi notificationApi = new PushNotificationApi();
-                SubscribedUser user = subscribedUserRepository.findById(userId).get();
-                notificationApi.getEmployees(token, user.getGcmToken(), "MyDukan Notification", respPost.getUser().getName() + " has liked your post.", postId);
+
             } else {
                 respPost.setLiked(false);
             }
@@ -488,17 +488,17 @@ public class PostController {
         return result;
     }*/
 
-    private String getTokens(String userId) {
+    /*private String getTokens(String userId) {
         StringBuilder builder = new StringBuilder();
         List<Following> followingRepositories = followingRepository.findFollowingByUserId(userId);
         SubscribedUser user = subscribedUserRepository.findById(userId).get();
         for (int i = 0; i < followingRepositories.size(); i++) {
 
             SubscribedUser subscribedUser = subscribedUserRepository.getSubscribedUser(userId);
-            /*if((followingRepositories.size() - 1) == i){
+            *//*if((followingRepositories.size() - 1) == i){
                 builder.append(subscribedUser.getGcmToken());
             }
-            else{*/
+            else{*//*
             builder.append(subscribedUser.getGcmToken() + ", ");
 //            }
 
@@ -507,7 +507,7 @@ public class PostController {
 
         return builder.toString();
 
-    }
+    }*/
 
     public Boolean greaterThanNDays(Date d1) {
         Date currentDate = new Date();

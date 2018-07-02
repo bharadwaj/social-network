@@ -1,10 +1,10 @@
-package com.my.network.socialnetwork.model;
+package com.my.network.socialnetwork.notification;
 
-public class NotificationClass {
+public class MyDukanNotification {
 
-    String title;
+    private String title;
 
-    String body;
+    private String body;
 
     public String getTitle() {
         return title;

@@ -3,16 +3,14 @@ package com.my.network.socialnetwork.controller;
 import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
-import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
-import com.my.network.socialnetwork.storage.PushNotificationApi;
+import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -45,9 +43,10 @@ public class CommentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Comment savedComment = commentRepository.save(comment);
         updateCommentsCount(comment.getPost().getId());
+        //TODO Notification
         PushNotificationApi notificationApi = new PushNotificationApi();
         SubscribedUser user = subscribedUserRepository.getSubscribedUser(comment.getPost().getUser().getId());
-        notificationApi.getEmployees(authTokenHeader, /*user.getGcmToken()*/"", "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.", comment.getPost().getId());
+        //notificationApi.sendNotification(authTokenHeader, /*user.getGcmToken()*/"", "MyDukan Notification", comment.getUser().getName()+" has Commented on your post.", comment.getPost().getId());
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
@@ -62,7 +61,7 @@ public class CommentController {
             if (commentLikeRepository.didUserLikeThisComment(userId, c.getId()) != null) {
                 c.setLiked(true);
                 //PushNotificationApi notificationApi = new PushNotificationApi();
-                //notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
+                //notificationApi.sendNotification(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 c.setLiked(false);
             }
@@ -106,7 +105,7 @@ public class CommentController {
             if (commentLikeRepository.didUserLikeThisComment(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
                 //PushNotificationApi notificationApi = new PushNotificationApi();
-                //notificationApi.getEmployees(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
+                //notificationApi.sendNotification(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 respPost.setLiked(false);
             }

@@ -1,8 +1,8 @@
-package com.my.network.socialnetwork.model;
+package com.my.network.socialnetwork.notification;
 
-public class Tokens {
+public class UserGcmToken {
 
-    String token;
+    private String token;
 
     public String getToken() {
         return token;

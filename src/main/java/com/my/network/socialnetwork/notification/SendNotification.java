@@ -1,17 +1,17 @@
-package com.my.network.socialnetwork.model;
+package com.my.network.socialnetwork.notification;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SendNotification {
 
-    List<Tokens> tokens = new ArrayList<>();
+    private List<UserGcmToken> tokens = new ArrayList<>();
 
-    NotificationClass notification;
+    private MyDukanNotification notification;
 
-    int status;
+    private int status;
 
-    String message;
+    private String message;
 
     public int getStatus() {
         return status;
@@ -29,19 +29,19 @@ public class SendNotification {
         this.message = message;
     }
 
-    public List<Tokens> getTokens() {
+    public List<UserGcmToken> getTokens() {
         return tokens;
     }
 
-    public void setTokens(List<Tokens> tokens) {
+    public void setTokens(List<UserGcmToken> tokens) {
         this.tokens = tokens;
     }
 
-    public NotificationClass getNotification() {
+    public MyDukanNotification getNotification() {
         return notification;
     }
 
-    public void setNotification(NotificationClass notification) {
+    public void setNotification(MyDukanNotification notification) {
         this.notification = notification;
     }
 }
