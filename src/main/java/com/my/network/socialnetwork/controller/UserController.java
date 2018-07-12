@@ -87,10 +87,12 @@ public class UserController {
     @PostMapping(value = "/new")
     public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser){
 
+
+        if(!usersRepository.findById(toBeSubscribedUser.getId()).isPresent())
+            return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User does not exist in MyDukan DB.", 400, null), HttpStatus.BAD_REQUEST);
+
         Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
 
-        if(existingUser.getUserId() == null)
-            return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User does not exist in MyDukan DB.", 400), HttpStatus.BAD_REQUEST);
 
         toBeSubscribedUser.setId(existingUser.getUserId());
         toBeSubscribedUser.setContactNumber(existingUser.getContactNumber());
@@ -110,7 +112,7 @@ public class UserController {
         toUpdateUserList.add(newSubscribedUser);
         zipCodeGroup.setGroupMemberUsers(toUpdateUserList);
         userGroupRepository.save(zipCodeGroup);*/
-        return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User Successfully Subscribed", 200), HttpStatus.OK);
+        return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User Successfully Subscribed", 200, newSubscribedUser), HttpStatus.OK);
     }
 
     @GetMapping("/init/existing")
