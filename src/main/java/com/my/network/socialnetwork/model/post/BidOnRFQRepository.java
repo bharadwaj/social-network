@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
@@ -16,6 +15,6 @@ public interface BidOnRFQRepository extends CrudRepository<BidOnRFQ, Long>{
     @Query("select b from BidOnRFQ b where b.subscribedUser.id = :userId")
     List<BidOnRFQ> findAllBidsOfPostByUserId(@Param("userId")String userId);
 
-    @Query(value = "select * from BidOnRFQ where post_id in (select id from Post where user_id = :userId)", nativeQuery = true)
+    @Query("select b from BidOnRFQ b where b.post.id in (select p.id from Post p where p.user.id = :userId)")
     List<BidOnRFQ> findAllBidsOfPost(@Param("userId")String userId);
 }

@@ -10,6 +10,7 @@ import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
+import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,7 +90,7 @@ public class UserController {
         Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
 
         if(existingUser.getUserId() == null)
-            return new ResponseEntity("User Does not exist", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User does not exist in MyDukan DB.", 400), HttpStatus.BAD_REQUEST);
 
         toBeSubscribedUser.setId(existingUser.getUserId());
         toBeSubscribedUser.setContactNumber(existingUser.getContactNumber());
@@ -109,7 +110,7 @@ public class UserController {
         toUpdateUserList.add(newSubscribedUser);
         zipCodeGroup.setGroupMemberUsers(toUpdateUserList);
         userGroupRepository.save(zipCodeGroup);*/
-        return new ResponseEntity<>("User Subscribed.", HttpStatus.OK);
+        return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User Successfully Subscribed", 200), HttpStatus.OK);
     }
 
     @GetMapping("/init/existing")

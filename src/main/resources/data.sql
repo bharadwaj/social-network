@@ -9,3 +9,6 @@ insert into social_network_2.OrderStatus(id, statusName) values (2, 'Shipped');
 insert into social_network_2.OrderStatus(id, statusName) values (3, 'Delivered');
 
 
+INSERT INTO social_network_2.phonebrand SELECT * from rds_bak_social_network_2.phonebrand;
+
+INSERT INTO social_network_2.phonemodel SELECT * from rds_bak_social_network_2.phonemodel;

@@ -319,6 +319,11 @@ public class PostController {
     public ResponseEntity userFeed(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
+
+        //The User of the jwt token is not present in the DB.
+        if(!subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity<>("User is not present.", HttpStatus.UNAUTHORIZED);
+
         List<Post> resPosts = postRepository.feedOfUser(userId);
 
         for (Post p : resPosts) {
@@ -429,7 +434,7 @@ public class PostController {
 
         postRepository.save(existingPost);
 
-        return new ResponseEntity(postRepository.feedOfUser(userId), HttpStatus.CREATED);
+        return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/search/{query}")
@@ -438,14 +443,14 @@ public class PostController {
         return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
-    void updateLikesOfPost(Long postId) {
+    private void updateLikesOfPost(Long postId) {
         //Update likes of Post.
         Post post = postRepository.findById(postId).get();
         post.setLikeCount(postLikeRepository.likeCount(postId));
         postRepository.save(post);
     }
 
-    String generateUniqueHandle(String str) {
+    private String generateUniqueHandle(String str) {
 
         String finalHandle = StringUtils.left(str, 50);
         try {
@@ -509,7 +514,7 @@ public class PostController {
 
     }*/
 
-    public Boolean greaterThanNDays(Date d1) {
+    private Boolean greaterThanNDays(Date d1) {
         Date currentDate = new Date();
         long diff = currentDate.getTime() - d1.getTime();
 
