@@ -1,5 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import org.hibernate.annotations.CreationTimestamp;

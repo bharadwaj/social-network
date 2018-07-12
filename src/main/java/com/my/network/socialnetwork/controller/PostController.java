@@ -429,7 +429,7 @@ public class PostController {
 
         postRepository.save(existingPost);
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(postRepository.feedOfUser(userId), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/search/{query}")
