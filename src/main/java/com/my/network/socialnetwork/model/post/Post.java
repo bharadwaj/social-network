@@ -34,7 +34,11 @@ public class Post {
     @NotNull
     private String uniqueHandle;
 
+    @Column(columnDefinition="VARCHAR(512)")
     private String imageUrl;
+
+    @Column(columnDefinition="VARCHAR(512)")
+    private String videoUrl;
 
     @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
     private PostVisibility postVisibility;
@@ -130,6 +134,22 @@ public class Post {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public Boolean getFriendsOnlyPost() {
+        return isFriendsOnlyPost;
+    }
+
+    public void setFriendsOnlyPost(Boolean friendsOnlyPost) {
+        isFriendsOnlyPost = friendsOnlyPost;
     }
 
     public String getUniqueHandle() {

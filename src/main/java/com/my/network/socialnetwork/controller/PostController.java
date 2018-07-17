@@ -67,6 +67,9 @@ public class PostController {
     @Autowired
     PostReportAbuseRepository postReportAbuseRepository;
 
+    private int DEFAULT_PAGE = 0;
+    private int DEFAULT_PAGE_SIZE = 20;
+
 
     /**
      * Create a new Post.
@@ -175,16 +178,16 @@ public class PostController {
     @GetMapping("uq/{handle}")
     public ResponseEntity viewPostByHandle(@PathVariable String handle) {
         String encodedStr = "";
-        try {
-            handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
-            encodedStr = URLEncoder.encode(handle.toLowerCase(), "UTF-8");
-            return new ResponseEntity<>(postRepository.findByUniqueHandle(encodedStr), HttpStatus.OK);
+        /*try {
+            //handle = URLDecoder.decode(handle.toLowerCase(), "UTF-8");
+            //encodedStr = URLEncoder.encode(handle.toLowerCase(), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
+        }*/
+        return new ResponseEntity<>(postRepository.findByUniqueHandle(handle), HttpStatus.OK);
 
 
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        //return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -274,7 +277,7 @@ public class PostController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
 
         postRepository.deleteById(postId);
-        return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.OK);
+        return new ResponseEntity<>(postRepository.feedOfUser(userId, PageRequest.of(DEFAULT_PAGE, DEFAULT_PAGE_SIZE)), HttpStatus.OK);
     }
 
     @GetMapping(value = {"/{postId}", "all"})
@@ -316,7 +319,8 @@ public class PostController {
     }
 
     @GetMapping(value = {"/feed"})
-    public ResponseEntity userFeed(HttpServletRequest request) {
+    public ResponseEntity userFeed(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "0") int page,
+                                   @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
@@ -324,7 +328,7 @@ public class PostController {
         if(!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity<>("User is not present.", HttpStatus.UNAUTHORIZED);
 
-        List<Post> resPosts = postRepository.feedOfUser(userId);
+        List<Post> resPosts = postRepository.feedOfUser(userId, PageRequest.of(page, size));
 
         for (Post p : resPosts) {
             if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
@@ -434,7 +438,7 @@ public class PostController {
 
         postRepository.save(existingPost);
 
-        return new ResponseEntity<>(postRepository.feedOfUser(userId), HttpStatus.CREATED);
+        return new ResponseEntity<>(postRepository.feedOfUser(userId, PageRequest.of(DEFAULT_PAGE, DEFAULT_PAGE_SIZE)), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/search/{query}")

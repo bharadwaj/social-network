@@ -28,7 +28,8 @@ public class ProductController {
 
     @GetMapping(value = "phone/like/{query}")
     public ResponseEntity likePhoneProducts(@PathVariable String query) {
-        return new ResponseEntity<>(phoneModelRepository.findPhoneModelByNameIgnoreCaseContaining(query), HttpStatus.OK);
+//        return new ResponseEntity<>(phoneModelRepository.findPhoneModelByNameIgnoreCaseContaining(query), HttpStatus.OK);
+        return new ResponseEntity<>(phoneModelRepository.findPhoneModelByName2(query, query), HttpStatus.OK);
     }
 
     /*private List<PhoneModel> phoneSearch(String q) {
