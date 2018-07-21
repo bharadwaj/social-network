@@ -1,6 +1,10 @@
 package com.my.network.socialnetwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.my.network.auth.model.profiles.CompanyProfile;
+import com.my.network.auth.model.profiles.RetailerProfile;
+import com.my.network.auth.model.profiles.ServiceCenterProfile;
+import com.my.network.auth.model.profiles.SupplierProfile;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.post.Post;
@@ -89,6 +93,18 @@ public class SubscribedUser {
     private int followingCount;
 
     private int followersCount;
+
+    @Transient
+    private CompanyProfile companyProfile;
+
+    @Transient
+    private RetailerProfile retailerProfile;
+
+    @Transient
+    private ServiceCenterProfile serviceCenterProfile;
+
+    @Transient
+    private SupplierProfile supplierProfile;
 
     public String getId() {
         return id;
@@ -296,5 +312,53 @@ public class SubscribedUser {
 
     public void setUserFollowStatus(int userFollowStatus) {
         this.userFollowStatus = userFollowStatus;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(int followingCount) {
+        this.followingCount = followingCount;
+    }
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public void setFollowersCount(int followersCount) {
+        this.followersCount = followersCount;
+    }
+
+    public CompanyProfile getCompanyProfile() {
+        return companyProfile;
+    }
+
+    public void setCompanyProfile(CompanyProfile companyProfile) {
+        this.companyProfile = companyProfile;
+    }
+
+    public RetailerProfile getRetailerProfile() {
+        return retailerProfile;
+    }
+
+    public void setRetailerProfile(RetailerProfile retailerProfile) {
+        this.retailerProfile = retailerProfile;
+    }
+
+    public ServiceCenterProfile getServiceCenterProfile() {
+        return serviceCenterProfile;
+    }
+
+    public void setServiceCenterProfile(ServiceCenterProfile serviceCenterProfile) {
+        this.serviceCenterProfile = serviceCenterProfile;
+    }
+
+    public SupplierProfile getSupplierProfile() {
+        return supplierProfile;
+    }
+
+    public void setSupplierProfile(SupplierProfile supplierProfile) {
+        this.supplierProfile = supplierProfile;
     }
 }

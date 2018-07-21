@@ -3,6 +3,7 @@ package com.my.network.socialnetwork.controller;
 import com.my.network.auth.JwtTokenUtil;
 import com.my.network.auth.model.Users;
 import com.my.network.auth.model.UsersRepository;
+import com.my.network.auth.model.profiles.*;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
@@ -11,7 +12,10 @@ import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
 import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
+import com.my.network.socialnetwork.model.response.UserProfileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +46,18 @@ public class UserController {
     @Autowired
     FollowingRepository followingRepository;
 
+    @Autowired
+    private RetailerProfileRepository retailerProfileRepository;
+
+    @Autowired
+    private CompanyProfileRepository companyProfileRepository;
+
+    @Autowired
+    private SupplierProfileRepository supplierProfileRepository;
+
+    @Autowired
+    private ServiceCenterProfileRepository serviceCenterProfileRepository;
+
     @GetMapping("/all")
     public ResponseEntity viewAllUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
         return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
@@ -49,8 +65,24 @@ public class UserController {
 
     //TODO Add algorithm to give suggestions.
     @GetMapping("/suggestions")
-    public ResponseEntity suggestUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader) {
-        return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity suggestUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader,
+                                               @RequestParam(value = "page", defaultValue = "0") int page,
+                                               @RequestParam(value = "size", defaultValue = "20") int size) {
+
+
+
+        String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+
+        Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
+
+        for(SubscribedUser su: responseSubscribedUsers){
+            su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
+            su.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(su.getId()));
+            su.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(su.getId()));
+            su.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(su.getId()));
+        }
+
+        return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
     }
 
     @GetMapping("/profile/{userId}")
@@ -68,9 +100,18 @@ public class UserController {
                     if(!followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()).isApproved())
                         viewingUser.setUserFollowStatus(2);
                 } else {
-                    //Logged in user is
+                    //Logged in user is not following this User.
                     viewingUser.setUserFollowStatus(0);
                 }
+
+                viewingUser.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
+                viewingUser.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(userId));
+                viewingUser.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(userId));
+                viewingUser.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(userId));
+
+                //UserProfileResponse up = new UserProfileResponse();
+                //up.setSubscribedUser(viewingUser);
+                //up.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
                 return new ResponseEntity<>(viewingUser, HttpStatus.OK);
             }
         return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
