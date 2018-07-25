@@ -1,5 +1,7 @@
 package com.my.network.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -26,6 +28,7 @@ public class UsersTypes implements Serializable {
 	private MstTypes mstType;
 
 	//bi-directional many-to-one association to Users
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private Users user;

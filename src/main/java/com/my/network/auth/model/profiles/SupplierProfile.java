@@ -1,5 +1,6 @@
 package com.my.network.auth.model.profiles;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.my.network.auth.model.TypeRole;
 import com.my.network.auth.model.Users;
 
@@ -33,6 +34,7 @@ public class SupplierProfile {
 
     @JoinColumn(name = "userId")
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonIgnore
     private Users user;
 
     @JoinColumn(name = "typeRoleId")

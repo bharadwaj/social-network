@@ -70,16 +70,26 @@ public class UserController {
                                                @RequestParam(value = "size", defaultValue = "20") int size) {
 
 
-
         String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
 
         Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
 
-        for(SubscribedUser su: responseSubscribedUsers){
-            su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
-            su.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(su.getId()));
-            su.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(su.getId()));
-            su.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(su.getId()));
+        //TODO
+        for (SubscribedUser su : responseSubscribedUsers) {
+            switch (su.getUserType()) {
+                case 2:
+                    su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
+                    break;
+                case 3:
+                    su.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(su.getId()));
+                    break;
+                case 4:
+                    su.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(su.getId()));
+                    break;
+                case 5:
+                    su.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(su.getId()));
+                    break;
+            }
         }
 
         return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
@@ -89,31 +99,31 @@ public class UserController {
     public ResponseEntity viewProfileOfAUser(@PathVariable String userId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //We want to see the profile of somebody else other than loggedIn User.
-            //If user is valid and the logged in user is also valid.
-            if(subscribedUserRepository.findById(userId).isPresent() && usersRepository.existsById(loggedInUserId)) {
-                SubscribedUser viewingUser = subscribedUserRepository.findById(userId).get();
-                //Users loggedInUser = usersRepository.findById(loggedInUserId).get();
-                //if the logged-in user is following a user.
-                if(followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()) != null){
-                    viewingUser.setUserFollowStatus(1);
-                    //If the logged in user is following the user to view, but not approved.
-                    if(!followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()).isApproved())
-                        viewingUser.setUserFollowStatus(2);
-                } else {
-                    //Logged in user is not following this User.
-                    viewingUser.setUserFollowStatus(0);
-                }
-
-                viewingUser.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
-                viewingUser.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(userId));
-                viewingUser.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(userId));
-                viewingUser.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(userId));
-
-                //UserProfileResponse up = new UserProfileResponse();
-                //up.setSubscribedUser(viewingUser);
-                //up.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
-                return new ResponseEntity<>(viewingUser, HttpStatus.OK);
+        //If user is valid and the logged in user is also valid.
+        if (subscribedUserRepository.findById(userId).isPresent() && usersRepository.existsById(loggedInUserId)) {
+            SubscribedUser viewingUser = subscribedUserRepository.findById(userId).get();
+            //Users loggedInUser = usersRepository.findById(loggedInUserId).get();
+            //if the logged-in user is following a user.
+            if (followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()) != null) {
+                viewingUser.setUserFollowStatus(1);
+                //If the logged in user is following the user to view, but not approved.
+                if (!followingRepository.findByUserIdAndFollowingUserId(loggedInUserId, viewingUser.getId()).isApproved())
+                    viewingUser.setUserFollowStatus(2);
+            } else {
+                //Logged in user is not following this User.
+                viewingUser.setUserFollowStatus(0);
             }
+
+            viewingUser.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
+            viewingUser.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(userId));
+            viewingUser.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(userId));
+            viewingUser.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(userId));
+
+            //UserProfileResponse up = new UserProfileResponse();
+            //up.setSubscribedUser(viewingUser);
+            //up.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(userId));
+            return new ResponseEntity<>(viewingUser, HttpStatus.OK);
+        }
         return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
     }
 
@@ -121,15 +131,15 @@ public class UserController {
      * Useful for populating the activity of a user or notifications.
      */
     @GetMapping("/likes/{userId}")
-    public ResponseEntity allLikesOfUser(@PathVariable String userId){
+    public ResponseEntity allLikesOfUser(@PathVariable String userId) {
         return new ResponseEntity<>(postLikeRepository.allLikesOfUser(userId), HttpStatus.OK);
     }
 
     @PostMapping(value = "/new")
-    public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser){
+    public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser) {
 
 
-        if(!usersRepository.findById(toBeSubscribedUser.getId()).isPresent())
+        if (!usersRepository.findById(toBeSubscribedUser.getId()).isPresent())
             return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User does not exist in MyDukan DB.", 400, null), HttpStatus.BAD_REQUEST);
 
         Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
@@ -157,19 +167,28 @@ public class UserController {
     }
 
     @GetMapping("/init/existing")
-    public ResponseEntity initSubscribeExistingUsers(){
-        Iterable<Users> existingUsers =  usersRepository.findAll();
+    public ResponseEntity initSubscribeExistingUsers() {
+        Iterable<Users> existingUsers = usersRepository.findAll(PageRequest.of(0, 100));
         String userId;
 
-        for(Users u: existingUsers){
-            SubscribedUser toSave = new SubscribedUser();
-            userId = u.getUserId();
-            toSave.setId(userId);
-            toSave.setName(u.getName());
-            toSave.setEmail(u.getEmail());
-            toSave.setContactNumber(u.getContactNumber());
-            subscribedUserRepository.save(toSave);
+        for (int i = 1; i <= ((Page<Users>) existingUsers).getTotalPages(); i++) {
+            for (Users u : existingUsers) {
+                SubscribedUser toSave = new SubscribedUser();
+                userId = u.getUserId();
+                toSave.setId(userId);
+                toSave.setName(u.getName());
+                toSave.setEmail(u.getEmail());
+                toSave.setContactNumber(u.getContactNumber());
+                if (u.getUsersTypes().size() > 0) {
+                    toSave.setUserType(u.getUsersTypes().get(0).getMstType().getTypeId());
+                    toSave.setUserTypeName(u.getUsersTypes().get(0).getMstType().getTypeName());
+                    //toSave.setDesignation();
+                }
+                subscribedUserRepository.save(toSave);
+            }
+            existingUsers = usersRepository.findAll(PageRequest.of(i, 100));
         }
+
         return new ResponseEntity<>("Loaded existing Users.", HttpStatus.OK);
     }
 

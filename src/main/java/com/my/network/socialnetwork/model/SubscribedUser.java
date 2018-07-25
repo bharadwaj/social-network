@@ -40,6 +40,10 @@ public class SubscribedUser {
 
     private String userName;
 
+    private String designation;
+
+    private String location;
+
     @Column(name = "userPassword")
     private String password;
 
@@ -80,6 +84,10 @@ public class SubscribedUser {
     private String state;
 
     private String countryCode;
+
+    private int userType;
+
+    private String userTypeName;
 
     /*
     * 0 = User is not Following
@@ -360,5 +368,37 @@ public class SubscribedUser {
 
     public void setSupplierProfile(SupplierProfile supplierProfile) {
         this.supplierProfile = supplierProfile;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public void setUserTypeName(String userTypeName) {
+        this.userTypeName = userTypeName;
+    }
+
+    public String getUserTypeName() {
+        return userTypeName;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
