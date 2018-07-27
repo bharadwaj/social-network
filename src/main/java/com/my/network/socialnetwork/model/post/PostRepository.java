@@ -17,6 +17,9 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
     @Query("select p from Post p where p.isPublicPost = true ORDER BY p.createDate desc")
     List<Post> feedOfUser(@Param("userId") String userId, Pageable pageable);
 
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.createDate desc")
+    Page<Post> pageFeedOfUser(@Param("userId") String userId, Pageable pageable);
+
     @Query("select p from Post p where p.uniqueHandle = :uniqueHandle")
     Post findByUniqueHandle(@Param("uniqueHandle") String uniqueHandle);
 

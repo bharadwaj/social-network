@@ -6,6 +6,7 @@ import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class PostController {
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
     PostLikeRepository postLikeRepository;
@@ -220,14 +220,17 @@ public class PostController {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
-                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN,
+                        "You cannot make edits to this post."),
+                        HttpStatus.FORBIDDEN);
 
             postToUpdate.setPriceLists(post.getPriceLists());
 
             return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
         }
         //No post exists return bad request.
-        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Either Post or User is invalid."),
+                HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/rfq")
@@ -237,14 +240,17 @@ public class PostController {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
-                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN,
+                        "You cannot make edits to this post."),
+                        HttpStatus.FORBIDDEN);
 
             postToUpdate.setRequestForQuotations(post.getRequestForQuotations());
 
             return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
         }
         //No post exists return bad request.
-        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Either Post or User is invalid."),
+                HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/schemes")
@@ -254,7 +260,9 @@ public class PostController {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
-                return new ResponseEntity<>("You cannot make edits to this post.",HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN,
+                        "You cannot make edits to this post."),
+                        HttpStatus.FORBIDDEN);
 
             postToUpdate.setValueSchemes(post.getValueSchemes());
             postToUpdate.setQuantityPriceSchemes(post.getQuantityPriceSchemes());
@@ -262,7 +270,8 @@ public class PostController {
             return new ResponseEntity<>(postRepository.save(postToUpdate), HttpStatus.OK);
         }
         //No post exists return bad request.
-        return new ResponseEntity<>("Either Post or User is invalid.", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Either Post or User is invalid."),
+                HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/{postId}")
@@ -271,8 +280,8 @@ public class PostController {
         //Check if 1. Post is present.
         // 2. User is present.
         // 3. The owner of the post and current user session is the same.
-        if (!postRepository.findById(postId).isPresent() ||
-                !subscribedUserRepository.findById(userId).isPresent() ||
+        if (!postRepository.existsById(postId) ||
+                !subscribedUserRepository.existsById(userId) ||
                 !postRepository.findById(postId).get().getUser().getId().equals(userId))
             return new ResponseEntity(HttpStatus.NOT_FOUND);
 
@@ -319,7 +328,8 @@ public class PostController {
     }
 
     @GetMapping(value = {"/feed"})
-    public ResponseEntity userFeed(HttpServletRequest request, @RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity userFeed(HttpServletRequest request,
+                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                    @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
@@ -335,6 +345,43 @@ public class PostController {
                 p.setLiked(true);
             }
             //Did current user
+            if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
+                p.setReported(true);
+            }
+            // Set the Follow Button of each Post.
+            if (followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()) != null) {
+                p.getUser().setUserFollowStatus(1);
+
+                if (!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
+                    p.getUser().setUserFollowStatus(2);
+            } else {
+                //The logged in user is not following the creator of Post.
+                p.getUser().setUserFollowStatus(0);
+            }
+
+        }
+
+        return new ResponseEntity<>(resPosts, HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"feed/v2"})
+    public ResponseEntity newUserFeed(HttpServletRequest request,
+                                   @RequestParam(value = "page", defaultValue = "0") int page,
+                                   @RequestParam(value = "size", defaultValue = "20") int size) {
+        String token = request.getHeader(tokenHeader);
+        String userId = jwtTokenUtil.getUserIdFromToken(token);
+
+        //The User of the jwt token is not present in the DB.
+        if(!subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
+
+        Page<Post> resPosts = postRepository.pageFeedOfUser(userId, PageRequest.of(page, size));
+
+        for (Post p : resPosts) {
+            if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
+                p.setLiked(true);
+            }
+            //Did current user mark report.
             if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
                 p.setReported(true);
             }

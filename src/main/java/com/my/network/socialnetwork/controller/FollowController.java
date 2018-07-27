@@ -1,14 +1,21 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
+import com.my.network.myrequest.FollowPhoneContact;
+import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
+import com.my.network.socialnetwork.model.response.ErrorResponse;
+import com.my.network.socialnetwork.model.response.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/follow")
@@ -27,101 +34,212 @@ public class FollowController {
     private String tokenHeader;
 
     /*
-    * Suggest which user to follow.
-    * When the user is in his homepage the user gets
-    * TODO: 1. get userId from jwt
-    * TODO: 2. Recommendations will plugin here.
-    * */
+     * Suggest which user to follow.
+     * When the user is in his homepage the user gets
+     * TODO: 1. get userId from jwt
+     * TODO: 2. Recommendations will plugin here.
+     * */
     @GetMapping("/{userId}")
-    public ResponseEntity suggestUsersToFollow(@PathVariable String userId){
+    public ResponseEntity suggestUsersToFollow(@PathVariable String userId) {
         return new ResponseEntity<>(subscribedUserRepository.suggestUsersToFollow(userId), HttpStatus.OK);
     }
 
-    /*
-    * Follow a friend:
-    * Params: UserId, FollowUserId
-    * TODO: 1. In future get userId with the context so authorization is handled
-    * */
+    /**
+     * Follow a friend:
+     * Params: UserId, FollowUserId
+     */
     @PostMapping("/")
-    public ResponseEntity followUser(@RequestBody Following following, @RequestHeader(value= "Authorization") String authTokenHeader) {
+    public ResponseEntity followUser(@Valid @RequestBody Following following, @RequestHeader(value = "Authorization") String authTokenHeader, Boolean defaultAccept) {
 
-        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //Boolean userIsValid = subscribedUserRepository.findById(currentUserId).isPresent();
+        Optional<SubscribedUser> followUser = subscribedUserRepository.findById(following.getFollowingUser().getId());
+        Optional<SubscribedUser> currentUser = subscribedUserRepository.findById(currentUserId);
+
         //Validate follow user & user's existence.
-        Boolean userIsValid = subscribedUserRepository.findById(userId).isPresent();
-        Boolean followingUserIsValid = subscribedUserRepository.findById(following.getFollowingUser().getId()).isPresent();
+        if (!currentUser.isPresent() || !followUser.isPresent() ||
+                currentUserId.equals(following.getFollowingUser().getId()) )
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Invalid User to Follow"), HttpStatus.BAD_REQUEST);
 
-        if(!userIsValid || !followingUserIsValid || (userId == following.getFollowingUser().getId()))
-            return new ResponseEntity<>("Invalid User to Follow", HttpStatus.BAD_REQUEST);
+        //Return bad request if already user is following user.
+        Following isCurrentUserFollowingUser = followingRepository.findByUserIdAndFollowingUserId(currentUserId, followUser.get().getId());
+        if (isCurrentUserFollowingUser != null)
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.OK, "You are already following this user."), HttpStatus.OK);
 
-        //TODO Return bad request if already user is following user.
-        /*if()
-            return new ResponseEntity<>("You are already following the user.",HttpStatus.BAD_REQUEST);*//*
-
-        *//*
-        * Get from jwt token and set following user Id.
-        * following.setCreatedBy(TODO Get the user from jwt token);
-        * */
-        following.setUser(subscribedUserRepository.findById(userId).get());
-        following.setFollowingUser(subscribedUserRepository.findById(following.getFollowingUser().getId()).get());
+        /*
+         * Get from jwt token and set following user Id.
+         * following.setCreatedBy(TODO Get the user from jwt token);
+         * */
+        following.setUser(currentUser.get());
+        following.setFollowingUser(followUser.get());
 
         // Check if the user's isOpenFollow is true.
         following.setApproved(false);
-        if(following.getFollowingUser().isOpenFollow())
+        if (following.getFollowingUser().isOpenFollow() || defaultAccept)
             following.setApproved(true);
 
-        return new ResponseEntity<>(followingRepository.save(following), HttpStatus.CREATED);
+        Following savedFollow = followingRepository.save(following);
+
+        // Update both users following and followers count.
+        if(savedFollow != null){
+            //Current User's Following Count gets incremented.
+            currentUser.get().setFollowingCount(followingRepository.countOfFollowingByUserId(currentUserId));
+            //Following User gets a follower count incremented.
+            followUser.get().setFollowersCount(followingRepository.countOfFollowersByUserId(followUser.get().getId()));
+            subscribedUserRepository.save(currentUser.get());
+            subscribedUserRepository.save(followUser.get());
+        }
+
+        return new ResponseEntity<>(savedFollow, HttpStatus.CREATED);
     }
 
-    /*
-    * Un-follow a friend:
-    * Params: UserId, FollowerUserId
-    * TODO: 1. In future get userId with the context
-    * */
+    /**
+     * Un-follow a friend:
+     * Params: UserId, FollowerUserId
+     */
     @DeleteMapping("/")
-    public ResponseEntity unfollowUser(@RequestBody Following following) {
+    public ResponseEntity unfollowUser(@Valid @RequestBody Following following, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+
+        Optional<Following> optionalFollowing = followingRepository.findById(following.getId());
+        if(!optionalFollowing.isPresent() || !optionalFollowing.get().getUser().getId().equals(currentUserId)){
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Not a valid UnFollow request."), HttpStatus.BAD_REQUEST);
+        }
+
         followingRepository.deleteById(following.getId());
-        System.out.println(following.getId());
+
+        updateFollowCounts(following, currentUserId);
+
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //TODO: get rid of userId Path variable.
-    @GetMapping("/pending")
-    public ResponseEntity pendingFollowRequests( @RequestHeader(value= "Authorization") String authTokenHeader){
-        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        return new ResponseEntity<>(followingRepository.pendingFollowingRequest(userId), HttpStatus.OK);
-    }
-
-    //TODO: get rid of userId Path variable.
+    /**
+     * List of Pending friend requests current User can accept.
+     */
     @GetMapping("/accept")
-    public ResponseEntity getFollowRequests(@RequestHeader(value= "Authorization") String authTokenHeader){
+    public ResponseEntity getFollowRequests(@RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.followRequestsToApproveByUser(userId), HttpStatus.OK);
     }
 
     @PostMapping("/accept")
-    public ResponseEntity approveFollowRequest(@RequestBody Following following){
-        following = followingRepository.findById(following.getId()).get();
+    public ResponseEntity approveFollowRequest(@RequestBody Following following, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<Following> opF = followingRepository.findById(following.getId());
+
+        if(!currentUserId.equals(following.getUser().getId()) || !opF.isPresent()) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "You cannot accept this request.", "/follow/accept")
+                    , HttpStatus.FORBIDDEN);
+        }
+
+        following = opF.get();
         following.setApproved(true);
-        return new ResponseEntity<>(followingRepository.save(following), HttpStatus.OK);
+        Following f = followingRepository.save(following);
+
+        updateFollowCounts(following, currentUserId);
+
+        return new ResponseEntity<>(f, HttpStatus.OK);
     }
 
-    /*
-    * List Users current user is Following.
-    * Params: userId
-    * */
+    private void updateFollowCounts(Following following, String currentUserId){
+        Optional<SubscribedUser> followUser = subscribedUserRepository.findById(following.getFollowingUser().getId());
+        Optional<SubscribedUser> currentUser = subscribedUserRepository.findById(currentUserId);
+
+
+        currentUser.get().setFollowingCount(followingRepository.countOfFollowingByUserId(currentUserId));
+        //Following User gets a follower count incremented.
+        followUser.get().setFollowersCount(followingRepository.countOfFollowersByUserId(followUser.get().getId()));
+        subscribedUserRepository.save(currentUser.get());
+        subscribedUserRepository.save(followUser.get());
+    }
+
+    /**
+     * List of All Current User's friend requests yet to be approved.
+     */
+    @GetMapping("/pending")
+    public ResponseEntity pendingFollowRequests(@RequestHeader(value = "Authorization") String authTokenHeader) {
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        return new ResponseEntity<>(followingRepository.pendingFollowingRequest(userId), HttpStatus.OK);
+    }
+
+    /**
+     * List Users current user is Following.
+     * Params: userId
+     */
     @GetMapping("/following")
-    public ResponseEntity listOfFollowingUsers(@RequestHeader(value= "Authorization") String authTokenHeader) {
+    public ResponseEntity listOfFollowingUsers(@RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.findFollowingByUserId(userId), HttpStatus.OK);
     }
 
-    /*
-    * List Users who are following current user.
-    * Params: userId
-    * */
+    /**
+     * List Users who are following current user.
+     * Params: userId
+     */
     @GetMapping("/followers")
-    public ResponseEntity listOfFollowers(@RequestHeader(value= "Authorization") String authTokenHeader) {
+    public ResponseEntity listOfFollowers(@RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         return new ResponseEntity<>(followingRepository.findFollowersByUserId(userId), HttpStatus.OK);
+    }
+
+    /**
+     * Pass the list of Phone Numbers and map them to Subscribed users and Current User starts following.
+     */
+    @PostMapping("/phone/contact-numbers")
+    public ResponseEntity followContactNumbersFromPhone(@RequestBody List<FollowPhoneContact> phoneContactList,
+                                                        @RequestHeader(value = "Authorization") String authTokenHeader) {
+
+        final String validEmailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        int countOfProfilesAdded = 0;
+
+
+        for (FollowPhoneContact followPhoneContact : phoneContactList) {
+            SubscribedUser toFollowUser = null;
+
+            //First preference to phone number
+            if (followPhoneContact.getPhoneNumber() == null ||
+                    !followPhoneContact.getPhoneNumber().isEmpty() ||
+                    cleanPhoneNumber(followPhoneContact.getPhoneNumber()) != null) {
+                //Valid Phone Number. Get Subscribed user from the phone number.
+                toFollowUser = subscribedUserRepository.getSubscribedUserByPhoneNumber(followPhoneContact.getPhoneNumber());
+
+            } else if (followPhoneContact.getEmail() == null ||
+                    !followPhoneContact.getEmail().isEmpty() ||
+                    followPhoneContact.getEmail().matches(validEmailRegex)) {
+                //Valid email.
+                toFollowUser = subscribedUserRepository.getSubscribedUserByEmail(followPhoneContact.getEmail());
+            }
+
+            if (toFollowUser != null) {
+                ResponseEntity r = followUser(new Following(toFollowUser), authTokenHeader, true);
+                if (r.getStatusCode() == HttpStatus.CREATED)
+                    countOfProfilesAdded++;
+
+            }
+        }
+
+        return new ResponseEntity<>(new SuccessResponse(HttpStatus.CREATED,
+                String.valueOf(countOfProfilesAdded) + "   Profiles have been added."),
+                HttpStatus.CREATED);
+    }
+
+    private String cleanPhoneNumber(String toCleanPhoneNumber) {
+        String cleanedNumber = toCleanPhoneNumber;
+        if (toCleanPhoneNumber.startsWith("+91")) {
+            cleanedNumber = toCleanPhoneNumber.substring("+91".length());
+        }
+        if (toCleanPhoneNumber.startsWith("0")) {
+            cleanedNumber = toCleanPhoneNumber.substring("0".length());
+        }
+
+        cleanedNumber = cleanedNumber.replaceAll("[\\D]", "");
+
+        if (cleanedNumber.matches("[0-9]+") && cleanedNumber.length() == 10) {
+            return cleanedNumber;
+        }
+
+        return null;
+
     }
 }

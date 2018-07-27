@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -21,7 +22,7 @@ public class Following {
     @JoinColumn(name = "user_id")
     private SubscribedUser user;
 
-    //TODO typo, change to following
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "following_user_id")
     private SubscribedUser followingUser;
@@ -38,6 +39,13 @@ public class Following {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyDate;
+
+    public Following() {
+    }
+
+    public Following(SubscribedUser followingUser) {
+        this.followingUser = followingUser;
+    }
 
     public Long getId() {
         return id;

@@ -1,7 +1,6 @@
 package com.my.network.socialnetwork.model;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -16,4 +15,10 @@ public interface SubscribedUserRepository extends PagingAndSortingRepository<Sub
 
     @Query("SELECT u FROM SubscribedUser u WHERE u.userName = :userId")
     SubscribedUser getSubscribedUser(@Param("userId") String userId);
+
+    @Query("SELECT u FROM SubscribedUser u WHERE u.contactNumber = :phoneNumber")
+    SubscribedUser getSubscribedUserByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+
+    @Query("SELECT u FROM SubscribedUser u WHERE u.email = :email")
+    SubscribedUser getSubscribedUserByEmail(@Param("email") String email);
 }

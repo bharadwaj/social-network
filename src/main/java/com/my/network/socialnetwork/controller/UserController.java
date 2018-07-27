@@ -58,6 +58,12 @@ public class UserController {
     @Autowired
     private ServiceCenterProfileRepository serviceCenterProfileRepository;
 
+    @GetMapping("/")
+    public ResponseEntity viewCurrentUserProfile(@RequestHeader(value = "Authorization") String authTokenHeader) {
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        return new ResponseEntity<>(subscribedUserRepository.findById(currentUserId), HttpStatus.OK);
+    }
+
     @GetMapping("/all")
     public ResponseEntity viewAllUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
         return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
@@ -70,7 +76,7 @@ public class UserController {
                                                @RequestParam(value = "size", defaultValue = "20") int size) {
 
 
-        String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
 
         Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
 
@@ -149,6 +155,7 @@ public class UserController {
         toBeSubscribedUser.setContactNumber(existingUser.getContactNumber());
         toBeSubscribedUser.setName(existingUser.getName());
         toBeSubscribedUser.setEmail(existingUser.getEmail());
+        toBeSubscribedUser.setOpenFollow(true);
         //toBeSubscribedUser.setAccessToken(existingUser.getAccessToken());
         //toBeSubscribedUser.setGcmToken(existingUser.getGcmToken());
 
@@ -179,6 +186,7 @@ public class UserController {
                 toSave.setName(u.getName());
                 toSave.setEmail(u.getEmail());
                 toSave.setContactNumber(u.getContactNumber());
+                toSave.setOpenFollow(true);
                 if (u.getUsersTypes().size() > 0) {
                     toSave.setUserType(u.getUsersTypes().get(0).getMstType().getTypeId());
                     toSave.setUserTypeName(u.getUsersTypes().get(0).getMstType().getTypeName());

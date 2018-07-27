@@ -8,9 +8,12 @@ import com.my.network.auth.model.profiles.SupplierProfile;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.post.Post;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -113,6 +116,14 @@ public class SubscribedUser {
 
     @Transient
     private SupplierProfile supplierProfile;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
 
     public String getId() {
         return id;
@@ -400,5 +411,21 @@ public class SubscribedUser {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
     }
 }
