@@ -47,6 +47,10 @@ public class SubscribedUser {
 
     private String location;
 
+    private String mainTitle;
+
+    private String subTitle;
+
     @Column(name = "userPassword")
     private String password;
 
@@ -427,5 +431,21 @@ public class SubscribedUser {
 
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public String getMainTitle() {
+        return mainTitle;
+    }
+
+    public void setMainTitle(String mainTitle) {
+        this.mainTitle = mainTitle;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
     }
 }

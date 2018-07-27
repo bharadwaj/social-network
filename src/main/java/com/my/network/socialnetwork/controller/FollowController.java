@@ -185,7 +185,7 @@ public class FollowController {
     /**
      * Pass the list of Phone Numbers and map them to Subscribed users and Current User starts following.
      */
-    @PostMapping("/phone/contact-numbers")
+    @PostMapping("/phone/sync")
     public ResponseEntity followContactNumbersFromPhone(@RequestBody List<FollowPhoneContact> phoneContactList,
                                                         @RequestHeader(value = "Authorization") String authTokenHeader) {
 
