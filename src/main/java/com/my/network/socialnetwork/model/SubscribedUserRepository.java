@@ -17,8 +17,8 @@ public interface SubscribedUserRepository extends PagingAndSortingRepository<Sub
     SubscribedUser getSubscribedUser(@Param("userId") String userId);
 
     @Query("SELECT u FROM SubscribedUser u WHERE u.contactNumber = :phoneNumber")
-    SubscribedUser getSubscribedUserByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+    List<SubscribedUser> getSubscribedUserByPhoneNumber(@Param("phoneNumber") String phoneNumber);
 
     @Query("SELECT u FROM SubscribedUser u WHERE u.email = :email")
-    SubscribedUser getSubscribedUserByEmail(@Param("email") String email);
+    List<SubscribedUser> getSubscribedUserByEmail(@Param("email") String email);
 }

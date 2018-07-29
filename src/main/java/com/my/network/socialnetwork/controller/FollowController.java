@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -195,26 +196,30 @@ public class FollowController {
 
 
         for (FollowPhoneContact followPhoneContact : phoneContactList) {
-            SubscribedUser toFollowUser = null;
+
+            List<SubscribedUser> toFollowFullList = null;
 
             //First preference to phone number
             if (followPhoneContact.getPhoneNumber() == null ||
                     !followPhoneContact.getPhoneNumber().isEmpty() ||
                     cleanPhoneNumber(followPhoneContact.getPhoneNumber()) != null) {
                 //Valid Phone Number. Get Subscribed user from the phone number.
-                toFollowUser = subscribedUserRepository.getSubscribedUserByPhoneNumber(followPhoneContact.getPhoneNumber());
+                toFollowFullList = subscribedUserRepository.getSubscribedUserByPhoneNumber(followPhoneContact.getPhoneNumber());
 
             } else if (followPhoneContact.getEmail() == null ||
                     !followPhoneContact.getEmail().isEmpty() ||
                     followPhoneContact.getEmail().matches(validEmailRegex)) {
-                //Valid email.
-                toFollowUser = subscribedUserRepository.getSubscribedUserByEmail(followPhoneContact.getEmail());
+                //Check for a valid email.
+                toFollowFullList = subscribedUserRepository.getSubscribedUserByEmail(followPhoneContact.getEmail());
             }
 
-            if (toFollowUser != null) {
-                ResponseEntity r = followUser(new Following(toFollowUser), authTokenHeader, true);
-                if (r.getStatusCode() == HttpStatus.CREATED)
-                    countOfProfilesAdded++;
+            if (toFollowFullList != null) {
+
+                for(SubscribedUser toFollowUser: toFollowFullList){
+                    ResponseEntity r = followUser(new Following(toFollowUser), authTokenHeader, true);
+                    if (r.getStatusCode() == HttpStatus.CREATED)
+                        countOfProfilesAdded++;
+                }
 
             }
         }

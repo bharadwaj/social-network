@@ -23,56 +23,51 @@ public class SubscribedUser {
     @Column(unique=true, nullable=false)
     private String id;
 
-    private Timestamp createdOn;
-
-    private boolean isApproved;
-
-    private boolean isDeleted;
-
-    private boolean isLocked;
-
-    private Timestamp lastUpdatedOn;
-
+    /**
+     * Basic Information: Name, UserName, Email, ContactNumber
+     * */
     private String name;
-
-    @Column(name = "userAccessToken")
-    private String accessToken;
-
+    private String userName;
     @Column(name = "userEmail")
     private String email;
-
-    private String userName;
-
-    private String designation;
-
-    private String location;
-
-    private String mainTitle;
-
-    private String subTitle;
-
-    @Column(name = "userPassword")
-    private String password;
-
     @Column(name = "userPhoneNumber")
     private String contactNumber;
 
-    @Column(name = "userRefreshToken")
-    private String refreshToken;
-
-    private String userSalt;
-
+    /**
+     * Titles useful displaying Profile: Main, Sub, TypeName, TypeRole
+     * */
+    private String mainTitle;
+    private String subTitle;
+    private int userMstTypeId;
+    private String userMstTypeName;
+    private String userTypeRoleName;
     private String userWebsite;
 
-    @Column(name = "gcmToken")
-    private String gcmToken;
-
-
+    /**
+     * Social Network Settings
+     * */
     private boolean isOpenFollow;
-
     private boolean isOpenMessage;
-
     private boolean isOpenProfile;
+
+    private int followingCount;
+    private int followersCount;
+
+    /**
+     * Address for Recommendations and Profile Display
+     * */
+    private String location;
+    private Integer zipCode;
+    private String state;
+    private String countryCode;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
 
     @JsonIgnore
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
@@ -86,28 +81,14 @@ public class SubscribedUser {
     @ManyToMany(mappedBy = "groupMemberUsers", cascade = CascadeType.ALL)
     private List<UserGroup> userGroups;
 
-    private Long zipCode;
-
-    private String state;
-
-    private String countryCode;
-
-    private int userType;
-
-    private String userTypeName;
-
+    //  For Individual Metadata Generation of Response  //
     /*
-    * 0 = User is not Following
-    * 1 = user is Following
-    * 2 = User is Following but not Approved
-    * */
+     * 0 = User is not Following
+     * 1 = user is Following
+     * 2 = User is Following but not Approved
+     * */
     @Transient
     private int userFollowStatus;
-
-    //TODO
-    private int followingCount;
-
-    private int followersCount;
 
     @Transient
     private CompanyProfile companyProfile;
@@ -121,13 +102,11 @@ public class SubscribedUser {
     @Transient
     private SupplierProfile supplierProfile;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
+    private boolean isApproved;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modifyDate;
+    private boolean isDeleted;
+
+    private boolean isLocked;
 
     public String getId() {
         return id;
@@ -193,11 +172,11 @@ public class SubscribedUser {
         this.userGroups = userGroups;
     }
 
-    public Long getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Long zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -215,14 +194,6 @@ public class SubscribedUser {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
-    }
-
-    public Timestamp getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Timestamp createdOn) {
-        this.createdOn = createdOn;
     }
 
     public boolean isApproved() {
@@ -249,22 +220,6 @@ public class SubscribedUser {
         isLocked = locked;
     }
 
-    public Timestamp getLastUpdatedOn() {
-        return lastUpdatedOn;
-    }
-
-    public void setLastUpdatedOn(Timestamp lastUpdatedOn) {
-        this.lastUpdatedOn = lastUpdatedOn;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -280,15 +235,6 @@ public class SubscribedUser {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getContactNumber() {
         return contactNumber;
     }
@@ -297,36 +243,12 @@ public class SubscribedUser {
         this.contactNumber = contactNumber;
     }
 
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public String getUserSalt() {
-        return userSalt;
-    }
-
-    public void setUserSalt(String userSalt) {
-        this.userSalt = userSalt;
-    }
-
     public String getUserWebsite() {
         return userWebsite;
     }
 
     public void setUserWebsite(String userWebsite) {
         this.userWebsite = userWebsite;
-    }
-
-    public String getGcmToken() {
-        return gcmToken;
-    }
-
-    public void setGcmToken(String gcmToken) {
-        this.gcmToken = gcmToken;
     }
 
     public int getUserFollowStatus() {
@@ -385,28 +307,28 @@ public class SubscribedUser {
         this.supplierProfile = supplierProfile;
     }
 
-    public int getUserType() {
-        return userType;
+    public int getUserMstTypeId() {
+        return userMstTypeId;
     }
 
-    public void setUserType(int userType) {
-        this.userType = userType;
+    public void setUserMstTypeId(int userMstTypeId) {
+        this.userMstTypeId = userMstTypeId;
     }
 
-    public void setUserTypeName(String userTypeName) {
-        this.userTypeName = userTypeName;
+    public void setUserTypeRoleName(String userTypeRoleName) {
+        this.userTypeRoleName = userTypeRoleName;
     }
 
-    public String getUserTypeName() {
-        return userTypeName;
+    public String getUserTypeRoleName() {
+        return userTypeRoleName;
     }
 
-    public String getDesignation() {
-        return designation;
+    public String getUserMstTypeName() {
+        return userMstTypeName;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setUserMstTypeName(String userMstTypeName) {
+        this.userMstTypeName = userMstTypeName;
     }
 
     public String getLocation() {

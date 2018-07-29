@@ -1,22 +1,39 @@
 package com.my.network.auth.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  * The persistent class for the users database table.
- * 
+ *
  */
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
 public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "userId")
 	private String userId;
 
 	private Timestamp createdOn;
@@ -55,13 +72,26 @@ public class Users implements Serializable {
 	@Column(name = "gcmToken")
 	private String gcmToken;
 
+	@Transient
+	private String id;
+
+	// bi-directional many-to-one association to UserAddress
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<UserAddress> userAddresses;
+
 
 	// bi-directional many-to-one association to UsersTypes
+	// @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<UsersTypes> usersTypes;
 
+	//TODO add relation for Profiles.
+
 	public Users() {
 	}
+
+
 
 	public Users(String id) {
 		this.userId = id;
@@ -195,6 +225,28 @@ public class Users implements Serializable {
 		return gcmToken;
 	}
 
+	public List<UserAddress> getUserAddresses() {
+		return this.userAddresses;
+	}
+
+	public void setUserAddresses(List<UserAddress> userAddresses) {
+		this.userAddresses = userAddresses;
+	}
+
+	public UserAddress addUserAddress(UserAddress userAddress) {
+		getUserAddresses().add(userAddress);
+		userAddress.setUser(this);
+
+		return userAddress;
+	}
+
+	public UserAddress removeUserAddress(UserAddress userAddress) {
+		getUserAddresses().remove(userAddress);
+		userAddress.setUser(null);
+
+		return userAddress;
+	}
+
 	public List<UsersTypes> getUsersTypes() {
 		return this.usersTypes;
 	}
@@ -203,4 +255,25 @@ public class Users implements Serializable {
 		this.usersTypes = usersTypes;
 	}
 
+	public UsersTypes addUsersType(UsersTypes usersType) {
+		getUsersTypes().add(usersType);
+		usersType.setUser(this);
+
+		return usersType;
+	}
+
+	public UsersTypes removeUsersType(UsersTypes usersType) {
+		getUsersTypes().remove(usersType);
+		usersType.setUser(null);
+
+		return usersType;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 }

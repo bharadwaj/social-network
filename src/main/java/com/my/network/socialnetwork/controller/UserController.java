@@ -1,28 +1,22 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
+import com.my.network.auth.model.UserAddress;
 import com.my.network.auth.model.Users;
 import com.my.network.auth.model.UsersRepository;
 import com.my.network.auth.model.profiles.*;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
-import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
-import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
 import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
-import com.my.network.socialnetwork.model.response.UserProfileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -80,9 +74,9 @@ public class UserController {
 
         Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
 
-        //TODO
+        /*
         for (SubscribedUser su : responseSubscribedUsers) {
-            switch (su.getUserType()) {
+            switch (su.getUserMstTypeId()) {
                 case 2:
                     su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
                     break;
@@ -96,7 +90,7 @@ public class UserController {
                     su.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(su.getId()));
                     break;
             }
-        }
+        }*/
 
         return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
     }
@@ -104,6 +98,7 @@ public class UserController {
     @GetMapping("/profile/{userId}")
     public ResponseEntity viewProfileOfAUser(@PathVariable String userId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+
         //We want to see the profile of somebody else other than loggedIn User.
         //If user is valid and the logged in user is also valid.
         if (subscribedUserRepository.findById(userId).isPresent() && usersRepository.existsById(loggedInUserId)) {
@@ -144,60 +139,133 @@ public class UserController {
     @PostMapping(value = "/new")
     public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser) {
 
-
         if (!usersRepository.findById(toBeSubscribedUser.getId()).isPresent())
             return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User does not exist in MyDukan DB.", 400, null), HttpStatus.BAD_REQUEST);
 
         Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
 
-
-        toBeSubscribedUser.setId(existingUser.getUserId());
-        toBeSubscribedUser.setContactNumber(existingUser.getContactNumber());
-        toBeSubscribedUser.setName(existingUser.getName());
-        toBeSubscribedUser.setEmail(existingUser.getEmail());
-        toBeSubscribedUser.setOpenFollow(true);
-        //toBeSubscribedUser.setAccessToken(existingUser.getAccessToken());
-        //toBeSubscribedUser.setGcmToken(existingUser.getGcmToken());
-
         //Get Zip Code
-        SubscribedUser newSubscribedUser = subscribedUserRepository.save(toBeSubscribedUser);
+        SubscribedUser newSubscribedUser = subscribedUserRepository.save(mapUserToSubscribedUser(existingUser));
 
-        /*UserGroup zipCodeGroup = userGroupRepository.findDistinctByHashtag(toBeSubscribedUser.getZipCode().toString());
-        List<SubscribedUser> toUpdateUserList = zipCodeGroup.getGroupMemberUsers();
-        if(toUpdateUserList == null){
-            toUpdateUserList = new ArrayList<>();
-        }
-        toUpdateUserList.add(newSubscribedUser);
-        zipCodeGroup.setGroupMemberUsers(toUpdateUserList);
-        userGroupRepository.save(zipCodeGroup);*/
         return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User Successfully Subscribed", 200, newSubscribedUser), HttpStatus.OK);
     }
 
     @GetMapping("/init/existing")
     public ResponseEntity initSubscribeExistingUsers() {
         Iterable<Users> existingUsers = usersRepository.findAll(PageRequest.of(0, 100));
-        String userId;
 
         for (int i = 1; i <= ((Page<Users>) existingUsers).getTotalPages(); i++) {
             for (Users u : existingUsers) {
-                SubscribedUser toSave = new SubscribedUser();
-                userId = u.getUserId();
-                toSave.setId(userId);
-                toSave.setName(u.getName());
-                toSave.setEmail(u.getEmail());
-                toSave.setContactNumber(u.getContactNumber());
-                toSave.setOpenFollow(true);
-                if (u.getUsersTypes().size() > 0) {
-                    toSave.setUserType(u.getUsersTypes().get(0).getMstType().getTypeId());
-                    toSave.setUserTypeName(u.getUsersTypes().get(0).getMstType().getTypeName());
-                    //toSave.setDesignation();
-                }
-                subscribedUserRepository.save(toSave);
+                subscribedUserRepository.save(mapUserToSubscribedUser(u));
             }
             existingUsers = usersRepository.findAll(PageRequest.of(i, 100));
         }
 
         return new ResponseEntity<>("Loaded existing Users.", HttpStatus.OK);
+    }
+
+    private SubscribedUser mapUserToSubscribedUser(Users u) {
+        SubscribedUser toSave = new SubscribedUser();
+        String userId = u.getUserId();
+        //User Details, Name, UserName, Email, Contact Number
+        toSave.setId(userId);
+        toSave.setName(u.getName());
+        toSave.setUserName(u.getUserName());
+        toSave.setEmail(u.getEmail());
+        toSave.setContactNumber(u.getContactNumber());
+
+        //Default Open Follow, Message and Profile
+        toSave.setOpenFollow(true);
+        toSave.setOpenMessage(true);
+        toSave.setOpenProfile(true);
+
+        //Set Address: City, ZipCode, State
+        if (u.getUserAddresses() != null && u.getUserAddresses().size() > 0) {
+            UserAddress ua = u.getUserAddresses().get(0);
+            try {
+                if (ua.getCity() != null && !ua.getCity().isEmpty()) {
+                    toSave.setLocation(ua.getCity());
+                } else {
+                    toSave.setLocation(ua.getState());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if (ua.getPincode() != null && !ua.getPincode().isEmpty()) {
+                    String onlyNumbers = ua.getPincode().replaceAll("[^0-9]", "");
+                    Integer zipCode = Integer.parseInt(onlyNumbers);
+                    toSave.setZipCode(zipCode);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                toSave.setState(ua.getState());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Set Profiles Metadata.
+        if (u.getUsersTypes().size() > 0) {
+            //Set User MST Types
+            toSave.setUserMstTypeId(u.getUsersTypes().get(0).getMstType().getTypeId());
+            toSave.setUserMstTypeName(u.getUsersTypes().get(0).getMstType().getTypeName());
+            switch (toSave.getUserMstTypeId()) {
+                case 2:
+                    RetailerProfile retailerProfileByUserId = retailerProfileRepository.findRetailerProfileByUserId(toSave.getId());
+                    if (retailerProfileByUserId != null) {
+                        //Set User TypeRoles
+                        toSave.setUserTypeRoleName(retailerProfileByUserId.getTypeRoleId().getName());
+                        //Set Main Title
+                        toSave.setMainTitle(retailerProfileByUserId.getTypeRoleId().getName());
+                        //Set Sub Title
+                        toSave.setSubTitle(retailerProfileByUserId.getOutletName());
+                    }
+                    break;
+                case 3:
+                    SupplierProfile supplierProfileByUserId = supplierProfileRepository.findSupplierProfileByUserId(toSave.getId());
+                    if (supplierProfileByUserId != null) {
+                        //Set User TypeRoles
+                        toSave.setUserTypeRoleName(supplierProfileByUserId.getTypeRoleId().getName());
+                        //Set Main Title
+                        toSave.setMainTitle(supplierProfileByUserId.getTypeRoleId().getName());
+                        //Set Sub Title
+                        toSave.setSubTitle(supplierProfileByUserId.getFirstName());
+                    }
+                    break;
+                case 4:
+                    CompanyProfile companyProfileByUserId = companyProfileRepository.findCompanyProfileByUserId(toSave.getId());
+                    if (companyProfileByUserId != null) {
+                        //Set User TypeRoles
+                        toSave.setUserTypeRoleName(companyProfileByUserId.getTypeRoleId().getName());
+                        //Set Main Title
+                        toSave.setMainTitle(companyProfileByUserId.getDesignation());
+                        //Set Sub Title
+                        toSave.setSubTitle(companyProfileByUserId.getTypeRoleId().getName());
+                    }
+                    break;
+                case 5:
+                    ServiceCenterProfile serviceCenterProfileByUserId = serviceCenterProfileRepository.findServiceCenterProfileByUserId(toSave.getId());
+                    if (serviceCenterProfileByUserId != null) {
+                        //Set User TypeRoles
+                        toSave.setUserTypeRoleName("");
+                        //Set Main Title
+                        toSave.setMainTitle(serviceCenterProfileByUserId.getFirmName());
+                        //Set Sub Title
+                        toSave.setSubTitle("");
+                    }
+                    break;
+
+            }//End of Switch Case
+
+
+        }
+        return toSave;
     }
 
 }
