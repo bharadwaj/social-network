@@ -104,6 +104,18 @@ public class UserController {
         return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
     }
 
+    @GetMapping("/suggestions/all")
+    public ResponseEntity suggestAllUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader,
+                                               @RequestParam(value = "page", defaultValue = "0") int page,
+                                               @RequestParam(value = "size", defaultValue = "20") int size) {
+
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+
+        Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
+
+        return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
+    }
+
     @GetMapping("/profile/{userId}")
     public ResponseEntity viewProfileOfAUser(@PathVariable String userId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String loggedInUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
