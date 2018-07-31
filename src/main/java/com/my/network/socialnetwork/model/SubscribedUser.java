@@ -82,7 +82,7 @@ public class SubscribedUser {
     private List<UserGroup> userGroups;
 
     //  For Individual Metadata Generation of Response  //
-    /*
+    /**
      * 0 = User is not Following
      * 1 = user is Following
      * 2 = User is Following but not Approved

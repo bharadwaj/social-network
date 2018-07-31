@@ -1,5 +1,7 @@
 package com.my.network.socialnetwork.model;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +23,9 @@ public interface SubscribedUserRepository extends PagingAndSortingRepository<Sub
 
     @Query("SELECT u FROM SubscribedUser u WHERE u.email = :email")
     List<SubscribedUser> getSubscribedUserByEmail(@Param("email") String email);
+
+
+    @Query("SELECT u FROM SubscribedUser u WHERE u.zipCode >= :zipcode ORDER BY u.zipCode ASC")
+    Page<SubscribedUser> getSuggestedRetailUsersByZipCode(@Param("zipcode") int zipcode, Pageable pageable);
+
 }

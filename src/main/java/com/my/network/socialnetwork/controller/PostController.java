@@ -145,7 +145,8 @@ public class PostController {
     }
 
     /**
-     * If the Current User is following profile user, all profile user posts can be seen*/
+     * If the Current User is following profile user, all profile user posts can be seen
+     * */
     @GetMapping("/user/{profileOfUserId}")
     public ResponseEntity allPostsOfUser(@PathVariable String profileOfUserId,
                                          @RequestHeader(value = "Authorization") String authTokenHeader,

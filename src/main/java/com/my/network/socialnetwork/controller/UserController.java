@@ -10,6 +10,7 @@ import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
+import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -69,10 +72,16 @@ public class UserController {
                                                @RequestParam(value = "page", defaultValue = "0") int page,
                                                @RequestParam(value = "size", defaultValue = "20") int size) {
 
-
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(currentUserId);
 
-        Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.findAll(PageRequest.of(page, size));
+        if(!optCurrentUser.isPresent() || optCurrentUser.get().getZipCode() == null ){
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Not a Valid User or Zipcode is not Present for this User", "/user/suggestion"), HttpStatus.BAD_REQUEST);
+        }
+
+        SubscribedUser currentUser = optCurrentUser.get();
+
+        Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.getSuggestedRetailUsersByZipCode(currentUser.getZipCode(), PageRequest.of(page, size));
 
         /*
         for (SubscribedUser su : responseSubscribedUsers) {
