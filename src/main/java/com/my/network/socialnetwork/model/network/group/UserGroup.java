@@ -7,6 +7,7 @@ import com.my.network.socialnetwork.model.post.Post;
 import javax.persistence.*;
 import java.util.List;
 
+/**About to Delete*/
 @Entity
 public class UserGroup {
     @Id
