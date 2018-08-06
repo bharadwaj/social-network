@@ -1,47 +1,42 @@
 package com.my.network.socialnetwork.notification;
 
-import org.springframework.http.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@RestController
 public class PushNotificationApi {
 
-    public void sendNotification(String jwtAuthToken, List<String> subscribedUserIds, String title, String message, Long postid)
-    {
-        final String uri = "http://mydukan.org:8080/mydukanapi/notification/send";
+    @Value("${notifications.fcm.api_url}")
+    private String FCM_API_URL;
+
+    @Value("${notifications.fcm.auth_key}")
+    private String FCM_AUTH_KEY;
+
+    public ResponseEntity sendNotification(String toFcmToken, String collapseKey, Notification notification, NotificationData data){
 
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, jwtAuthToken);
-        headers.add("x-api-key","eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE1MTM2NTkwMzMsImV4cCI6MTU0NTE5NTAzMywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IndlYiIsIlN1cm5hbWUiOiJXRUIiLCJFbWFpbCI6IndlYkBleGFtcGxlLmNvbSJ9");
+        headers.add(HttpHeaders.AUTHORIZATION, "key="+FCM_AUTH_KEY);
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
 
-        MyDukanNotification myDukanNotification = new MyDukanNotification();
+        NotificationRequest notificationRequest = new NotificationRequest();
 
-        myDukanNotification.setTitle(title);
-        myDukanNotification.setBody(message);
+        notificationRequest.setTo(toFcmToken);
+        notificationRequest.setCollapse_key(collapseKey);
 
-        List<UserGcmToken> userGcmTokenList = new ArrayList<>();
-        UserGcmToken gt;
-        /*for(String token: tokens){
-            gt = new UserGcmToken();
-            gt.setToken(token);
-            userGcmTokenList.add(gt);
-        }*/
 
-        SendNotification notification = new SendNotification();
-        notification.setNotification(myDukanNotification);
-        notification.setTokens(userGcmTokenList);
-        HttpEntity<SendNotification> entity = new HttpEntity<SendNotification>(notification, headers);
+        notificationRequest.setData(data);
+        notificationRequest.setNotification(notification);
 
-//        ResponseEntity<SendNotification> result = restTemplate.exchange(uri, HttpMethod.POST, notification, SendNotification.class);
-        ResponseEntity<SendNotification> responseEntity = restTemplate.postForEntity(uri, entity, SendNotification.class);
+        HttpEntity<NotificationRequest> entity = new HttpEntity<>(notificationRequest, headers);
 
-        System.out.println(responseEntity);
+        return restTemplate.postForEntity(FCM_API_URL, entity, NotificationRequest.class);
     }
 
 }
