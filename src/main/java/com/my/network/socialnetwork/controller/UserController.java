@@ -26,22 +26,22 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
-    PostLikeRepository postLikeRepository;
+    private PostLikeRepository postLikeRepository;
 
     @Autowired
-    UserGroupRepository userGroupRepository;
+    private UserGroupRepository userGroupRepository;
 
     @Autowired
-    UsersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    FollowingRepository followingRepository;
+    private FollowingRepository followingRepository;
 
     @Autowired
     private RetailerProfileRepository retailerProfileRepository;

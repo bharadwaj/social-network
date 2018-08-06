@@ -18,22 +18,22 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
-    CommentRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
-    CommentLikeRepository commentLikeRepository;
+    private CommentLikeRepository commentLikeRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    FollowingRepository followingRepository;
+    private FollowingRepository followingRepository;
 
     @PostMapping(value="/")
     public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
