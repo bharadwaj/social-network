@@ -102,6 +102,8 @@ public class Post {
 
     private Integer priorityList;
 
+    private int promotionFactor;
+
     private Date postExpiryDate;
 
     public Long getId() {
@@ -310,6 +312,14 @@ public class Post {
 
     public void setPriorityList(Integer priorityList) {
         this.priorityList = priorityList;
+    }
+
+    public int getPromotionFactor() {
+        return promotionFactor;
+    }
+
+    public void setPromotionFactor(int promotionFactor) {
+        this.promotionFactor = promotionFactor;
     }
 
     public Date getPostExpiryDate() {

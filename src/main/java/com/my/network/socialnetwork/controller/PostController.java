@@ -35,22 +35,22 @@ public class PostController {
     private PostRepository postRepository;
 
     @Autowired
-    PostLikeRepository postLikeRepository;
+    private PostLikeRepository postLikeRepository;
 
     @Autowired
-    PostVisibilityRepository postVisibilityRepository;
+    private PostVisibilityRepository postVisibilityRepository;
 
     @Autowired
-    PostConditionRepository postConditionRepository;
+    private PostConditionRepository postConditionRepository;
 
     @Autowired
-    BidOnRFQRepository bidOnRFQRepository;
+    private BidOnRFQRepository bidOnRFQRepository;
 
     @Autowired
-    OrderOnPriceListRepository orderOnPriceListRepository;
+    private OrderOnPriceListRepository orderOnPriceListRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -59,13 +59,13 @@ public class PostController {
     private int postEditWindowDays;
 
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
-    FollowingRepository followingRepository;
+    private FollowingRepository followingRepository;
 
     @Autowired
-    PostReportAbuseRepository postReportAbuseRepository;
+    private PostReportAbuseRepository postReportAbuseRepository;
 
     private int DEFAULT_PAGE = 0;
     private int DEFAULT_PAGE_SIZE = 20;
@@ -493,6 +493,20 @@ public class PostController {
     public ResponseEntity searchPosts(@PathVariable String query) {
         //return new ResponseEntity<>(postSearch(query), HttpStatus.OK);
         return new ResponseEntity<>("test", HttpStatus.OK);
+    }
+
+    @PutMapping("promote")
+    public ResponseEntity updatePromotionStatus(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader){
+
+        Optional<Post> optionalPost = postRepository.findById(post.getId());
+
+        if(!optionalPost.isPresent())
+            return new ResponseEntity<>("Invalid Post Id", HttpStatus.BAD_REQUEST);
+
+        Post toSave = optionalPost.get();
+        toSave.setPromotionFactor(optionalPost.get().getPromotionFactor());
+
+        return new ResponseEntity<>(postRepository.save(toSave), HttpStatus.OK);
     }
 
     private void updateLikesOfPost(Long postId) {

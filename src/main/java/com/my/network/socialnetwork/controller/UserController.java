@@ -163,20 +163,6 @@ public class UserController {
         return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("profile/promote")
-    public ResponseEntity updatePromotionStatus(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
-
-        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(su.getId());
-
-        if(!optUser.isPresent())
-            return new ResponseEntity<>("Invalid SubsbscribedUser", HttpStatus.BAD_REQUEST);
-
-        SubscribedUser toSave = optUser.get();
-        toSave.setPromotionFactor(optUser.get().getPromotionFactor());
-
-        return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
-    }
-
     @PutMapping("profile/photo")
     public ResponseEntity updateProfilePhoto(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -210,6 +196,20 @@ public class UserController {
                                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                                   @RequestParam(value = "size", defaultValue = "20") int size){
         return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @PutMapping("promote")
+    public ResponseEntity updatePromotionStatus(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
+
+        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(su.getId());
+
+        if(!optUser.isPresent())
+            return new ResponseEntity<>("Invalid SubsbscribedUser", HttpStatus.BAD_REQUEST);
+
+        SubscribedUser toSave = optUser.get();
+        toSave.setPromotionFactor(optUser.get().getPromotionFactor());
+
+        return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
     }
 
     /**
