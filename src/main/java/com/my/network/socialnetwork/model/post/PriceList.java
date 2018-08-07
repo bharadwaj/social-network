@@ -27,6 +27,10 @@ public class PriceList {
 
     private boolean isPriceDecreased;
 
+    private boolean isPriceInclusiveOfGST;
+
+    private boolean isNegotiable;
+
     public Long getId() {
         return id;
     }
@@ -91,11 +95,27 @@ public class PriceList {
         isPriceIncreased = priceIncreased;
     }
 
+    public boolean isPriceInclusiveOfGST() {
+        return isPriceInclusiveOfGST;
+    }
+
+    public void setPriceInclusiveOfGST(boolean priceInclusiveOfGST) {
+        isPriceInclusiveOfGST = priceInclusiveOfGST;
+    }
+
     public boolean isPriceDecreased() {
         return isPriceDecreased;
     }
 
     public void setPriceDecreased(boolean priceDecreased) {
         isPriceDecreased = priceDecreased;
+    }
+
+    public boolean isNegotiable() {
+        return isNegotiable;
+    }
+
+    public void setNegotiable(boolean negotiable) {
+        isNegotiable = negotiable;
     }
 }

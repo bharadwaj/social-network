@@ -19,6 +19,10 @@ public class RequestForQuotation {
 
     private String description;
 
+    private Boolean isAllInclusivePrice;
+
+    private Boolean isNegotiable;
+
     public Long getId() {
         return id;
     }
@@ -57,5 +61,21 @@ public class RequestForQuotation {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getAllInclusivePrice() {
+        return isAllInclusivePrice;
+    }
+
+    public void setAllInclusivePrice(Boolean allInclusivePrice) {
+        isAllInclusivePrice = allInclusivePrice;
+    }
+
+    public Boolean getNegotiable() {
+        return isNegotiable;
+    }
+
+    public void setNegotiable(Boolean negotiable) {
+        isNegotiable = negotiable;
     }
 }
