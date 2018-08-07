@@ -88,13 +88,13 @@ public class UserController {
 
         if(currentUser.getUserMstTypeId() <= 2){
             //Retailer
-            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForRetailersByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByZipCode(baseZipCode, PageRequest.of(page, size));
         }else if(currentUser.getUserMstTypeId() == 3){
             //Supplier
-            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForSuppliersByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByZipCode(baseZipCode, PageRequest.of(page, size));
         }else {
             //By Default Show Company Profile Suggestions.
-            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForCompanyByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByZipCode(baseZipCode, PageRequest.of(page, size));
 
         }
 
@@ -163,6 +163,20 @@ public class UserController {
         return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
     }
 
+    @PutMapping("profile/promote")
+    public ResponseEntity updatePromotionStatus(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
+
+        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(su.getId());
+
+        if(!optUser.isPresent())
+            return new ResponseEntity<>("Invalid SubsbscribedUser", HttpStatus.BAD_REQUEST);
+
+        SubscribedUser toSave = optUser.get();
+        toSave.setPromotionFactor(optUser.get().getPromotionFactor());
+
+        return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
+    }
+
     @PutMapping("profile/photo")
     public ResponseEntity updateProfilePhoto(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -181,21 +195,21 @@ public class UserController {
     public ResponseEntity searchByUserName(@PathVariable String userName,
                                            @RequestParam(value = "page", defaultValue = "0") int page,
                                            @RequestParam(value = "size", defaultValue = "20") int size){
-        return new ResponseEntity<>(subscribedUserRepository.getUsersLikeUsername(userName, PageRequest.of(page, size)), HttpStatus.OK);
+        return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeUsername(userName, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("search/phone/{phoneNumber}")
     public ResponseEntity searchByUserPhoneNumber(@PathVariable String phoneNumber,
                                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                                   @RequestParam(value = "size", defaultValue = "20") int size){
-        return new ResponseEntity<>(subscribedUserRepository.getUsersLikePhoneNumber(phoneNumber, PageRequest.of(page, size)), HttpStatus.OK);
+        return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikePhoneNumber(phoneNumber, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("search/email/{email}")
     public ResponseEntity searchByUserEmail(@PathVariable String email,
                                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                                   @RequestParam(value = "size", defaultValue = "20") int size){
-        return new ResponseEntity<>(subscribedUserRepository.getUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
+        return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     /**
@@ -215,7 +229,8 @@ public class UserController {
         Users existingUser = usersRepository.findById(toBeSubscribedUser.getId()).get();
 
         //Get Zip Code
-        SubscribedUser newSubscribedUser = subscribedUserRepository.save(mapUserToSubscribedUser(existingUser));
+        SubscribedUser mappedUser = mapUserToSubscribedUser(existingUser);
+        SubscribedUser newSubscribedUser = subscribedUserRepository.save(mappedUser);
 
         return new ResponseEntity<>(new MyNetworkSubscriptionResponse("User Successfully Subscribed", 200, newSubscribedUser), HttpStatus.OK);
     }
@@ -260,6 +275,9 @@ public class UserController {
         toSave.setOpenMessage(true);
         toSave.setOpenProfile(true);
 
+        //Default Promotion Status is 0
+        toSave.setPromotionFactor(0);
+
         //Set Address: City, ZipCode, State
         if (u.getUserAddresses() != null && u.getUserAddresses().size() > 0) {
             UserAddress ua = u.getUserAddresses().get(0);
@@ -289,10 +307,13 @@ public class UserController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            //By Default Set the User up in Delhi Area.
+            toSave.setZipCode(100000);
         }
 
         //Set Profiles Metadata.
-        if (u.getUsersTypes().size() > 0) {
+        if (u.getUsersTypes() != null && u.getUsersTypes().size() > 0) {
             //Set User MST Types
             toSave.setUserMstTypeId(u.getUsersTypes().get(0).getMstType().getTypeId());
             toSave.setUserMstTypeName(u.getUsersTypes().get(0).getMstType().getTypeName());
@@ -345,6 +366,10 @@ public class UserController {
             }//End of Switch Case
 
 
+        } else {
+            //Default In case the above account did not have.
+            toSave.setUserMstTypeId(2);
+            toSave.setUserTypeRoleName("Retailer");
         }
         return toSave;
     }

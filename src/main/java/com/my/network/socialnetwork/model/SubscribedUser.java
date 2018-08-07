@@ -109,6 +109,8 @@ public class SubscribedUser {
 
     private boolean isLocked;
 
+    private int promotionFactor;
+
     public String getId() {
         return id;
     }
@@ -378,5 +380,13 @@ public class SubscribedUser {
 
     public void setProfilePhotoUrl(String profilePhotoUrl) {
         this.profilePhotoUrl = profilePhotoUrl;
+    }
+
+    public int getPromotionFactor() {
+        return promotionFactor;
+    }
+
+    public void setPromotionFactor(int promotionFactor) {
+        this.promotionFactor = promotionFactor;
     }
 }
