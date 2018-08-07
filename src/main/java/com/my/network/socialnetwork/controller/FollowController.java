@@ -23,13 +23,13 @@ import java.util.Optional;
 public class FollowController {
 
     @Autowired
-    FollowingRepository followingRepository;
+    private FollowingRepository followingRepository;
 
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Value("${jwt.header}")
     private String tokenHeader;

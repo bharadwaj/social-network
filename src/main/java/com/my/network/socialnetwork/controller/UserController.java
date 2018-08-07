@@ -81,10 +81,24 @@ public class UserController {
 
         SubscribedUser currentUser = optCurrentUser.get();
 
-        Page<SubscribedUser> responseSubscribedUsers = subscribedUserRepository.getSuggestedRetailUsersByZipCode(currentUser.getZipCode(), PageRequest.of(page, size));
+        Page<SubscribedUser> responseSubscribedUsers = null;
 
-        /*
-        for (SubscribedUser su : responseSubscribedUsers) {
+        //Ex: 500010 gets converted to 5 * 100000 = 500000
+        int baseZipCode = firstDigit(currentUser.getZipCode())*100000;
+
+        if(currentUser.getUserMstTypeId() <= 2){
+            //Retailer
+            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForRetailersByZipCode(baseZipCode, PageRequest.of(page, size));
+        }else if(currentUser.getUserMstTypeId() == 3){
+            //Supplier
+            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForSuppliersByZipCode(baseZipCode, PageRequest.of(page, size));
+        }else {
+            //By Default Show Company Profile Suggestions.
+            responseSubscribedUsers = subscribedUserRepository.getSuggestionsForCompanyByZipCode(baseZipCode, PageRequest.of(page, size));
+
+        }
+
+        /*for (SubscribedUser su : responseSubscribedUsers) {
             switch (su.getUserMstTypeId()) {
                 case 2:
                     su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
@@ -163,6 +177,27 @@ public class UserController {
         return new ResponseEntity<>("Successfully updated Profile Photo.", HttpStatus.OK);
     }
 
+    @GetMapping("search/name/{userName}")
+    public ResponseEntity searchByUserName(@PathVariable String userName,
+                                           @RequestParam(value = "page", defaultValue = "0") int page,
+                                           @RequestParam(value = "size", defaultValue = "20") int size){
+        return new ResponseEntity<>(subscribedUserRepository.getUsersLikeUsername(userName, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("search/phone/{phoneNumber}")
+    public ResponseEntity searchByUserPhoneNumber(@PathVariable String phoneNumber,
+                                                  @RequestParam(value = "page", defaultValue = "0") int page,
+                                                  @RequestParam(value = "size", defaultValue = "20") int size){
+        return new ResponseEntity<>(subscribedUserRepository.getUsersLikePhoneNumber(phoneNumber, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("search/email/{email}")
+    public ResponseEntity searchByUserEmail(@PathVariable String email,
+                                                  @RequestParam(value = "page", defaultValue = "0") int page,
+                                                  @RequestParam(value = "size", defaultValue = "20") int size){
+        return new ResponseEntity<>(subscribedUserRepository.getUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
     /**
      * Useful for populating the activity of a user or notifications.
      */
@@ -197,6 +232,17 @@ public class UserController {
         }
 
         return new ResponseEntity<>("Loaded existing Users.", HttpStatus.OK);
+    }
+
+    private int firstDigit(int n) {
+        // Find total number of digits - 1
+        int digits = (int)(Math.log10(n));
+
+        // Find first digit
+        n = (int)(n / (int)(Math.pow(10, digits)));
+
+        // Return first digit
+        return n;
     }
 
     private SubscribedUser mapUserToSubscribedUser(Users u) {

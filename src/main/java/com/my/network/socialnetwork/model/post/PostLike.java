@@ -15,16 +15,16 @@ public class PostLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    SubscribedUser user;
+    private SubscribedUser user;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "post_id")
-    Post post;
+    private Post post;
 
     public Long getId() {
         return id;
