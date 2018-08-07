@@ -495,19 +495,6 @@ public class PostController {
         return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
-    @PutMapping("promote")
-    public ResponseEntity updatePromotionStatus(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader){
-
-        Optional<Post> optionalPost = postRepository.findById(post.getId());
-
-        if(!optionalPost.isPresent())
-            return new ResponseEntity<>("Invalid Post Id", HttpStatus.BAD_REQUEST);
-
-        Post toSave = optionalPost.get();
-        toSave.setPromotionFactor(optionalPost.get().getPromotionFactor());
-
-        return new ResponseEntity<>(postRepository.save(toSave), HttpStatus.OK);
-    }
 
     private void updateLikesOfPost(Long postId) {
         //Update likes of Post.

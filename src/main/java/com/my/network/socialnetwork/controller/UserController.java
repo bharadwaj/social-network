@@ -198,19 +198,7 @@ public class UserController {
         return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
-    @PutMapping("promote")
-    public ResponseEntity updatePromotionStatus(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
 
-        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(su.getId());
-
-        if(!optUser.isPresent())
-            return new ResponseEntity<>("Invalid SubsbscribedUser", HttpStatus.BAD_REQUEST);
-
-        SubscribedUser toSave = optUser.get();
-        toSave.setPromotionFactor(optUser.get().getPromotionFactor());
-
-        return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
-    }
 
     /**
      * Useful for populating the activity of a user or notifications.
