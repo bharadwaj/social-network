@@ -14,10 +14,10 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
     Page<Post> findAllByPostsByUserId(@Param("userId") String userId, Pageable pageable);
 
     //OR p.postVisibility.visibleToUsers.id = :userId
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY u.promotionFactor DESC, p.createDate desc")
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
     List<Post> feedOfUser(@Param("userId") String userId, Pageable pageable);
 
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY u.promotionFactor DESC, p.createDate desc")
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
     Page<Post> pageFeedOfUser(@Param("userId") String userId, Pageable pageable);
 
     @Query("select p from Post p where p.uniqueHandle = :uniqueHandle")
