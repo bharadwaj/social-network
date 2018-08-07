@@ -32,6 +32,7 @@ public class SubscribedUser {
     private String email;
     @Column(name = "userPhoneNumber")
     private String contactNumber;
+    private String profilePhotoUrl;
 
     /**
      * Titles useful displaying Profile: Main, Sub, TypeName, TypeRole
@@ -369,5 +370,13 @@ public class SubscribedUser {
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
+    }
+
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 }

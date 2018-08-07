@@ -149,6 +149,20 @@ public class UserController {
         return new ResponseEntity<>("No user Found", HttpStatus.BAD_REQUEST);
     }
 
+    @PutMapping("profile/photo")
+    public ResponseEntity updateProfilePhoto(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(currentUserId);
+
+        if(!optUser.isPresent() || su.getProfilePhotoUrl() == null || su.getProfilePhotoUrl().isEmpty())
+            return new ResponseEntity<>("Invalid Image URL or SubsbscribedUser", HttpStatus.BAD_REQUEST);
+
+        SubscribedUser toSave = optUser.get();
+        toSave.setProfilePhotoUrl(su.getProfilePhotoUrl());
+        subscribedUserRepository.save(toSave);
+        return new ResponseEntity<>("Successfully updated Profile Photo.", HttpStatus.OK);
+    }
+
     /**
      * Useful for populating the activity of a user or notifications.
      */
