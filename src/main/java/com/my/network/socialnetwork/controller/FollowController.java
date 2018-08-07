@@ -167,9 +167,13 @@ public class FollowController {
      * List Users current user is Following.
      * Params: userId
      */
-    @GetMapping("/following")
-    public ResponseEntity listOfFollowingUsers(@RequestHeader(value = "Authorization") String authTokenHeader) {
+    @GetMapping("/following/{viewUserId}")
+    public ResponseEntity listOfFollowingUsers(@PathVariable Optional<String> viewUserId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //View Following List of others profile.
+        if(viewUserId.isPresent()){
+            userId = viewUserId.get();
+        }
         return new ResponseEntity<>(followingRepository.findFollowingByUserId(userId), HttpStatus.OK);
     }
 
@@ -177,9 +181,13 @@ public class FollowController {
      * List Users who are following current user.
      * Params: userId
      */
-    @GetMapping("/followers")
-    public ResponseEntity listOfFollowers(@RequestHeader(value = "Authorization") String authTokenHeader) {
+    @GetMapping("/followers/{viewUserId}")
+    public ResponseEntity listOfFollowers(@PathVariable Optional<String> viewUserId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        //View Followers of others profile.
+        if(viewUserId.isPresent()){
+            userId = viewUserId.get();
+        }
         return new ResponseEntity<>(followingRepository.findFollowersByUserId(userId), HttpStatus.OK);
     }
 
