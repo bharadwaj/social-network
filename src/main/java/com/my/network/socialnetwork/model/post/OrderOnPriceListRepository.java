@@ -17,5 +17,8 @@ public interface OrderOnPriceListRepository extends CrudRepository<OrderOnPriceL
     List<OrderOnPriceList> findAllOrdersOfPostByUserId(@Param("userId") String userId);
 
     @Query("select o from OrderOnPriceList o where o.post.id in (select p.id from Post p where p.user.id = :userId)")
-    List<OrderOnPriceList> findAllOrdersOfPost(@Param("userId") String userId);
+    List<OrderOnPriceList> findAllOrdersReceivedByUser(@Param("userId") String userId);
+
+    /*@Query("select o from OrderOnPriceList o where o.post.id in (select p.id from Post p where p.user.id = :userId)")
+    List<OrderOnPriceList> findAllOrdersReceivedByUser(@Param("userId") String userId);*/
 }

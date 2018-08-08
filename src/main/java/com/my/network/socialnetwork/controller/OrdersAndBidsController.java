@@ -16,25 +16,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/post")
 public class OrdersAndBidsController {
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    PostConditionRepository postConditionRepository;
+    private PostConditionRepository postConditionRepository;
 
     @Autowired
-    BidOnRFQRepository bidOnRFQRepository;
+    private BidOnRFQRepository bidOnRFQRepository;
 
     @Autowired
-    OrderOnPriceListRepository orderOnPriceListRepository;
+    private OrderOnPriceListRepository orderOnPriceListRepository;
 
     @Autowired
-    OrderStatusRepository orderStatusRepository;
+    private OrderStatusRepository orderStatusRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -213,7 +213,7 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersOfPost(userId), HttpStatus.OK);
+        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersOfPostByUserId(userId), HttpStatus.OK);
     }
 
     @GetMapping("/bids/placed")
@@ -223,7 +223,29 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsOfPost(userId), HttpStatus.OK);
+        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsOfPostByUserId(userId), HttpStatus.OK);
+    }
+
+
+    /**View All Orders Received By the Current user.*/
+    @GetMapping("/orders/received")
+    public ResponseEntity allOrdersRecievedByCurrentUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
+
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if (!subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersReceivedByUser(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/bids/received")
+    public ResponseEntity allBidsRecievedByCurrentUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
+
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        if (!subscribedUserRepository.findById(userId).isPresent())
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsReceivedByUserId(userId), HttpStatus.OK);
     }
 
 
