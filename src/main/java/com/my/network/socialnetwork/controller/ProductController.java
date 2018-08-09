@@ -1,5 +1,7 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
+import com.my.network.socialnetwork.model.product.phone.PhoneBrandRepository;
 import com.my.network.socialnetwork.model.product.phone.PhoneModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,10 @@ public class ProductController {
     EntityManagerFactory entityManagerFactory;
 
     @Autowired
-    PhoneModelRepository phoneModelRepository;
+    private PhoneModelRepository phoneModelRepository;
+
+    @Autowired
+    private PhoneBrandRepository phoneBrandRepository;
 
     @GetMapping(value = "phone/search/{query}")
     public ResponseEntity searchPhoneProducts(@PathVariable String query) {
@@ -31,6 +36,19 @@ public class ProductController {
 //        return new ResponseEntity<>(phoneModelRepository.findPhoneModelByNameIgnoreCaseContaining(query), HttpStatus.OK);
         return new ResponseEntity<>(phoneModelRepository.findPhoneModelByName2(query, query), HttpStatus.OK);
     }
+
+    @GetMapping(value = "phone/brands")
+    public ResponseEntity allBrandsOfPhone() {
+        return new ResponseEntity<>(phoneBrandRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "phone/brands/{brandId}")
+    public ResponseEntity allPhonesOfBrand(@PathVariable("brandId") Long brandId) {
+        return new ResponseEntity<>(phoneModelRepository.findPhoneModelsByBrand(brandId), HttpStatus.OK);
+    }
+
+
+
 
     /*private List<PhoneModel> phoneSearch(String q) {
 

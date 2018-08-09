@@ -40,7 +40,7 @@ public class FollowController {
      * TODO: 1. get userId from jwt
      * TODO: 2. Recommendations will plugin here.
      * */
-    @GetMapping("/{userId}")
+    @GetMapping("/suggest")
     public ResponseEntity suggestUsersToFollow(@PathVariable String userId) {
         return new ResponseEntity<>(subscribedUserRepository.suggestUsersToFollow(userId), HttpStatus.OK);
     }
@@ -167,7 +167,7 @@ public class FollowController {
      * List Users current user is Following.
      * Params: userId
      */
-    @GetMapping("/following/{viewUserId}")
+    @GetMapping(value={"/following/", "/following/{viewUserId}"})
     public ResponseEntity listOfFollowingUsers(@PathVariable Optional<String> viewUserId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //View Following List of others profile.

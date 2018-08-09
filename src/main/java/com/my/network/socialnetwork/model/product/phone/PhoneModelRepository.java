@@ -16,4 +16,8 @@ public interface PhoneModelRepository extends CrudRepository<PhoneModel, Long>{
 
     @Query("select p from PhoneModel p where (p.name LIKE %:name% OR p.phoneBrand.name LIKE %:brand%)")
     List<PhoneModel> findPhoneModelByName2(@Param("name") String name, @Param("brand") String brand);
+
+
+    @Query("select p from PhoneModel p where p.phoneBrand.id = :brandId")
+    List<PhoneModel> findPhoneModelsByBrand(@Param("brandId") Long brandId);
 }
