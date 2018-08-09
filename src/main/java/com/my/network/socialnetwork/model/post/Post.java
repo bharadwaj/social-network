@@ -1,8 +1,9 @@
 package com.my.network.socialnetwork.model.post;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.network.Hashtag;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -105,6 +106,10 @@ public class Post {
     private int promotionFactor;
 
     private Date postExpiryDate;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"posts", "subscribedUsers"})
+    private List<Hashtag> hashtags;
 
     public Long getId() {
         return id;
@@ -344,5 +349,13 @@ public class Post {
 
     public void setIsFriendsOnlyPost(Boolean isFriendsOnlyPost) {
         this.isFriendsOnlyPost = isFriendsOnlyPost;
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<Hashtag> hashtags) {
+        this.hashtags = hashtags;
     }
 }

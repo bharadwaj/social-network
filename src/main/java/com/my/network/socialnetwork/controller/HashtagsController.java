@@ -1,26 +1,29 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.socialnetwork.model.network.HashtagRepository;
 import com.my.network.socialnetwork.notification.Notification;
 import com.my.network.socialnetwork.notification.NotificationData;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/hash")
+@RequestMapping("/hashtag")
 public class HashtagsController {
 
     @Autowired
     private PushNotificationApi pushNotificationApi;
 
+    @Autowired
+    private HashtagRepository hashtagRepository;
+
     //This is my fcm token: ddyhHdz6h6Y:APA91bFU_zbVwUAxc4IxpRkb9XM6EIsYEXS6-adAuQ6LjUs_LUSrbI_tfLuOPhMiEVG5KkzRhpVeZt1fx4j909Z21L2Ic-48clowOfZ5AgQu20C_e3fE5q7TUKWkKqHUfebuIuDrGhkRGRfm935cCIV2LLXHg8isjg
     @GetMapping("/")
-    public ResponseEntity testNotif(){
+    public ResponseEntity testNotif() {
         String to = "ddyhHdz6h6Y:APA91bFU_zbVwUAxc4IxpRkb9XM6EIsYEXS6-adAuQ6LjUs_LUSrbI_tfLuOPhMiEVG5KkzRhpVeZt1fx4j909Z21L2Ic-48clowOfZ5AgQu20C_e3fE5q7TUKWkKqHUfebuIuDrGhkRGRfm935cCIV2LLXHg8isjg";
 
         Notification n = new Notification();
@@ -33,5 +36,21 @@ public class HashtagsController {
 
         pushNotificationApi.sendNotification(to, "type_a", n, nd);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{hashtag}")
+    public ResponseEntity getPostsByHashtag(@PathVariable String hashtag,
+                                            @RequestParam(value = "page", defaultValue = "0") int page,
+                                            @RequestParam(value = "size", defaultValue = "20") int size){
+
+        return new ResponseEntity<>(hashtagRepository.allPostsOfAHastag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("users/{hashtag}")
+    public ResponseEntity getUsersByHashtag(@PathVariable String hashtag,
+                                            @RequestParam(value = "page", defaultValue = "0") int page,
+                                            @RequestParam(value = "size", defaultValue = "20") int size){
+
+        return new ResponseEntity<>(hashtagRepository.allUsersOfAHastag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
     }
 }

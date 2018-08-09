@@ -23,10 +23,10 @@ import java.util.HashMap;
 public class LoadDataController {
 
     @Autowired
-    PhoneBrandRepository phoneBrandRepository;
+    private PhoneBrandRepository phoneBrandRepository;
 
     @Autowired
-    PhoneModelRepository phoneModelRepository;
+    private PhoneModelRepository phoneModelRepository;
 
     @GetMapping(value="/brands")
     public ResponseEntity loadBrands(){

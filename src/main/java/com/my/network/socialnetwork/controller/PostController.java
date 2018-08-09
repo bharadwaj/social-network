@@ -5,6 +5,8 @@ import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
+import com.my.network.socialnetwork.model.network.Hashtag;
+import com.my.network.socialnetwork.model.network.HashtagRepository;
 import com.my.network.socialnetwork.model.post.*;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
@@ -66,6 +68,9 @@ public class PostController {
 
     @Autowired
     private PostReportAbuseRepository postReportAbuseRepository;
+
+    @Autowired
+    private HashtagRepository hashtagRepository;
 
     private int DEFAULT_PAGE = 0;
     private int DEFAULT_PAGE_SIZE = 20;
@@ -135,6 +140,12 @@ public class PostController {
             message = post.getUser().getName() + "has posted in MyDukan";
         }
         //notificationApi.sendNotification(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
+
+        //Get Hashtags.
+        if(post.getHashtags()!= null){
+
+            post.setHashtags(processHashtags(post.getHashtags()));
+        }
 
         return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
     }
@@ -495,6 +506,22 @@ public class PostController {
         return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
+    private List<Hashtag> processHashtags(List<Hashtag> hashtags){
+        List<Hashtag> savedHashtags = new ArrayList<>();
+        for(Hashtag h:hashtags){
+
+            if(h.getHashtag() != null && !h.getHashtag().isEmpty()){
+
+                Hashtag existingHashtag = hashtagRepository.hashTagByHashtag(h.getHashtag());
+                if(existingHashtag == null){
+                    savedHashtags.add(hashtagRepository.save(h));
+                } else {
+                   savedHashtags.add(existingHashtag);
+                }
+            }
+        }
+        return savedHashtags;
+    }
 
     private void updateLikesOfPost(Long postId) {
         //Update likes of Post.

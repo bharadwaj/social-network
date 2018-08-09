@@ -1,10 +1,12 @@
 package com.my.network.socialnetwork.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.network.auth.model.profiles.CompanyProfile;
 import com.my.network.auth.model.profiles.RetailerProfile;
 import com.my.network.auth.model.profiles.ServiceCenterProfile;
 import com.my.network.auth.model.profiles.SupplierProfile;
+import com.my.network.socialnetwork.model.network.Hashtag;
 import com.my.network.socialnetwork.model.network.group.UserGroup;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.post.Post;
@@ -110,6 +112,10 @@ public class SubscribedUser {
     private boolean isLocked;
 
     private int promotionFactor;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("subscribedUsers")
+    private List<Hashtag> hashtags;
 
     public String getId() {
         return id;
@@ -388,5 +394,13 @@ public class SubscribedUser {
 
     public void setPromotionFactor(int promotionFactor) {
         this.promotionFactor = promotionFactor;
+    }
+
+    public List<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<Hashtag> hashtags) {
+        this.hashtags = hashtags;
     }
 }
