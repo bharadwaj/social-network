@@ -13,8 +13,8 @@ public interface BidOnRFQRepository extends CrudRepository<BidOnRFQ, Long>{
     List<BidOnRFQ> findAllBidsOfPostByPostId(@Param("postId")Long postId);
 
     @Query("select b from BidOnRFQ b where b.subscribedUser.id = :userId")
-    List<BidOnRFQ> findAllBidsOfPostByUserId(@Param("userId")String userId);
+    List<BidOnRFQ> findAllBidsReceivedByUserId(@Param("userId")String userId);
 
     @Query("select b from BidOnRFQ b where b.post.id in (select p.id from Post p where p.user.id = :userId)")
-    List<BidOnRFQ> findAllBidsReceivedByUserId(@Param("userId")String userId);
+    List<BidOnRFQ> findAllBidsOfPostByUserId(@Param("userId")String userId);
 }
