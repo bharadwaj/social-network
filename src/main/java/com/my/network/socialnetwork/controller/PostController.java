@@ -7,6 +7,8 @@ import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.post.*;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
+import com.my.network.socialnetwork.notification.Notification;
+import com.my.network.socialnetwork.notification.NotificationData;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -63,6 +65,9 @@ public class PostController {
 
     @Autowired
     FollowingRepository followingRepository;
+
+    @Autowired
+    private PushNotificationApi pushNotificationApi;
 
     @Autowired
     PostReportAbuseRepository postReportAbuseRepository;
@@ -425,6 +430,21 @@ public class PostController {
                 respPost.setLiked(true);
 
                 //TODO Notifications here.
+                String  to ="";
+                Notification n = new Notification();
+                n.setTitle("What's up?");
+                n.setBody("yo");
+                n.setSound("sound");
+                n.setBadge("badge");
+
+                NotificationData nd = new NotificationData();
+                nd.setBody("Hey");
+                nd.setTitle("Hello!");
+                nd.setImage("image");
+                nd.setScreen("scr");
+
+                pushNotificationApi.sendNotification(to, "type_a", n, nd);
+                return new ResponseEntity<>(HttpStatus.OK);
 
             } else {
                 respPost.setLiked(false);
