@@ -32,6 +32,7 @@ public class SubscribedUser {
     private String userName;
     @Column(name = "userEmail")
     private String email;
+    private String communicationEmail;
     @Column(name = "userPhoneNumber")
     private String contactNumber;
     private String profilePhotoUrl;
@@ -235,6 +236,14 @@ public class SubscribedUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCommunicationEmail() {
+        return communicationEmail;
+    }
+
+    public void setCommunicationEmail(String communicationEmail) {
+        this.communicationEmail = communicationEmail;
     }
 
     public String getUserName() {

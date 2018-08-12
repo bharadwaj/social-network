@@ -9,6 +9,7 @@ public class SuccessResponse {
     private String message;
     private String timestamp;
     private String path;
+    private Object data;
 
     public SuccessResponse(HttpStatus httpStatus, String message) {
         this.status = httpStatus.value();
@@ -16,14 +17,16 @@ public class SuccessResponse {
         this.message = message;
         this.timestamp = new java.util.Date().toString();
         this.path = "";
+        this.data = null;
     }
 
-    public SuccessResponse(HttpStatus httpStatus, String message, String path) {
+    public SuccessResponse(HttpStatus httpStatus, String message, Object data, String path) {
         this.status = httpStatus.value();
         this.success = httpStatus.getReasonPhrase();
         this.message = message;
         this.timestamp = new java.util.Date().toString();
         this.path = path;
+        this.data = data;
     }
 
     public int getStatus() {
@@ -64,5 +67,13 @@ public class SuccessResponse {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

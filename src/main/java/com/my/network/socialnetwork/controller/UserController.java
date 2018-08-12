@@ -12,6 +12,7 @@ import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
+import com.my.network.socialnetwork.model.response.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -173,8 +174,10 @@ public class UserController {
 
         SubscribedUser toSave = optUser.get();
         toSave.setProfilePhotoUrl(su.getProfilePhotoUrl());
-        subscribedUserRepository.save(toSave);
-        return new ResponseEntity<>("Successfully updated Profile Photo.", HttpStatus.OK);
+        SubscribedUser updatedProfile = subscribedUserRepository.save(toSave);
+
+        return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Updated Photo",
+                updatedProfile , "/user/profile/photo"), HttpStatus.OK);
     }
 
     @GetMapping("search/name/{userName}")
