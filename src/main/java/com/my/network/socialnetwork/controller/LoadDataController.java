@@ -1,5 +1,7 @@
 package com.my.network.socialnetwork.controller;
 
+import com.my.network.socialnetwork.model.network.Hashtag;
+import com.my.network.socialnetwork.model.network.HashtagRepository;
 import com.my.network.socialnetwork.model.pincode.*;
 import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
 import com.my.network.socialnetwork.model.product.phone.PhoneBrandRepository;
@@ -35,6 +37,9 @@ public class LoadDataController {
 
     @Autowired
     private DistrictRepository districtRepository;
+
+    @Autowired
+    private HashtagRepository hashtagRepository;
 
     @GetMapping(value = "/brands")
     public ResponseEntity loadBrands() {
@@ -95,6 +100,33 @@ public class LoadDataController {
         loadPincodesFromFile();
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping(value = "/hashtags/init")
+    public ResponseEntity initializeAllHashtags() {
+        //state
+        for(State s: stateRepository.findAll()){
+            processHashtag(properHashtagName(s.getName()));
+            //System.out.println(s.getName());
+        }
+
+        //district
+        for(District d: districtRepository.findAll()){
+            processHashtag(properHashtagName(d.getDistrictName()));
+            //System.out.print(d.getDistrictName());
+        }
+        //brands
+        for(PhoneBrand p: phoneBrandRepository.findAll()){
+            processHashtag(properHashtagName(p.getName()));
+            //System.out.print(p.getName());
+        }
+        //phones
+        for(PhoneModel p: phoneModelRepository.findAll()){
+            processHashtag(properHashtagName(p.getName()));
+            //System.out.println(p.getName());
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
     public void readLinesFromFile() {
         String fileName = "phones.csv";
@@ -265,11 +297,30 @@ public class LoadDataController {
         return mappedKeyIndex;
     }
 
+    private String properHashtagName(String string){
+        string = string.replace(" ", "");
+        return string;
+    }
+
     /*public static void main(String[] args) {
         LoadDataController lc = new LoadDataController();
         //lc.readLinesFromFile();
         lc.readBrandFromFile();
     }*/
 
+
+    private void processHashtag(String hashtag){
+
+        if(hashtag != null && !hashtag.isEmpty()){
+
+            Hashtag existingHashtag = hashtagRepository.hashTagByHashtag(hashtag);
+            if(existingHashtag == null){
+                Hashtag h = new Hashtag();
+                h.setHashtag(hashtag);
+                h.setCreatedByAdmin(true);
+                hashtagRepository.save(h);
+            }
+        }
+    }
 
 }

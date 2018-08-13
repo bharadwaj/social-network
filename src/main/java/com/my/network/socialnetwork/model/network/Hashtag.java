@@ -21,6 +21,8 @@ public class Hashtag {
 
     private int followersCount;
 
+    private Boolean isCreatedByAdmin = false;
+
     @ManyToMany(mappedBy = "hashtags")
     private List<Post> posts;
 
@@ -65,6 +67,14 @@ public class Hashtag {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getCreatedByAdmin() {
+        return isCreatedByAdmin;
+    }
+
+    public void setCreatedByAdmin(Boolean createdByAdmin) {
+        isCreatedByAdmin = createdByAdmin;
     }
 
     public List<SubscribedUser> getSubscribedUsers() {

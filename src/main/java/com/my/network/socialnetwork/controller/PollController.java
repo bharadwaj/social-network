@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.*;
 public class PollController {
 
     @Autowired
-    PollRepository pollRepository;
+    private PollRepository pollRepository;
 
     @Autowired
-    PollItemVoteRepository pollItemVoteRepository;
+    private PollItemVoteRepository pollItemVoteRepository;
 
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    SubscribedUserRepository subscribedUserRepository;
+    private SubscribedUserRepository subscribedUserRepository;
 
     //TODO read current user from jwt.
     @PostMapping(value = "/new")
