@@ -49,7 +49,7 @@ public class AuthenticationRestController {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    UsersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     private static final String jwtTokenCookieName = "JWT-TOKEN";
 

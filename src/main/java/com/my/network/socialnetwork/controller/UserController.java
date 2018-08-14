@@ -8,11 +8,17 @@ import com.my.network.auth.model.profiles.*;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
+import com.my.network.socialnetwork.model.network.Hashtag;
+import com.my.network.socialnetwork.model.network.HashtagRepository;
 import com.my.network.socialnetwork.model.network.group.UserGroupRepository;
+import com.my.network.socialnetwork.model.pincode.District;
+import com.my.network.socialnetwork.model.pincode.DistrictRepository;
 import com.my.network.socialnetwork.model.post.PostLikeRepository;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.model.response.MyNetworkSubscriptionResponse;
 import com.my.network.socialnetwork.model.response.SuccessResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,11 +26,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private final Log logger = LogFactory.getLog(this.getClass());
 
     @Autowired
     private SubscribedUserRepository subscribedUserRepository;
@@ -56,6 +65,12 @@ public class UserController {
     @Autowired
     private ServiceCenterProfileRepository serviceCenterProfileRepository;
 
+    @Autowired
+    private DistrictRepository districtRepository;
+
+    @Autowired
+    private HashtagRepository hashtagRepository;
+
     @GetMapping("/")
     public ResponseEntity viewCurrentUserProfile(@RequestHeader(value = "Authorization") String authTokenHeader) {
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -76,7 +91,7 @@ public class UserController {
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(currentUserId);
 
-        if(!optCurrentUser.isPresent() || optCurrentUser.get().getZipCode() == null ){
+        if (!optCurrentUser.isPresent() || optCurrentUser.get().getZipCode() == null) {
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "Not a Valid User or Zipcode is not Present for this User", "/user/suggestion"), HttpStatus.BAD_REQUEST);
         }
 
@@ -85,15 +100,15 @@ public class UserController {
         Page<SubscribedUser> responseSubscribedUsers = null;
 
         //Ex: 500010 gets converted to 5 * 100000 = 500000
-        int baseZipCode = firstDigit(currentUser.getZipCode())*100000;
+        int baseZipCode = firstDigit(currentUser.getZipCode()) * 100000;
 
-        if(currentUser.getUserMstTypeId() <= 2){
+        if (currentUser.getUserMstTypeId() <= 2) {
             //Retailer
             responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByZipCode(baseZipCode, PageRequest.of(page, size));
-        }else if(currentUser.getUserMstTypeId() == 3){
+        } else if (currentUser.getUserMstTypeId() == 3) {
             //Supplier
             responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByZipCode(baseZipCode, PageRequest.of(page, size));
-        }else {
+        } else {
             //By Default Show Company Profile Suggestions.
             responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByZipCode(baseZipCode, PageRequest.of(page, size));
 
@@ -121,8 +136,8 @@ public class UserController {
 
     @GetMapping("/suggestions/all")
     public ResponseEntity suggestAllUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader,
-                                               @RequestParam(value = "page", defaultValue = "0") int page,
-                                               @RequestParam(value = "size", defaultValue = "20") int size) {
+                                                  @RequestParam(value = "page", defaultValue = "0") int page,
+                                                  @RequestParam(value = "size", defaultValue = "20") int size) {
 
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
 
@@ -165,11 +180,11 @@ public class UserController {
     }
 
     @PutMapping("profile/photo")
-    public ResponseEntity updateProfilePhoto(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
+    public ResponseEntity updateProfilePhoto(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> optUser = subscribedUserRepository.findById(currentUserId);
 
-        if(!optUser.isPresent() || su.getProfilePhotoUrl() == null || su.getProfilePhotoUrl().isEmpty())
+        if (!optUser.isPresent() || su.getProfilePhotoUrl() == null || su.getProfilePhotoUrl().isEmpty())
             return new ResponseEntity<>("Invalid Image URL or SubsbscribedUser", HttpStatus.BAD_REQUEST);
 
         SubscribedUser toSave = optUser.get();
@@ -177,30 +192,29 @@ public class UserController {
         SubscribedUser updatedProfile = subscribedUserRepository.save(toSave);
 
         return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Updated Photo",
-                updatedProfile , "/user/profile/photo"), HttpStatus.OK);
+                updatedProfile, "/user/profile/photo"), HttpStatus.OK);
     }
 
     @GetMapping("search/name/{userName}")
     public ResponseEntity searchByUserName(@PathVariable String userName,
                                            @RequestParam(value = "page", defaultValue = "0") int page,
-                                           @RequestParam(value = "size", defaultValue = "20") int size){
+                                           @RequestParam(value = "size", defaultValue = "20") int size) {
         return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeUsername(userName, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("search/phone/{phoneNumber}")
     public ResponseEntity searchByUserPhoneNumber(@PathVariable String phoneNumber,
                                                   @RequestParam(value = "page", defaultValue = "0") int page,
-                                                  @RequestParam(value = "size", defaultValue = "20") int size){
+                                                  @RequestParam(value = "size", defaultValue = "20") int size) {
         return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikePhoneNumber(phoneNumber, PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("search/email/{email}")
     public ResponseEntity searchByUserEmail(@PathVariable String email,
-                                                  @RequestParam(value = "page", defaultValue = "0") int page,
-                                                  @RequestParam(value = "size", defaultValue = "20") int size){
+                                            @RequestParam(value = "page", defaultValue = "0") int page,
+                                            @RequestParam(value = "size", defaultValue = "20") int size) {
         return new ResponseEntity<>(subscribedUserRepository.subscribedUsersLikeEmail(email, PageRequest.of(page, size)), HttpStatus.OK);
     }
-
 
 
     /**
@@ -210,6 +224,21 @@ public class UserController {
     public ResponseEntity allLikesOfUser(@PathVariable String userId) {
         return new ResponseEntity<>(postLikeRepository.allLikesOfUser(userId), HttpStatus.OK);
     }
+
+    /**
+     * Suggestions of Hashtags of the user.
+     */
+    @GetMapping("/hashtags/following")
+    public ResponseEntity allfollowingHashtagsOfUser(@RequestHeader(value = "Authorization") String authTokenHeader) {
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(currentUserId);
+        if (!optUser.isPresent())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+
+        return new ResponseEntity<>(districtRepository.findDistrictByPincode(optUser.get().getZipCode()), HttpStatus.OK);
+    }
+
 
     @PostMapping(value = "/new")
     public ResponseEntity createUserClass(@RequestBody SubscribedUser toBeSubscribedUser) {
@@ -242,10 +271,10 @@ public class UserController {
 
     private int firstDigit(int n) {
         // Find total number of digits - 1
-        int digits = (int)(Math.log10(n));
+        int digits = (int) (Math.log10(n));
 
         // Find first digit
-        n = (int)(n / (int)(Math.pow(10, digits)));
+        n = (int) (n / (int) (Math.pow(10, digits)));
 
         // Return first digit
         return n;
@@ -300,7 +329,24 @@ public class UserController {
             }
         } else {
             //By Default Set the User up in Delhi Area.
-            toSave.setZipCode(100000);
+            toSave.setZipCode(110001);
+        }
+
+        //Process Hashtags. Add all hashtags pertaining to a district.
+        District d = districtRepository.findDistrictByPincode(toSave.getZipCode());
+        if (d != null) {
+            try {
+                ArrayList<Hashtag> toAdd = new ArrayList<>();
+                //Add District Hashtag
+                toAdd.add(hashtagRepository.hashTagByHashtag(d.getDistrictName().replace(" ", "")));
+                //Add to State Hashtag
+                toAdd.add(hashtagRepository.hashTagByHashtag(d.getState().getName().replace(" ", "")));
+                //Save Both state and District Hashtag.
+                toSave.setHashtags(toAdd);
+            } catch (Exception e) {
+                logger.error("User " + toSave.getId() + ", Does not have valid location and pincode.");
+                e.printStackTrace();
+            }
         }
 
         //Set Profiles Metadata.

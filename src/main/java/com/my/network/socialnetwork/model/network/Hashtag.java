@@ -13,6 +13,7 @@ public class Hashtag {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique=true, nullable=false)
     private String hashtag;
 
     private String description;

@@ -7,6 +7,7 @@ import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
 import com.my.network.socialnetwork.model.product.phone.PhoneBrandRepository;
 import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 import com.my.network.socialnetwork.model.product.phone.PhoneModelRepository;
+import com.my.network.socialnetwork.model.response.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -124,7 +125,7 @@ public class LoadDataController {
             processHashtag(properHashtagName(p.getName()));
             //System.out.println(p.getName());
         }
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK,"Sucessfully Loaded Hashtags"), HttpStatus.OK);
     }
 
 
@@ -233,7 +234,7 @@ public class LoadDataController {
             while ((line = bufferedReader.readLine()) != null) {
                 toSave = new District();
                 String[] split_lines = line.split(",");
-                if (split_lines != null && split_lines[0] != null && !split_lines[0].isEmpty()
+                if (split_lines.length > 0 && split_lines[0] != null && !split_lines[0].isEmpty()
                         && split_lines[1] != null && !split_lines[1].isEmpty()) {
 
                     // district = split_lines[0]

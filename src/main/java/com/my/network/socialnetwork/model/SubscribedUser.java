@@ -115,7 +115,7 @@ public class SubscribedUser {
     private int promotionFactor;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("subscribedUsers")
+    @JsonIgnoreProperties({"posts", "subscribedUsers"})
     private List<Hashtag> hashtags;
 
     public String getId() {

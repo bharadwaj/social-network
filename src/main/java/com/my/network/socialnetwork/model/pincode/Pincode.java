@@ -14,6 +14,9 @@ public class Pincode {
     @ManyToOne
     private District district;
 
+    public Pincode() {
+    }
+
     public Pincode(int pincode) {
         this.pincode = pincode;
     }

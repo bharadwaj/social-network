@@ -1,5 +1,7 @@
 package com.my.network.socialnetwork.model.pincode;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,9 +16,11 @@ public class District {
     private String districtName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "district")
+    @JsonIgnoreProperties("district")
     private List<Pincode> pincodes;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("districts")
     private State state;
 
     public Long getId() {
