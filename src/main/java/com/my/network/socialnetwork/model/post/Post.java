@@ -27,9 +27,11 @@ public class Post {
 
     //@Field
     @NotNull
+    @Column(columnDefinition="TEXT")
     private String title;
 
     //@Field
+    @Column(columnDefinition="MEDIUMTEXT")
     private String body;
 
     @NotNull
@@ -41,13 +43,14 @@ public class Post {
     @Column(columnDefinition="VARCHAR(512)")
     private String videoUrl;
 
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
-    private PostVisibility postVisibility;
-
     private Boolean isPublicPost;
 
     private Boolean isFriendsOnlyPost;
 
+    private Boolean isPostVisibleToUsers;
+
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
+    private PostVisibility postVisibility;
     /*@OneToMany
     ArrayList<Comment> comment;*/
 
@@ -157,6 +160,14 @@ public class Post {
 
     public void setFriendsOnlyPost(Boolean friendsOnlyPost) {
         isFriendsOnlyPost = friendsOnlyPost;
+    }
+
+    public Boolean getPostVisibleToUsers() {
+        return isPostVisibleToUsers;
+    }
+
+    public void setPostVisibleToUsers(Boolean postVisibleToUsers) {
+        isPostVisibleToUsers = postVisibleToUsers;
     }
 
     public String getUniqueHandle() {

@@ -3,7 +3,7 @@ package com.my.network.socialnetwork.model.pincode;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "md_State")
+@Entity(name = "MD_State")
 public class State {
 
     @Id

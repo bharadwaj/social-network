@@ -1,6 +1,5 @@
 package com.my.network.socialnetwork.controller;
 
-import com.my.network.socialnetwork.model.product.phone.PhoneBrand;
 import com.my.network.socialnetwork.model.product.phone.PhoneBrandRepository;
 import com.my.network.socialnetwork.model.product.phone.PhoneModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;

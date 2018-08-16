@@ -99,10 +99,11 @@ public class PostController {
 
         } else if (!post.getIsPublicPost()) {
             //If user says false to public post and does not provide friends list, its a friends only post.
-            if (post.getPostVisibility() == null) {
+            if (post.getPostVisibility() == null || post.getPostVisibleToUsers() == null) {
                 post.setIsFriendsOnlyPost(true);
 
-            } else {
+                //If isPostVisibleToUsers: true and publicPost: false and isFriendsOnlyPost: false
+            } else if(post.getPostVisibleToUsers() && !post.getIsPublicPost() && !post.getIsFriendsOnlyPost()) {
                 //User chooses to share the post with only few specific users
                 //Showing to his friends might be optional.
                 List<SubscribedUser> toSaveUserList = new ArrayList<>();
@@ -116,6 +117,8 @@ public class PostController {
                 tpv.setPost(post);
 
                 post.setPostVisibility(tpv);
+            } else{
+                post.setIsFriendsOnlyPost(true);
             }
         }
 
@@ -344,27 +347,38 @@ public class PostController {
                                    @RequestParam(value = "page", defaultValue = "0") int page,
                                    @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
-        String userId = jwtTokenUtil.getUserIdFromToken(token);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
 
         //The User of the jwt token is not present in the DB.
-        if(!subscribedUserRepository.findById(userId).isPresent())
-            return new ResponseEntity<>("User is not present.", HttpStatus.UNAUTHORIZED);
+        if(!subscribedUserRepository.findById(currentUserId).isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "User is not present"), HttpStatus.UNAUTHORIZED);
 
-        List<Post> resPosts = postRepository.feedOfUser(userId, PageRequest.of(page, size));
+        //List<Post> resPosts = postRepository.feedOfUser(userId, PageRequest.of(page, size));
+        List<Post> resPosts = new ArrayList<>();
+        //Fetch 10 Friends post
+        List<Post> friendsPosts = postRepository.feedPostsOfFriends(currentUserId, PageRequest.of(page, size));
+        //Fetch 3 Public posts
+        List<Post> publicPosts = postRepository.feedPostsOfPublic(currentUserId, PageRequest.of(page, size));
+        //Fetch 4 Hashtag Posts
+        List<Post> hashtagPosts = postRepository.feedPostOfHashtags(currentUserId, PageRequest.of(page, size));
+        //Fetch 2 Promotion Post
+        List<Post> promotionPosts = postRepository.feedPostOfPromotions(currentUserId, PageRequest.of(page, size));
+        //Fetch 1 Optional Post
+        List<Post> messagePosts = postRepository.feedPostOfMessage(currentUserId, PageRequest.of(page, size));
 
         for (Post p : resPosts) {
-            if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
+            if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
                 p.setLiked(true);
             }
             //Did current user
-            if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
+            if (postReportAbuseRepository.didUserReportThisPost(currentUserId, p.getId()) != null) {
                 p.setReported(true);
             }
             // Set the Follow Button of each Post.
-            if (followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()) != null) {
+            if (followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()) != null) {
                 p.getUser().setUserFollowStatus(1);
 
-                if (!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
+                if (!followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()).isApproved())
                     p.getUser().setUserFollowStatus(2);
             } else {
                 //The logged in user is not following the creator of Post.

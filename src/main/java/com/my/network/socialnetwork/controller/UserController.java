@@ -316,10 +316,15 @@ public class UserController {
                     String onlyNumbers = ua.getPincode().replaceAll("[^0-9]", "");
                     Integer zipCode = Integer.parseInt(onlyNumbers);
                     toSave.setZipCode(zipCode);
+                } else {
+                    //By Default Set the User up in Delhi Area.
+                    toSave.setZipCode(110001);
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
+                //By Default Set the User up in Delhi Area.
+                toSave.setZipCode(110001);
             }
 
             try {

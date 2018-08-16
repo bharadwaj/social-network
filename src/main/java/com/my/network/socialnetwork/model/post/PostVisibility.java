@@ -17,7 +17,7 @@ public class PostVisibility {
     @OneToOne
     private Post post;
 
-    @OneToMany
+    @ManyToMany
     private List<SubscribedUser> visibleToUsers;
 
     //TODO Add Groups

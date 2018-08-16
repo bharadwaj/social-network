@@ -28,4 +28,27 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     @Query("select p from Post p where p.user.id = :userId AND p.isPublicPost = true ORDER BY p.id desc ")
     Page<Post> findAllProfilePostsOfNonFriend(@Param("userId") String userId, Pageable pageable);
+
+    /**
+     * select
+     *     A.*
+     * from
+     *     social_network_3.Post A
+     * inner join social_network_3.Following B
+     *     on A.user_id = B.following_user_id Where A.isPublicPost = false AND B.user_id = (current user.) '427598b5-b769-4d7a-842e-0d36f36324b1'
+     * */
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostsOfFriends(@Param("userId") String userId, Pageable pageable);
+
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostsOfPublic(@Param("userId") String userId, Pageable pageable);
+
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostOfHashtags(@Param("userId") String userId, Pageable pageable);
+
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostOfPromotions(@Param("userId") String userId, Pageable pageable);
+
+    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostOfMessage(@Param("userId") String userId, Pageable pageable);
 }

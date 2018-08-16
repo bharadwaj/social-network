@@ -2,7 +2,7 @@ package com.my.network.socialnetwork.model.pincode;
 
 import javax.persistence.*;
 
-@Entity(name = "md_Pincode")
+@Entity(name = "MD_Pincode")
 public class Pincode {
 
     @Id

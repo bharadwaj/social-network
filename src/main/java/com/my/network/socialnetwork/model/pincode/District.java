@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "md_District")
+@Entity(name = "MD_District")
 public class District {
 
     @Id
