@@ -92,18 +92,18 @@ public class PostController {
         post.setUser(subscribedUserRepository.findById(userId).get());
 
 
-        if (post.getIsPublicPost() == null || post.getIsFriendsOnlyPost() == null || post.getIsPublicPost()) {
+        if (post.getIsPublicPost() == null || post.getIsPublicPost()) {
             //Post can be seen by everyone by default.
             post.setIsPublicPost(true);
             post.setIsFriendsOnlyPost(false);
+            //Ignore PostVisibility
+            post.setPostVisibility(null);
 
         } else if (!post.getIsPublicPost()) {
+            //If isPostVisibleToUsers: true and publicPost: false and isFriendsOnlyPost: false
             //If user says false to public post and does not provide friends list, its a friends only post.
-            if (post.getPostVisibility() == null || post.getPostVisibleToUsers() == null) {
-                post.setIsFriendsOnlyPost(true);
-
-                //If isPostVisibleToUsers: true and publicPost: false and isFriendsOnlyPost: false
-            } else if(post.getPostVisibleToUsers() && !post.getIsPublicPost() && !post.getIsFriendsOnlyPost()) {
+            if (post.getIsPostVisibleToUsers() && post.getIsPostVisibleToUsers() != null
+                    && !post.getIsPublicPost() && !post.getIsFriendsOnlyPost()) {
                 //User chooses to share the post with only few specific users
                 //Showing to his friends might be optional.
                 List<SubscribedUser> toSaveUserList = new ArrayList<>();
@@ -117,14 +117,15 @@ public class PostController {
                 tpv.setPost(post);
 
                 post.setPostVisibility(tpv);
-            } else{
+                post.setIsFriendsOnlyPost(false);
+            } else {
                 post.setIsFriendsOnlyPost(true);
+                post.setPostVisibility(null);
             }
         }
 
-
         if (post.getTitle() == null || post.getTitle().isEmpty()) {
-            return new ResponseEntity<>("No title.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "No Title Present"), HttpStatus.BAD_REQUEST);
         } else {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
         }
@@ -145,7 +146,7 @@ public class PostController {
         //notificationApi.sendNotification(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
 
         //Get Hashtags.
-        if(post.getHashtags()!= null){
+        if (post.getHashtags() != null) {
 
             post.setHashtags(processHashtags(post.getHashtags()));
         }
@@ -160,7 +161,7 @@ public class PostController {
 
     /**
      * If the Current User is following profile user, all profile user posts can be seen
-     * */
+     */
     @GetMapping("/user/{profileOfUserId}")
     public ResponseEntity allPostsOfUser(@PathVariable String profileOfUserId,
                                          @RequestHeader(value = "Authorization") String authTokenHeader,
@@ -231,7 +232,7 @@ public class PostController {
     @PutMapping("/price-list")
     public ResponseEntity editPriceList(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+        if (post.getId() != null && postRepository.findById(post.getId()).isPresent()) {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
@@ -251,7 +252,7 @@ public class PostController {
     @PutMapping("/rfq")
     public ResponseEntity editRFQ(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+        if (post.getId() != null && postRepository.findById(post.getId()).isPresent()) {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
@@ -271,7 +272,7 @@ public class PostController {
     @PutMapping("/schemes")
     public ResponseEntity editSchemes(@RequestBody Post post, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        if (post.getId()!= null && postRepository.findById(post.getId()).isPresent()) {
+        if (post.getId() != null && postRepository.findById(post.getId()).isPresent()) {
             Post postToUpdate = postRepository.findById(post.getId()).get();
 
             if (!userId.matches(postToUpdate.getUser().getId()) || !greaterThanNDays(postToUpdate.getCreateDate()))
@@ -350,7 +351,7 @@ public class PostController {
         String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
 
         //The User of the jwt token is not present in the DB.
-        if(!subscribedUserRepository.findById(currentUserId).isPresent())
+        if (!subscribedUserRepository.findById(currentUserId).isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "User is not present"), HttpStatus.UNAUTHORIZED);
 
         //List<Post> resPosts = postRepository.feedOfUser(userId, PageRequest.of(page, size));
@@ -392,13 +393,13 @@ public class PostController {
 
     @GetMapping(value = {"feed/v2"})
     public ResponseEntity newUserFeed(HttpServletRequest request,
-                                   @RequestParam(value = "page", defaultValue = "0") int page,
-                                   @RequestParam(value = "size", defaultValue = "20") int size) {
+                                      @RequestParam(value = "page", defaultValue = "0") int page,
+                                      @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
 
         //The User of the jwt token is not present in the DB.
-        if(!subscribedUserRepository.findById(userId).isPresent())
+        if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
 
         Page<Post> resPosts = postRepository.pageFeedOfUser(userId, PageRequest.of(page, size));
@@ -520,17 +521,17 @@ public class PostController {
         return new ResponseEntity<>("test", HttpStatus.OK);
     }
 
-    private List<Hashtag> processHashtags(List<Hashtag> hashtags){
+    private List<Hashtag> processHashtags(List<Hashtag> hashtags) {
         List<Hashtag> savedHashtags = new ArrayList<>();
-        for(Hashtag h:hashtags){
+        for (Hashtag h : hashtags) {
 
-            if(h.getHashtag() != null && !h.getHashtag().isEmpty()){
+            if (h.getHashtag() != null && !h.getHashtag().isEmpty()) {
 
                 Hashtag existingHashtag = hashtagRepository.hashTagByHashtag(h.getHashtag());
-                if(existingHashtag == null){
+                if (existingHashtag == null) {
                     savedHashtags.add(hashtagRepository.save(h));
                 } else {
-                   savedHashtags.add(existingHashtag);
+                    savedHashtags.add(existingHashtag);
                 }
             }
         }

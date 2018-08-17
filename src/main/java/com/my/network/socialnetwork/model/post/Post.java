@@ -162,11 +162,11 @@ public class Post {
         isFriendsOnlyPost = friendsOnlyPost;
     }
 
-    public Boolean getPostVisibleToUsers() {
+    public Boolean getIsPostVisibleToUsers() {
         return isPostVisibleToUsers;
     }
 
-    public void setPostVisibleToUsers(Boolean postVisibleToUsers) {
+    public void setIsPostVisibleToUsers(Boolean postVisibleToUsers) {
         isPostVisibleToUsers = postVisibleToUsers;
     }
 

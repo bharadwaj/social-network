@@ -12,3 +12,5 @@ insert into social_network_3.OrderStatus(id, statusName) values (3, 'Delivered')
 INSERT INTO social_network_3.PhoneBrand SELECT * from social_network_2_aug_15.phonebrand;
 
 INSERT INTO social_network_3.PhoneModel SELECT * from social_network_2_aug_15.phonemodel;
+
+INSERT INTO social_network_3.Post SELECT * from social_network_2_aug_15.post;

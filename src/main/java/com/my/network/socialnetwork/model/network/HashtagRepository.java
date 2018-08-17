@@ -18,4 +18,10 @@ public interface HashtagRepository extends PagingAndSortingRepository<Hashtag, L
 
     @Query("select h from Hashtag h where h.hashtag= :hashtag")
     Hashtag hashTagByHashtag(@Param("hashtag") String hashtag);
+
+    //UPDATE Tag t set t.count = t.count + 1 WHERE t.id = :id;
+    //TODO update Hashtag Counts and Stats.
+    /*@Query("select count(h) from Hashtag h where h.hashtag= :hashtag")
+    void countHastagUsers();
+    void countHashtagPosts();*/
 }
