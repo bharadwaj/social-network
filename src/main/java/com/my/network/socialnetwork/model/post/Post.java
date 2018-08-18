@@ -1,5 +1,6 @@
 package com.my.network.socialnetwork.model.post;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.network.socialnetwork.model.SubscribedUser;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -108,7 +110,10 @@ public class Post {
 
     private int promotionFactor;
 
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
     private Date postExpiryDate;
+
+    private Boolean isActivePost = true;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"posts", "subscribedUsers"})
@@ -368,5 +373,13 @@ public class Post {
 
     public void setHashtags(List<Hashtag> hashtags) {
         this.hashtags = hashtags;
+    }
+
+    public Boolean getActivePost() {
+        return isActivePost;
+    }
+
+    public void setActivePost(Boolean activePost) {
+        isActivePost = activePost;
     }
 }
