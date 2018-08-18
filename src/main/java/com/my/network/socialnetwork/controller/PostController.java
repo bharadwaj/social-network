@@ -354,18 +354,8 @@ public class PostController {
         if (!subscribedUserRepository.findById(currentUserId).isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "User is not present"), HttpStatus.UNAUTHORIZED);
 
-        //List<Post> resPosts = postRepository.feedOfUser(userId, PageRequest.of(page, size));
-        List<Post> resPosts = new ArrayList<>();
-        //Fetch 10 Friends post
-        List<Post> friendsPosts = postRepository.feedPostsOfFriends(currentUserId, PageRequest.of(page, size));
-        //Fetch 3 Public posts
-        List<Post> publicPosts = postRepository.feedPostsOfPublic(currentUserId, PageRequest.of(page, size));
-        //Fetch 4 Hashtag Posts
-        List<Post> hashtagPosts = postRepository.feedPostOfHashtags(currentUserId, PageRequest.of(page, size));
-        //Fetch 2 Promotion Post
-        List<Post> promotionPosts = postRepository.feedPostOfPromotions(currentUserId, PageRequest.of(page, size));
-        //Fetch 1 Optional Post
-        List<Post> messagePosts = postRepository.feedPostOfMessage(currentUserId, PageRequest.of(page, size));
+        List<Post> resPosts = postRepository.feedOfUser(currentUserId, PageRequest.of(page, size));
+        //List<Post> resPosts = new ArrayList<>();
 
         for (Post p : resPosts) {
             if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
@@ -396,27 +386,52 @@ public class PostController {
                                       @RequestParam(value = "page", defaultValue = "0") int page,
                                       @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
-        String userId = jwtTokenUtil.getUserIdFromToken(token);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
 
         //The User of the jwt token is not present in the DB.
-        if (!subscribedUserRepository.findById(userId).isPresent())
+        if (!subscribedUserRepository.findById(currentUserId).isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
 
-        Page<Post> resPosts = postRepository.pageFeedOfUser(userId, PageRequest.of(page, size));
+        if(size % 10 != 0)
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "Bad Page Size"), HttpStatus.UNAUTHORIZED);
+
+
+        //Page<Post> resPosts = postRepository.pageFeedOfUser(currentUserId, PageRequest.of(page, size));
+        List<Post> resPosts = new ArrayList<>();
+
+        int promotionPostSize = 0;
+        int directPostSize = 0;
+        int friendsPostSize = 0;
+        int hashtagPostSize = 0;
+        int publicPostSize = 0;
+        System.out.println();
+
+        //Total 20
+        //Fetch 2 Promotion Post
+        resPosts.addAll(postRepository.feedPostOfPromotions(currentUserId, PageRequest.of(page, 2)));
+        //Fetch 3 Direct Post
+        resPosts.addAll(postRepository.feedPostOfDirectShare(currentUserId, PageRequest.of(page, 3)));
+        //Fetch 10 Friends post
+        resPosts.addAll(postRepository.feedPostsOfFriends(currentUserId, PageRequest.of(page, 5)));
+        //Fetch 5 Hashtag Posts
+        resPosts.addAll(hashtagRepository.allPostsOfAHastag("Hyderabad", PageRequest.of(page, 5)).getContent());
+        //Fetch 5 Public posts
+        resPosts.addAll(postRepository.feedPostsOfPublic(currentUserId, PageRequest.of(page, 10)));
+
 
         for (Post p : resPosts) {
-            if (postLikeRepository.didUserLikeThisPost(userId, p.getId()) != null) {
+            if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
                 p.setLiked(true);
             }
             //Did current user mark report.
-            if (postReportAbuseRepository.didUserReportThisPost(userId, p.getId()) != null) {
+            if (postReportAbuseRepository.didUserReportThisPost(currentUserId, p.getId()) != null) {
                 p.setReported(true);
             }
             // Set the Follow Button of each Post.
-            if (followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()) != null) {
+            if (followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()) != null) {
                 p.getUser().setUserFollowStatus(1);
 
-                if (!followingRepository.findByUserIdAndFollowingUserId(userId, p.getUser().getId()).isApproved())
+                if (!followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()).isApproved())
                     p.getUser().setUserFollowStatus(2);
             } else {
                 //The logged in user is not following the creator of Post.
@@ -427,6 +442,17 @@ public class PostController {
 
         return new ResponseEntity<>(resPosts, HttpStatus.OK);
     }
+
+    /*@GetMapping(value = {"feed/v3"})
+    public ResponseEntity newUserFeedv3(HttpServletRequest request,
+                                      @RequestParam(value = "page", defaultValue = "0") int page,
+                                      @RequestParam(value = "size", defaultValue = "20") int size) {
+        String token = request.getHeader(tokenHeader);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
+
+        return new ResponseEntity<>(postRepository.unifiedFeedv2(currentUserId, PageRequest.of(page, 2)), HttpStatus.OK);
+    }*/
+
 
     //Same Call for both like and unlike a post.
     @PutMapping(value = "/like/{postId}")

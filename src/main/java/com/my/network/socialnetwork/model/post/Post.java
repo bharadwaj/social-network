@@ -45,11 +45,11 @@ public class Post {
     @Column(columnDefinition="VARCHAR(512)")
     private String videoUrl;
 
-    private Boolean isPublicPost;
+    private Boolean isPublicPost = false;
 
-    private Boolean isFriendsOnlyPost;
+    private Boolean isFriendsOnlyPost = false;
 
-    private Boolean isPostVisibleToUsers;
+    private Boolean isPostVisibleToUsers = false;
 
     @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
     private PostVisibility postVisibility;
@@ -106,9 +106,9 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifyDate;
 
-    private Integer priorityList;
+    private Integer priorityList = 0;
 
-    private int promotionFactor;
+    private int promotionFactor = 0;
 
     @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
     private Date postExpiryDate;

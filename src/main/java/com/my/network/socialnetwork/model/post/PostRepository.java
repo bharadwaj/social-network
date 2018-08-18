@@ -37,18 +37,39 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
      * inner join social_network_3.Following B
      *     on A.user_id = B.following_user_id Where A.isPublicPost = false AND B.user_id = (current user.) '427598b5-b769-4d7a-842e-0d36f36324b1'
      * */
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
-    List<Post> feedPostsOfFriends(@Param("userId") String userId, Pageable pageable);
+    @Query("select p from Post p where p.promotionFactor > 0 ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostOfPromotions(@Param("userId") String userId, Pageable pageable);
 
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
-    List<Post> feedPostsOfPublic(@Param("userId") String userId, Pageable pageable);
+    @Query("SELECT p FROM Post p JOIN p.postVisibility pv JOIN pv.visibleToUsers pvu " +
+            "WHERE p.isPostVisibleToUsers = true " +
+            "AND pvu.id = :userId " +
+            "ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostOfDirectShare(@Param("userId") String userId, Pageable pageable);
+
+    @Query("select p from Post p where p.isFriendsOnlyPost = true " +
+            "AND p.user.id IN (SELECT f.user.id FROM Following f WHERE f.followingUser.id = :userId AND f.isApproved = true ) " +
+            "AND p.promotionFactor = 0 " +
+            "ORDER BY p.createDate desc")
+    List<Post> feedPostsOfFriends(@Param("userId") String userId, Pageable pageable);
 
     @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
     List<Post> feedPostOfHashtags(@Param("userId") String userId, Pageable pageable);
 
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
-    List<Post> feedPostOfPromotions(@Param("userId") String userId, Pageable pageable);
+    @Query("select p from Post p where p.isPublicPost = true AND p.promotionFactor = 0 ORDER BY p.promotionFactor DESC, p.createDate desc")
+    List<Post> feedPostsOfPublic(@Param("userId") String userId, Pageable pageable);
 
-    @Query("select p from Post p where p.isPublicPost = true ORDER BY p.promotionFactor DESC, p.createDate desc")
-    List<Post> feedPostOfMessage(@Param("userId") String userId, Pageable pageable);
+    /*@Query(value = "SELECT p (select p from Post p where p.promotionFactor > 0 ORDER BY p.promotionFactor DESC, p.createDate desc "+
+            " UNION "+
+            "SELECT p FROM Post p JOIN p.postVisibility pv JOIN pv.visibleToUsers pvu " +
+            "WHERE p.isPostVisibleToUsers = true " +
+            "AND pvu.id = :userId " +
+            "ORDER BY p.promotionFactor DESC, p.createDate desc"+
+            " UNION "+
+            "select p from Post p where p.isFriendsOnlyPost = true " +
+            "AND p.user.id IN (SELECT f.user.id FROM Following f WHERE f.followingUser.id = :userId AND f.isApproved = true ) " +
+            "AND p.promotionFactor = 0 " +
+            "ORDER BY p.createDate desc" +
+            " UNION " +
+            "select p from Post p where p.isPublicPost = true AND p.promotionFactor = 0 ORDER BY p.promotionFactor DESC, p.createDate desc", nativeQuery = true)
+    List<Post> unifiedFeedv2(@Param("userId") String userId, Pageable pageable);*/
 }
