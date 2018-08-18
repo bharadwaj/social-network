@@ -49,4 +49,26 @@ public interface SubscribedUserRepository extends PagingAndSortingRepository<Sub
     @Query("SELECT u FROM SubscribedUser u JOIN u.hashtags h WHERE h.hashtag=:hashtag AND u.id NOT IN (SELECT f.followingUser.id FROM Following f WHERE f.user.id = :currentUser) ORDER BY u.promotionFactor DESC, u.userMstTypeId ASC")
     Page<SubscribedUser> suggestionsForCompanyByHashtag(@Param("hashtag") String hashtag, @Param("currentUser")String currentUser, Pageable pageable);
 
+    @Query("SELECT u FROM SubscribedUser u JOIN u.hashtags h WHERE " +
+            "h.hashtag=:stateHashtag " +
+            "AND u.id NOT IN (SELECT f.followingUser.id FROM Following f WHERE f.user.id = :currentUser) " +
+            "AND u.id NOT IN (SELECT iu FROM SubscribedUser iu JOIN iu.hashtags ih WHERE  ih.hashtag=:districtHashtag)" +
+            "ORDER BY u.promotionFactor DESC, u.userMstTypeId DESC")
+    Page<SubscribedUser> suggestionsForRetailersByStateHashtag(@Param("stateHashtag") String hashtag, @Param("districtHashtag") String excludeHashtag, @Param("currentUser")String currentUser, Pageable pageable);
+
+    @Query("SELECT u FROM SubscribedUser u JOIN u.hashtags h WHERE " +
+            "h.hashtag=:stateHashtag " +
+            "AND u.id NOT IN (SELECT f.followingUser.id FROM Following f WHERE f.user.id = :currentUser) " +
+            "AND u.id NOT IN (SELECT iu FROM SubscribedUser iu JOIN iu.hashtags ih WHERE  ih.hashtag=:districtHashtag)" +
+            "ORDER BY u.promotionFactor DESC, u.userMstTypeId ASC")
+    Page<SubscribedUser> suggestionsForSuppliersByStateHashtag(@Param("stateHashtag") String stateHashtag, @Param("districtHashtag") String districtHashtag,
+                                                               @Param("currentUser")String currentUser, Pageable pageable);
+
+    @Query("SELECT u FROM SubscribedUser u JOIN u.hashtags h WHERE " +
+            "h.hashtag=:stateHashtag " +
+            "AND u.id NOT IN (SELECT f.followingUser.id FROM Following f WHERE f.user.id = :currentUser) " +
+            "AND u.id NOT IN (SELECT iu FROM SubscribedUser iu JOIN iu.hashtags ih WHERE  ih.hashtag=:districtHashtag)" +
+            "ORDER BY u.promotionFactor DESC, u.userMstTypeId ASC")
+    Page<SubscribedUser> suggestionsForCompanyByStateHashtag(@Param("stateHashtag") String stateHashtag, @Param("districtHashtag") String districtHashtag , @Param("currentUser")String currentUser, Pageable pageable);
+
 }

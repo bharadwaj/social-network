@@ -99,39 +99,38 @@ public class UserController {
 
         Page<SubscribedUser> responseSubscribedUsers = null;
 
-        //Ex: 500010 gets converted to 5 * 100000 = 500000
-        //get state and district hashtag from zipcode.
+        //get state and district hashtag from pincode.
         District district = districtRepository.findDistrictByPincode(currentUser.getZipCode());
-
+        String districtName = district.getDistrictName().replace(" ", "");
+        String stateName = district.getState().getName().replace(" ", "");
 
         if (currentUser.getUserMstTypeId() <= 2) {
             //Retailer
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByHashtag(districtName, currentUser.getId(), PageRequest.of(page, size));
         } else if (currentUser.getUserMstTypeId() == 3) {
             //Supplier
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByHashtag(districtName, currentUser.getId(), PageRequest.of(page, size));
         } else {
             //By Default Show Company Profile Suggestions.
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByHashtag(districtName, currentUser.getId(), PageRequest.of(page, size));
 
         }
 
-        /*for (SubscribedUser su : responseSubscribedUsers) {
-            switch (su.getUserMstTypeId()) {
-                case 2:
-                    su.setRetailerProfile(retailerProfileRepository.findRetailerProfileByUserId(su.getId()));
-                    break;
-                case 3:
-                    su.setSupplierProfile(supplierProfileRepository.findSupplierProfileByUserId(su.getId()));
-                    break;
-                case 4:
-                    su.setCompanyProfile(companyProfileRepository.findCompanyProfileByUserId(su.getId()));
-                    break;
-                case 5:
-                    su.setServiceCenterProfile(serviceCenterProfileRepository.findServiceCenterProfileByUserId(su.getId()));
-                    break;
+        if(page >= responseSubscribedUsers.getTotalPages()){
+            int statePageNumber = responseSubscribedUsers.getTotalPages() - page;
+            if (currentUser.getUserMstTypeId() <= 2) {
+                //Retailer
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+            } else if (currentUser.getUserMstTypeId() == 3) {
+                //Supplier
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+            } else {
+                //By Default Show Company Profile Suggestions.
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+
             }
-        }*/
+        }
+
 
         return new ResponseEntity<>(responseSubscribedUsers,
                 HttpStatus.OK);
