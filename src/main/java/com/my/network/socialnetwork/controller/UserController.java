@@ -25,7 +25,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -117,16 +116,16 @@ public class UserController {
         }
 
         if(page >= responseSubscribedUsers.getTotalPages()){
-            int statePageNumber = responseSubscribedUsers.getTotalPages() - page;
+            int statePageNumber = page - responseSubscribedUsers.getTotalPages();
             if (currentUser.getUserMstTypeId() <= 2) {
                 //Retailer
-                responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByStateHashtag(stateName, districtName, currentUser.getId(), PageRequest.of(statePageNumber, size));
             } else if (currentUser.getUserMstTypeId() == 3) {
                 //Supplier
-                responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByStateHashtag(stateName, districtName, currentUser.getId(), PageRequest.of(statePageNumber, size));
             } else {
                 //By Default Show Company Profile Suggestions.
-                responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByHashtag(stateName, currentUser.getId(), PageRequest.of(statePageNumber, size));
+                responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByStateHashtag(stateName, districtName, currentUser.getId(), PageRequest.of(statePageNumber, size));
 
             }
         }
