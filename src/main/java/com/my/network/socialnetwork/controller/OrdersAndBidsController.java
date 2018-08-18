@@ -213,7 +213,7 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersOfPostByUserId(userId), HttpStatus.OK);
+        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersPlacedByUser(userId), HttpStatus.OK);
     }
 
     @GetMapping("/bids/placed")
@@ -223,7 +223,7 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsOfPostByUserId(userId), HttpStatus.OK);
+        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsReceivedByUserId(userId), HttpStatus.OK);
     }
 
 
@@ -235,7 +235,7 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersReceivedByUser(userId), HttpStatus.OK);
+        return new ResponseEntity<>(orderOnPriceListRepository.findAllOrdersOfPostByUserId(userId), HttpStatus.OK);
     }
 
     @GetMapping("/bids/received")
@@ -245,7 +245,7 @@ public class OrdersAndBidsController {
         if (!subscribedUserRepository.findById(userId).isPresent())
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
-        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsReceivedByUserId(userId), HttpStatus.OK);
+        return new ResponseEntity<>(bidOnRFQRepository.findAllBidsOfPostByUserId(userId), HttpStatus.OK);
     }
 
 

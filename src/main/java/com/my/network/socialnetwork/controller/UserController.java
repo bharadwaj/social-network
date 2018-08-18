@@ -82,9 +82,8 @@ public class UserController {
         return new ResponseEntity<>(subscribedUserRepository.findAll(), HttpStatus.OK);
     }
 
-    //TODO Add algorithm to give suggestions.
-    @GetMapping("/suggestions")
-    public ResponseEntity suggestUsersToFollow(@RequestHeader(value = "Authorization") String authTokenHeader,
+    @GetMapping("suggestions")
+    public ResponseEntity suggestUsersToFollowBasedOnHashtag(@RequestHeader(value = "Authorization") String authTokenHeader,
                                                @RequestParam(value = "page", defaultValue = "0") int page,
                                                @RequestParam(value = "size", defaultValue = "20") int size) {
 
@@ -97,20 +96,23 @@ public class UserController {
 
         SubscribedUser currentUser = optCurrentUser.get();
 
+
         Page<SubscribedUser> responseSubscribedUsers = null;
 
         //Ex: 500010 gets converted to 5 * 100000 = 500000
-        int baseZipCode = firstDigit(currentUser.getZipCode()) * 100000;
+        //get state and district hashtag from zipcode.
+        District district = districtRepository.findDistrictByPincode(currentUser.getZipCode());
+
 
         if (currentUser.getUserMstTypeId() <= 2) {
             //Retailer
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForRetailersByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
         } else if (currentUser.getUserMstTypeId() == 3) {
             //Supplier
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForSuppliersByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
         } else {
             //By Default Show Company Profile Suggestions.
-            responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByZipCode(baseZipCode, PageRequest.of(page, size));
+            responseSubscribedUsers = subscribedUserRepository.suggestionsForCompanyByHashtag(district.getDistrictName().replace(" ", ""),currentUser.getId(), PageRequest.of(page, size));
 
         }
 
@@ -131,7 +133,8 @@ public class UserController {
             }
         }*/
 
-        return new ResponseEntity<>(responseSubscribedUsers, HttpStatus.OK);
+        return new ResponseEntity<>(responseSubscribedUsers,
+                HttpStatus.OK);
     }
 
     @GetMapping("/suggestions/all")

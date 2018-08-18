@@ -222,8 +222,8 @@ public class FollowController {
             }
 
             if (toFollowFullList != null) {
-
                 for(SubscribedUser toFollowUser: toFollowFullList){
+                    //System.out.println("Found User: " + toFollowUser.getContactNumber() +": "+ toFollowUser.getName());
                     ResponseEntity r = followUser(new Following(toFollowUser), authTokenHeader, true);
                     if (r.getStatusCode() == HttpStatus.CREATED)
                         countOfProfilesAdded++;

@@ -1,4 +1,5 @@
 package com.my.network.socialnetwork.model.network;
+import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.post.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ public interface HashtagRepository extends PagingAndSortingRepository<Hashtag, L
     Page<Post> allPostsOfAHastag(@Param("hashtag") String hashtag, Pageable pageable);
 
     @Query("select h.subscribedUsers from Hashtag h where h.hashtag= :hashtag")
-    Page<Post> allUsersOfAHastag(@Param("hashtag") String hashtag, Pageable pageable);
+    Page<SubscribedUser> allUsersOfAHastag(@Param("hashtag") String hashtag, Pageable pageable);
 
     @Query("select h from Hashtag h where h.hashtag= :hashtag")
     Hashtag hashTagByHashtag(@Param("hashtag") String hashtag);
