@@ -8,6 +8,9 @@ import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.network.Hashtag;
 import com.my.network.socialnetwork.model.network.HashtagRepository;
 import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.model.post.ordersbids.BidOnRFQRepository;
+import com.my.network.socialnetwork.model.post.ordersbids.OrderOnPriceListRepository;
+import com.my.network.socialnetwork.model.post.types.PostConditionRepository;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,7 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -344,7 +346,7 @@ public class PostController {
 
     }
 
-    @GetMapping(value = {"feed/v3"})
+    @GetMapping(value = {"feed/v2"})
     public ResponseEntity unifiedFeed(HttpServletRequest request,
                                       @RequestParam(value = "page", defaultValue = "0") int page,
                                       @RequestParam(value = "size", defaultValue = "20") int size) {
@@ -567,7 +569,7 @@ public class PostController {
 
     }
 
-    @GetMapping(value = {"feed/v2"})
+    @GetMapping(value = {"feed/v1"})
     public ResponseEntity newUserFeed(HttpServletRequest request,
                                       @RequestParam(value = "page", defaultValue = "0") int page,
                                       @RequestParam(value = "size", defaultValue = "20") int size) {

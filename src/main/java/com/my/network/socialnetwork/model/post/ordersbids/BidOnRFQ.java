@@ -1,6 +1,8 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.ordersbids;
 
 import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.post.Post;
+import com.my.network.socialnetwork.model.post.types.PriceList;
 
 import javax.persistence.*;
 import java.util.List;

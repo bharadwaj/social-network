@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.types;
 
 import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 

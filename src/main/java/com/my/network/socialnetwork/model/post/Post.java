@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.network.Hashtag;
+import com.my.network.socialnetwork.model.post.schemes.QuantityPriceScheme;
+import com.my.network.socialnetwork.model.post.schemes.ValueScheme;
+import com.my.network.socialnetwork.model.post.types.PostCondition;
+import com.my.network.socialnetwork.model.post.types.PriceList;
+import com.my.network.socialnetwork.model.post.types.RequestForQuotation;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

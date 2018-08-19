@@ -4,6 +4,8 @@ import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.model.post.ordersbids.*;
+import com.my.network.socialnetwork.model.post.types.PostConditionRepository;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,24 +1,22 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.schemes;
 
-import com.my.network.socialnetwork.model.product.phone.PhoneModel;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class QuantityPriceScheme {
+public class ValueScheme {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    Boolean isForAll;
+    private int start_range;
+    private int end_range;
+    private int percent;
+    private int value;
 
-    @OneToOne
-    PhoneModel phoneModel;
-
-    int start_range;
-    int end_range;
-    int percent;
-    int value;
+    private int priceAfterDiscount;
 
     public Long getId() {
         return id;
@@ -26,22 +24,6 @@ public class QuantityPriceScheme {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getForAll() {
-        return isForAll;
-    }
-
-    public void setForAll(Boolean forAll) {
-        isForAll = forAll;
-    }
-
-    public PhoneModel getPhoneModel() {
-        return phoneModel;
-    }
-
-    public void setPhoneModel(PhoneModel phoneModel) {
-        this.phoneModel = phoneModel;
     }
 
     public int getStart_range() {
@@ -74,5 +56,13 @@ public class QuantityPriceScheme {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getPriceAfterDiscount() {
+        return priceAfterDiscount;
+    }
+
+    public void setPriceAfterDiscount(int priceAfterDiscount) {
+        this.priceAfterDiscount = priceAfterDiscount;
     }
 }

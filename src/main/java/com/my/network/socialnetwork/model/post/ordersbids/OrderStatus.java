@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.ordersbids;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +9,9 @@ import javax.persistence.Id;
 public class OrderStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    String statusName;
+    private String statusName;
 
     public Long getId() {
         return id;

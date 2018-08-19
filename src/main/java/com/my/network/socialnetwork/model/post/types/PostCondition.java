@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.types;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +9,9 @@ import javax.persistence.Id;
 public class PostCondition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    String conditionName;
+    private String conditionName;
 
     public Long getId() {
         return id;

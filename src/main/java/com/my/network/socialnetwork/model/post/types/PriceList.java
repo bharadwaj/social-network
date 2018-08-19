@@ -1,4 +1,4 @@
-package com.my.network.socialnetwork.model.post;
+package com.my.network.socialnetwork.model.post.types;
 
 import com.my.network.socialnetwork.model.product.phone.PhoneModel;
 import javax.persistence.*;
@@ -9,7 +9,6 @@ public class PriceList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //TODO
     @OneToOne
     private PhoneModel phoneModel;
 
