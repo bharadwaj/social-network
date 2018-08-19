@@ -17,7 +17,7 @@ public class Testimonial {
     private SubscribedUser user;
 
     @JsonIgnoreProperties({"testimonials"})
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private SubscribedUser author;
 
     private int rating = 0;

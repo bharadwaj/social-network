@@ -309,7 +309,7 @@ public class UserController {
         if (!optCurrentUser.isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "There is an invalid user id."), HttpStatus.BAD_REQUEST);
 
-        if(testimonial.getId() != null &&
+        if(testimonial.getId() != null && testimonial.getUser()!= null && testimonial.getAuthor() != null &&
                 (testimonial.getUser().getId().equals(currentUserId) || testimonial.getAuthor().getId().equals(currentUserId) )){
             testimonialRepository.delete(testimonial);
             return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Deleted the testimonial."), HttpStatus.OK);
