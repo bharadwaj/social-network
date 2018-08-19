@@ -3,10 +3,10 @@ package com.my.network.socialnetwork.controller;
 import com.my.network.auth.JwtTokenUtil;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
-import com.my.network.socialnetwork.model.post.Post;
-import com.my.network.socialnetwork.model.post.PostReportAbuseRepository;
-import com.my.network.socialnetwork.model.post.PostRepository;
+import com.my.network.socialnetwork.model.post.*;
+import com.my.network.socialnetwork.model.response.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,29 +29,56 @@ public class AdminController {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @GetMapping(value = "posts/reported")
     public ResponseEntity getAllReportedPosts(@RequestHeader(value = "Authorization") String authTokenHeader) {
         //if(post.getPostVisibility() == null || postVisibilityRepository.findAllById())
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        if(!subscribedUserRepository.findById(userId).isPresent()){
-            return new ResponseEntity<>("User is Not Admin", HttpStatus.BAD_REQUEST);
+        Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
+        if(user.isPresent() &&
+                (user.get().getEmail().equals("mydukanapp@gmail.com")
+                  || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                  || user.get().getEmail().equals("myappdukan@gmail.com")
+                  || user.get().getEmail().equals("contactmydukan@gmail.com")
+                || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
+        ){
+            return new ResponseEntity<>(postRepository.getAllReportedPosts(), HttpStatus.OK);
+
+        }else {
+
+            return new ResponseEntity<>("What are you doing here.", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(postRepository.getAllReportedPosts(), HttpStatus.OK);
+
     }
+
+
 
     @PutMapping("promote/user")
     public ResponseEntity updatePromotionStatusOfUser(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
 
-        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(su.getId());
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
+        if(user.isPresent() &&
+                (user.get().getEmail().equals("mydukanapp@gmail.com")
+                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                        || user.get().getEmail().equals("myappdukan@gmail.com")
+                        || user.get().getEmail().equals("contactmydukan@gmail.com")
+                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
+        ){
+            SubscribedUser toSave = user.get();
+            toSave.setPromotionFactor(su.getPromotionFactor());
 
-        if(!optUser.isPresent())
-            return new ResponseEntity<>("Invalid SubsbscribedUser", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
 
-        SubscribedUser toSave = optUser.get();
-        toSave.setPromotionFactor(optUser.get().getPromotionFactor());
+        }else {
 
-        return new ResponseEntity<>(subscribedUserRepository.save(toSave), HttpStatus.OK);
+            return new ResponseEntity<>("What are you doing here.", HttpStatus.FORBIDDEN);
+        }
+
+
     }
 
     @PutMapping("promote/post")
@@ -63,8 +90,75 @@ public class AdminController {
             return new ResponseEntity<>("Invalid Post Id", HttpStatus.BAD_REQUEST);
 
         Post toSave = optionalPost.get();
-        toSave.setPromotionFactor(optionalPost.get().getPromotionFactor());
+        toSave.setPromotionFactor(post.getPromotionFactor());
 
         return new ResponseEntity<>(postRepository.save(toSave), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "posts/user/{profileId}")
+    public ResponseEntity allpostsOfUser(@PathVariable("profileId") String profileId,
+                                         @RequestParam(value = "page", defaultValue = "0") int page,
+                                         @RequestParam(value = "size", defaultValue = "20") int size,
+                                         @RequestHeader(value = "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
+        if(user.isPresent() &&
+                (user.get().getEmail().equals("mydukanapp@gmail.com")
+                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                        || user.get().getEmail().equals("myappdukan@gmail.com")
+                        || user.get().getEmail().equals("contactmydukan@gmail.com")
+                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
+        ){
+
+            return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileId, PageRequest.of(page, size)), HttpStatus.OK);
+
+        }else {
+
+            return new ResponseEntity<>("What are you doing here.", HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @DeleteMapping(value = "post")
+    public ResponseEntity deletePostOfUser(@RequestBody Post post,
+                                         @RequestHeader(value = "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
+        if(user.isPresent() &&
+                (user.get().getEmail().equals("mydukanapp@gmail.com")
+                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                        || user.get().getEmail().equals("myappdukan@gmail.com")
+                        || user.get().getEmail().equals("contactmydukan@gmail.com")
+                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
+        ){
+            postRepository.delete(post);
+
+            return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Deleted."), HttpStatus.OK);
+
+        }else {
+
+            return new ResponseEntity<>("What are you doing here.", HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @DeleteMapping(value = "comment")
+    public ResponseEntity deleteCommentOfUser(@RequestBody Comment comment,
+                                         @RequestHeader(value = "Authorization") String authTokenHeader){
+        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
+        if(user.isPresent() &&
+                (user.get().getEmail().equals("mydukanapp@gmail.com")
+                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                        || user.get().getEmail().equals("myappdukan@gmail.com")
+                        || user.get().getEmail().equals("contactmydukan@gmail.com")
+                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
+        ){
+            commentRepository.delete(comment);
+
+            return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Deleted."), HttpStatus.OK);
+
+        }else {
+
+            return new ResponseEntity<>("What are you doing here.", HttpStatus.FORBIDDEN);
+        }
     }
 }
