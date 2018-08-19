@@ -7,6 +7,9 @@ import com.my.network.auth.model.UsersRepository;
 import com.my.network.auth.model.profiles.*;
 import com.my.network.socialnetwork.model.SubscribedUser;
 import com.my.network.socialnetwork.model.SubscribedUserRepository;
+import com.my.network.socialnetwork.model.Testimonial;
+import com.my.network.socialnetwork.model.TestimonialRepository;
+import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
 import com.my.network.socialnetwork.model.network.Hashtag;
 import com.my.network.socialnetwork.model.network.HashtagRepository;
@@ -25,6 +28,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -70,6 +74,9 @@ public class UserController {
     @Autowired
     private HashtagRepository hashtagRepository;
 
+    @Autowired
+    private TestimonialRepository testimonialRepository;
+
     @GetMapping("/")
     public ResponseEntity viewCurrentUserProfile(@RequestHeader(value = "Authorization") String authTokenHeader) {
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
@@ -83,8 +90,8 @@ public class UserController {
 
     @GetMapping("suggestions")
     public ResponseEntity suggestUsersToFollowBasedOnHashtag(@RequestHeader(value = "Authorization") String authTokenHeader,
-                                               @RequestParam(value = "page", defaultValue = "0") int page,
-                                               @RequestParam(value = "size", defaultValue = "20") int size) {
+                                                             @RequestParam(value = "page", defaultValue = "0") int page,
+                                                             @RequestParam(value = "size", defaultValue = "20") int size) {
 
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(currentUserId);
@@ -115,7 +122,7 @@ public class UserController {
 
         }
 
-        if(page >= responseSubscribedUsers.getTotalPages()){
+        if (page >= responseSubscribedUsers.getTotalPages()) {
             int statePageNumber = page - responseSubscribedUsers.getTotalPages();
             if (currentUser.getUserMstTypeId() <= 2) {
                 //Retailer
@@ -238,6 +245,77 @@ public class UserController {
 
 
         return new ResponseEntity<>(districtRepository.findDistrictByPincode(optUser.get().getZipCode()), HttpStatus.OK);
+    }
+
+    @PostMapping("testimonial/{userId}")
+    public ResponseEntity writetestimonial(@PathVariable String userId, @RequestBody Testimonial testimonial, @RequestHeader(value = "Authorization") String authTokenHeader) {
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optUser = subscribedUserRepository.findById(userId);
+        Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(currentUserId);
+
+        if (!optUser.isPresent() || !optCurrentUser.isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "There is an invalid user id."), HttpStatus.BAD_REQUEST);
+
+        //Only Follower can give testimonial.
+        Following following = followingRepository.findByUserIdAndFollowingUserId(currentUserId, userId);
+        if (following == null) {
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "We know you might know this person. Let's be friends first."), HttpStatus.FORBIDDEN);
+        }
+
+        if(testimonial.getRating()> 5 || testimonial.getRating() < 0)
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "You can only express your love between 1-5."), HttpStatus.BAD_REQUEST);
+
+        testimonial.setAuthor(optCurrentUser.get());
+        testimonial.setUser(optUser.get());
+        Testimonial savedTestimonial = testimonialRepository.save(testimonial);
+
+        //Update Average rating of the user.
+        SubscribedUser wroteTestimonialToUser = optUser.get();
+        wroteTestimonialToUser.setAvgRating(testimonialRepository.getAverageRatingsOfUser(optUser.get().getId()));
+        subscribedUserRepository.save(wroteTestimonialToUser);
+
+        return new ResponseEntity<>(savedTestimonial, HttpStatus.OK);
+    }
+
+    @GetMapping("testimonials/{userId}")
+    public ResponseEntity getTestimonials(@PathVariable("userId") String userId,
+                                          @RequestParam(value = "page", defaultValue = "0") int page,
+                                          @RequestParam(value = "size", defaultValue = "20") int size){
+        Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(userId);
+
+        if (!optCurrentUser.isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "There is an invalid user id."), HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(testimonialRepository.findTestimonialsByUserId(userId, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @GetMapping("testimonials/given/{userId}")
+    public ResponseEntity getTestimonialsGivenByUser(@PathVariable("userId") String userId,
+                                                     @RequestParam(value = "page", defaultValue = "0") int page,
+                                                     @RequestParam(value = "size", defaultValue = "20") int size){
+        Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(userId);
+
+        if (!optCurrentUser.isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "There is an invalid user id."), HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(testimonialRepository.findTestimonialsByAuthorId(userId, PageRequest.of(page, size)), HttpStatus.OK);
+    }
+
+    @DeleteMapping("testimonials")
+    public ResponseEntity deleteTestimonials(@RequestBody Testimonial testimonial, @RequestHeader(value = "Authorization") String authTokenHeader){
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optCurrentUser = subscribedUserRepository.findById(currentUserId);
+
+        if (!optCurrentUser.isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "There is an invalid user id."), HttpStatus.BAD_REQUEST);
+
+        if(testimonial.getId() != null &&
+                (testimonial.getUser().getId().equals(currentUserId) || testimonial.getAuthor().getId().equals(currentUserId) )){
+            testimonialRepository.delete(testimonial);
+            return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Deleted the testimonial."), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "You cannot delete this testimonial."), HttpStatus.FORBIDDEN);
     }
 
 

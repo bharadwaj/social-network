@@ -51,11 +51,11 @@ public class PushNotificationApi {
             if (post.getPriceLists() != null && post.getPriceLists().size() > 0) {
                 message = "Your friend " + post.getUser().getName() + " posted new PriceList";
             } else if (post.getRequestForQuotations() != null && post.getRequestForQuotations().size() > 0) {
-                message = "Your friend " + post.getUser().getName() + "posted new Request For Quotations";
+                message = "Your friend " + post.getUser().getName() + " posted new Request For Quotations";
             } else if (post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase("")) {
-                message = "Your friend " + post.getUser().getName() + "posted new Image";
+                message = "Your friend " + post.getUser().getName() + " posted new Image";
             } else {
-                message = "Your friend " + post.getUser().getName() + "posted in MyDukan";
+                message = "Your friend " + post.getUser().getName() + " posted in MyDukan";
             }
 
             n.setTitle(message);
@@ -84,7 +84,7 @@ public class PushNotificationApi {
 
         Notification n = new Notification();
         n.setTitle(postLike.getUser().getName()+ " Liked your Post.");
-        n.setBody("Click to see more.");
+        n.setBody("Click to who else liked " + postLike.getPost().getTitle());
 
         NotificationData nd = new NotificationData();
         PostLike toSend = new PostLike();

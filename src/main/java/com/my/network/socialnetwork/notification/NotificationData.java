@@ -1,6 +1,5 @@
 package com.my.network.socialnetwork.notification;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.my.network.socialnetwork.model.post.Comment;
 import com.my.network.socialnetwork.model.post.Post;
 import com.my.network.socialnetwork.model.post.PostLike;

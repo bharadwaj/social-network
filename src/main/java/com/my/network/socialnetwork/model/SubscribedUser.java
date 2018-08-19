@@ -65,6 +65,11 @@ public class SubscribedUser {
     private String state;
     private String countryCode;
 
+    private double avgRating;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "user")
+    private List<Testimonial> testimonials;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -411,5 +416,21 @@ public class SubscribedUser {
 
     public void setHashtags(List<Hashtag> hashtags) {
         this.hashtags = hashtags;
+    }
+
+    public List<Testimonial> getTestimonials() {
+        return testimonials;
+    }
+
+    public void setTestimonials(List<Testimonial> testimonials) {
+        this.testimonials = testimonials;
+    }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
     }
 }
