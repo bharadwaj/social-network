@@ -26,10 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -162,7 +159,8 @@ public class PostController {
     public ResponseEntity allPostsOfUser(@PathVariable String profileOfUserId,
                                          @RequestHeader(value = "Authorization") String authTokenHeader,
                                          @RequestParam(value = "page", defaultValue = "0") int page,
-                                         @RequestParam(value = "size", defaultValue = "20") int size) {
+                                         @RequestParam(value = "size", defaultValue = "20") int size,
+                                         @RequestParam(value = "direct", defaultValue = "false") Boolean direct) {
         String currentUser = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //Check if:
         // 1. Post is present.
@@ -170,21 +168,28 @@ public class PostController {
         if (!subscribedUserRepository.findById(profileOfUserId).isPresent())
             return new ResponseEntity(HttpStatus.NOT_FOUND);
 
-        //Is the current user following profileUser?
-        Following isAuthUserFollowingUser = followingRepository.findByUserIdAndFollowingUserId(currentUser, profileOfUserId);
-
-        if (profileOfUserId.matches(currentUser)) {
-            return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
+        //Current user is same as Profile User.
+        if (profileOfUserId.matches(currentUser) && !direct) {
+            return new ResponseEntity<>(postRepository.findAllPostsByFriendsProfile(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
         }
 
-        //TODO manage in future how to show post is shared only between few friends.
-        if (isAuthUserFollowingUser == null || !isAuthUserFollowingUser.isApproved()) {
-
-            return new ResponseEntity<>(postRepository.findAllProfilePostsOfNonFriend(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
+        //Is the current user following profileUser?
+        Following isAuthUserFollowingUser = followingRepository.findByUserIdAndFollowingUserId(currentUser, profileOfUserId);
+        if (isAuthUserFollowingUser != null && isAuthUserFollowingUser.isApproved() && !direct) {
+            return new ResponseEntity<>(postRepository.findAllPostsByFriendsProfile(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
         }
 
         //Show all posts
-        return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileOfUserId, PageRequest.of(page, size)), HttpStatus.OK);
+        Page<Post> respPage;
+        if(direct){
+            //If direct is switched to true then show only direct posts.
+            respPage = postRepository.findDirectSharedPosts(currentUser, profileOfUserId, PageRequest.of(page, size));
+        } else {
+            //By Default show all Public Posts
+            respPage = postRepository.findPublicPostsOfUser(profileOfUserId, PageRequest.of(page, size));
+        }
+
+        return new ResponseEntity<>(respPage, HttpStatus.OK);
     }
 
     @GetMapping("uq/{handle}")

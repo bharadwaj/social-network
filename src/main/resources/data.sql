@@ -14,3 +14,5 @@ INSERT INTO social_network_3.PhoneBrand SELECT * from social_network_2_aug_15.ph
 INSERT INTO social_network_3.PhoneModel SELECT * from social_network_2_aug_15.phonemodel;
 
 INSERT INTO social_network_3.Post SELECT * from social_network_2_aug_15.post;
+
+UPDATE social_network_3.Post SET isActivePost=true;
