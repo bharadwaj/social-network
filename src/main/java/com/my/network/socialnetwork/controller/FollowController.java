@@ -181,7 +181,7 @@ public class FollowController {
      * List Users who are following current user.
      * Params: userId
      */
-    @GetMapping("/followers/{viewUserId}")
+    @GetMapping(value={"/followers", "/followers/{viewUserId}"})
     public ResponseEntity listOfFollowers(@PathVariable Optional<String> viewUserId, @RequestHeader(value = "Authorization") String authTokenHeader) {
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         //View Followers of others profile.

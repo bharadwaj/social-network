@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -343,81 +344,14 @@ public class PostController {
 
     }
 
-    @GetMapping(value = {"/feed"})
-    public ResponseEntity userFeed(HttpServletRequest request,
-                                   @RequestParam(value = "page", defaultValue = "0") int page,
-                                   @RequestParam(value = "size", defaultValue = "20") int size) {
-        String token = request.getHeader(tokenHeader);
-        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
-
-        //The User of the jwt token is not present in the DB.
-        if (!subscribedUserRepository.findById(currentUserId).isPresent())
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "User is not present"), HttpStatus.UNAUTHORIZED);
-
-        List<Post> resPosts = postRepository.feedOfUser(currentUserId, PageRequest.of(page, size));
-        //List<Post> resPosts = new ArrayList<>();
-
-        for (Post p : resPosts) {
-            if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
-                p.setLiked(true);
-            }
-            //Did current user
-            if (postReportAbuseRepository.didUserReportThisPost(currentUserId, p.getId()) != null) {
-                p.setReported(true);
-            }
-            // Set the Follow Button of each Post.
-            if (followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()) != null) {
-                p.getUser().setUserFollowStatus(1);
-
-                if (!followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()).isApproved())
-                    p.getUser().setUserFollowStatus(2);
-            } else {
-                //The logged in user is not following the creator of Post.
-                p.getUser().setUserFollowStatus(0);
-            }
-
-        }
-
-        return new ResponseEntity<>(resPosts, HttpStatus.OK);
-    }
-
-    @GetMapping(value = {"feed/v2"})
-    public ResponseEntity newUserFeed(HttpServletRequest request,
+    @GetMapping(value = {"feed/v3"})
+    public ResponseEntity unifiedFeed(HttpServletRequest request,
                                       @RequestParam(value = "page", defaultValue = "0") int page,
                                       @RequestParam(value = "size", defaultValue = "20") int size) {
         String token = request.getHeader(tokenHeader);
         String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
 
-        //The User of the jwt token is not present in the DB.
-        if (!subscribedUserRepository.findById(currentUserId).isPresent())
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
-
-        if(size % 10 != 0)
-            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "Bad Page Size"), HttpStatus.UNAUTHORIZED);
-
-
-        //Page<Post> resPosts = postRepository.pageFeedOfUser(currentUserId, PageRequest.of(page, size));
-        List<Post> resPosts = new ArrayList<>();
-
-        int promotionPostSize = 0;
-        int directPostSize = 0;
-        int friendsPostSize = 0;
-        int hashtagPostSize = 0;
-        int publicPostSize = 0;
-        System.out.println();
-
-        //Total 20
-        //Fetch 2 Promotion Post
-        resPosts.addAll(postRepository.feedPostOfPromotions(currentUserId, PageRequest.of(page, 2)));
-        //Fetch 3 Direct Post
-        resPosts.addAll(postRepository.feedPostOfDirectShare(currentUserId, PageRequest.of(page, 3)));
-        //Fetch 10 Friends post
-        resPosts.addAll(postRepository.feedPostsOfFriends(currentUserId, PageRequest.of(page, 5)));
-        //Fetch 5 Hashtag Posts
-        resPosts.addAll(hashtagRepository.allPostsOfAHastag("Hyderabad", PageRequest.of(page, 5)).getContent());
-        //Fetch 5 Public posts
-        resPosts.addAll(postRepository.feedPostsOfPublic(currentUserId, PageRequest.of(page, 10)));
-
+        List<Post> resPosts = postRepository.unifiedFeed(currentUserId, size, size*page);
 
         for (Post p : resPosts) {
             if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
@@ -442,16 +376,6 @@ public class PostController {
 
         return new ResponseEntity<>(resPosts, HttpStatus.OK);
     }
-
-    /*@GetMapping(value = {"feed/v3"})
-    public ResponseEntity newUserFeedv3(HttpServletRequest request,
-                                      @RequestParam(value = "page", defaultValue = "0") int page,
-                                      @RequestParam(value = "size", defaultValue = "20") int size) {
-        String token = request.getHeader(tokenHeader);
-        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
-
-        return new ResponseEntity<>(postRepository.unifiedFeedv2(currentUserId, PageRequest.of(page, 2)), HttpStatus.OK);
-    }*/
 
 
     //Same Call for both like and unlike a post.
@@ -641,6 +565,99 @@ public class PostController {
 
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) < postEditWindowDays;
 
+    }
+
+    @GetMapping(value = {"feed/v2"})
+    public ResponseEntity newUserFeed(HttpServletRequest request,
+                                      @RequestParam(value = "page", defaultValue = "0") int page,
+                                      @RequestParam(value = "size", defaultValue = "20") int size) {
+        String token = request.getHeader(tokenHeader);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
+
+        //The User of the jwt token is not present in the DB.
+        if (!subscribedUserRepository.findById(currentUserId).isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
+
+        if(size % 10 != 0)
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "Bad Page Size"), HttpStatus.BAD_REQUEST);
+
+        //Page<Post> resPosts = postRepository.pageFeedOfUser(currentUserId, PageRequest.of(page, size));
+        List<Post> resPosts = new ArrayList<>();
+
+
+        //Total 20
+        //Fetch 2 Promotion Post
+        resPosts.addAll(postRepository.feedPostOfPromotions(currentUserId, PageRequest.of(page, 2)));
+        //Fetch 3 Direct Post
+        resPosts.addAll(postRepository.feedPostOfDirectShare(currentUserId, PageRequest.of(page, 3)));
+        //Fetch 10 Friends post
+        resPosts.addAll(postRepository.feedPostsOfFriends(currentUserId, PageRequest.of(page, 5)));
+        //Fetch 5 Hashtag Posts
+        resPosts.addAll(hashtagRepository.allPostsOfAHashtag("Hyderabad", PageRequest.of(page, 5)).getContent());
+        //Fetch 5 Public posts
+        resPosts.addAll(postRepository.feedPostsOfPublic(currentUserId, PageRequest.of(page, 10)));
+
+
+        for (Post p : resPosts) {
+            if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
+                p.setLiked(true);
+            }
+            //Did current user mark report.
+            if (postReportAbuseRepository.didUserReportThisPost(currentUserId, p.getId()) != null) {
+                p.setReported(true);
+            }
+            // Set the Follow Button of each Post.
+            if (followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()) != null) {
+                p.getUser().setUserFollowStatus(1);
+
+                if (!followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()).isApproved())
+                    p.getUser().setUserFollowStatus(2);
+            } else {
+                //The logged in user is not following the creator of Post.
+                p.getUser().setUserFollowStatus(0);
+            }
+
+        }
+
+        return new ResponseEntity<>(resPosts, HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/feed"})
+    public ResponseEntity userFeed(HttpServletRequest request,
+                                   @RequestParam(value = "page", defaultValue = "0") int page,
+                                   @RequestParam(value = "size", defaultValue = "20") int size) {
+        String token = request.getHeader(tokenHeader);
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
+
+        //The User of the jwt token is not present in the DB.
+        if (!subscribedUserRepository.findById(currentUserId).isPresent())
+            return new ResponseEntity<>(new ErrorResponse(HttpStatus.BAD_REQUEST, "User is not present"), HttpStatus.UNAUTHORIZED);
+
+        List<Post> resPosts = postRepository.feedOfUser(currentUserId, PageRequest.of(page, size));
+        //List<Post> resPosts = new ArrayList<>();
+
+        for (Post p : resPosts) {
+            if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
+                p.setLiked(true);
+            }
+            //Did current user
+            if (postReportAbuseRepository.didUserReportThisPost(currentUserId, p.getId()) != null) {
+                p.setReported(true);
+            }
+            // Set the Follow Button of each Post.
+            if (followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()) != null) {
+                p.getUser().setUserFollowStatus(1);
+
+                if (!followingRepository.findByUserIdAndFollowingUserId(currentUserId, p.getUser().getId()).isApproved())
+                    p.getUser().setUserFollowStatus(2);
+            } else {
+                //The logged in user is not following the creator of Post.
+                p.getUser().setUserFollowStatus(0);
+            }
+
+        }
+
+        return new ResponseEntity<>(resPosts, HttpStatus.OK);
     }
 
 }

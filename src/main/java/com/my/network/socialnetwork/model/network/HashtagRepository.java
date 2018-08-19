@@ -12,10 +12,10 @@ public interface HashtagRepository extends PagingAndSortingRepository<Hashtag, L
     //Get Trending Hashtags
 
     @Query("select hp from Hashtag h JOIN h.posts hp WHERE h.hashtag= :hashtag ORDER BY hp.createDate DESC")
-    Page<Post> allPostsOfAHastag(@Param("hashtag") String hashtag, Pageable pageable);
+    Page<Post> allPostsOfAHashtag(@Param("hashtag") String hashtag, Pageable pageable);
 
     @Query("select h.subscribedUsers from Hashtag h where h.hashtag= :hashtag")
-    Page<SubscribedUser> allUsersOfAHastag(@Param("hashtag") String hashtag, Pageable pageable);
+    Page<SubscribedUser> allUsersOfAHashtag(@Param("hashtag") String hashtag, Pageable pageable);
 
     @Query("select h from Hashtag h where h.hashtag= :hashtag")
     Hashtag hashTagByHashtag(@Param("hashtag") String hashtag);

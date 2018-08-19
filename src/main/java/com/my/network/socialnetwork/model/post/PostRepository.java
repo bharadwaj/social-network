@@ -58,18 +58,29 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
     @Query("select p from Post p where p.isPublicPost = true AND p.promotionFactor = 0 ORDER BY p.promotionFactor DESC, p.createDate desc")
     List<Post> feedPostsOfPublic(@Param("userId") String userId, Pageable pageable);
 
-    /*@Query(value = "SELECT p (select p from Post p where p.promotionFactor > 0 ORDER BY p.promotionFactor DESC, p.createDate desc "+
-            " UNION "+
-            "SELECT p FROM Post p JOIN p.postVisibility pv JOIN pv.visibleToUsers pvu " +
-            "WHERE p.isPostVisibleToUsers = true " +
-            "AND pvu.id = :userId " +
-            "ORDER BY p.promotionFactor DESC, p.createDate desc"+
-            " UNION "+
-            "select p from Post p where p.isFriendsOnlyPost = true " +
-            "AND p.user.id IN (SELECT f.user.id FROM Following f WHERE f.followingUser.id = :userId AND f.isApproved = true ) " +
-            "AND p.promotionFactor = 0 " +
-            "ORDER BY p.createDate desc" +
-            " UNION " +
-            "select p from Post p where p.isPublicPost = true AND p.promotionFactor = 0 ORDER BY p.promotionFactor DESC, p.createDate desc", nativeQuery = true)
-    List<Post> unifiedFeedv2(@Param("userId") String userId, Pageable pageable);*/
+    @Query(value = "(SELECT p.* FROM social_network_3.Post p " +
+            "WHERE  p.promotionFactor > 0 AND p.isActivePost = TRUE " + //For Promoted Posts
+            "LIMIT :size OFFSET :pageNo)" +
+            "UNION " +
+            "(SELECT p.* FROM social_network_3.Post p " +
+            " INNER JOIN social_network_3.PostVisibility pv ON p.id = pv.post_id " +
+            " INNER JOIN social_network_3.PostVisibility_SubscribedUser pvu ON pv.id = pvu.PostVisibility_id " +
+            "WHERE p.isPostVisibleToUsers = TRUE AND p.isActivePost = TRUE AND pvu.visibleToUsers_id = :userId " +
+            "LIMIT :size OFFSET :pageNo) " +
+            "UNION " +
+            "(SELECT A.* FROM  social_network_3.Post A " +
+            " INNER JOIN social_network_3.Following B ON A.user_id = B.following_user_id " +
+            "WHERE A.isFriendsOnlyPost = TRUE AND A.isActivePost = TRUE AND B.user_id = :userId " +
+            "LIMIT :size OFFSET :pageNo) " +
+            "UNION " +
+            "(SELECT p.* FROM social_network_3.Post p " +
+            " INNER JOIN Post_Hashtag ph ON ph.posts_id = p.id " +
+            "WHERE ph.hashtags_id IN (SELECT hashtags_id FROM social_network_3.SubscribedUser_Hashtag sh WHERE sh.subscribedUsers_id = :userId) " +
+            " AND p.isHashtagOnlyPost = TRUE AND p.isActivePost = TRUE " +
+            "LIMIT :size OFFSET :pageNo)" +
+            "UNION " +
+            "(SELECT p.* FROM social_network_3.Post p " +
+            "WHERE p.isPublicPost = TRUE AND p.isActivePost = TRUE " +
+            "LIMIT :size OFFSET :pageNo);", nativeQuery = true)
+    List<Post> unifiedFeed(@Param("userId") String userId, @Param("size") int size, @Param("pageNo") int pageNo);
 }

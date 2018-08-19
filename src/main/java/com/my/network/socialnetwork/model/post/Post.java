@@ -45,17 +45,6 @@ public class Post {
     @Column(columnDefinition="VARCHAR(512)")
     private String videoUrl;
 
-    private Boolean isPublicPost = false;
-
-    private Boolean isFriendsOnlyPost = false;
-
-    private Boolean isPostVisibleToUsers = false;
-
-    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
-    private PostVisibility postVisibility;
-    /*@OneToMany
-    ArrayList<Comment> comment;*/
-
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     //@IndexedEmbedded
@@ -86,6 +75,30 @@ public class Post {
     @JoinColumn(name = "post_id")
     private List<Comment> commentList;
 
+    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
+    private Date postExpiryDate;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modifyDate;
+
+    private Boolean isPublicPost = false;
+
+    private Boolean isFriendsOnlyPost = false;
+
+    private Boolean isPostVisibleToUsers = false;
+
+    private Boolean isHashtagOnlyPost = false;
+
+    private Boolean isActivePost = true;
+
+    @OneToOne(mappedBy = "post", cascade = CascadeType.ALL)
+    private PostVisibility postVisibility;
+
     private Boolean isLiked = false;
 
     private Boolean isReported = false;
@@ -98,22 +111,9 @@ public class Post {
 
     private int reportAbuseCount = 0;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modifyDate;
-
     private Integer priorityList = 0;
 
     private int promotionFactor = 0;
-
-    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
-    private Date postExpiryDate;
-
-    private Boolean isActivePost = true;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"posts", "subscribedUsers"})
@@ -381,5 +381,13 @@ public class Post {
 
     public void setActivePost(Boolean activePost) {
         isActivePost = activePost;
+    }
+
+    public Boolean getHashtagOnlyPost() {
+        return isHashtagOnlyPost;
+    }
+
+    public void setHashtagOnlyPost(Boolean hashtagOnlyPost) {
+        isHashtagOnlyPost = hashtagOnlyPost;
     }
 }

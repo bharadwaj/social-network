@@ -43,7 +43,7 @@ public class HashtagsController {
                                             @RequestParam(value = "page", defaultValue = "0") int page,
                                             @RequestParam(value = "size", defaultValue = "20") int size){
 
-        return new ResponseEntity<>(hashtagRepository.allPostsOfAHastag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
+        return new ResponseEntity<>(hashtagRepository.allPostsOfAHashtag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("users/{hashtag}")
@@ -51,6 +51,6 @@ public class HashtagsController {
                                             @RequestParam(value = "page", defaultValue = "0") int page,
                                             @RequestParam(value = "size", defaultValue = "20") int size){
 
-        return new ResponseEntity<>(hashtagRepository.allUsersOfAHastag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
+        return new ResponseEntity<>(hashtagRepository.allUsersOfAHashtag(hashtag,PageRequest.of(page, size)), HttpStatus.OK);
     }
 }
