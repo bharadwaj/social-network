@@ -4,8 +4,8 @@ public class Notification {
 
     private String body;
     private String title;
-    private String sound;
-    private String badge;
+    private String sound = "sound.caf";
+    private String badge = "1";
 
     public String getBody() {
         return body;

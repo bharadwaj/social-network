@@ -75,6 +75,9 @@ public class PostController {
     @Autowired
     private HashtagRepository hashtagRepository;
 
+    @Autowired
+    private PushNotificationApi pushNotificationApi;
+
     private int DEFAULT_PAGE = 0;
     private int DEFAULT_PAGE_SIZE = 20;
 
@@ -133,28 +136,18 @@ public class PostController {
             post.setUniqueHandle(generateUniqueHandle(post.getTitle()));
         }
 
-        //TODO Notification
-        //String tokens = getTokens(userId);
-        PushNotificationApi notificationApi = new PushNotificationApi();
-        String message = "";
-        if (post.getPriceLists() != null && post.getPriceLists().size() > 0) {
-            message = post.getUser().getName() + " has posted PriceList";
-        } else if (post.getRequestForQuotations() != null && post.getRequestForQuotations().size() > 0) {
-            message = post.getUser().getName() + "has posted RFQ";
-        } else if (post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase("")) {
-            message = post.getUser().getName() + "has posted Image";
-        } else {
-            message = post.getUser().getName() + "has posted in MyDukan";
-        }
-        //notificationApi.sendNotification(authTokenHeader, tokens, "MyDukan Post Notification", message, (long)0);
-
         //Get Hashtags.
         if (post.getHashtags() != null) {
 
             post.setHashtags(processHashtags(post.getHashtags()));
         }
 
-        return new ResponseEntity<>(postRepository.save(post), HttpStatus.OK);
+        Post savedPost = postRepository.save(post);
+
+        //Send Notifications to all his followers.
+        pushNotificationApi.sendPostNotification(savedPost);
+
+        return new ResponseEntity<>(savedPost, HttpStatus.OK);
     }
 
     @GetMapping("/conditions")
@@ -395,14 +388,15 @@ public class PostController {
 
             postLike.setUser(subscribedUserRepository.findById(userId).get());
             postLike.setPost(postRepository.findById(postId).get());
-            postLikeRepository.save(postLike);
+            PostLike savedPostLike = postLikeRepository.save(postLike);
             updateLikesOfPost(postId);
+
+            //Send Notification.
+            pushNotificationApi.sendPostLikeNotification(savedPostLike);
 
             Post respPost = postRepository.findById(postId).get();
             if (postLikeRepository.didUserLikeThisPost(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
-
-                //TODO Notifications here.
 
             } else {
                 respPost.setLiked(false);
