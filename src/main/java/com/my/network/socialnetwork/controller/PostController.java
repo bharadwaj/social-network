@@ -380,7 +380,7 @@ public class PostController {
 
     //Same Call for both like and unlike a post.
     @PutMapping(value = "/like/{postId}")
-    public ResponseEntity likePost(@PathVariable Long postId, HttpServletRequest request) {
+    public ResponseEntity likePost(@PathVariable Long postId, HttpServletRequest request, @RequestHeader(value = "Authorization") String authTokenHeader) {
         PostLike postLike = new PostLike();
         String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(token);
