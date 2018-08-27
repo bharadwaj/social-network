@@ -1,7 +1,6 @@
 package com.my.network.auth.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;

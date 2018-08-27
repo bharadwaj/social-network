@@ -61,8 +61,6 @@ public class CommentController {
         for(Comment c : respComments){
             if (commentLikeRepository.didUserLikeThisComment(userId, c.getId()) != null) {
                 c.setLiked(true);
-                //PushNotificationApi notificationApi = new PushNotificationApi();
-                //notificationApi.sendNotification(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 c.setLiked(false);
             }
@@ -105,8 +103,6 @@ public class CommentController {
             Comment respPost = commentRepository.findById(commentId).get();
             if (commentLikeRepository.didUserLikeThisComment(userId, respPost.getId()) != null) {
                 respPost.setLiked(true);
-                //PushNotificationApi notificationApi = new PushNotificationApi();
-                //notificationApi.sendNotification(token, "MyDukan Notification", respPost.getUser().getName()+" has liked your post.");
             } else {
                 respPost.setLiked(false);
             }

@@ -38,13 +38,7 @@ public class AdminController {
         //String token = request.getHeader(tokenHeader);
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
-        if(user.isPresent() &&
-                (user.get().getEmail().equals("mydukanapp@gmail.com")
-                  || user.get().getEmail().equals("mydukaninfo@gmail.com")
-                  || user.get().getEmail().equals("myappdukan@gmail.com")
-                  || user.get().getEmail().equals("contactmydukan@gmail.com")
-                || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
-        ){
+        if(user.isPresent() && permittedUser(user)){
             return new ResponseEntity<>(postRepository.getAllReportedPosts(), HttpStatus.OK);
 
         }else {
@@ -54,20 +48,12 @@ public class AdminController {
 
     }
 
-
-
     @PutMapping("promote/user")
     public ResponseEntity updatePromotionStatusOfUser(@RequestBody SubscribedUser su, @RequestHeader(value = "Authorization") String authTokenHeader){
 
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
-        if(user.isPresent() &&
-                (user.get().getEmail().equals("mydukanapp@gmail.com")
-                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
-                        || user.get().getEmail().equals("myappdukan@gmail.com")
-                        || user.get().getEmail().equals("contactmydukan@gmail.com")
-                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
-        ){
+        if(user.isPresent() && permittedUser(user) ){
             SubscribedUser toSave = user.get();
             toSave.setPromotionFactor(su.getPromotionFactor());
 
@@ -102,13 +88,7 @@ public class AdminController {
                                          @RequestHeader(value = "Authorization") String authTokenHeader){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
-        if(user.isPresent() &&
-                (user.get().getEmail().equals("mydukanapp@gmail.com")
-                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
-                        || user.get().getEmail().equals("myappdukan@gmail.com")
-                        || user.get().getEmail().equals("contactmydukan@gmail.com")
-                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
-        ){
+        if(user.isPresent() && permittedUser(user)){
 
             return new ResponseEntity<>(postRepository.findAllByPostsByUserId(profileId, PageRequest.of(page, size)), HttpStatus.OK);
 
@@ -123,13 +103,7 @@ public class AdminController {
                                          @RequestHeader(value = "Authorization") String authTokenHeader){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
-        if(user.isPresent() &&
-                (user.get().getEmail().equals("mydukanapp@gmail.com")
-                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
-                        || user.get().getEmail().equals("myappdukan@gmail.com")
-                        || user.get().getEmail().equals("contactmydukan@gmail.com")
-                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
-        ){
+        if(user.isPresent() && permittedUser(user)){
             postRepository.delete(post);
 
             return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Deleted."), HttpStatus.OK);
@@ -145,13 +119,7 @@ public class AdminController {
                                          @RequestHeader(value = "Authorization") String authTokenHeader){
         String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> user = subscribedUserRepository.findById(userId);
-        if(user.isPresent() &&
-                (user.get().getEmail().equals("mydukanapp@gmail.com")
-                        || user.get().getEmail().equals("mydukaninfo@gmail.com")
-                        || user.get().getEmail().equals("myappdukan@gmail.com")
-                        || user.get().getEmail().equals("contactmydukan@gmail.com")
-                        || user.get().getEmail().equals("bharadwaj.j@gmail.com"))
-        ){
+        if(user.isPresent() && permittedUser(user)){
             commentRepository.delete(comment);
 
             return new ResponseEntity<>(new SuccessResponse(HttpStatus.OK, "Successfully Deleted."), HttpStatus.OK);
@@ -160,5 +128,16 @@ public class AdminController {
 
             return new ResponseEntity<>("What are you doing here.", HttpStatus.FORBIDDEN);
         }
+    }
+
+    public Boolean permittedUser(Optional<SubscribedUser> user){
+        if(user.get().getEmail().equals("mydukanapp@gmail.com")
+                || user.get().getEmail().equals("mydukaninfo@gmail.com")
+                || user.get().getEmail().equals("myappdukan@gmail.com")
+                || user.get().getEmail().equals("contactmydukan@gmail.com")
+                || user.get().getEmail().equals("bharadwaj.j@gmail.com")){
+            return true;
+        }
+        return false;
     }
 }
