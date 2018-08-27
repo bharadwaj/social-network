@@ -11,11 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import sun.rmi.runtime.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +69,11 @@ public class PushNotificationApi {
             toSend.setId(post.getId());
             toSend.setTitle(post.getTitle());
 
-            nd.setPost(toSend);
+//            nd.setPost(toSend);
+            nd.setPost(String.valueOf(post.getId()));
+            nd.setScreen("post");
+            if(post != null && post.getImageUrl() != null && !post.getImageUrl().equalsIgnoreCase(""))
+                nd.setImage(post.getImageUrl());
 
             sendNotification(toFCMToken, "type_a", n, nd);
 
@@ -93,7 +100,9 @@ public class PushNotificationApi {
         p.setId(postLike.getPost().getId());
         toSend.setPost(p);
 
-        nd.setPostLike(toSend);
+//        nd.setPostLike(toSend);
+        nd.setPost(String.valueOf(postLike.getPost().getId()));
+        nd.setScreen("post");
 
         sendNotification(toFCMToken, "type_a", n, nd);
 
@@ -119,12 +128,34 @@ public class PushNotificationApi {
         p.setId(comment.getPost().getId());
         toSend.setPost(p);
 
-        nd.setComment(toSend);
+//        nd.setComment(toSend);
+        nd.setPost(String.valueOf(comment.getPost().getId()));
+        nd.setScreen("post");
 
         sendNotification(toFCMToken, "type_a", n, nd);
 
     }
 
+    @Async("threadPoolTaskExecutor")
+    public void sendFollowRequest(Following following){
+        Optional<Users> optUser = usersRepository.findById(following.getFollowingUser().getId());
+        if(!optUser.isPresent())
+            return;
+        String toFCMToken = optUser.get().getGcmToken();
+
+        Notification n = new Notification();
+        n.setTitle(following.getUser().getName() + " has Requested to follow you");
+        n.setBody("Click to see his profile");
+
+        NotificationData nd = new NotificationData();
+
+//        nd.setComment(toSend);
+        nd.setPost(following.getUser().getId());
+        nd.setScreen("request");
+
+        sendNotification(toFCMToken, "type_a", n, nd);
+
+    }
 
     public ResponseEntity sendNotification(String toFcmToken, String collapseKey, Notification notification, NotificationData data){
 
@@ -139,7 +170,6 @@ public class PushNotificationApi {
 
         notificationRequest.setTo(toFcmToken);
         notificationRequest.setCollapse_key(collapseKey);
-
 
         notificationRequest.setData(data);
         notificationRequest.setNotification(notification);

@@ -10,8 +10,8 @@ public class NotificationData {
     private String body;
     private String screen;
     private String image;
-    private PostLike postLike;
-    private Post post;
+    private String postLike;
+    private String post;
     private Comment comment;
 
     public String getTitle() {
@@ -46,19 +46,19 @@ public class NotificationData {
         this.image = image;
     }
 
-    public PostLike getPostLike() {
+    public String getPostLike() {
         return postLike;
     }
 
-    public void setPostLike(PostLike postLike) {
+    public void setPostLike(String postLike) {
         this.postLike = postLike;
     }
 
-    public Post getPost() {
+    public String getPost() {
         return post;
     }
 
-    public void setPost(Post post) {
+    public void setPost(String post) {
         this.post = post;
     }
 

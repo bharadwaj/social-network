@@ -1,6 +1,8 @@
 package com.my.network.socialnetwork.notification;
 
 
+import java.util.List;
+
 /*
 *
 {
@@ -21,7 +23,7 @@ package com.my.network.socialnetwork.notification;
 }*/
 public class NotificationRequest {
 
-    private String to;
+    private String tokens;
     private String collapse_key;
 
     private Notification notification;
@@ -29,11 +31,11 @@ public class NotificationRequest {
     private NotificationData data;
 
     public String getTo() {
-        return to;
+        return tokens;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setTo(String tokens) {
+        this.tokens = tokens;
     }
 
     public String getCollapse_key() {

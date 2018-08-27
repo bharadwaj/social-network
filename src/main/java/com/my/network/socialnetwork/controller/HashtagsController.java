@@ -24,8 +24,8 @@ public class HashtagsController {
     //This is my fcm token: ddyhHdz6h6Y:APA91bFU_zbVwUAxc4IxpRkb9XM6EIsYEXS6-adAuQ6LjUs_LUSrbI_tfLuOPhMiEVG5KkzRhpVeZt1fx4j909Z21L2Ic-48clowOfZ5AgQu20C_e3fE5q7TUKWkKqHUfebuIuDrGhkRGRfm935cCIV2LLXHg8isjg
     @GetMapping("/")
     public ResponseEntity testNotif() {
-        String to = "ddyhHdz6h6Y:APA91bFU_zbVwUAxc4IxpRkb9XM6EIsYEXS6-adAuQ6LjUs_LUSrbI_tfLuOPhMiEVG5KkzRhpVeZt1fx4j909Z21L2Ic-48clowOfZ5AgQu20C_e3fE5q7TUKWkKqHUfebuIuDrGhkRGRfm935cCIV2LLXHg8isjg";
-
+//        String to = "ddyhHdz6h6Y:APA91bFU_zbVwUAxc4IxpRkb9XM6EIsYEXS6-adAuQ6LjUs_LUSrbI_tfLuOPhMiEVG5KkzRhpVeZt1fx4j909Z21L2Ic-48clowOfZ5AgQu20C_e3fE5q7TUKWkKqHUfebuIuDrGhkRGRfm935cCIV2LLXHg8isjg";
+        String to = "dsBqEw2AHoY:APA91bH5VLKoFd58qaI2dVG3eEHBjJCzsiQiFL-KwPqCMNmsGqO1MZHFMCzQ6RqpIhADvU3_JPABWnCdoFbPyqZsc7A_K15l4ZqmPi_Zio5vISzM-G8CkV9RW2wOYcms2_WPGy1de4G8rntmNceDv7CVr2b3nVhtVw";
         Notification n = new Notification();
         n.setTitle("What's up?");
         n.setBody("yo");
