@@ -43,8 +43,9 @@ public class CommentController {
     public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
         String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
         Optional<SubscribedUser> optionalSubscribedUser =  subscribedUserRepository.findById(currentUserId);
+        Optional<Post> optionalPost = postRepository.findById(comment.getPost().getId());
 
-        if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent()
+        if(comment.getPost() == null || !optionalPost.isPresent()
                 || !optionalSubscribedUser.isPresent())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -52,7 +53,7 @@ public class CommentController {
         Comment savedComment = commentRepository.save(comment);
         updateCommentsCount(comment.getPost().getId());
 
-        pushNotificationApi.sendCommentNotification(savedComment, savedComment.getPost().getUser().getId());
+        pushNotificationApi.sendCommentNotification(savedComment, optionalPost.get().getUser().getId());
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
