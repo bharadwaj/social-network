@@ -109,14 +109,15 @@ public class PushNotificationApi {
     }
 
     @Async("threadPoolTaskExecutor")
-    public void sendCommentNotification(Comment comment){
-        Optional<Users> optUser = usersRepository.findById(comment.getPost().getUser().getId());
+    public void sendCommentNotification(Comment comment, String postOwner){
+        Optional<Users> optUser = usersRepository.findById(postOwner);
         if(!optUser.isPresent())
             return;
+
         String toFCMToken = optUser.get().getGcmToken();
 
         Notification n = new Notification();
-        n.setTitle(comment.getComment() + " Commented on your Post.");
+        n.setTitle(comment.getUser().getName() + " Commented on your Post.");
         n.setBody(comment.getComment());
 
         NotificationData nd = new NotificationData();
@@ -128,8 +129,8 @@ public class PushNotificationApi {
         p.setId(comment.getPost().getId());
         toSend.setPost(p);
 
-//        nd.setComment(toSend);
-        nd.setPost(String.valueOf(comment.getPost().getId()));
+        nd.setComment(toSend);
+        //nd.setPost(String.valueOf(comment.getPost().getId()));
         nd.setScreen("post");
 
         sendNotification(toFCMToken, "type_a", n, nd);
@@ -149,12 +150,29 @@ public class PushNotificationApi {
 
         NotificationData nd = new NotificationData();
 
-//        nd.setComment(toSend);
-        nd.setPost(following.getUser().getId());
+        //nd.setComment(toSend);
+        //nd.setPost(following.getUser().getId());
         nd.setScreen("request");
 
         sendNotification(toFCMToken, "type_a", n, nd);
 
+    }
+
+    @Async("threadPoolTaskExecutor")
+    public void acceptFollowRequest(Following following){
+        Optional<Users> optUser = usersRepository.findById(following.getFollowingUser().getId());
+        if(!optUser.isPresent())
+            return;
+        String to = optUser.get().getGcmToken();
+        Notification n = new Notification();
+        n.setTitle(following.getUser().getName() + " accepted your invitation.");
+        n.setBody("Click to see "+ following.getUser().getName() +"'s posts and Pricelists @ MyDukan.");
+        n.setBadge("1");
+
+        NotificationData nd = new NotificationData();
+        nd.setScreen("request");
+//        nd.setId("2");
+        sendNotification(to, "type_a", n, nd);
     }
 
     public ResponseEntity sendNotification(String toFcmToken, String collapseKey, Notification notification, NotificationData data){

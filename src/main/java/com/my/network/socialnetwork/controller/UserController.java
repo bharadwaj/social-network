@@ -360,6 +360,7 @@ public class UserController {
     }
 
     private SubscribedUser mapUserToSubscribedUser(Users u) {
+        Optional<SubscribedUser> existIngUser = subscribedUserRepository.findById(u.getUserId());
         SubscribedUser toSave = new SubscribedUser();
         String userId = u.getUserId();
         //User Details, Name, UserName, Email, Contact Number
@@ -373,6 +374,15 @@ public class UserController {
         toSave.setOpenFollow(true);
         toSave.setOpenMessage(true);
         toSave.setOpenProfile(true);
+
+        //Initialize the Followers Count.
+        if(existIngUser.isPresent()){
+            toSave.setFollowingCount(followingRepository.countOfFollowingByUserId(userId));
+            toSave.setFollowersCount(followingRepository.countOfFollowersByUserId(userId));
+        } else {
+            toSave.setFollowersCount(0);
+            toSave.setFollowingCount(0);
+        }
 
         //Default Promotion Status is 0
         toSave.setPromotionFactor(0);

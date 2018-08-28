@@ -1,24 +1,21 @@
 package com.my.network.socialnetwork.controller;
 
 import com.my.network.auth.JwtTokenUtil;
-import com.my.network.auth.model.Users;
 import com.my.network.myrequest.FollowPhoneContact;
 import com.my.network.socialnetwork.model.SubscribedUser;
+import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.network.Following;
 import com.my.network.socialnetwork.model.network.FollowingRepository;
-import com.my.network.socialnetwork.model.SubscribedUserRepository;
 import com.my.network.socialnetwork.model.response.ErrorResponse;
 import com.my.network.socialnetwork.model.response.SuccessResponse;
-import com.my.network.socialnetwork.notification.Notification;
-import com.my.network.socialnetwork.notification.NotificationData;
 import com.my.network.socialnetwork.notification.PushNotificationApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -88,17 +85,6 @@ public class FollowController {
 
         Following savedFollow = followingRepository.save(following);
 
-        String to = "dsBqEw2AHoY:APA91bH5VLKoFd58qaI2dVG3eEHBjJCzsiQiFL-KwPqCMNmsGqO1MZHFMCzQ6RqpIhADvU3_JPABWnCdoFbPyqZsc7A_K15l4ZqmPi_Zio5vISzM-G8CkV9RW2wOYcms2_WPGy1de4G8rntmNceDv7CVr2b3nVhtVw";
-        Notification n = new Notification();
-        n.setTitle("MyDukan");
-        String name = subscribedUserRepository.findById(following.getFollowingUser().getId()).get().getName();
-        n.setBody(name + " has requested you to follow");
-        n.setBadge("1");
-
-        NotificationData nd = new NotificationData();
-        nd.setScreen("request");
-//        nd.setId("1");
-
         pushNotificationApi.sendFollowRequest(following);
 
         // Update both users following and followers count.
@@ -159,18 +145,7 @@ public class FollowController {
 
         updateFollowCounts(following, currentUserId);
 
-        String to = "dsBqEw2AHoY:APA91bH5VLKoFd58qaI2dVG3eEHBjJCzsiQiFL-KwPqCMNmsGqO1MZHFMCzQ6RqpIhADvU3_JPABWnCdoFbPyqZsc7A_K15l4ZqmPi_Zio5vISzM-G8CkV9RW2wOYcms2_WPGy1de4G8rntmNceDv7CVr2b3nVhtVw";
-        Notification n = new Notification();
-        n.setTitle("MyDukan");
-        String name = subscribedUserRepository.findById(following.getFollowingUser().getId()).get().getName();
-        n.setBody(name + " has accepted your invitation");
-        n.setBadge("1");
-
-        NotificationData nd = new NotificationData();
-        nd.setScreen("request");
-//        nd.setId("2");
-
-        pushNotificationApi.sendNotification(to, "type_a", n, nd);
+        pushNotificationApi.acceptFollowRequest(f);
 
         return new ResponseEntity<>(f, HttpStatus.OK);
     }

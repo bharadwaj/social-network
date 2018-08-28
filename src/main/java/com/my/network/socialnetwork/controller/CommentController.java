@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/comment")
@@ -40,14 +41,18 @@ public class CommentController {
 
     @PostMapping(value="/")
     public ResponseEntity commentOnPost(@RequestBody Comment comment, @RequestHeader(value= "Authorization") String authTokenHeader){
-        String userId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
-        comment.setUser(subscribedUserRepository.findById(userId).get());
-        if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent())
+        String currentUserId = jwtTokenUtil.getUserIdFromToken(authTokenHeader);
+        Optional<SubscribedUser> optionalSubscribedUser =  subscribedUserRepository.findById(currentUserId);
+
+        if(comment.getPost() == null || !postRepository.findById(comment.getPost().getId()).isPresent()
+                || !optionalSubscribedUser.isPresent())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        comment.setUser(optionalSubscribedUser.get());
         Comment savedComment = commentRepository.save(comment);
         updateCommentsCount(comment.getPost().getId());
 
-        pushNotificationApi.sendCommentNotification(savedComment);
+        pushNotificationApi.sendCommentNotification(savedComment, savedComment.getPost().getUser().getId());
         return new ResponseEntity<>(savedComment, HttpStatus.OK);
     }
 
