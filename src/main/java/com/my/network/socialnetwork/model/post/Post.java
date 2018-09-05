@@ -33,20 +33,20 @@ public class Post {
 
     //@Field
     @NotNull
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String title;
 
     //@Field
-    @Column(columnDefinition="MEDIUMTEXT")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String body;
 
     @NotNull
     private String uniqueHandle;
 
-    @Column(columnDefinition="VARCHAR(512)")
+    @Column(columnDefinition = "VARCHAR(512)")
     private String imageUrl;
 
-    @Column(columnDefinition="VARCHAR(512)")
+    @Column(columnDefinition = "VARCHAR(512)")
     private String videoUrl;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -79,7 +79,7 @@ public class Post {
     @JoinColumn(name = "post_id")
     private List<Comment> commentList;
 
-    @JsonFormat( shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+05:30")
     private Date postExpiryDate;
 
     @CreationTimestamp
@@ -119,7 +119,7 @@ public class Post {
 
     private int promotionFactor = 0;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JsonIgnoreProperties({"posts", "subscribedUsers"})
     private List<Hashtag> hashtags;
 

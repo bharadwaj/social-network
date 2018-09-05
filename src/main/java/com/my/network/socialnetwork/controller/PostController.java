@@ -94,7 +94,6 @@ public class PostController {
 
         post.setUser(subscribedUserRepository.findById(userId).get());
 
-
         if (post.getIsPublicPost() == null || post.getIsPublicPost()) {
             //Post can be seen by everyone by default.
             post.setIsPublicPost(true);
@@ -181,7 +180,7 @@ public class PostController {
 
         //Show all posts
         Page<Post> respPage;
-        if(direct){
+        if (direct) {
             //If direct is switched to true then show only direct posts.
             respPage = postRepository.findDirectSharedPosts(currentUser, profileOfUserId, PageRequest.of(page, size));
         } else {
@@ -299,8 +298,11 @@ public class PostController {
         // 3. The owner of the post and current user session is the same.
         if (!postRepository.existsById(postId) ||
                 !subscribedUserRepository.existsById(userId) ||
-                !postRepository.findById(postId).get().getUser().getId().equals(userId))
+                !postRepository.findById(postId).get().getUser().getId().equals(userId)) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        System.out.println("Deleting the post...");
 
         postRepository.deleteById(postId);
         return new ResponseEntity<>(postRepository.feedOfUser(userId, PageRequest.of(DEFAULT_PAGE, DEFAULT_PAGE_SIZE)), HttpStatus.OK);
@@ -351,7 +353,7 @@ public class PostController {
         String token = request.getHeader(tokenHeader);
         String currentUserId = jwtTokenUtil.getUserIdFromToken(token);
 
-        List<Post> resPosts = postRepository.unifiedFeed(currentUserId, size, size*page);
+        List<Post> resPosts = postRepository.unifiedFeed(currentUserId, size, size * page);
 
         for (Post p : resPosts) {
             if (postLikeRepository.didUserLikeThisPost(currentUserId, p.getId()) != null) {
@@ -579,7 +581,7 @@ public class PostController {
         if (!subscribedUserRepository.findById(currentUserId).isPresent())
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "User is not present."), HttpStatus.UNAUTHORIZED);
 
-        if(size % 10 != 0)
+        if (size % 10 != 0)
             return new ResponseEntity<>(new ErrorResponse(HttpStatus.FORBIDDEN, "Bad Page Size"), HttpStatus.BAD_REQUEST);
 
         //Page<Post> resPosts = postRepository.pageFeedOfUser(currentUserId, PageRequest.of(page, size));
